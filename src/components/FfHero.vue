@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref, useSlots } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { useData } from 'vitepress'
-import { VPImage } from '../internal'
+import { layoutInfoInjectionKey, VPImage } from '../internal'
 import type { DefaultTheme } from 'vitepress/theme'
 
 export interface HeroAction {
@@ -12,7 +12,7 @@ export interface HeroAction {
     rel?: string
 }
 
-defineProps<{
+const props = defineProps<{
     name?: string
     text?: string
     tagline?: string
@@ -20,11 +20,30 @@ defineProps<{
     actions?: HeroAction[]
 }>()
 
-const slots = useSlots()
 const { frontmatter } = useData()
 
-// Optional extra: `hero.command` in the frontmatter prints the install line under the actions.
+// The layout always declares the home-hero-image slot, so whether the site actually filled it is
+// only knowable through the flag the home layout provides.
+const { heroImageSlotExists } = inject(layoutInfoInjectionKey, {
+    heroImageSlotExists: computed(() => false)
+})
+
+// Two additions to the standard home frontmatter, both optional:
+//
+//   hero.command   the install line, printed in a panel beside the headline
+//   hero.meta      a colophon strip under the hero: [{ label, value }, …]
 const command = computed<string | undefined>(() => frontmatter.value.hero?.command)
+const meta = computed<{ label: string; value: string }[]>(
+    () => frontmatter.value.hero?.meta ?? []
+)
+
+const hasImage = computed(() => !!props.image || heroImageSlotExists.value)
+
+// The second column carries the image when there is one, and the starting point otherwise. The
+// actions only move over there when they have a panel to sit in.
+const hasPanel = computed(() => !hasImage.value && !!command.value)
+const asideActions = computed(() => (hasPanel.value ? props.actions : undefined))
+const mainActions = computed(() => (hasPanel.value ? undefined : props.actions))
 
 const copied = ref(false)
 
@@ -38,8 +57,12 @@ async function copy() {
 </script>
 
 <template>
-    <div class="VPHero ff-hero" :class="{ 'has-image': image || slots['home-hero-image'] }">
+    <div
+        class="VPHero ff-hero"
+        :class="{ 'has-image': hasImage, 'has-panel': hasPanel }"
+    >
         <span class="ff-hero-glow" aria-hidden="true" />
+        <span class="ff-hero-glow ff-hero-glow-far" aria-hidden="true" />
 
         <div class="ff-hero-container">
             <div class="ff-hero-main">
@@ -58,11 +81,11 @@ async function copy() {
 
                 <slot name="home-hero-info-after" />
 
-                <div v-if="actions?.length" class="ff-hero-actions">
+                <div v-if="mainActions?.length" class="ff-hero-actions">
                     <slot name="home-hero-actions-before-actions" />
 
                     <a
-                        v-for="action in actions"
+                        v-for="action in mainActions"
                         :key="action.link"
                         class="ff-btn"
                         :class="`ff-btn-${action.theme ?? 'brand'}`"
@@ -75,8 +98,18 @@ async function copy() {
                 </div>
 
                 <slot name="home-hero-actions-after" />
+            </div>
 
-                <div v-if="command" class="ff-hero-command">
+            <div v-if="hasImage" class="ff-hero-image">
+                <slot name="home-hero-image">
+                    <VPImage v-if="image" class="ff-hero-image-src" :image="image" />
+                </slot>
+            </div>
+
+            <aside v-else-if="hasPanel" class="ff-hero-panel">
+                <p class="ff-hero-panel-label ff-label">Install</p>
+
+                <div class="ff-hero-command">
                     <code>
                         <span class="ff-hero-prompt" aria-hidden="true">$</span>
                         {{ command }}
@@ -91,13 +124,30 @@ async function copy() {
                         {{ copied ? 'Copied' : 'Copy' }}
                     </button>
                 </div>
-            </div>
 
-            <div v-if="image || slots['home-hero-image']" class="ff-hero-image">
-                <slot name="home-hero-image">
-                    <VPImage v-if="image" class="ff-hero-image-src" :image="image" />
-                </slot>
-            </div>
+                <div v-if="asideActions?.length" class="ff-hero-actions">
+                    <slot name="home-hero-actions-before-actions" />
+
+                    <a
+                        v-for="action in asideActions"
+                        :key="action.link"
+                        class="ff-btn"
+                        :class="`ff-btn-${action.theme ?? 'brand'}`"
+                        :href="action.link"
+                        :target="action.target"
+                        :rel="action.rel"
+                    >
+                        {{ action.text }}
+                    </a>
+                </div>
+            </aside>
         </div>
+
+        <dl v-if="meta.length" class="ff-hero-meta">
+            <div v-for="item in meta" :key="item.label" class="ff-hero-meta-item">
+                <dt class="ff-label">{{ item.label }}</dt>
+                <dd>{{ item.value }}</dd>
+            </div>
+        </dl>
     </div>
 </template>

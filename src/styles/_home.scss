@@ -7,6 +7,9 @@
 .ff-theme {
     // ----------------------------------------------------------------------------------------- //
     // Hero
+    //
+    // A statement on the left, and a second column that carries something real: the project image
+    // when there is one, the starting point otherwise. Under it, a colophon strip.
     // ----------------------------------------------------------------------------------------- //
 
     .VPHome {
@@ -15,12 +18,12 @@
 
     .ff-hero {
         position: relative;
-        padding: 4.5rem 1.5rem 4rem;
+        padding: 4.5rem 1.5rem 3.5rem;
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         overflow: hidden;
     }
 
-    // A slow wash of the accent behind the headline — the one light source in the theme.
+    // Two washes of light, one accent and one neutral, so the page has a direction.
 
     .ff-hero-glow {
         position: absolute;
@@ -40,6 +43,18 @@
         pointer-events: none;
     }
 
+    .ff-hero-glow-far {
+        top: -20%;
+        right: -20%;
+        left: auto;
+        width: min(50rem, 100%);
+        background: radial-gradient(
+            circle closest-side at 50% 50%,
+            #{mg.ref("color-accent-soft")},
+            transparent
+        );
+    }
+
     .ff-hero-container {
         position: relative;
         display: grid;
@@ -49,7 +64,7 @@
     }
 
     .ff-hero-kicker {
-        margin: 0 0 1.75rem;
+        margin: 0 0 1.5rem;
         color: #{mg.ref("color-ink-muted")};
     }
 
@@ -61,7 +76,7 @@
     }
 
     .ff-hero-title {
-        max-width: 16ch;
+        max-width: 18ch;
         margin: 0;
         font-size: #{mg.ref("size-hero")};
         letter-spacing: -0.04em;
@@ -70,10 +85,10 @@
     }
 
     .ff-hero-tagline {
-        max-width: 46ch;
+        max-width: 42ch;
         margin: 1.75rem 0 0;
-        font-size: 1.1875rem;
-        line-height: 1.6;
+        font-size: 1.25rem;
+        line-height: 1.55;
         color: #{mg.ref("color-ink-muted")};
         text-wrap: pretty;
     }
@@ -85,23 +100,48 @@
         margin-top: 2.5rem;
     }
 
-    // Install line: the one place where a terminal shows up on the home page.
+    // ----------------------------------------------------------------------------------------- //
+    // Starting point panel
+    // ----------------------------------------------------------------------------------------- //
+
+    .ff-hero-panel {
+        align-self: center;
+        padding: 1.75rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+        background: #{mg.ref("color-surface")};
+        box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 5%);
+    }
+
+    .ff-hero-panel-label {
+        margin: 0 0 1rem;
+    }
+
+    .ff-hero-panel .ff-hero-actions {
+        margin-top: 1.25rem;
+    }
+
+    .ff-hero-panel .ff-btn {
+        flex: 1 1 8rem;
+        justify-content: center;
+    }
 
     .ff-hero-command {
-        display: inline-flex;
+        display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 1rem;
-        margin-top: 2.25rem;
-        padding: 0.625rem 0.625rem 0.625rem 1rem;
+        padding: 0.625rem 0.625rem 0.625rem 0.875rem;
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         border-radius: #{mg.ref("radius-sm")};
-        background: #{mg.ref("color-surface")};
+        background: #{mg.ref("color-paper")};
     }
 
     .ff-hero-command code {
         font-family: #{mg.ref("font-mono")};
         font-size: 0.8125rem;
         color: #{mg.ref("color-ink")};
+        overflow-x: auto;
     }
 
     .ff-hero-prompt {
@@ -110,6 +150,7 @@
     }
 
     .ff-hero-copy {
+        flex-shrink: 0;
         padding: 0.25rem 0.5rem;
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         border-radius: #{mg.ref("radius-sm")};
@@ -134,19 +175,62 @@
         height: auto;
     }
 
+    // ----------------------------------------------------------------------------------------- //
+    // Colophon
+    // ----------------------------------------------------------------------------------------- //
+
+    .ff-hero-meta {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+        gap: 1.5rem;
+        max-width: #{mg.ref("layout-wide")};
+        margin: 4rem auto 0;
+        padding-top: 1.75rem;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .ff-hero-meta-item {
+        padding-left: 1.5rem;
+        border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .ff-hero-meta-item:first-child {
+        padding-left: 0;
+        border-left: 0;
+    }
+
+    .ff-hero-meta dt {
+        margin-bottom: 0.625rem;
+    }
+
+    .ff-hero-meta dd {
+        margin: 0;
+        font-family: #{mg.ref("font-display")};
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: #{mg.ref("color-ink")};
+    }
+
     @media (min-width: 640px) {
         .ff-hero {
-            padding: 6rem 3rem 5rem;
+            padding: 6rem 3rem 4rem;
         }
     }
 
     @media (min-width: 960px) {
         .ff-hero {
-            padding: 7rem 4rem 6rem;
+            padding: 7rem 4rem 4.5rem;
         }
 
-        .ff-hero.has-image .ff-hero-container {
-            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        .ff-hero-container {
+            gap: 4.5rem;
+        }
+
+        .ff-hero.has-image .ff-hero-container,
+        .ff-hero.has-panel .ff-hero-container {
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
             align-items: center;
         }
     }
@@ -165,10 +249,6 @@
         font-size: 0.875rem;
         font-weight: 550;
         white-space: nowrap;
-        transition:
-            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .ff-btn-brand {
@@ -192,11 +272,14 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
-    // Feature grid: cells in a ruled table, numbered from the stylesheet
+    // Feature grid
+    //
+    // Columns separated by hairlines rather than a boxed table, each numbered by a large ghost
+    // numeral in the corner.
     // ----------------------------------------------------------------------------------------- //
 
     .VPFeatures {
-        padding: 4rem 1.5rem;
+        padding: 4rem 1.5rem 5rem;
     }
 
     .VPFeatures .container {
@@ -208,10 +291,7 @@
         grid-template-columns: minmax(0, 1fr);
         gap: #{mg.ref("rule-width")};
         margin: 0;
-        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
-        border-radius: #{mg.ref("radius-md")};
         background: #{mg.ref("color-rule")};
-        overflow: hidden;
         counter-reset: ff-feature;
     }
 
@@ -223,54 +303,62 @@
     }
 
     .ff-feature {
+        position: relative;
         display: flex;
         flex-direction: column;
         height: 100%;
-        padding: 2rem;
+        padding: 2.25rem 2rem 2.5rem;
         background: #{mg.ref("color-paper")};
-        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    a.ff-feature:hover {
-        background: #{mg.ref("color-surface")};
     }
 
     .ff-feature-index::before {
         content: counter(ff-feature, decimal-leading-zero);
+        position: absolute;
+        top: 1.5rem;
+        right: 1.75rem;
         font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
+        font-size: 2rem;
         font-weight: 500;
-        letter-spacing: #{mg.ref("tracking-label")};
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: #{mg.ref("color-rule-strong")};
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    a.ff-feature:hover .ff-feature-index::before {
         color: #{mg.ref("color-accent")};
     }
 
     .ff-feature-icon {
-        margin-top: 1.5rem;
         font-size: 1.5rem;
         line-height: 1;
-        color: #{mg.ref("color-ink-muted")};
+        color: #{mg.ref("color-accent")};
     }
 
     .ff-feature-icon svg {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.625rem;
+        height: 1.625rem;
     }
 
     .ff-feature-title {
-        margin: 1.25rem 0 0;
+        margin: 2.25rem 0 0;
         font-family: #{mg.ref("font-display")};
-        font-size: 1.0625rem;
+        font-size: 1.1875rem;
         font-weight: 620;
         letter-spacing: -0.015em;
         color: #{mg.ref("color-ink")};
     }
 
+    .ff-feature-icon + .ff-feature-title {
+        margin-top: 1.5rem;
+    }
+
     .ff-feature-details {
         flex-grow: 1;
-        margin: 0.625rem 0 0;
+        margin: 0.75rem 0 0;
         padding: 0;
         font-size: 0.9375rem;
-        line-height: 1.65;
+        line-height: 1.7;
         color: #{mg.ref("color-ink-muted")};
     }
 
@@ -280,13 +368,13 @@
     }
 
     .ff-feature-link {
-        margin-top: 1.5rem;
+        margin-top: 1.75rem;
         color: #{mg.ref("color-accent")};
     }
 
     @media (min-width: 640px) {
         .VPFeatures {
-            padding: 5rem 3rem;
+            padding: 5rem 3rem 6rem;
         }
 
         .VPFeatures .items {
@@ -296,7 +384,7 @@
 
     @media (min-width: 960px) {
         .VPFeatures {
-            padding: 6rem 4rem;
+            padding: 6rem 4rem 7rem;
         }
 
         .VPFeatures .items:has(.grid-3) {

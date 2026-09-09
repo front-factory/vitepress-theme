@@ -123,7 +123,11 @@ section name.
 ## Home page
 
 Standard VitePress home frontmatter, read with an editorial hierarchy: `hero.name` becomes the
-kicker, `hero.text` the headline. One addition, `hero.command`, prints an install line.
+kicker, `hero.text` the headline. Two additions fill the page out.
+
+`hero.command` puts an install panel in the second column of the hero, carrying the command and the
+actions. It is used only when the page has no `hero.image` — an image still takes that column.
+`hero.meta` prints a colophon strip under the hero.
 
 ```yaml
 ---
@@ -134,6 +138,13 @@ hero:
   text: A headline that carries the page.
   tagline: One or two sentences of standfirst.
   command: npm install my-project
+  meta:
+    - label: Licence
+      value: MIT
+    - label: Version
+      value: 1.4.x
+    - label: Dependencies
+      value: None
   actions:
     - theme: brand
       text: Get started

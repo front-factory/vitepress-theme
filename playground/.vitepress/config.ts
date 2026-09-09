@@ -42,7 +42,7 @@ export default extendConfig(
             socialLinks: [{ icon: 'github', link: 'https://github.com' }],
             footer: {
                 message: 'Released under the MIT License.',
-                copyright: 'Copyright © 2026 Boris Damevin'
+                copyright: 'Copyright © 2026 Front Factory'
             },
             ff: {
                 banner: {

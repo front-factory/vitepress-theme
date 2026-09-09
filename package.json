@@ -50,7 +50,7 @@
         "editorial"
     ],
     "license": "MIT",
-    "author": "Boris Damevin",
+    "author": "Front Factory",
     "sideEffects": [
         "*.css"
     ],

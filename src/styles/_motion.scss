@@ -43,44 +43,6 @@
     }
 }
 
-@keyframes ff-progress {
-    from {
-        transform: scaleX(0);
-    }
-
-    to {
-        transform: scaleX(1);
-    }
-}
-
-// --------------------------------------------------------------------------------------------- //
-// Reading progress
-//
-// A hairline of accent under the navigation, driven by the scroll position itself. Browsers without
-// scroll-driven animations never see it.
-// --------------------------------------------------------------------------------------------- //
-
-.ff-theme .ff-progress {
-    display: none;
-}
-
-@supports (animation-timeline: scroll()) {
-    .ff-theme .ff-progress {
-        position: fixed;
-        top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) - 1px);
-        left: 0;
-        z-index: calc(var(--vp-z-index-nav) + 1);
-        display: block;
-        width: 100%;
-        height: 2px;
-        background: #{mg.ref("color-accent")};
-        transform: scaleX(0);
-        transform-origin: left;
-        animation: ff-progress linear;
-        animation-timeline: scroll(root block);
-    }
-}
-
 @media (prefers-reduced-motion: no-preference) {
     .ff-theme {
         // ------------------------------------------------------------------------------------- //
@@ -98,8 +60,9 @@
         .ff-hero-kicker,
         .ff-hero-title,
         .ff-hero-tagline,
-        .ff-hero-actions,
-        .ff-hero-command,
+        .ff-hero-main .ff-hero-actions,
+        .ff-hero-panel,
+        .ff-hero-meta,
         .ff-hero-image {
             animation: ff-rise 0.65s #{mg.ref("motion-ease")} both;
         }
@@ -112,12 +75,17 @@
             animation-delay: 0.12s;
         }
 
-        .ff-hero-actions {
+        .ff-hero-main .ff-hero-actions {
             animation-delay: 0.18s;
         }
 
-        .ff-hero-command {
-            animation-delay: 0.24s;
+        .ff-hero-panel {
+            animation-delay: 0.2s;
+            animation-duration: 0.8s;
+        }
+
+        .ff-hero-meta {
+            animation-delay: 0.3s;
         }
 
         .ff-hero-image {

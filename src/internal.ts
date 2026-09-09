@@ -6,4 +6,7 @@
 
 export { default as VPImage } from 'vitepress/dist/client/theme-default/components/VPImage.vue'
 export { default as VPLink } from 'vitepress/dist/client/theme-default/components/VPLink.vue'
-export { useLayout } from 'vitepress/dist/client/theme-default/composables/layout.js'
+export {
+    layoutInfoInjectionKey,
+    useLayout
+} from 'vitepress/dist/client/theme-default/composables/layout.js'
