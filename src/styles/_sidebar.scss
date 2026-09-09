@@ -13,12 +13,15 @@
         background: #{mg.ref("color-paper")};
     }
 
-    .VPSidebar .group:first-child {
-        padding-top: 1.5rem;
-    }
-
     .VPSidebar .curtain {
         background: #{mg.ref("color-paper")};
+    }
+
+    // Space off the bar. On the nav, not on the first group: the first child of the nav is the
+    // hidden accessibility label, so :first-child never lands on a group.
+
+    .VPSidebar .nav {
+        padding-top: 1.5rem;
     }
 
     // Sections are numbered from the stylesheet: 01, 02, 03 — no config, no markup.
@@ -32,7 +35,7 @@
     }
 
     .VPSidebar .group + .group {
-        margin-top: 1.5rem;
+        margin-top: 1.75rem;
         padding-top: 1.5rem;
         border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
@@ -41,53 +44,84 @@
         padding-bottom: 0;
     }
 
+    // ----------------------------------------------------------------------------------------- //
+    // Section headings
+    //
+    // A section heading is a heading, not a caption: it carries the same weight as the page titles
+    // it introduces, and the number sits in the margin beside it.
+    // ----------------------------------------------------------------------------------------- //
+
     .VPSidebar .group > .VPSidebarItem.level-0 > .item {
-        gap: 0.625rem;
+        position: relative;
+        gap: 0.75rem;
         padding-bottom: 0.75rem;
     }
 
     .VPSidebar .group > .VPSidebarItem.level-0 > .item::before {
         content: counter(ff-section, decimal-leading-zero);
         font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
-        font-weight: 500;
-        line-height: 1;
+        font-size: #{mg.ref("size-meta")};
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
         color: #{mg.ref("color-accent")};
     }
-
-    // Section titles
 
     .VPSidebarItem.level-0 > .item > .text {
         padding: 0;
         font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
-        font-weight: 500;
-        line-height: 1;
+        font-size: #{mg.ref("size-meta")};
+        font-weight: 600;
+        line-height: 1.4;
         text-transform: uppercase;
-        letter-spacing: #{mg.ref("tracking-label")};
-        color: #{mg.ref("color-ink-faint")};
+        letter-spacing: 0.08em;
+        color: #{mg.ref("color-ink")};
     }
 
+    // ----------------------------------------------------------------------------------------- //
     // Links
+    // ----------------------------------------------------------------------------------------- //
 
     .VPSidebarItem.level-1 .text,
     .VPSidebarItem.level-2 .text,
     .VPSidebarItem.level-3 .text {
-        padding: 0.3125rem 0;
-        font-size: 0.875rem;
+        padding: 0.25rem 0;
+        font-size: 0.9375rem;
         font-weight: 450;
-        line-height: 1.5;
+        line-height: 1.6;
         color: #{mg.ref("color-ink-muted")};
-        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .VPSidebarItem.is-link.is-active > .item > .link > .text {
-        font-weight: 550;
+        font-weight: 600;
+    }
+
+    // Nested levels step down in size and hang off a rule.
+
+    .VPSidebarItem.level-1 .items {
+        margin-top: 0.25rem;
+        padding-left: 0.875rem;
+        border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .VPSidebarItem.level-2 .text,
+    .VPSidebarItem.level-3 .text {
+        padding: 0.375rem 0;
+        font-size: 0.875rem;
     }
 
     .VPSidebarItem.is-active > .item > .indicator {
+        top: 0.5rem;
+        bottom: 0.5rem;
         width: #{mg.ref("rule-accent-width")};
         border-radius: 0;
         background-color: #{mg.ref("color-accent")};
+    }
+
+    // The caret of a collapsible section lines up with the text it folds.
+
+    .VPSidebarItem .caret {
+        margin-right: -0.5rem;
+        color: #{mg.ref("color-ink-faint")};
     }
 }

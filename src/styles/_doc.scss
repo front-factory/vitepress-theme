@@ -303,17 +303,20 @@
         gap: 0;
     }
 
+    // The pager answers in colour: the rule under it and its label take the accent, nothing fills
+    // and nothing moves.
+
     .VPDocFooter .pager-link {
         padding: 1.5rem 0;
         border: 0;
-        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-bottom: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-rule")};
         border-radius: 0;
         background: transparent;
-        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+        transition: border-color #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
     }
 
     .VPDocFooter .pager-link:hover {
-        background: #{mg.ref("color-accent-soft")};
+        border-bottom-color: #{mg.ref("color-accent")};
     }
 
     .VPDocFooter .pager-link .desc {
@@ -333,6 +336,12 @@
         color: #{mg.ref("color-ink")};
     }
 
+    .VPDocFooter .pager-link .desc,
+    .VPDocFooter .pager-link .title {
+        transition: color #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
+    }
+
+    .VPDocFooter .pager-link:hover .desc,
     .VPDocFooter .pager-link:hover .title {
         color: #{mg.ref("color-accent")};
     }
@@ -341,18 +350,23 @@
     // Outline
     // ----------------------------------------------------------------------------------------- //
 
+    // The outline reads like the sidebar it faces: same heading treatment, same rhythm, and full
+    // titles — API signatures are the whole point of the column and must not be cut off.
+
     .VPDocAsideOutline .content {
+        padding-left: 1rem;
         border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
 
     .VPDocAsideOutline .outline-title {
+        margin-bottom: 0.75rem;
         font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
-        font-weight: 500;
-        line-height: 1;
+        font-size: #{mg.ref("size-meta")};
+        font-weight: 600;
+        line-height: 1.4;
         text-transform: uppercase;
-        letter-spacing: #{mg.ref("tracking-label")};
-        color: #{mg.ref("color-ink-faint")};
+        letter-spacing: 0.08em;
+        color: #{mg.ref("color-ink")};
     }
 
     .VPDocAsideOutline .outline-marker {
@@ -362,15 +376,32 @@
     }
 
     .VPDocAsideOutline .outline-link {
-        font-size: 0.8125rem;
+        display: block;
+        padding: 0.25rem 0;
+        font-size: 0.875rem;
         font-weight: 450;
         line-height: 1.5;
-        color: #{mg.ref("color-ink-faint")};
+        color: #{mg.ref("color-ink-muted")};
+        white-space: normal;
+        overflow: visible;
+        overflow-wrap: break-word;
         transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
-    .VPDocAsideOutline .outline-link:hover,
-    .VPDocAsideOutline .outline-link.active {
+    .VPDocAsideOutline .outline-link:hover {
         color: #{mg.ref("color-ink")};
+    }
+
+    .VPDocAsideOutline .outline-link.active {
+        font-weight: 600;
+        color: #{mg.ref("color-accent")};
+    }
+
+    .VPDocAsideOutline .VPDocOutlineItem.nested {
+        padding-left: 0.75rem;
+    }
+
+    .VPDocAsideOutline .VPDocOutlineItem.nested .outline-link {
+        font-size: 0.8125rem;
     }
 }
