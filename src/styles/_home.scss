@@ -14,11 +14,34 @@
     }
 
     .ff-hero {
+        position: relative;
         padding: 4.5rem 1.5rem 4rem;
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        overflow: hidden;
+    }
+
+    // A slow wash of the accent behind the headline — the one light source in the theme.
+
+    .ff-hero-glow {
+        position: absolute;
+        top: -50%;
+        left: -6%;
+        display: block;
+        width: min(72rem, 150%);
+        aspect-ratio: 1;
+
+        // closest-side keeps the wash from meeting the edge of its own box, which would show as a
+        // seam once the hero clips it.
+        background: radial-gradient(
+            circle closest-side at 45% 45%,
+            #{mg.ref("color-accent-glow")},
+            transparent
+        );
+        pointer-events: none;
     }
 
     .ff-hero-container {
+        position: relative;
         display: grid;
         gap: 3rem;
         max-width: #{mg.ref("layout-wide")};
@@ -33,6 +56,7 @@
     .ff-hero-mark {
         width: 0.5rem;
         height: 0.5rem;
+        border-radius: 2px;
         background: #{mg.ref("color-accent")};
     }
 
@@ -185,7 +209,9 @@
         gap: #{mg.ref("rule-width")};
         margin: 0;
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
         background: #{mg.ref("color-rule")};
+        overflow: hidden;
         counter-reset: ff-feature;
     }
 

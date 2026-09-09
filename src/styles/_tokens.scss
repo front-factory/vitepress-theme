@@ -41,8 +41,8 @@ $scales: (
         "section": 4rem
     ),
     "radius": (
-        "sm": 3px,
-        "md": 6px,
+        "sm": 5px,
+        "md": 10px,
         "pill": 999px
     ),
     "rule": (
@@ -51,6 +51,7 @@ $scales: (
     ),
     "motion": (
         "duration": 160ms,
+        "duration-slow": 480ms,
         "ease": cubic-bezier(0.2, 0.6, 0.2, 1)
     ),
     "layout": (
@@ -80,6 +81,7 @@ $light: (
         "accent-hover": #1b34a8,
         "accent-contrast": #ffffff,
         "accent-soft": rgba(39, 69, 207, 0.09),
+        "accent-glow": rgba(39, 69, 207, 0.16),
         "success": #1c7a52,
         "warning": #8a5a00,
         "danger": #b32835
@@ -100,6 +102,7 @@ $dark: (
         "accent-hover": #b5c2ff,
         "accent-contrast": #101018,
         "accent-soft": rgba(148, 168, 255, 0.13),
+        "accent-glow": rgba(148, 168, 255, 0.2),
         "success": #4ac48b,
         "warning": #e0a942,
         "danger": #f0707f

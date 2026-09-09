@@ -17,6 +17,8 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
 
 <template>
     <div class="ff-theme">
+        <div class="ff-progress" aria-hidden="true" />
+
         <Layout>
             <template #layout-top>
                 <FfBanner />

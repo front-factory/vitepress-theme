@@ -39,6 +39,8 @@ async function copy() {
 
 <template>
     <div class="VPHero ff-hero" :class="{ 'has-image': image || slots['home-hero-image'] }">
+        <span class="ff-hero-glow" aria-hidden="true" />
+
         <div class="ff-hero-container">
             <div class="ff-hero-main">
                 <slot name="home-hero-info-before" />

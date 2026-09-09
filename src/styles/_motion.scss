@@ -1,0 +1,266 @@
+// ============================================================================================= //
+//                                        LIGHT AND MOTION                                       //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+// The layer that keeps the theme from reading like a printed page under glass: a slow wash of the
+// accent behind the hero, entrance moves, and hover states that answer back. Everything here is an
+// enhancement — remove this partial and the theme still works.
+
+@keyframes ff-rise {
+    from {
+        opacity: 0;
+        transform: translateY(0.875rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes ff-drift {
+    from {
+        transform: translate3d(-4%, -3%, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(6%, 4%, 0) scale(1.12);
+    }
+}
+
+@keyframes ff-beacon {
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 #{mg.ref("color-accent-glow")};
+    }
+
+    50% {
+        opacity: 0.72;
+        box-shadow: 0 0 0 0.375rem transparent;
+    }
+}
+
+@keyframes ff-progress {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+// --------------------------------------------------------------------------------------------- //
+// Reading progress
+//
+// A hairline of accent under the navigation, driven by the scroll position itself. Browsers without
+// scroll-driven animations never see it.
+// --------------------------------------------------------------------------------------------- //
+
+.ff-theme .ff-progress {
+    display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+    .ff-theme .ff-progress {
+        position: fixed;
+        top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) - 1px);
+        left: 0;
+        z-index: calc(var(--vp-z-index-nav) + 1);
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #{mg.ref("color-accent")};
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: ff-progress linear;
+        animation-timeline: scroll(root block);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .ff-theme {
+        // ------------------------------------------------------------------------------------- //
+        // The hero lights up and settles
+        // ------------------------------------------------------------------------------------- //
+
+        .ff-hero-glow {
+            animation: ff-drift 26s #{mg.ref("motion-ease")} infinite alternate;
+        }
+
+        .ff-hero-mark {
+            animation: ff-beacon 3.2s ease-in-out infinite;
+        }
+
+        .ff-hero-kicker,
+        .ff-hero-title,
+        .ff-hero-tagline,
+        .ff-hero-actions,
+        .ff-hero-command,
+        .ff-hero-image {
+            animation: ff-rise 0.65s #{mg.ref("motion-ease")} both;
+        }
+
+        .ff-hero-title {
+            animation-delay: 0.06s;
+        }
+
+        .ff-hero-tagline {
+            animation-delay: 0.12s;
+        }
+
+        .ff-hero-actions {
+            animation-delay: 0.18s;
+        }
+
+        .ff-hero-command {
+            animation-delay: 0.24s;
+        }
+
+        .ff-hero-image {
+            animation-delay: 0.14s;
+            animation-duration: 0.9s;
+        }
+
+        // ------------------------------------------------------------------------------------- //
+        // Cells and cards arrive as they are scrolled into view
+        //
+        // Scroll-driven animations only, so browsers without them simply show the content.
+        // ------------------------------------------------------------------------------------- //
+
+        @supports (animation-timeline: view()) {
+            .ff-feature,
+            .vp-doc .ff-card,
+            .vp-doc .ff-api {
+                animation: ff-rise linear both;
+                animation-timeline: view();
+                animation-range: entry 0% cover 20%;
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------------------------- //
+// Hover states
+//
+// Kept outside the reduced-motion guard: they are transitions on intent, not ambient movement.
+// --------------------------------------------------------------------------------------------- //
+
+.ff-theme {
+    .ff-btn,
+    .VPButton {
+        transition:
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            box-shadow #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-btn:hover,
+    .VPButton:hover {
+        transform: translateY(-1px);
+    }
+
+    .ff-btn-brand:hover,
+    .VPButton.brand:hover {
+        box-shadow: 0 0.5rem 1.5rem #{mg.ref("color-accent-glow")};
+    }
+
+    .ff-btn:active,
+    .VPButton:active {
+        transform: none;
+    }
+
+    // Navigation: the underline grows from the left rather than blinking on.
+
+    .VPNavBarMenuLink {
+        position: relative;
+    }
+
+    .VPNavBarMenuLink::after {
+        content: "";
+        position: absolute;
+        right: 0.75rem;
+        bottom: 1rem;
+        left: 0.75rem;
+        height: 2px;
+        background: #{mg.ref("color-accent")};
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPNavBarMenuLink:hover::after,
+    .VPNavBarMenuLink.active::after {
+        transform: scaleX(1);
+    }
+
+    .VPNavBarMenuLink.active {
+        text-decoration: none;
+    }
+
+    // Sidebar links lean towards the reader on hover.
+
+    .VPSidebarItem .link .text {
+        transition:
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPSidebarItem .link:hover .text {
+        transform: translateX(2px);
+    }
+
+    // Feature cells and cards catch the light.
+
+    .ff-feature,
+    .vp-doc .ff-card {
+        transition:
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            box-shadow #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    a.ff-feature:hover {
+        background: linear-gradient(
+            160deg,
+            #{mg.ref("color-accent-soft")},
+            transparent 60%
+        );
+    }
+
+    .vp-doc a.ff-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.75rem 1.75rem #{mg.ref("color-accent-glow")};
+    }
+
+    .ff-feature-link span,
+    .ff-banner-cta span {
+        display: inline-block;
+        transition: transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    a.ff-feature:hover .ff-feature-link span,
+    .ff-banner-body:hover .ff-banner-cta span {
+        transform: translateX(0.25rem);
+    }
+
+    // Code blocks warm up when they are being read.
+
+    .vp-doc div[class*="language-"] {
+        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc div[class*="language-"]:hover {
+        border-color: #{mg.ref("color-rule-strong")};
+    }
+
+    .ff-to-top:hover {
+        transform: translateY(-2px);
+    }
+}
