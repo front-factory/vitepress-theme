@@ -1,0 +1,18 @@
+// ============================================================================================= //
+//                              @frontfactory/vitepress-theme                                   //
+// ============================================================================================= //
+//
+// Compiled to dist/style.css at publish time, so downstream sites need neither Sass nor Magnesium
+// installed. Every value is exposed as a --ff-* custom property: override those, not this file.
+//
+// ============================================================================================= //
+
+@use "tokens";
+@use "base";
+@use "nav";
+@use "sidebar";
+@use "doc";
+@use "code";
+@use "blocks";
+@use "home";
+@use "content";

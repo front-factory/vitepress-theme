@@ -1,0 +1,323 @@
+// ============================================================================================= //
+//                                          DOCUMENT                                             //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+.ff-theme {
+    // ----------------------------------------------------------------------------------------- //
+    // Measure
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPDoc .container {
+        max-width: #{mg.ref("layout-wide")};
+    }
+
+    .VPDoc.has-aside .content-container,
+    .VPDoc .content-container {
+        max-width: #{mg.ref("layout-content")};
+    }
+
+    .VPDoc:not(.has-sidebar) .content {
+        max-width: none;
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Headings
+    // ----------------------------------------------------------------------------------------- //
+
+    .vp-doc h1,
+    .vp-doc h2,
+    .vp-doc h3,
+    .vp-doc h4 {
+        font-family: #{mg.ref("font-display")};
+        letter-spacing: #{mg.ref("tracking-display")};
+        font-variation-settings: "opsz" 32;
+    }
+
+    .vp-doc h1 {
+        margin: 0 0 1.25rem;
+        font-size: #{mg.ref("size-h1")};
+        font-weight: 620;
+        line-height: #{mg.ref("leading-tight")};
+        letter-spacing: -0.03em;
+    }
+
+    .vp-doc h2 {
+        margin: 3.5rem 0 1.25rem;
+        padding-top: 1.75rem;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        font-size: #{mg.ref("size-h2")};
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .vp-doc h3 {
+        margin: 2.5rem 0 0.75rem;
+        font-size: #{mg.ref("size-h3")};
+        font-weight: 600;
+        letter-spacing: -0.015em;
+    }
+
+    .vp-doc h4 {
+        margin: 2rem 0 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    // A heading that is a symbol keeps the monospaced face, but loses the fill — it is a title, not
+    // an inline mention.
+
+    .vp-doc h1 code,
+    .vp-doc h2 code,
+    .vp-doc h3 code,
+    .vp-doc h4 code {
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        font-size: 0.9em;
+        font-weight: 600;
+        color: inherit;
+    }
+
+    // Anchors live in the margin, out of the reading line.
+
+    .vp-doc .header-anchor {
+        left: -1.5rem;
+        margin-left: 0;
+        font-family: #{mg.ref("font-mono")};
+        font-weight: 400;
+        color: #{mg.ref("color-ink-faint")};
+        opacity: 0;
+        transition: opacity #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc h1:hover .header-anchor,
+    .vp-doc h2:hover .header-anchor,
+    .vp-doc h3:hover .header-anchor,
+    .vp-doc h4:hover .header-anchor,
+    .vp-doc .header-anchor:focus {
+        opacity: 1;
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Copy
+    // ----------------------------------------------------------------------------------------- //
+
+    .vp-doc p,
+    .vp-doc li {
+        line-height: #{mg.ref("leading-body")};
+        color: #{mg.ref("color-ink")};
+    }
+
+    .vp-doc p {
+        margin: 1.25rem 0;
+    }
+
+    // Standfirst: the paragraph right under the page title carries the summary.
+
+    .vp-doc > div > h1 + p {
+        margin-top: 1.5rem;
+        font-size: #{mg.ref("size-lead")};
+        line-height: 1.65;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .vp-doc a {
+        font-weight: inherit;
+        color: #{mg.ref("color-accent")};
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+        text-decoration-color: #{mg.ref("color-accent-soft")};
+        transition: text-decoration-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc a:hover {
+        text-decoration-color: currentcolor;
+    }
+
+    .vp-doc strong {
+        font-weight: 620;
+        color: #{mg.ref("color-ink")};
+    }
+
+    .vp-doc blockquote {
+        margin: 1.75rem 0;
+        padding-left: 1.25rem;
+        border-left: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-rule-strong")};
+    }
+
+    .vp-doc blockquote > p {
+        font-size: 1rem;
+        font-style: italic;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .vp-doc hr {
+        margin: 3rem 0;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .vp-doc :not(pre) > code {
+        padding: 0.15em 0.35em;
+        border-radius: #{mg.ref("radius-sm")};
+        background: #{mg.ref("color-surface-alt")};
+        font-size: 0.8125em;
+        color: #{mg.ref("color-ink")};
+    }
+
+    .vp-doc a > code {
+        color: #{mg.ref("color-accent")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Tables: ruled, never boxed
+    // ----------------------------------------------------------------------------------------- //
+
+    .vp-doc table {
+        display: table;
+        width: 100%;
+        margin: 1.75rem 0;
+        border-collapse: collapse;
+    }
+
+    .vp-doc tr {
+        border: 0;
+        background: transparent;
+    }
+
+    .vp-doc th {
+        padding: 0.5rem 0.875rem 0.5rem 0;
+        border: 0;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
+        background: transparent;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .vp-doc td {
+        padding: 0.75rem 0.875rem 0.75rem 0;
+        border: 0;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        vertical-align: top;
+    }
+
+    .vp-doc th:last-child,
+    .vp-doc td:last-child {
+        padding-right: 0;
+    }
+
+    .vp-doc img {
+        border-radius: #{mg.ref("radius-md")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Page footer
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPDocFooter {
+        margin-top: 3.5rem;
+    }
+
+    .VPDocFooter .edit-info {
+        padding-bottom: 1.25rem;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .VPDocFooter .edit-link-button,
+    .VPDocFooter .last-updated {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-meta")};
+        font-weight: 400;
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .VPDocFooter .edit-link-button {
+        color: #{mg.ref("color-accent")};
+    }
+
+    .VPDocFooter .prev-next {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+        gap: 0;
+    }
+
+    .VPDocFooter .pager-link {
+        padding: 1.5rem 0;
+        border: 0;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: 0;
+        background: transparent;
+        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPDocFooter .pager-link:hover {
+        background: #{mg.ref("color-accent-soft")};
+    }
+
+    .VPDocFooter .pager-link .desc {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .VPDocFooter .pager-link .title {
+        font-family: #{mg.ref("font-display")};
+        font-size: 1.0625rem;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        color: #{mg.ref("color-ink")};
+    }
+
+    .VPDocFooter .pager-link:hover .title {
+        color: #{mg.ref("color-accent")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Outline
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPDocAsideOutline .content {
+        border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .VPDocAsideOutline .outline-title {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .VPDocAsideOutline .outline-marker {
+        width: #{mg.ref("rule-accent-width")};
+        border-radius: 0;
+        background-color: #{mg.ref("color-accent")};
+    }
+
+    .VPDocAsideOutline .outline-link {
+        font-size: 0.8125rem;
+        font-weight: 450;
+        line-height: 1.5;
+        color: #{mg.ref("color-ink-faint")};
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPDocAsideOutline .outline-link:hover,
+    .VPDocAsideOutline .outline-link.active {
+        color: #{mg.ref("color-ink")};
+    }
+}

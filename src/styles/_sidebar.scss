@@ -1,0 +1,93 @@
+// ============================================================================================= //
+//                                            SIDEBAR                                            //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+.ff-theme {
+    // The top padding of the sidebar is what the sticky curtain is aligned on — the breathing room
+    // goes on the first group instead.
+
+    .VPSidebar {
+        border-right: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        background: #{mg.ref("color-paper")};
+    }
+
+    .VPSidebar .group:first-child {
+        padding-top: 1.5rem;
+    }
+
+    .VPSidebar .curtain {
+        background: #{mg.ref("color-paper")};
+    }
+
+    // Sections are numbered from the stylesheet: 01, 02, 03 — no config, no markup.
+
+    .VPSidebar .nav {
+        counter-reset: ff-section;
+    }
+
+    .VPSidebar .group {
+        counter-increment: ff-section;
+    }
+
+    .VPSidebar .group + .group {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .VPSidebar .group .VPSidebarItem.level-0 {
+        padding-bottom: 0;
+    }
+
+    .VPSidebar .group > .VPSidebarItem.level-0 > .item {
+        gap: 0.625rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .VPSidebar .group > .VPSidebarItem.level-0 > .item::before {
+        content: counter(ff-section, decimal-leading-zero);
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        line-height: 1;
+        color: #{mg.ref("color-accent")};
+    }
+
+    // Section titles
+
+    .VPSidebarItem.level-0 > .item > .text {
+        padding: 0;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    // Links
+
+    .VPSidebarItem.level-1 .text,
+    .VPSidebarItem.level-2 .text,
+    .VPSidebarItem.level-3 .text {
+        padding: 0.3125rem 0;
+        font-size: 0.875rem;
+        font-weight: 450;
+        line-height: 1.5;
+        color: #{mg.ref("color-ink-muted")};
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPSidebarItem.is-link.is-active > .item > .link > .text {
+        font-weight: 550;
+    }
+
+    .VPSidebarItem.is-active > .item > .indicator {
+        width: #{mg.ref("rule-accent-width")};
+        border-radius: 0;
+        background-color: #{mg.ref("color-accent")};
+    }
+}

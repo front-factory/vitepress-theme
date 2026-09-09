@@ -1,0 +1,8 @@
+// ============================================================================================= //
+//                                          THEME CORE                                           //
+// ============================================================================================= //
+
+// Magnesium, configured once for the whole theme. Every partial pulls the toolkit from here so
+// the "ff" prefix stays defined in a single place.
+
+@forward "pkg:@magnesium/theme" with ($prefix: "ff");

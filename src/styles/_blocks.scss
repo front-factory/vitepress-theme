@@ -1,0 +1,103 @@
+// ============================================================================================= //
+//                                         CUSTOM BLOCKS                                         //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+.ff-theme {
+    // Margin notes rather than coloured panels: a rule on the left, a monospaced label, and the
+    // text sitting on the same paper as the rest of the page.
+
+    .vp-doc .custom-block {
+        margin: 1.75rem 0;
+        padding: 0 0 0 1.25rem;
+        border: 0;
+        border-left: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-rule-strong")};
+        border-radius: 0;
+        background: transparent;
+        font-size: 0.9375rem;
+    }
+
+    .vp-doc .custom-block p,
+    .vp-doc .custom-block li {
+        line-height: 1.7;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .vp-doc .custom-block p:first-of-type {
+        margin-top: 0;
+    }
+
+    .vp-doc .custom-block p:last-child {
+        margin-bottom: 0;
+    }
+
+    .vp-doc .custom-block .custom-block-title {
+        margin-bottom: 0.5rem;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .vp-doc .custom-block.tip,
+    .vp-doc .custom-block.note,
+    .vp-doc .custom-block.info,
+    .vp-doc .custom-block.important {
+        border-left-color: #{mg.ref("color-accent")};
+    }
+
+    .vp-doc .custom-block.tip .custom-block-title,
+    .vp-doc .custom-block.note .custom-block-title,
+    .vp-doc .custom-block.important .custom-block-title {
+        color: #{mg.ref("color-accent")};
+    }
+
+    .vp-doc .custom-block.warning {
+        border-left-color: #{mg.ref("color-warning")};
+    }
+
+    .vp-doc .custom-block.warning .custom-block-title {
+        color: #{mg.ref("color-warning")};
+    }
+
+    .vp-doc .custom-block.danger,
+    .vp-doc .custom-block.caution {
+        border-left-color: #{mg.ref("color-danger")};
+    }
+
+    .vp-doc .custom-block.danger .custom-block-title,
+    .vp-doc .custom-block.caution .custom-block-title {
+        color: #{mg.ref("color-danger")};
+    }
+
+    .vp-doc .custom-block a {
+        font-weight: inherit;
+    }
+
+    // Collapsibles keep a frame — they are objects on the page, not asides.
+
+    .vp-doc .custom-block.details {
+        padding: 1rem 1.25rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+    }
+
+    .vp-doc .custom-block.details summary {
+        margin-bottom: 0;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-meta")};
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #{mg.ref("color-ink")};
+        cursor: pointer;
+    }
+
+    .vp-doc .custom-block.details[open] summary {
+        margin-bottom: 0.75rem;
+    }
+}

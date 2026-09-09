@@ -1,0 +1,163 @@
+// ============================================================================================= //
+//                                             CODE                                              //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+.ff-theme {
+    // Each block gets a hairline frame and a header strip carrying the language and the copy
+    // button. The strip is drawn from the language label the compiler already emits.
+
+    .vp-doc div[class*="language-"],
+    .vp-doc .vp-block {
+        margin: 1.75rem 0;
+        padding-top: 2.5rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+        background: #{mg.ref("color-surface")};
+    }
+
+    .vp-doc [class*="language-"] > pre {
+        margin: 0;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .vp-doc [class*="language-"] > span.lang {
+        display: flex;
+        align-items: center;
+        top: 0;
+        right: auto;
+        left: 0;
+        height: 2.5rem;
+        padding: 0 1rem;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+        opacity: 1;
+    }
+
+    .vp-doc [class*="language-"]:hover > button.copy + span.lang,
+    .vp-doc [class*="language-"] > button.copy:focus + span.lang {
+        opacity: 1;
+    }
+
+    .vp-doc [class*="language-"] > button.copy {
+        top: 0.4375rem;
+        right: 0.625rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: #{mg.ref("radius-sm")};
+        background-color: transparent;
+        background-size: 0.875rem;
+        opacity: 0.55;
+    }
+
+    .vp-doc [class*="language-"]:hover > button.copy,
+    .vp-doc [class*="language-"] > button.copy:focus {
+        opacity: 1;
+    }
+
+    .vp-doc [class*="language-"] > button.copy.copied,
+    .vp-doc [class*="language-"] > button.copy:hover.copied {
+        border-radius: 0 #{mg.ref("radius-sm")} #{mg.ref("radius-sm")} 0;
+    }
+
+    .vp-doc [class*="language-"] > button.copy.copied::before,
+    .vp-doc [class*="language-"] > button.copy:hover.copied::before {
+        top: 0;
+        height: 1.75rem;
+        border-radius: #{mg.ref("radius-sm")} 0 0 #{mg.ref("radius-sm")};
+        background: #{mg.ref("color-surface")};
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .vp-doc div[class*="language-"].line-numbers-mode {
+        padding-left: 0;
+    }
+
+    .vp-doc [class*="language-"] .line-numbers-wrapper {
+        top: 2.5rem;
+        border-right: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        font-family: #{mg.ref("font-mono")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Code groups: the tabs replace the header strip
+    // ----------------------------------------------------------------------------------------- //
+
+    .vp-doc .vp-code-group {
+        margin: 1.75rem 0;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+        background: #{mg.ref("color-surface")};
+        overflow: hidden;
+    }
+
+    .vp-doc .vp-code-group .tabs {
+        margin: 0;
+        padding: 0 0.5rem;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .vp-doc .vp-code-group .tabs label {
+        padding: 0 0.75rem;
+        line-height: 2.5rem;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .vp-doc .vp-code-group input:checked + label {
+        color: #{mg.ref("color-ink")};
+    }
+
+    .vp-doc .vp-code-group .tabs label::after {
+        right: 0;
+        left: 0;
+        border-radius: 0;
+    }
+
+    .vp-doc .vp-code-group div[class*="language-"] {
+        margin: 0;
+        padding-top: 0;
+        border: 0;
+        border-radius: 0;
+    }
+
+    .vp-doc .vp-code-group div[class*="language-"] > pre {
+        border-top: 0;
+    }
+
+    .vp-doc .vp-code-group div[class*="language-"] > span.lang,
+    .vp-doc .custom-block div[class*="language-"] > span.lang {
+        display: none;
+    }
+
+    .vp-doc .vp-code-group [class*="language-"] .line-numbers-wrapper {
+        top: 0;
+    }
+
+    // Blocks nested in a custom block stay flush with the note.
+
+    .vp-doc .custom-block div[class*="language-"] {
+        padding-top: 0;
+        background: #{mg.ref("color-surface")};
+    }
+
+    .vp-doc .custom-block div[class*="language-"] > pre {
+        border-top: 0;
+    }
+}

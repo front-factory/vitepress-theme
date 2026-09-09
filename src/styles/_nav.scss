@@ -1,0 +1,184 @@
+// ============================================================================================= //
+//                                          NAVIGATION                                           //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+.ff-theme {
+    // ----------------------------------------------------------------------------------------- //
+    // Top bar
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPNavBar {
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        background-color: #{mg.ref("color-paper")};
+        backdrop-filter: none;
+    }
+
+    .VPNavBar.has-sidebar .curtain,
+    .VPNavBar .divider {
+        display: none;
+    }
+
+    // The bar is ruled edge to edge, but its contents line up with the page container.
+
+    .VPNavBar .container {
+        max-width: #{mg.ref("layout-wide")};
+    }
+
+    .VPNavBar .content-body {
+        background: transparent;
+    }
+
+    // Site name: display face, and a small accent square standing in for a logo when there is none.
+
+    .VPNavBarTitle .title {
+        border-bottom: 0;
+        gap: 0.625rem;
+        font-family: #{mg.ref("font-display")};
+        font-size: 0.9375rem;
+        font-weight: 620;
+        letter-spacing: -0.01em;
+    }
+
+    .VPNavBarTitle .title:not(:has(.logo))::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        background: #{mg.ref("color-accent")};
+    }
+
+    // Menu links
+
+    .VPNavBarMenuLink,
+    .VPNavBarMenuGroup .button {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #{mg.ref("color-ink-muted")};
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPNavBarMenuLink:hover,
+    .VPNavBarMenuGroup .button:hover {
+        color: #{mg.ref("color-ink")};
+    }
+
+    .VPNavBarMenuLink.active {
+        color: #{mg.ref("color-ink")};
+        text-decoration: underline;
+        text-decoration-color: #{mg.ref("color-accent")};
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.5rem;
+    }
+
+    // Search trigger
+
+    .VPNavBarSearch .DocSearch-Button,
+    .VPNavBarSearchButton {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 0.5rem 0 0.625rem;
+        height: 2rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-sm")};
+        background: transparent;
+        font-size: 0.8125rem;
+        color: #{mg.ref("color-ink-faint")};
+        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPNavBarSearchButton:hover {
+        border-color: #{mg.ref("color-rule-strong")};
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .VPNavBarSearchButton .keys kbd,
+    .VPNavBarSearchButton .keys .key-cmd {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    // Appearance toggle: a square switch rather than the usual pill.
+
+    .VPSwitch {
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-sm")};
+        background: transparent;
+    }
+
+    .VPSwitch .check {
+        border-radius: 2px;
+        background: #{mg.ref("color-surface-alt")};
+        box-shadow: none;
+    }
+
+    .VPSwitch .icon {
+        border-radius: 2px;
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Mobile local nav and full-screen menu
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPLocalNav {
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        background: #{mg.ref("color-paper")};
+        backdrop-filter: none;
+    }
+
+    .VPLocalNav .menu-text,
+    .VPLocalNavOutlineDropdown .menu-text,
+    .VPLocalNavOutlineDropdown button {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+    }
+
+    .VPNavScreen {
+        background: #{mg.ref("color-paper")};
+    }
+
+    .VPNavScreenMenuLink,
+    .VPNavScreenMenuGroupLink {
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        font-weight: 500;
+    }
+}
+
+// The search modal is teleported to <body>, so it sits outside the themed root.
+
+.VPLocalSearchBox .shell {
+    border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
+    border-radius: #{mg.ref("radius-md")};
+    background: #{mg.ref("color-paper")};
+}
+
+.VPLocalSearchBox .search-actions button,
+.VPLocalSearchBox .search-keyboard-shortcuts {
+    font-family: #{mg.ref("font-mono")};
+    font-size: #{mg.ref("size-label")};
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.VPLocalSearchBox .titles .title {
+    font-weight: 500;
+}
+
+.VPLocalSearchBox .result {
+    border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    border-radius: #{mg.ref("radius-sm")};
+    background: transparent;
+}
+
+.VPLocalSearchBox .result.selected {
+    border-color: #{mg.ref("color-accent")};
+    background: #{mg.ref("color-accent-soft")};
+}

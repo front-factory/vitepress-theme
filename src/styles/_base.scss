@@ -1,0 +1,126 @@
+// ============================================================================================= //
+//                                             BASE                                              //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+// Everything the theme restyles is scoped under .ff-theme, the class the layout puts on its root
+// element. It buys one point of specificity over the scoped styles of the default theme, which is
+// what makes the overrides land without a single !important.
+
+.ff-theme {
+    font-family: #{mg.ref("font-body")};
+    font-size: #{mg.ref("size-body")};
+    line-height: #{mg.ref("leading-body")};
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// --------------------------------------------------------------------------------------------- //
+// Shared primitives
+// --------------------------------------------------------------------------------------------- //
+
+.ff-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: #{mg.ref("font-mono")};
+    font-size: #{mg.ref("size-label")};
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: #{mg.ref("tracking-label")};
+    color: #{mg.ref("color-ink-faint")};
+}
+
+.ff-display {
+    font-family: #{mg.ref("font-display")};
+    font-weight: 620;
+    letter-spacing: #{mg.ref("tracking-display")};
+    line-height: #{mg.ref("leading-tight")};
+    font-variation-settings: "opsz" 32;
+}
+
+.ff-rule {
+    border: 0;
+    border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+}
+
+// --------------------------------------------------------------------------------------------- //
+// Selection, focus and scrollbars
+// --------------------------------------------------------------------------------------------- //
+
+::selection {
+    background: #{mg.ref("color-accent-soft")};
+}
+
+.ff-theme :focus-visible,
+.VPLocalSearchBox :focus-visible {
+    outline: 2px solid #{mg.ref("color-accent")};
+    outline-offset: 2px;
+    border-radius: #{mg.ref("radius-sm")};
+}
+
+.ff-theme * {
+    scrollbar-width: thin;
+    scrollbar-color: #{mg.ref("color-rule-strong")} transparent;
+}
+
+// --------------------------------------------------------------------------------------------- //
+// Buttons
+//
+// Square-ish, hairline, no lift on hover: the accent does the talking.
+// --------------------------------------------------------------------------------------------- //
+
+.ff-theme {
+    .VPButton {
+        border-radius: #{mg.ref("radius-sm")};
+        border-width: #{mg.ref("rule-width")};
+        font-weight: 550;
+        letter-spacing: 0.01em;
+        transition:
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPButton.medium {
+        padding: 0 1.25rem;
+        line-height: 2.75rem;
+        font-size: 0.875rem;
+    }
+
+    .VPButton.big {
+        padding: 0 1.75rem;
+        line-height: 3.25rem;
+        font-size: 0.9375rem;
+    }
+
+    .VPBadge {
+        border-radius: #{mg.ref("radius-sm")};
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
+        background: transparent;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .VPBadge.tip,
+    .VPBadge.info {
+        border-color: #{mg.ref("color-accent")};
+        color: #{mg.ref("color-accent")};
+    }
+
+    .VPBadge.warning {
+        border-color: #{mg.ref("color-warning")};
+        color: #{mg.ref("color-warning")};
+    }
+
+    .VPBadge.danger {
+        border-color: #{mg.ref("color-danger")};
+        color: #{mg.ref("color-danger")};
+    }
+}

@@ -4,17 +4,62 @@
     "description": "Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata.",
     "type": "module",
     "scripts": {
-        "prepare": "husky"
+        "build": "sass --no-source-map --pkg-importer=node --load-path=node_modules src/styles/index.scss dist/style.css",
+        "dev": "npm run build -- --watch",
+        "dev:playground": "vitepress dev playground",
+        "build:playground": "npm run build && vitepress build playground",
+        "prepare": "husky",
+        "prepack": "npm run build"
     },
     "engines": {
         "node": ">=20"
     },
+    "main": "./src/index.ts",
+    "module": "./src/index.ts",
+    "types": "./src/index.ts",
+    "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "default": "./src/index.ts"
+        },
+        "./config": {
+            "types": "./config.d.ts",
+            "default": "./config.js"
+        },
+        "./style.css": "./dist/style.css",
+        "./package.json": "./package.json"
+    },
     "devDependencies": {
         "@commitlint/cli": "^20.4.2",
         "@commitlint/config-conventional": "^20.4.2",
-        "husky": "^9.1.7"
+        "@magnesium/theme": "^5.2.2",
+        "husky": "^9.1.7",
+        "sass": "^1.100.0",
+        "vitepress": "^2.0.0-alpha.17",
+        "vue": "^3.5.34"
     },
+    "peerDependencies": {
+        "vitepress": "^2.0.0-alpha.16",
+        "vue": "^3.5.0"
+    },
+    "keywords": [
+        "vitepress",
+        "vitepress-theme",
+        "theme",
+        "documentation",
+        "editorial"
+    ],
     "license": "MIT",
+    "author": "Boris Damevin",
+    "sideEffects": [
+        "*.css"
+    ],
+    "files": [
+        "src",
+        "dist",
+        "config.js",
+        "config.d.ts"
+    ],
     "publishConfig": {
         "access": "public"
     }

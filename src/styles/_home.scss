@@ -1,0 +1,285 @@
+// ============================================================================================= //
+//                                             HOME                                              //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+.ff-theme {
+    // ----------------------------------------------------------------------------------------- //
+    // Hero
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPHome {
+        margin-bottom: 0;
+    }
+
+    .ff-hero {
+        padding: 4.5rem 1.5rem 4rem;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .ff-hero-container {
+        display: grid;
+        gap: 3rem;
+        max-width: #{mg.ref("layout-wide")};
+        margin: 0 auto;
+    }
+
+    .ff-hero-kicker {
+        margin: 0 0 1.75rem;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .ff-hero-mark {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: #{mg.ref("color-accent")};
+    }
+
+    .ff-hero-title {
+        max-width: 16ch;
+        margin: 0;
+        font-size: #{mg.ref("size-hero")};
+        letter-spacing: -0.04em;
+        color: #{mg.ref("color-ink")};
+        text-wrap: balance;
+    }
+
+    .ff-hero-tagline {
+        max-width: 46ch;
+        margin: 1.75rem 0 0;
+        font-size: 1.1875rem;
+        line-height: 1.6;
+        color: #{mg.ref("color-ink-muted")};
+        text-wrap: pretty;
+    }
+
+    .ff-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2.5rem;
+    }
+
+    // Install line: the one place where a terminal shows up on the home page.
+
+    .ff-hero-command {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2.25rem;
+        padding: 0.625rem 0.625rem 0.625rem 1rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-sm")};
+        background: #{mg.ref("color-surface")};
+    }
+
+    .ff-hero-command code {
+        font-family: #{mg.ref("font-mono")};
+        font-size: 0.8125rem;
+        color: #{mg.ref("color-ink")};
+    }
+
+    .ff-hero-prompt {
+        margin-right: 0.5rem;
+        color: #{mg.ref("color-accent")};
+    }
+
+    .ff-hero-copy {
+        padding: 0.25rem 0.5rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-sm")};
+        background: transparent;
+        cursor: pointer;
+        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-hero-copy:hover {
+        border-color: #{mg.ref("color-rule-strong")};
+        color: #{mg.ref("color-ink")};
+    }
+
+    .ff-hero-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ff-hero-image img {
+        max-width: 22rem;
+        height: auto;
+    }
+
+    @media (min-width: 640px) {
+        .ff-hero {
+            padding: 6rem 3rem 5rem;
+        }
+    }
+
+    @media (min-width: 960px) {
+        .ff-hero {
+            padding: 7rem 4rem 6rem;
+        }
+
+        .ff-hero.has-image .ff-hero-container {
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            align-items: center;
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Buttons
+    // ----------------------------------------------------------------------------------------- //
+
+    .ff-btn {
+        display: inline-flex;
+        align-items: center;
+        height: 2.875rem;
+        padding: 0 1.375rem;
+        border: #{mg.ref("rule-width")} solid transparent;
+        border-radius: #{mg.ref("radius-sm")};
+        font-size: 0.875rem;
+        font-weight: 550;
+        white-space: nowrap;
+        transition:
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-btn-brand {
+        border-color: #{mg.ref("color-accent")};
+        background: #{mg.ref("color-accent")};
+        color: #{mg.ref("color-accent-contrast")};
+    }
+
+    .ff-btn-brand:hover {
+        border-color: #{mg.ref("color-accent-hover")};
+        background: #{mg.ref("color-accent-hover")};
+    }
+
+    .ff-btn-alt {
+        border-color: #{mg.ref("color-rule-strong")};
+        color: #{mg.ref("color-ink")};
+    }
+
+    .ff-btn-alt:hover {
+        border-color: #{mg.ref("color-ink")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Feature grid: cells in a ruled table, numbered from the stylesheet
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPFeatures {
+        padding: 4rem 1.5rem;
+    }
+
+    .VPFeatures .container {
+        max-width: #{mg.ref("layout-wide")};
+    }
+
+    .VPFeatures .items {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: #{mg.ref("rule-width")};
+        margin: 0;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        background: #{mg.ref("color-rule")};
+        counter-reset: ff-feature;
+    }
+
+    .VPFeatures .items > .item,
+    .VPFeatures .items > .item[class*="grid-"] {
+        width: auto;
+        padding: 0;
+        counter-increment: ff-feature;
+    }
+
+    .ff-feature {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 2rem;
+        background: #{mg.ref("color-paper")};
+        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    a.ff-feature:hover {
+        background: #{mg.ref("color-surface")};
+    }
+
+    .ff-feature-index::before {
+        content: counter(ff-feature, decimal-leading-zero);
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-accent")};
+    }
+
+    .ff-feature-icon {
+        margin-top: 1.5rem;
+        font-size: 1.5rem;
+        line-height: 1;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .ff-feature-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .ff-feature-title {
+        margin: 1.25rem 0 0;
+        font-family: #{mg.ref("font-display")};
+        font-size: 1.0625rem;
+        font-weight: 620;
+        letter-spacing: -0.015em;
+        color: #{mg.ref("color-ink")};
+    }
+
+    .ff-feature-details {
+        flex-grow: 1;
+        margin: 0.625rem 0 0;
+        padding: 0;
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    ul.ff-feature-details {
+        padding-left: 1rem;
+        list-style: disc;
+    }
+
+    .ff-feature-link {
+        margin-top: 1.5rem;
+        color: #{mg.ref("color-accent")};
+    }
+
+    @media (min-width: 640px) {
+        .VPFeatures {
+            padding: 5rem 3rem;
+        }
+
+        .VPFeatures .items {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 960px) {
+        .VPFeatures {
+            padding: 6rem 4rem;
+        }
+
+        .VPFeatures .items:has(.grid-3) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .VPFeatures .items:has(.grid-4),
+        .VPFeatures .items:has(.grid-6) {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+}

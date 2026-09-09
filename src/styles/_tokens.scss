@@ -1,0 +1,216 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+// --------------------------------------------------------------------------------------------- //
+// Scales
+//
+// Every value the theme uses lives here and is emitted as a --ff-* custom property. Downstream
+// sites re-declare any of them in their own stylesheet — nothing else needs to be touched.
+// --------------------------------------------------------------------------------------------- //
+
+$scales: (
+    "font": (
+        "display": (Inter, ui-sans-serif, system-ui, sans-serif),
+        "body": var(--vp-font-family-base),
+        "mono": var(--vp-font-family-mono)
+    ),
+    "tracking": (
+        "display": -0.025em,
+        "label": 0.1em
+    ),
+    "size": (
+        "label": 0.6875rem,
+        "meta": 0.75rem,
+        "body": 1rem,
+        "lead": 1.125rem,
+        "h1": clamp(2.125rem, 1.6rem + 2.2vw, 3rem),
+        "h2": 1.5rem,
+        "h3": 1.1875rem,
+        "hero": clamp(2.75rem, 1.9rem + 3.6vw, 4.5rem)
+    ),
+    "leading": (
+        "body": 1.75,
+        "tight": 1.15
+    ),
+    "space": (
+        "gutter": 2rem,
+        "block": 2rem,
+        "section": 4rem
+    ),
+    "radius": (
+        "sm": 3px,
+        "md": 6px,
+        "pill": 999px
+    ),
+    "rule": (
+        "width": 1px,
+        "accent-width": 2px
+    ),
+    "motion": (
+        "duration": 160ms,
+        "ease": cubic-bezier(0.2, 0.6, 0.2, 1)
+    ),
+    "layout": (
+        "content": 44rem,
+        "wide": 72rem
+    )
+);
+
+// --------------------------------------------------------------------------------------------- //
+// Colour schemes
+//
+// Warm neutrals rather than the usual cool greys: the theme should read like printed paper, and
+// stay legible once the accent is swapped for a product colour.
+// --------------------------------------------------------------------------------------------- //
+
+$light: (
+    "color": (
+        "paper": #fbfaf8,
+        "surface": #ffffff,
+        "surface-alt": #f4f2ee,
+        "ink": #1a1917,
+        "ink-muted": #55524c,
+        "ink-faint": #8b867d,
+        "rule": #e6e2da,
+        "rule-strong": #d3cec4,
+        "accent": #2745cf,
+        "accent-hover": #1b34a8,
+        "accent-contrast": #ffffff,
+        "accent-soft": rgba(39, 69, 207, 0.09),
+        "success": #1c7a52,
+        "warning": #8a5a00,
+        "danger": #b32835
+    )
+);
+
+$dark: (
+    "color": (
+        "paper": #121110,
+        "surface": #1a1917,
+        "surface-alt": #201e1b,
+        "ink": #ece9e3,
+        "ink-muted": #a5a099,
+        "ink-faint": #77726a,
+        "rule": #2c2a26,
+        "rule-strong": #423e38,
+        "accent": #94a8ff,
+        "accent-hover": #b5c2ff,
+        "accent-contrast": #101018,
+        "accent-soft": rgba(148, 168, 255, 0.13),
+        "success": #4ac48b,
+        "warning": #e0a942,
+        "danger": #f0707f
+    )
+);
+
+// --------------------------------------------------------------------------------------------- //
+// Emission
+// --------------------------------------------------------------------------------------------- //
+
+:root {
+    @include mg.emit($scales);
+    @include mg.emit($light);
+
+    color-scheme: light;
+}
+
+@include mg.scheme("dark", $selector: ".dark") {
+    @include mg.emit($dark);
+
+    color-scheme: dark;
+}
+
+// --------------------------------------------------------------------------------------------- //
+// Bridge to the VitePress default theme
+//
+// The default theme is kept underneath, so its own variables are re-pointed at our tokens. Every
+// component we do not restyle by hand still lands on the right palette.
+// --------------------------------------------------------------------------------------------- //
+
+:root {
+    --vp-c-bg: #{mg.ref("color-paper")};
+    --vp-c-bg-alt: #{mg.ref("color-surface-alt")};
+    --vp-c-bg-elv: #{mg.ref("color-surface")};
+    --vp-c-bg-soft: #{mg.ref("color-surface-alt")};
+
+    --vp-c-text-1: #{mg.ref("color-ink")};
+    --vp-c-text-2: #{mg.ref("color-ink-muted")};
+    --vp-c-text-3: #{mg.ref("color-ink-faint")};
+
+    --vp-c-border: #{mg.ref("color-rule-strong")};
+    --vp-c-divider: #{mg.ref("color-rule")};
+    --vp-c-gutter: #{mg.ref("color-rule")};
+
+    --vp-c-brand-1: #{mg.ref("color-accent")};
+    --vp-c-brand-2: #{mg.ref("color-accent-hover")};
+    --vp-c-brand-3: #{mg.ref("color-accent")};
+    --vp-c-brand-soft: #{mg.ref("color-accent-soft")};
+
+    --vp-c-default-1: #{mg.ref("color-rule-strong")};
+    --vp-c-default-2: #{mg.ref("color-rule")};
+    --vp-c-default-3: #{mg.ref("color-surface-alt")};
+    --vp-c-default-soft: #{mg.ref("color-accent-soft")};
+
+    --vp-c-tip-1: #{mg.ref("color-accent")};
+    --vp-c-tip-soft: transparent;
+    --vp-c-note-1: #{mg.ref("color-accent")};
+    --vp-c-note-soft: transparent;
+    --vp-c-success-1: #{mg.ref("color-success")};
+    --vp-c-success-soft: transparent;
+    --vp-c-warning-1: #{mg.ref("color-warning")};
+    --vp-c-warning-soft: transparent;
+    --vp-c-danger-1: #{mg.ref("color-danger")};
+    --vp-c-danger-soft: transparent;
+    --vp-c-caution-1: #{mg.ref("color-danger")};
+    --vp-c-caution-soft: transparent;
+    --vp-c-important-1: #{mg.ref("color-accent")};
+    --vp-c-important-soft: transparent;
+
+    /* Elevation is a hairline job here — only overlays keep a shadow. */
+    --vp-shadow-1: none;
+    --vp-shadow-2: none;
+    --vp-shadow-3: 0 16px 40px rgb(0 0 0 / 8%);
+    --vp-shadow-4: 0 16px 40px rgb(0 0 0 / 10%);
+    --vp-shadow-5: 0 24px 64px rgb(0 0 0 / 12%);
+
+    --vp-nav-height: 60px;
+    --vp-layout-max-width: 72rem;
+    --vp-sidebar-width: 17rem;
+    --vp-header-anchor-symbol: "#";
+
+    --vp-code-font-size: 0.8125em;
+    --vp-code-color: #{mg.ref("color-ink")};
+    --vp-code-bg: #{mg.ref("color-surface-alt")};
+    --vp-code-block-color: #{mg.ref("color-ink-muted")};
+    --vp-code-block-bg: #{mg.ref("color-surface")};
+    --vp-code-block-divider-color: #{mg.ref("color-rule")};
+    --vp-code-copy-code-border-color: #{mg.ref("color-rule")};
+    --vp-code-copy-code-bg: #{mg.ref("color-surface")};
+    --vp-code-copy-code-hover-bg: #{mg.ref("color-surface-alt")};
+    --vp-code-tab-divider: #{mg.ref("color-rule")};
+    --vp-code-tab-active-bar-color: #{mg.ref("color-accent")};
+
+    --vp-button-brand-border: #{mg.ref("color-accent")};
+    --vp-button-brand-text: #{mg.ref("color-accent-contrast")};
+    --vp-button-brand-bg: #{mg.ref("color-accent")};
+    --vp-button-brand-hover-border: #{mg.ref("color-accent-hover")};
+    --vp-button-brand-hover-text: #{mg.ref("color-accent-contrast")};
+    --vp-button-brand-hover-bg: #{mg.ref("color-accent-hover")};
+    --vp-button-brand-active-bg: #{mg.ref("color-accent-hover")};
+
+    --vp-button-alt-border: #{mg.ref("color-rule-strong")};
+    --vp-button-alt-text: #{mg.ref("color-ink")};
+    --vp-button-alt-bg: transparent;
+    --vp-button-alt-hover-border: #{mg.ref("color-ink")};
+    --vp-button-alt-hover-text: #{mg.ref("color-ink")};
+    --vp-button-alt-hover-bg: transparent;
+    --vp-button-alt-active-bg: #{mg.ref("color-surface-alt")};
+
+    --vp-custom-block-font-size: 0.9375rem;
+    --vp-custom-block-code-font-size: 0.8125rem;
+
+    --vp-home-hero-name-color: #{mg.ref("color-ink")};
+}
