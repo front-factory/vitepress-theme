@@ -21,9 +21,27 @@
     }
 
     // The bar is ruled edge to edge, but its contents line up with the page container.
+    //
+    // Only without a sidebar: on a doc page the default theme aligns the title on the sidebar and
+    // the rest on the content column, and capping the container here would break both.
 
-    .VPNavBar .container {
+    .VPNavBar:not(.has-sidebar) .container {
         max-width: #{mg.ref("layout-wide")};
+    }
+
+    // The gutters have to match the ones the hero uses, or the bar lands a few pixels off the
+    // content it sits above.
+
+    @media (min-width: 640px) {
+        .VPNavBar:not(.has-sidebar) .wrapper {
+            padding: 0 3rem;
+        }
+    }
+
+    @media (min-width: 960px) {
+        .VPNavBar:not(.has-sidebar) .wrapper {
+            padding: 0 4rem;
+        }
     }
 
     .VPNavBar .content-body {

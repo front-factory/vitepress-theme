@@ -93,28 +93,17 @@
             animation-duration: 0.9s;
         }
 
-        // ------------------------------------------------------------------------------------- //
-        // Cells and cards arrive as they are scrolled into view
-        //
-        // Scroll-driven animations only, so browsers without them simply show the content.
-        // ------------------------------------------------------------------------------------- //
-
-        @supports (animation-timeline: view()) {
-            .ff-feature,
-            .vp-doc .ff-card,
-            .vp-doc .ff-api {
-                animation: ff-rise linear both;
-                animation-timeline: view();
-                animation-range: entry 0% cover 20%;
-            }
-        }
+        // Nothing else animates on arrival. Revealing cells and cards on scroll was tried and
+        // dropped: it left the content invisible until the reader scrolled, it only ever worked in
+        // Chromium, and a page too short to scroll never showed it at all.
     }
 }
 
 // --------------------------------------------------------------------------------------------- //
 // Hover states
 //
-// Kept outside the reduced-motion guard: they are transitions on intent, not ambient movement.
+// Nothing moves under the cursor: hover changes colour, fill and light, never position. Kept
+// outside the reduced-motion guard, since none of it is ambient movement.
 // --------------------------------------------------------------------------------------------- //
 
 .ff-theme {
@@ -124,23 +113,12 @@
             background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
             border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
             box-shadow #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    .ff-btn:hover,
-    .VPButton:hover {
-        transform: translateY(-1px);
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .ff-btn-brand:hover,
     .VPButton.brand:hover {
         box-shadow: 0 0.5rem 1.5rem #{mg.ref("color-accent-glow")};
-    }
-
-    .ff-btn:active,
-    .VPButton:active {
-        transform: none;
     }
 
     // Navigation: the underline grows from the left rather than blinking on.
@@ -171,57 +149,47 @@
         text-decoration: none;
     }
 
-    // Sidebar links lean towards the reader on hover.
-
-    .VPSidebarItem .link .text {
-        transition:
-            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    .VPSidebarItem .link:hover .text {
-        transform: translateX(2px);
-    }
-
     // Feature cells and cards catch the light.
+    //
+    // A gradient cannot be transitioned from a flat background, so the wash is a layer of its own
+    // that fades in behind the text.
 
-    .ff-feature,
-    .vp-doc .ff-card {
-        transition:
-            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            box-shadow #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    a.ff-feature:hover {
+    .ff-feature::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
         background: linear-gradient(
             160deg,
             #{mg.ref("color-accent-soft")},
             transparent 60%
         );
+        opacity: 0;
+        transition: opacity #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
+    }
+
+    a.ff-feature:hover::after {
+        opacity: 1;
+    }
+
+    .ff-feature-index::before {
+        transition: color #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc .ff-card {
+        transition:
+            border-color #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")},
+            box-shadow #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
     }
 
     .vp-doc a.ff-card:hover {
-        transform: translateY(-2px);
         box-shadow: 0 0.75rem 1.75rem #{mg.ref("color-accent-glow")};
-    }
-
-    .ff-feature-link span,
-    .ff-banner-cta span {
-        display: inline-block;
-        transition: transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    a.ff-feature:hover .ff-feature-link span,
-    .ff-banner-body:hover .ff-banner-cta span {
-        transform: translateX(0.25rem);
     }
 
     // Code blocks warm up when they are being read.
 
     .vp-doc div[class*="language-"] {
-        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+        transition: border-color #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
     }
 
     .vp-doc div[class*="language-"]:hover {
@@ -229,6 +197,35 @@
     }
 
     .ff-to-top:hover {
-        transform: translateY(-2px);
+        border-color: #{mg.ref("color-accent")};
+        color: #{mg.ref("color-accent")};
+    }
+
+    // Small controls: everything that reacts, reacts on the same curve.
+
+    .ff-hero-copy,
+    .ff-banner-close,
+    .ff-to-top,
+    .VPNavBarSearchButton,
+    .vp-doc [class*="language-"] > button.copy,
+    .VPDocFooter .pager-link .title,
+    .ff-footer-column a,
+    .VPDocAsideOutline .outline-link,
+    .VPSidebarItem .link .text {
+        transition:
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            opacity #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    // The back-to-top button keeps its own entrance on top of that.
+
+    .ff-to-top {
+        transition:
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            opacity #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")},
+            transform #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
     }
 }

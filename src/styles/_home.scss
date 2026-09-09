@@ -16,11 +16,23 @@
         margin-bottom: 0;
     }
 
+    // The hero runs up behind the navigation, which goes transparent at the top of a home page, so
+    // the light is continuous instead of stopping on a band under the bar. Both offsets have to be
+    // compensated, not just the bar: with a banner above it, the layout reserves room for the two.
+
     .ff-hero {
+        --ff-hero-offset: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px));
+
         position: relative;
-        padding: 4.5rem 1.5rem 3.5rem;
+        margin-top: calc(var(--ff-hero-offset) * -1);
+        padding: calc(var(--ff-hero-offset) + 4rem) 1.5rem 3.5rem;
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         overflow: hidden;
+    }
+
+    .VPNavBar.home.top {
+        border-bottom-color: transparent;
+        background-color: transparent;
     }
 
     // Two washes of light, one accent and one neutral, so the page has a direction.
@@ -215,13 +227,13 @@
 
     @media (min-width: 640px) {
         .ff-hero {
-            padding: 6rem 3rem 4rem;
+            padding: calc(var(--ff-hero-offset) + 5rem) 3rem 4rem;
         }
     }
 
     @media (min-width: 960px) {
         .ff-hero {
-            padding: 7rem 4rem 4.5rem;
+            padding: calc(var(--ff-hero-offset) + 5.5rem) 4rem 4.5rem;
         }
 
         .ff-hero-container {
@@ -309,6 +321,9 @@
         height: 100%;
         padding: 2.25rem 2rem 2.5rem;
         background: #{mg.ref("color-paper")};
+
+        // Own stacking context, so the hover wash can sit between the background and the text.
+        isolation: isolate;
     }
 
     .ff-feature-index::before {

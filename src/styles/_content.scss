@@ -4,10 +4,19 @@
 
 @use "theme" as mg;
 
-// The dismissal class is set on <html>, outside the themed root.
+// The dismissal class is set on <html>, outside the themed root. It carries the themed root in the
+// selector so it outweighs the rule that lays the banner out, further down.
 
-.ff-banner-dismissed .ff-banner {
+.ff-banner-dismissed .ff-theme .ff-banner {
     display: none;
+}
+
+// The layout reserves room for whatever sits above the navigation through --vp-layout-top-height,
+// and offsets the fixed bar and sidebar by it. Declaring the height here rather than waiting for
+// the measurement in FfBanner.vue means the first paint is already correct.
+
+:root:has(.ff-banner):not(.ff-banner-dismissed) {
+    --vp-layout-top-height: #{mg.ref("banner-height")};
 }
 
 .ff-theme {
@@ -15,12 +24,20 @@
     // Announcement bar
     // ----------------------------------------------------------------------------------------- //
 
+    // Fixed, like the bar it sits above: in the flow it would scroll away and leave the navigation
+    // stranded on an empty band.
+
     .ff-banner {
-        position: relative;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: var(--vp-z-index-layout-top);
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 1rem;
+        min-height: #{mg.ref("banner-height")};
         padding: 0.625rem 3rem;
         background: #{mg.ref("color-ink")};
         color: #{mg.ref("color-paper")};

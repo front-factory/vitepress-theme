@@ -50,9 +50,12 @@ $scales: (
         "accent-width": 2px
     ),
     "motion": (
-        "duration": 160ms,
-        "duration-slow": 480ms,
+        "duration": 200ms,
+        "duration-slow": 420ms,
         "ease": cubic-bezier(0.2, 0.6, 0.2, 1)
+    ),
+    "banner": (
+        "height": 2.6875rem
     ),
     "layout": (
         "content": 44rem,
