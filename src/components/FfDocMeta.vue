@@ -10,7 +10,7 @@ const options = useThemeOptions()
 const meta = computed(() => {
     if (options.value.meta === false || frontmatter.value.docMeta === false) return null
 
-    return { enabled: true, ...(options.value.meta ?? {}) }
+    return options.value.meta ?? {}
 })
 
 // --------------------------------------------------------------------------------------------- //

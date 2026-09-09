@@ -24,8 +24,6 @@ export interface FooterColumn {
 }
 
 export interface MetaConfig {
-    /** Kicker line above the page title. Defaults to `true`. */
-    enabled?: boolean
     /** Estimated reading time. Defaults to `true`. */
     readingTime?: boolean
     /** Words read per minute used by the estimate. Defaults to `200`. */
