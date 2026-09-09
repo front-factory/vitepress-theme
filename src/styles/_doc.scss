@@ -4,13 +4,58 @@
 
 @use "theme" as mg;
 
+// The frame: the band every page lives in.
+//
+// The default theme only centres the doc layout from 1440px up, and on a different width than the
+// home. Applying one band from 960px up is what keeps the sidebar, the text column, the outline and
+// the home content on the same two vertical lines.
+
+
+
 .ff-theme {
+    @media (min-width: 960px) {
+        .VPSidebar {
+            padding-left: var(--ff-frame);
+            width: calc(var(--ff-frame) + var(--vp-sidebar-width));
+        }
+
+        .VPContent.has-sidebar {
+            padding-right: var(--ff-frame);
+            padding-left: calc(var(--ff-frame) + var(--vp-sidebar-width));
+        }
+
+        // The band is carried by the content wrapper, so the document itself adds no gutter.
+
+        .VPDoc.has-sidebar {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .VPLocalNav.has-sidebar {
+            padding-left: calc(var(--ff-frame) + var(--vp-sidebar-width));
+        }
+    }
+
+    // The outline lives in a container of a fixed width, so the column that holds it must never be
+    // squeezed by the text: it would spill out of the band, past the bar above it.
+
+    @media (min-width: 1280px) {
+        .VPDoc .aside {
+            flex: 0 0 auto;
+            width: 16rem;
+        }
+
+        .VPDoc .content {
+            min-width: 0;
+        }
+    }
+
     // ----------------------------------------------------------------------------------------- //
     // Measure
     // ----------------------------------------------------------------------------------------- //
 
     .VPDoc .container {
-        max-width: #{mg.ref("layout-wide")};
+        max-width: none;
     }
 
     .VPDoc.has-aside .content-container,

@@ -166,6 +166,18 @@ Registered globally, no import needed.
 | `<Steps>` | Wraps an ordered list into a numbered rail |
 | `<Kbd>` | A key |
 
+## Version
+
+The theme tracks the VitePress 2 alphas closely — the default theme is still being restructured
+between them, and the layout overrides here are written against the version in `peerDependencies`.
+Keep the host project on the same alpha.
+
+If a change to the theme does not show up, suspect a stale Vite cache before suspecting the CSS: the
+stylesheet is a built file living outside the site root, so `.vitepress/cache` can keep serving an
+old copy. Delete it and restart. In the browser,
+`getComputedStyle(document.documentElement).getPropertyValue('--ff-layout-wide')` tells you which
+stylesheet you are actually looking at.
+
 ## Developing locally
 
 ```bash

@@ -42,6 +42,32 @@
         .VPNavBar:not(.has-sidebar) .wrapper {
             padding: 0 4rem;
         }
+
+        // With a sidebar the bar follows the same band as the page: the title column matches the
+        // sidebar, and the rest starts on the text column.
+        //
+        // The band is carried by the container, not by the title and the content: --ff-frame holds
+        // a percentage, so it has to land on an element whose containing block is the viewport.
+        // --vp-nav-col-offset is what the bar's own surface and bottom rule are drawn from.
+
+        .VPNavBar.has-sidebar {
+            --vp-nav-col-offset: calc(var(--ff-frame) + var(--vp-sidebar-width));
+        }
+
+        .VPNavBar.has-sidebar .wrapper {
+            padding: 0;
+        }
+
+        .VPNavBar.has-sidebar .container {
+            max-width: none;
+            padding-right: var(--ff-frame);
+            padding-left: var(--ff-frame);
+        }
+
+        .VPNavBar.has-sidebar .container > .title {
+            min-width: var(--vp-sidebar-width);
+            max-width: var(--vp-sidebar-width);
+        }
     }
 
     .VPNavBar .content-body {

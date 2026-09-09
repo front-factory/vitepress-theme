@@ -59,7 +59,7 @@ $scales: (
     ),
     "layout": (
         "content": 44rem,
-        "wide": 72rem
+        "wide": 76rem
     )
 );
 
@@ -182,8 +182,15 @@ $dark: (
     --vp-shadow-4: 0 16px 40px rgb(0 0 0 / 10%);
     --vp-shadow-5: 0 24px 64px rgb(0 0 0 / 12%);
 
+    /**
+     * Distance from the edge of the viewport to the content band — the frame the whole theme is
+     * built on. Only valid on elements whose containing block is the viewport, since the
+     * percentage resolves where the property is used.
+     */
+    --ff-frame: max(4rem, calc((100% - #{mg.ref("layout-wide")}) / 2));
+
     --vp-nav-height: 60px;
-    --vp-layout-max-width: 72rem;
+    --vp-layout-max-width: 76rem;
     --vp-sidebar-width: 17rem;
     --vp-header-anchor-symbol: "#";
 

@@ -35,11 +35,11 @@
         "@magnesium/theme": "^5.2.2",
         "husky": "^9.1.7",
         "sass": "^1.100.0",
-        "vitepress": "^2.0.0-alpha.17",
+        "vitepress": "^2.0.0-alpha.20",
         "vue": "^3.5.34"
     },
     "peerDependencies": {
-        "vitepress": "^2.0.0-alpha.16",
+        "vitepress": "^2.0.0-alpha.20",
         "vue": "^3.5.0"
     },
     "keywords": [
