@@ -3,8 +3,16 @@
     "version": "0.0.0",
     "description": "Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata.",
     "type": "module",
+    "scripts": {
+        "prepare": "husky"
+    },
     "engines": {
         "node": ">=20"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^20.4.2",
+        "@commitlint/config-conventional": "^20.4.2",
+        "husky": "^9.1.7"
     },
     "license": "MIT",
     "publishConfig": {
