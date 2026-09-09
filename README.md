@@ -62,25 +62,25 @@ follows.
 }
 ```
 
-| Token | Role |
-| --- | --- |
-| `--ff-color-paper` | Page background |
-| `--ff-color-surface` | Raised surfaces: code, cards, keys |
-| `--ff-color-surface-alt` | Inline code, switches |
-| `--ff-color-ink` | Body text |
-| `--ff-color-ink-muted` | Secondary text |
-| `--ff-color-ink-faint` | Labels and metadata |
-| `--ff-color-rule` | Hairlines |
-| `--ff-color-rule-strong` | Emphasised rules and borders |
-| `--ff-color-accent` | The one brand colour |
-| `--ff-color-success` / `-warning` / `-danger` | Status colours |
-| `--ff-font-display` | Headings, titles, card and pager titles |
-| `--ff-font-mono` | Labels, metadata, code |
-| `--ff-size-hero` / `-h1` / `-h2` / `-h3` | Type scale |
-| `--ff-layout-content` | Reading measure |
-| `--ff-layout-wide` | Home and container width |
-| `--ff-radius-sm` / `-md` | Corner radii |
-| `--ff-rule-width` / `--ff-rule-accent-width` | Rule weights |
+| Token                                         | Role                                    |
+|-----------------------------------------------|-----------------------------------------|
+| `--ff-color-paper`                            | Page background                         |
+| `--ff-color-surface`                          | Raised surfaces: code, cards, keys      |
+| `--ff-color-surface-alt`                      | Inline code, switches                   |
+| `--ff-color-ink`                              | Body text                               |
+| `--ff-color-ink-muted`                        | Secondary text                          |
+| `--ff-color-ink-faint`                        | Labels and metadata                     |
+| `--ff-color-rule`                             | Hairlines                               |
+| `--ff-color-rule-strong`                      | Emphasised rules and borders            |
+| `--ff-color-accent`                           | The one brand colour                    |
+| `--ff-color-success` / `-warning` / `-danger` | Status colours                          |
+| `--ff-font-display`                           | Headings, titles, card and pager titles |
+| `--ff-font-mono`                              | Labels, metadata, code                  |
+| `--ff-size-hero` / `-h1` / `-h2` / `-h3`      | Type scale                              |
+| `--ff-layout-content`                         | Reading measure                         |
+| `--ff-layout-wide`                            | Home and container width                |
+| `--ff-radius-sm` / `-md`                      | Corner radii                            |
+| `--ff-rule-width` / `--ff-rule-accent-width`  | Rule weights                            |
 
 `dist/style.css` lists them all, grouped, at the top of the file.
 
@@ -159,12 +159,12 @@ features:
 
 Registered globally, no import needed.
 
-| Component | Use |
-| --- | --- |
-| `<Api name kind signature since deprecated>` | An API entry: ruled heading, monospaced signature |
-| `<CardGrid :columns>` / `<Card title icon link>` | Card grids |
-| `<Steps>` | Wraps an ordered list into a numbered rail |
-| `<Kbd>` | A key |
+| Component                                        | Use                                               |
+|--------------------------------------------------|---------------------------------------------------|
+| `<Api name kind signature since deprecated>`     | An API entry: ruled heading, monospaced signature |
+| `<CardGrid :columns>` / `<Card title icon link>` | Card grids                                        |
+| `<Steps>`                                        | Wraps an ordered list into a numbered rail        |
+| `<Kbd>`                                          | A key                                             |
 
 ## Version
 
