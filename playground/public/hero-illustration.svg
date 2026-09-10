@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" fill="none">
+    <!-- Corner registration ticks, printer's-proof style -->
+    <g stroke="#423e38" stroke-width="1.5">
+        <path d="M69 54h10M74 49v10" />
+        <path d="M361 54h10M366 49v10" />
+        <path d="M69 381h10M74 376v10" />
+        <path d="M361 381h10M366 376v10" />
+    </g>
+
+    <!-- The plate -->
+    <rect x="90" y="70" width="260" height="300" rx="10" fill="#1a1917" stroke="#423e38" stroke-width="1.5" />
+
+    <!-- The one accent mark -->
+    <rect x="118" y="104" width="64" height="6" rx="3" fill="#94a8ff" />
+
+    <!-- Hairline rules -->
+    <line x1="118" y1="136" x2="322" y2="136" stroke="#423e38" stroke-width="1.5" />
+    <line x1="118" y1="154" x2="246" y2="154" stroke="#423e38" stroke-width="1.5" stroke-opacity="0.6" />
+
+    <!-- Colophon: a rule and a folio number, same grammar as the meta strip under the hero -->
+    <line x1="118" y1="328" x2="322" y2="328" stroke="#423e38" stroke-width="1" />
+    <text x="322" y="353" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#ece9e3">01</text>
+</svg>
