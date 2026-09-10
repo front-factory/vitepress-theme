@@ -101,6 +101,8 @@ export interface ThemeOptions {
     footerSocial?: boolean
     /** Floating back-to-top control. Defaults to `true`. */
     backToTop?: boolean
+    /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */
+    navOrder?: 'search-first' | 'menu-first'
     /** Overrides for the strings this theme adds. Declare them per locale to translate them. */
     labels?: ThemeLabels
 }

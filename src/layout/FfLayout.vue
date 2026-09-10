@@ -4,8 +4,10 @@ import DefaultTheme from 'vitepress/theme'
 import FfBackToTop from '../components/FfBackToTop.vue'
 import FfBanner from '../components/FfBanner.vue'
 import FfDocMeta from '../components/FfDocMeta.vue'
+import { useThemeOptions } from '../composables/options'
 
 const { Layout } = DefaultTheme
+const options = useThemeOptions()
 
 // Three slots carry the additions of this theme; every other slot the site passes in is forwarded
 // untouched, so the whole default slot surface keeps working.
@@ -16,7 +18,7 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
 </script>
 
 <template>
-    <div class="ff-theme">
+    <div class="ff-theme" :data-nav-order="options.navOrder ?? 'search-first'">
         <Layout>
             <template #layout-top>
                 <FfBanner />

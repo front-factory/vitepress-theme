@@ -58,6 +58,7 @@ export default defineConfig<ThemeConfig>({
             copyright: 'Copyright © 2026 Front Factory'
         },
         ff: {
+            navOrder: 'menu-first',
             banner: {
                 id: `v${pkg.version}`,
                 text: `<strong>${pkg.version}</strong> — the banner now ships in colour. This is it.`,

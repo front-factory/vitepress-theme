@@ -17,6 +17,52 @@
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
 
+    // The default theme's markup always renders search before the menu links inside
+    // .content-body, a plain flex row with no slot between the two, and pins the pair with a push
+    // rather than plain order: .menu carries flex-grow so it eats the row's free space and
+    // right-justifies itself against whatever follows, which is what reads as "menu on the
+    // right" — reordering alone leaves that push in place and the menu stays glued to the same
+    // spot. `ff.navOrder: 'menu-first'` swaps both which element grows and which one leads, so the
+    // menu hugs the title the way search does by default, and every other sibling (locale
+    // switcher, appearance toggle, social links, the "extra" slot, the hamburger) gets an
+    // explicit order too so it keeps its place instead of tying at the default `order: 0`.
+
+    &[data-nav-order="menu-first"] .content-body {
+        .menu {
+            order: 1;
+            flex-grow: 0;
+            // Search owes its own breathing room from the title to its box's border and padding;
+            // plain text links have neither, so without this they sit right against the title.
+            margin-left: 1.5rem;
+            margin-right: auto;
+        }
+
+        .search {
+            order: 2;
+            margin-right: 0;
+        }
+
+        .translations {
+            order: 3;
+        }
+
+        .appearance {
+            order: 4;
+        }
+
+        .social-links {
+            order: 5;
+        }
+
+        .extra {
+            order: 6;
+        }
+
+        .hamburger {
+            order: 7;
+        }
+    }
+
     .VPNavBar.has-sidebar .curtain,
     .VPNavBar .divider {
         display: none;
