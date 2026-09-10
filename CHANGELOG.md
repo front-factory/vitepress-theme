@@ -12,8 +12,6 @@ at https://vitepress.dev/guide/custom-theme#distributing-a-custom-theme. The
 banner anti-flash script now injects through the transformHead build hook
 instead of a config mutation.
 
-Claude-Session: https://claude.ai/code/session_01DD89GW2zZUbxSiQjmhmZxj
-
 ### refactor
 
 * **config:** switch /config to extends per VitePress docs ([c15d573](https://github.com/front-factory/vitepress-theme/commit/c15d57332bbaf697b7768991494fefb7c9025137))
