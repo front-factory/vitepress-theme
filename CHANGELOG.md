@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/front-factory/vitepress-theme/compare/v1.0.0...v1.1.0) (2026-09-10)
+
+### Features
+
+* **home:** drop the accent mark from the hero kicker ([ba519ab](https://github.com/front-factory/vitepress-theme/commit/ba519ab5df9778c6db9890a3fdedd22affb842ca))
+* **home:** tighten the hero headline ([3e92837](https://github.com/front-factory/vitepress-theme/commit/3e92837098c5e689f17b4ddd0bd953f739a55cb4))
+* **home:** turn the hero glow off by default ([a520b78](https://github.com/front-factory/vitepress-theme/commit/a520b781f1f5d2c052ad8605fc973f51d8e74142))
+
 ## 1.0.0 (2026-09-10)
 
 ### ⚠ BREAKING CHANGES

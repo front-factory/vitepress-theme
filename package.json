@@ -1,6 +1,6 @@
 {
     "name": "@frontfactory/vitepress-theme",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata.",
     "type": "module",
     "scripts": {
