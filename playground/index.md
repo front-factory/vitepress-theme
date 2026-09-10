@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: Front Factory
+  name: by Front Factory
   text: Documentation that reads like print.
   tagline: An editorial VitePress theme — hairline rules, numbered sections and monospaced metadata. One accent token to make it yours.
   command: npm install @frontfactory/vitepress-theme
