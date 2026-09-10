@@ -60,12 +60,12 @@ export default defineConfig<ThemeConfig>({
         ff: {
             banner: {
                 id: `v${pkg.version}`,
-                text: `Version ${pkg.version} is out.`,
-                link: '/guide/getting-started',
-                linkText: 'Read the notes',
+                text: `<strong>${pkg.version}</strong> — the banner now ships in colour. This is it.`,
+                link: '/guide/configuration',
+                linkText: 'Configure it',
                 variant: 'accent',
                 gradient: true,
-                icon: '🎉'
+                icon: '🌈'
             },
             footerColumns: [
                 {
