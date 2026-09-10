@@ -84,6 +84,21 @@
         background: linear-gradient(100deg, var(--ff-banner-from), var(--ff-banner-to));
     }
 
+    // The one variant that is gradient or nothing — a flat "rainbow" bar makes no sense, so this
+    // ignores the gradient flag. It strings together the theme's own status hues rather than
+    // introducing new colour, and reuses the accent's contrast pick since every one of those hues
+    // follows the same light/dark pattern: saturated and dark on paper, pale and light on ink.
+    .ff-banner[data-variant="rainbow"] {
+        background: linear-gradient(
+            100deg,
+            #{mg.ref("color-accent")},
+            #{mg.ref("color-danger")},
+            #{mg.ref("color-warning")},
+            #{mg.ref("color-success")}
+        );
+        color: #{mg.ref("color-accent-contrast")};
+    }
+
     .ff-banner-icon {
         font-size: 1rem;
         line-height: 1;

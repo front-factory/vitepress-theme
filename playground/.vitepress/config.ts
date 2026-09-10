@@ -63,8 +63,7 @@ export default defineConfig<ThemeConfig>({
                 text: `<strong>${pkg.version}</strong> — the banner now ships in colour. This is it.`,
                 link: '/guide/configuration',
                 linkText: 'Configure it',
-                variant: 'accent',
-                gradient: true,
+                variant: 'rainbow',
                 icon: '🌈'
             },
             footerColumns: [

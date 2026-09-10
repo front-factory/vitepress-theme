@@ -9,9 +9,12 @@ export interface BannerConfig {
     link?: string
     /** Label of the trailing call to action. Defaults to `Read more`. */
     linkText?: string
-    /** Colour the banner is built from. Defaults to `ink`, the theme's original flat bar. */
-    variant?: 'ink' | 'accent' | 'success' | 'warning' | 'danger'
-    /** Paint the background as a gradient toward the variant's colour instead of flat. */
+    /**
+     * Colour the banner is built from. Defaults to `ink`, the theme's original flat bar.
+     * `rainbow` strings the status hues together and is always a gradient.
+     */
+    variant?: 'ink' | 'accent' | 'success' | 'warning' | 'danger' | 'rainbow'
+    /** Paint the background as a gradient toward the variant's colour instead of flat. Ignored by `rainbow`, which is always a gradient. */
     gradient?: boolean
     /** Icon or emoji printed before the text, e.g. `'🎉'`. */
     icon?: string
