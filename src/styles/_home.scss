@@ -200,11 +200,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        // Caps it against the viewport rather than the column: at narrow widths the column itself
+        // is the limit; past 960px the column is half the hero, wide enough that this is the one
+        // that bites, so the image can run as large as the site's own picture allows.
+        max-width: 28rem;
     }
 
     .ff-hero-image img {
-        max-width: 22rem;
+        width: 100%;
         height: auto;
+    }
+
+    @media (min-width: 960px) {
+        .ff-hero-image {
+            max-width: none;
+        }
     }
 
     // ----------------------------------------------------------------------------------------- //
@@ -260,9 +270,17 @@
             gap: 4.5rem;
         }
 
-        .ff-hero.has-image .ff-hero-container,
+        // The panel is a fixed-size box regardless of how wide its column runs, so it gets the
+        // narrower one. An image is content, not chrome — it can be as large as the site wants,
+        // so its column gets an even split instead of ceding room to the text side.
+
         .ff-hero.has-panel .ff-hero-container {
             grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            align-items: center;
+        }
+
+        .ff-hero.has-image .ff-hero-container {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             align-items: center;
         }
     }
