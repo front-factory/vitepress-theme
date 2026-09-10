@@ -30,9 +30,11 @@
         overflow: hidden;
     }
 
+    // The surface already goes transparent here through --vp-nav-home-bg-color; the rule this
+    // theme draws itself does not.
+
     .VPNavBar.home.top {
         border-bottom-color: transparent;
-        background-color: transparent;
     }
 
     // Two washes of light, one accent and one neutral, so the page has a direction.

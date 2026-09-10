@@ -9,10 +9,12 @@
     // Top bar
     // ----------------------------------------------------------------------------------------- //
 
+    // The surface is painted by ::before from --vp-nav-bg-color, set in _tokens.scss. Only the rule
+    // is ours: the default one is an element inset by --vp-nav-col-offset, and this theme runs it
+    // edge to edge — a distance no variable expresses.
+
     .VPNavBar {
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
-        background-color: #{mg.ref("color-paper")};
-        backdrop-filter: none;
     }
 
     .VPNavBar.has-sidebar .curtain,
@@ -169,12 +171,6 @@
     // ----------------------------------------------------------------------------------------- //
     // Mobile local nav and full-screen menu
     // ----------------------------------------------------------------------------------------- //
-
-    .VPLocalNav {
-        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
-        background: #{mg.ref("color-paper")};
-        backdrop-filter: none;
-    }
 
     .VPLocalNav .menu-text,
     .VPLocalNavOutlineDropdown .menu-text,

@@ -184,6 +184,13 @@ $dark: (
     --ff-frame: max(4rem, calc((100% - #{mg.ref("layout-wide")}) / 2));
 
     --vp-nav-height: 60px;
+
+    /**
+     * The nav bar and the local nav paint through their own ::before surface, so the colour goes on
+     * these knobs rather than on the elements. The local nav follows both by default.
+     */
+    --vp-nav-bg-color: #{mg.ref("color-paper")};
+    --vp-nav-backdrop-filter: none;
     --vp-layout-max-width: 76rem;
     --vp-sidebar-width: 17rem;
     --vp-header-anchor-symbol: "#";
