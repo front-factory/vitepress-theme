@@ -87,10 +87,7 @@ async function copy() {
                 <slot name="home-hero-info-before" />
 
                 <slot name="home-hero-info">
-                    <p v-if="name" class="ff-hero-kicker ff-label">
-                        <span class="ff-hero-mark" aria-hidden="true" />
-                        <span v-html="name" />
-                    </p>
+                    <p v-if="name" class="ff-hero-kicker ff-label" v-html="name" />
 
                     <h1 v-if="text" class="ff-hero-title ff-display" v-html="text" />
 

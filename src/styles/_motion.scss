@@ -30,19 +30,6 @@
     }
 }
 
-@keyframes ff-beacon {
-    0%,
-    100% {
-        opacity: 1;
-        box-shadow: 0 0 0 0 #{mg.ref("color-accent-glow")};
-    }
-
-    50% {
-        opacity: 0.72;
-        box-shadow: 0 0 0 0.375rem transparent;
-    }
-}
-
 @media (prefers-reduced-motion: no-preference) {
     .ff-theme {
         // ------------------------------------------------------------------------------------- //
@@ -51,10 +38,6 @@
 
         .ff-hero-glow {
             animation: ff-drift 26s #{mg.ref("motion-ease")} infinite alternate;
-        }
-
-        .ff-hero-mark {
-            animation: ff-beacon 3.2s ease-in-out infinite;
         }
 
         .ff-hero-kicker,

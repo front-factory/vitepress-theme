@@ -84,13 +84,6 @@
         color: #{mg.ref("color-ink-muted")};
     }
 
-    .ff-hero-mark {
-        width: 0.5rem;
-        height: 0.5rem;
-        border-radius: 2px;
-        background: #{mg.ref("color-accent")};
-    }
-
     // The headline is the one place the theme changes voice: the mono it uses everywhere else for
     // machine text, here at display size. max-width is in ch, so against a monospaced face it is
     // an exact character count — the headline breaks on a measure, not on a guess.
