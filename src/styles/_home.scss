@@ -100,9 +100,11 @@
         font-size: #{mg.ref("size-hero")};
         font-weight: 600;
         // Capitals on a monospaced face put every glyph on the same square cell — the blockiest
-        // the headline can get without shipping a webfont. Uppercase needs the tracking back:
-        // the negative fit that suits lowercase closes capitals up.
-        letter-spacing: 0.01em;
+        // the headline can get without shipping a webfont. A monospaced face already sets its own
+        // cell width, so at this size the capitals need no tracking added on top. The word gap is
+        // one of those full cells, which reads as a hole at display size: pull it back a third.
+        letter-spacing: 0;
+        word-spacing: -0.3em;
         text-transform: uppercase;
         color: #{mg.ref("color-ink")};
         text-wrap: balance;
