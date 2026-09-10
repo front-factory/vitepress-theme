@@ -44,6 +44,35 @@ $tokens: (
 const accent: string = 'var(--ff-color-accent)'
 ```
 
+Lines can be highlighted, dimmed into focus, or annotated as an error, a warning, or a diff — all
+inherited from the default theme, unstyled by this one:
+
+```ts{2}
+function emit(tokens) {
+    return refs(tokens)
+}
+```
+
+```ts
+function emit(tokens) { // [!code focus]
+    return refs(tokens) // [!code focus]
+}
+```
+
+```ts
+function emit(tokens) {
+    return refs(tokens) // [!code error]
+    return tokens // [!code warning]
+}
+```
+
+```ts
+function emit(tokens) {
+    return tokens // [!code --]
+    return refs(tokens) // [!code ++]
+}
+```
+
 ::: code-group
 
 ```bash [npm]

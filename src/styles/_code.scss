@@ -89,6 +89,32 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // Line annotations: error, warning and diff
+    // ----------------------------------------------------------------------------------------- //
+
+    // The default theme tells these apart with a coloured fill, from the same --vp-c-*-soft
+    // tokens the custom blocks use — and _tokens.scss sets every one of those to transparent, so
+    // a line marked [!code error] or [!code ++] paints no differently from a plain one. A rule on
+    // the left is the margin-note language every other flagged block in this theme already
+    // speaks, so the line still reads without reintroducing a fill.
+
+    .vp-doc [class*="language-"] code .highlighted.error {
+        box-shadow: inset #{mg.ref("rule-accent-width")} 0 0 0 #{mg.ref("color-danger")};
+    }
+
+    .vp-doc [class*="language-"] code .highlighted.warning {
+        box-shadow: inset #{mg.ref("rule-accent-width")} 0 0 0 #{mg.ref("color-warning")};
+    }
+
+    .vp-doc [class*="language-"] code .diff.add {
+        box-shadow: inset #{mg.ref("rule-accent-width")} 0 0 0 #{mg.ref("color-success")};
+    }
+
+    .vp-doc [class*="language-"] code .diff.remove {
+        box-shadow: inset #{mg.ref("rule-accent-width")} 0 0 0 #{mg.ref("color-danger")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Code groups: the tabs replace the header strip
     // ----------------------------------------------------------------------------------------- //
 

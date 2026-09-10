@@ -13,6 +13,20 @@ Sections, features and steps number themselves from the stylesheet.
 </Card>
 </CardGrid>
 
+`Card` also takes an `icon` (inline SVG or emoji), and `CardGrid` any column count:
+
+<CardGrid :columns="3">
+<Card title="Search" icon="🔍" link="/guide/getting-started">
+Local search, unchanged from the default theme.
+</Card>
+<Card title="i18n" icon="🌍">
+Locales stay the default theme's own mechanism.
+</Card>
+<Card title="Mobile nav" icon="📱">
+Hamburger and full-screen menu, untouched.
+</Card>
+</CardGrid>
+
 ## API entries
 
 <Api name="refs()" kind="function" signature="refs($tokens, $namespace: null) => Map" since="5.0">
