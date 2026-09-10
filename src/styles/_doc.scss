@@ -156,7 +156,7 @@
 
     .vp-doc > div > h1 + p {
         margin-top: 1.5rem;
-        font-size: #{mg.ref("size-lead")};
+        font-size: #{mg.ref("size-body")};
         line-height: 1.65;
         color: #{mg.ref("color-ink-muted")};
     }
