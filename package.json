@@ -1,13 +1,14 @@
 {
     "name": "@frontfactory/vitepress-theme",
     "version": "0.0.0",
-    "description": "Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata.",
+    "description": "Editorial VitePress theme \u2014 hairline rules, numbered sections and monospaced metadata.",
     "type": "module",
     "scripts": {
         "build": "sass --no-source-map --pkg-importer=node --load-path=node_modules src/styles/index.scss dist/style.css",
         "dev": "npm run build -- --watch",
-        "dev:playground": "vitepress dev playground",
+        "dev:playground": "npm run build && vitepress dev playground",
         "build:playground": "npm run build && vitepress build playground",
+        "typecheck": "vue-tsc --noEmit",
         "prepare": "husky",
         "prepack": "npm run build",
         "release": "semantic-release"
@@ -41,8 +42,10 @@
         "husky": "^9.1.7",
         "sass": "^1.100.0",
         "semantic-release": "^25.0.9",
+        "typescript": "^5.9.3",
         "vitepress": "^2.0.0-alpha.20",
-        "vue": "^3.5.34"
+        "vue": "^3.5.34",
+        "vue-tsc": "^3.2.0"
     },
     "peerDependencies": {
         "vitepress": "^2.0.0-alpha.20",
