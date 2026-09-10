@@ -161,12 +161,78 @@
         margin: 0 0 1rem;
     }
 
+    // A multi-command panel (`hero.command` as an array) prints this strip above the line instead
+    // of a single one — same visual language as the code-group tabs above a fenced block (see
+    // _code.scss), so the two don't read as two different controls.
+
+    .ff-hero-command-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0.75rem;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .ff-hero-command-tab {
+        position: relative;
+        padding: 0 0.75rem 0.625rem;
+        border: 0;
+        background: transparent;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+        cursor: pointer;
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-hero-command-tab:first-child {
+        padding-left: 0;
+    }
+
+    .ff-hero-command-tab::after {
+        position: absolute;
+        right: 0;
+        bottom: calc(#{mg.ref("rule-accent-width")} * -1);
+        left: 0;
+        height: #{mg.ref("rule-accent-width")};
+        background: transparent;
+        content: "";
+        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-hero-command-tab:hover {
+        color: #{mg.ref("color-ink")};
+    }
+
+    .ff-hero-command-tab.active {
+        color: #{mg.ref("color-ink")};
+    }
+
+    .ff-hero-command-tab.active::after {
+        background: #{mg.ref("color-accent")};
+    }
+
     // Same panel, dropped under the text instead of beside it — an image already claims the
     // second column, so this is what the install line falls back to rather than disappearing.
 
     .ff-hero-panel-inline {
         max-width: 28rem;
         margin-top: 2.5rem;
+    }
+
+    // Nothing to justify the box: no actions sit under the command here (the inline position never
+    // carries them; the second-column one only when the site declares none). The command line keeps
+    // its own border either way — see .ff-hero-command — so this still reads as one control, just
+    // without the panel framing and the "Install" heading around it.
+
+    .ff-hero-panel-bare {
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
     }
 
     .ff-hero-panel .ff-hero-actions {

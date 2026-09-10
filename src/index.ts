@@ -43,6 +43,7 @@ export type {
     BannerConfig,
     FooterColumn,
     FooterLink,
+    HeroCommandTab,
     HeroExtras,
     HeroMetaItem,
     MetaConfig,

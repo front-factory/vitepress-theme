@@ -198,14 +198,31 @@ both at once and takes any value between `0` and `1`:
 Their colours come from `--ff-color-accent-glow` and `--ff-color-accent-soft`, per scheme.
 
 `hero.command` puts an install panel in the second column of the hero, carrying the command and the
-actions, sized to the panel's own fixed box. Add `hero.image` (standard VitePress frontmatter, any
-`<img>` source including a gif) or fill the `home-hero-image` slot, and that image claims the second
-column instead, split 50/50 with the text rather than the panel's narrower share — the panel drops
-under the text on the left rather than disappearing, still carrying the command but not the actions,
-which already sit under the text either way. `hero.quote` prints a short line under the tagline,
+actions, sized to the panel's own fixed box. The box and its "Install" heading only print when there
+are actions to go with the command — with none, it's the bare command line, borderless outside its
+own. Add `hero.image` (standard VitePress frontmatter, any `<img>` source including a gif) or fill
+the `home-hero-image` slot, and that image claims the second column instead, split 50/50 with the
+text rather than the panel's narrower share — the panel drops under the text on the left rather than
+disappearing, always bare there since the actions already sit under the text either way. `hero.quote`
+prints a short line under the tagline,
 ruled and set in italics the same way a markdown blockquote is — inline HTML works, so a term inside
 it can carry its own `<strong>`. `hero.meta` prints a colophon strip under the hero. `hero.command`,
 `hero.quote` and `hero.meta` are all typed by the exported `HeroExtras` interface.
+
+`hero.command` also takes an array of `{ label, value }` tabs instead of a single string — one
+command per package manager, say — printing a tab strip above the line, styled like the theme's own
+`::: code-group` tabs. The copy button always follows whichever tab is active:
+
+```yaml
+hero:
+  command:
+    - label: npm
+      value: npm install my-project
+    - label: pnpm
+      value: pnpm add my-project
+    - label: bun
+      value: bun add my-project
+```
 
 ```yaml
 ---

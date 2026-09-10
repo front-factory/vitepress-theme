@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Comment, computed, Fragment, ref, Text, useSlots, type VNode } from 'vue'
+import { Comment, computed, Fragment, Text, useSlots, type VNode } from 'vue'
 import { useData } from 'vitepress'
 import { VPImage } from '../internal'
-import { format, useLabels } from '../composables/options'
+import FfHeroCommand from './FfHeroCommand.vue'
 import type { HeroExtras, HeroMetaItem } from '../types'
 import type { DefaultTheme } from 'vitepress/theme'
 
@@ -23,16 +23,18 @@ const props = defineProps<{
 }>()
 
 const { frontmatter } = useData()
-const labels = useLabels()
 const slots = useSlots()
 
 // Three additions to the standard home frontmatter, all optional:
 //
 //   hero.command   the install line, printed in a panel beside the headline
-//   hero.quote     a short line under the tagline, ruled like a markdown blockquote
+//   hero.quote     a short line ruled like a markdown blockquote — under the tagline normally, or
+//                  under the install line instead once one sits inline beneath it (see hasInlineCommand)
 //   hero.meta      a colophon strip under the hero: [{ label, value }, …]
 const hero = computed<HeroExtras>(() => frontmatter.value.hero ?? {})
-const command = computed<string | undefined>(() => hero.value.command)
+const command = computed<HeroExtras['command']>(() => hero.value.command)
+const hasCommand = computed(() => (Array.isArray(command.value) ? command.value.length > 0 : !!command.value))
+const hasActions = computed(() => !!props.actions?.length)
 const quote = computed<string | undefined>(() => hero.value.quote)
 const meta = computed<HeroMetaItem[]>(() => hero.value.meta ?? [])
 
@@ -62,23 +64,13 @@ function hasImage() {
 // The second column carries the image when there is one, and the starting point otherwise. The
 // actions only move over there when they have a panel to sit in.
 function hasPanel() {
-    return !hasImage() && !!command.value
+    return !hasImage() && hasCommand.value
 }
 
 // An image claims the second column, so the install panel has nowhere to sit beside the text —
 // it drops under it instead rather than disappearing.
 function hasInlineCommand() {
-    return hasImage() && !!command.value
-}
-
-const copied = ref(false)
-
-async function copy() {
-    if (!command.value) return
-
-    await navigator.clipboard.writeText(command.value)
-    copied.value = true
-    setTimeout(() => (copied.value = false), 2000)
+    return hasImage() && hasCommand.value
 }
 </script>
 
@@ -101,12 +93,12 @@ async function copy() {
 
                     <p v-if="tagline" class="ff-hero-tagline" v-html="tagline" />
 
-                    <blockquote v-if="quote" class="ff-hero-quote" v-html="quote" />
+                    <blockquote v-if="quote && !hasInlineCommand()" class="ff-hero-quote" v-html="quote" />
                 </slot>
 
                 <slot name="home-hero-info-after" />
 
-                <div v-if="actions?.length && !hasPanel()" class="ff-hero-actions">
+                <div v-if="hasActions && !hasPanel()" class="ff-hero-actions">
                     <slot name="home-hero-actions-before-actions" />
 
                     <a
@@ -124,29 +116,14 @@ async function copy() {
 
                 <slot name="home-hero-actions-after" />
 
-                <div v-if="hasInlineCommand()" class="ff-hero-panel ff-hero-panel-inline">
-                    <p class="ff-hero-panel-label ff-label">{{ labels.heroInstall }}</p>
+                <FfHeroCommand
+                    v-if="hasInlineCommand()"
+                    :command="command!"
+                    bare
+                    class="ff-hero-panel ff-hero-panel-inline ff-hero-panel-bare"
+                />
 
-                    <div class="ff-hero-command">
-                        <code>
-                            <span class="ff-hero-prompt" aria-hidden="true">$</span>
-                            {{ command }}
-                        </code>
-
-                        <span class="ff-hero-copy-group">
-                            <span v-if="copied" class="ff-hero-copied ff-label">{{ labels.heroCopied }}</span>
-
-                            <button
-                                type="button"
-                                class="ff-hero-copy"
-                                :class="{ copied }"
-                                :title="format(labels.heroCopyLabel, command ?? '')"
-                                :aria-label="format(labels.heroCopyLabel, command ?? '')"
-                                @click="copy"
-                            />
-                        </span>
-                    </div>
-                </div>
+                <blockquote v-if="quote && hasInlineCommand()" class="ff-hero-quote" v-html="quote" />
             </div>
 
             <div v-if="hasImage()" class="ff-hero-image">
@@ -155,30 +132,14 @@ async function copy() {
                 </slot>
             </div>
 
-            <aside v-else-if="hasPanel()" class="ff-hero-panel">
-                <p class="ff-hero-panel-label ff-label">{{ labels.heroInstall }}</p>
+            <aside
+                v-else-if="hasPanel()"
+                class="ff-hero-panel"
+                :class="{ 'ff-hero-panel-bare': !hasActions }"
+            >
+                <FfHeroCommand :command="command!" :bare="!hasActions" />
 
-                <div class="ff-hero-command">
-                    <code>
-                        <span class="ff-hero-prompt" aria-hidden="true">$</span>
-                        {{ command }}
-                    </code>
-
-                    <span class="ff-hero-copy-group">
-                        <span v-if="copied" class="ff-hero-copied ff-label">{{ labels.heroCopied }}</span>
-
-                        <button
-                            type="button"
-                            class="ff-hero-copy"
-                            :class="{ copied }"
-                            :title="format(labels.heroCopyLabel, command ?? '')"
-                            :aria-label="format(labels.heroCopyLabel, command ?? '')"
-                            @click="copy"
-                        />
-                    </span>
-                </div>
-
-                <div v-if="actions?.length" class="ff-hero-actions">
+                <div v-if="hasActions" class="ff-hero-actions">
                     <slot name="home-hero-actions-before-actions" />
 
                     <a

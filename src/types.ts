@@ -76,6 +76,12 @@ export interface HeroMetaItem {
     value: string
 }
 
+/** One tab of a multi-command install panel, e.g. npm vs. pnpm vs. bun. */
+export interface HeroCommandTab {
+    label: string
+    value: string
+}
+
 /**
  * The two additions this theme makes to the standard `layout: home` hero frontmatter. Both are
  * optional; everything else on `hero` stays the default theme's.
@@ -83,9 +89,11 @@ export interface HeroMetaItem {
 export interface HeroExtras {
     /**
      * Install line, printed in a panel. Beside the headline when the hero carries no image;
-     * under it, carrying the command only, when an image claims that column instead.
+     * under it, carrying the command only, when an image claims that column instead. An array of
+     * `{ label, value }` prints a tab strip above the line instead of a single command — one tab
+     * per package manager, say — and the copy button follows whichever tab is active.
      */
-    command?: string
+    command?: string | HeroCommandTab[]
     /**
      * A short line under the tagline, set off with the same rule-and-italic treatment as a
      * markdown blockquote. Inline HTML is allowed, so a term inside it can be marked up, e.g.
