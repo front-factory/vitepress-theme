@@ -120,14 +120,61 @@ themeConfig: {
 Per page, `docMeta: false` in the frontmatter drops the kicker, and `section: Guide` overrides the
 section name.
 
+## Translating
+
+Every string the theme adds sits in `themeConfig.ff.labels`, so it is translated the same way as any
+default-theme label: per locale. `{0}` is replaced by the value the label describes.
+
+```ts
+locales: {
+    root: { label: 'English', lang: 'en' },
+    fr: {
+        label: 'Français',
+        lang: 'fr',
+        themeConfig: {
+            returnToTopLabel: 'Retour en haut',
+            ff: {
+                banner: { id: 'v5', text: 'La version 5 est sortie.', linkText: 'Lire les notes' },
+                labels: {
+                    bannerDismiss: 'Fermer l\u2019annonce',
+                    readingTime: '{0} min de lecture',
+                    lastUpdated: 'Mis à jour {0}',
+                    heroInstall: 'Installation',
+                    heroCopy: 'Copier',
+                    heroCopied: 'Copié',
+                    heroCopyLabel: 'Copier {0}',
+                    backToTop: 'Haut'
+                }
+            }
+        }
+    }
+}
+```
+
+| Label             | Default                 |
+|-------------------|-------------------------|
+| `bannerDismiss`   | `Dismiss announcement`  |
+| `readingTime`     | `{0} min read`          |
+| `lastUpdated`     | `Updated {0}`           |
+| `heroInstall`     | `Install`               |
+| `heroCopy`        | `Copy`                  |
+| `heroCopied`      | `Copied`                |
+| `heroCopyLabel`   | `Copy {0}`              |
+| `backToTop`       | `Top`                   |
+
+The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
+back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is
+formatted with `Intl.RelativeTimeFormat` in the page's own `lang`.
+
 ## Home page
 
 Standard VitePress home frontmatter, read with an editorial hierarchy: `hero.name` becomes the
 kicker, `hero.text` the headline. Two additions fill the page out.
 
 `hero.command` puts an install panel in the second column of the hero, carrying the command and the
-actions. It is used only when the page has no `hero.image` — an image still takes that column.
-`hero.meta` prints a colophon strip under the hero.
+actions. It is used only when the page has no `hero.image` and nothing filled the `home-hero-image`
+slot — an image still takes that column. `hero.meta` prints a colophon strip under the hero. Both
+are typed by the exported `HeroExtras` interface.
 
 ```yaml
 ---
@@ -183,8 +230,12 @@ stylesheet you are actually looking at.
 ```bash
 npm install
 npm run dev              # rebuilds dist/style.css on change
-npm run dev:playground   # the demo site, in another terminal
+npm run dev:playground   # builds the stylesheet, then serves the demo site
+npm run typecheck        # vue-tsc over the components and the config types
 ```
+
+`src/index.ts` imports `dist/style.css`, so the stylesheet has to exist before anything can start;
+both playground scripts build it first. Run `npm run dev` alongside to keep it rebuilding on change.
 
 The playground under `playground/` exercises the whole surface: home, doc pages, every markdown
 feature and every component.

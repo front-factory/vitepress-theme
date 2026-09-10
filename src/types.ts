@@ -34,6 +34,48 @@ export interface MetaConfig {
     lastUpdated?: boolean
 }
 
+/**
+ * Every user-facing string this theme adds on top of the default one. They sit in `themeConfig`,
+ * so a multi-language site declares them per locale like any other default-theme label.
+ *
+ * `{0}` in a label is replaced by the value it describes.
+ */
+export interface ThemeLabels {
+    /** Accessible name of the banner dismiss button. Defaults to `Dismiss announcement`. */
+    bannerDismiss?: string
+    /** Reading-time estimate; `{0}` is the number of minutes. Defaults to `{0} min read`. */
+    readingTime?: string
+    /** Last-updated stamp; `{0}` is the relative time. Defaults to `Updated {0}`. */
+    lastUpdated?: string
+    /** Heading of the hero install panel. Defaults to `Install`. */
+    heroInstall?: string
+    /** Hero copy button. Defaults to `Copy`. */
+    heroCopy?: string
+    /** Hero copy button once the command is on the clipboard. Defaults to `Copied`. */
+    heroCopied?: string
+    /** Accessible name of the hero copy button; `{0}` is the command. Defaults to `Copy {0}`. */
+    heroCopyLabel?: string
+    /** Visible text of the back-to-top control. Defaults to `Top`. */
+    backToTop?: string
+}
+
+/** One entry of the colophon strip printed under the hero. */
+export interface HeroMetaItem {
+    label: string
+    value: string
+}
+
+/**
+ * The two additions this theme makes to the standard `layout: home` hero frontmatter. Both are
+ * optional; everything else on `hero` stays the default theme's.
+ */
+export interface HeroExtras {
+    /** Install line, printed in a panel beside the headline when the hero carries no image. */
+    command?: string
+    /** Colophon strip under the hero. */
+    meta?: HeroMetaItem[]
+}
+
 export interface ThemeOptions {
     /** Dismissible announcement bar above the navigation. */
     banner?: BannerConfig
@@ -43,6 +85,8 @@ export interface ThemeOptions {
     footerColumns?: FooterColumn[]
     /** Floating back-to-top control. Defaults to `true`. */
     backToTop?: boolean
+    /** Overrides for the strings this theme adds. Declare them per locale to translate them. */
+    labels?: ThemeLabels
 }
 
 export interface ThemeConfig extends DefaultTheme.Config {

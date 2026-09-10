@@ -37,11 +37,16 @@ export { default as CardGrid } from './content/CardGrid.vue'
 export { default as Kbd } from './content/Kbd.vue'
 export { default as Steps } from './content/Steps.vue'
 
+export { defaultLabels, useLabels, useThemeOptions } from './composables/options'
+
 export type {
     BannerConfig,
     FooterColumn,
     FooterLink,
+    HeroExtras,
+    HeroMetaItem,
     MetaConfig,
     ThemeConfig,
+    ThemeLabels,
     ThemeOptions
 } from './types'

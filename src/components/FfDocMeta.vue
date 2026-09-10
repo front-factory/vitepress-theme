@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { useThemeOptions } from '../composables/options'
+import { useLayout } from '../internal'
+import { format, useLabels, useThemeOptions } from '../composables/options'
 import type { DefaultTheme } from 'vitepress/theme'
 
-const { page, theme, frontmatter, lang } = useData()
+const { page, frontmatter, lang } = useData()
+const { sidebarGroups } = useLayout()
 const options = useThemeOptions()
+const labels = useLabels()
 
 const meta = computed(() => {
     if (options.value.meta === false || frontmatter.value.docMeta === false) return null
@@ -15,6 +18,9 @@ const meta = computed(() => {
 
 // --------------------------------------------------------------------------------------------- //
 // Section, read from the sidebar the site already declares
+//
+// The groups come from the default theme's own resolver, so multi-sidebar configs, per-group
+// `base` prefixes and `sidebar: false` in the frontmatter are all already accounted for.
 // --------------------------------------------------------------------------------------------- //
 
 function normalize(path: string) {
@@ -35,22 +41,9 @@ const section = computed(() => {
     if (!meta.value || meta.value.section === false) return null
     if (frontmatter.value.section) return String(frontmatter.value.section)
 
-    const sidebar = theme.value.sidebar
     const path = normalize(page.value.relativePath)
 
-    let groups: DefaultTheme.SidebarItem[] = []
-
-    if (Array.isArray(sidebar)) {
-        groups = sidebar
-    } else if (sidebar && typeof sidebar === 'object') {
-        const entry = Object.entries(sidebar)
-            .sort(([a], [b]) => b.length - a.length)
-            .find(([prefix]) => path.startsWith(normalize(prefix)))
-
-        groups = (entry?.[1] as DefaultTheme.SidebarItem[]) ?? []
-    }
-
-    return groups.find((group) => contains(group.items ?? [], path))?.text ?? null
+    return sidebarGroups.value.find((group) => contains(group.items ?? [], path))?.text ?? null
 })
 
 // --------------------------------------------------------------------------------------------- //
@@ -91,13 +84,13 @@ const updated = computed(() => {
     if (!meta.value || meta.value.lastUpdated === false || !page.value.lastUpdated) return null
 
     const elapsed = page.value.lastUpdated - Date.now()
-    const format = new Intl.RelativeTimeFormat(lang.value, { numeric: 'auto' })
+    const relative = new Intl.RelativeTimeFormat(lang.value, { numeric: 'auto' })
 
     for (const [unit, ms] of units) {
-        if (Math.abs(elapsed) >= ms) return format.format(Math.round(elapsed / ms), unit)
+        if (Math.abs(elapsed) >= ms) return relative.format(Math.round(elapsed / ms), unit)
     }
 
-    return format.format(0, 'minute')
+    return relative.format(0, 'minute')
 })
 
 const hidden = computed(() => !meta.value || frontmatter.value.layout === 'home')
@@ -108,8 +101,12 @@ const hidden = computed(() => !meta.value || frontmatter.value.layout === 'home'
         <span v-if="section" class="ff-doc-meta-item">{{ section }}</span>
 
         <ClientOnly>
-            <span v-if="minutes" class="ff-doc-meta-item">{{ minutes }} min read</span>
-            <span v-if="updated" class="ff-doc-meta-item">Updated {{ updated }}</span>
+            <span v-if="minutes" class="ff-doc-meta-item">
+                {{ format(labels.readingTime, minutes) }}
+            </span>
+            <span v-if="updated" class="ff-doc-meta-item">
+                {{ format(labels.lastUpdated, updated) }}
+            </span>
         </ClientOnly>
     </div>
 </template>

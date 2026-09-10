@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue'
+import { Comment, computed, Fragment, ref, Text, useSlots, type VNode } from 'vue'
 import { useData } from 'vitepress'
-import { layoutInfoInjectionKey, VPImage } from '../internal'
+import { VPImage } from '../internal'
+import { format, useLabels } from '../composables/options'
+import type { HeroExtras, HeroMetaItem } from '../types'
 import type { DefaultTheme } from 'vitepress/theme'
 
 export interface HeroAction {
@@ -21,29 +23,45 @@ const props = defineProps<{
 }>()
 
 const { frontmatter } = useData()
-
-// The layout always declares the home-hero-image slot, so whether the site actually filled it is
-// only knowable through the flag the home layout provides.
-const { heroImageSlotExists } = inject(layoutInfoInjectionKey, {
-    heroImageSlotExists: computed(() => false)
-})
+const labels = useLabels()
+const slots = useSlots()
 
 // Two additions to the standard home frontmatter, both optional:
 //
 //   hero.command   the install line, printed in a panel beside the headline
 //   hero.meta      a colophon strip under the hero: [{ label, value }, …]
-const command = computed<string | undefined>(() => frontmatter.value.hero?.command)
-const meta = computed<{ label: string; value: string }[]>(
-    () => frontmatter.value.hero?.meta ?? []
-)
+const hero = computed<HeroExtras>(() => frontmatter.value.hero ?? {})
+const command = computed<string | undefined>(() => hero.value.command)
+const meta = computed<HeroMetaItem[]>(() => hero.value.meta ?? [])
 
-const hasImage = computed(() => !!props.image || heroImageSlotExists.value)
+/**
+ * The home layout always declares the `home-hero-image` slot, so its presence says nothing about
+ * whether the site filled it. Rendering it and looking at what comes back does — an unfilled slot
+ * yields nothing but empty fragments and comment placeholders.
+ */
+function filled(nodes?: VNode[]): boolean {
+    return !!nodes?.some((node) => {
+        if (node.type === Comment) return false
+        if (node.type === Text) return String(node.children).trim() !== ''
+        if (node.type === Fragment) {
+            return Array.isArray(node.children) && filled(node.children as VNode[])
+        }
+
+        return true
+    })
+}
+
+// Called from the template rather than cached in a computed: the slot has to be rendered where its
+// dependencies are tracked, and it changes with the page.
+function hasImage() {
+    return !!props.image || filled(slots['home-hero-image']?.())
+}
 
 // The second column carries the image when there is one, and the starting point otherwise. The
 // actions only move over there when they have a panel to sit in.
-const hasPanel = computed(() => !hasImage.value && !!command.value)
-const asideActions = computed(() => (hasPanel.value ? props.actions : undefined))
-const mainActions = computed(() => (hasPanel.value ? undefined : props.actions))
+function hasPanel() {
+    return !hasImage() && !!command.value
+}
 
 const copied = ref(false)
 
@@ -59,7 +77,7 @@ async function copy() {
 <template>
     <div
         class="VPHero ff-hero"
-        :class="{ 'has-image': hasImage, 'has-panel': hasPanel }"
+        :class="{ 'has-image': hasImage(), 'has-panel': hasPanel() }"
     >
         <span class="ff-hero-glow" aria-hidden="true" />
         <span class="ff-hero-glow ff-hero-glow-far" aria-hidden="true" />
@@ -81,11 +99,11 @@ async function copy() {
 
                 <slot name="home-hero-info-after" />
 
-                <div v-if="mainActions?.length" class="ff-hero-actions">
+                <div v-if="actions?.length && !hasPanel()" class="ff-hero-actions">
                     <slot name="home-hero-actions-before-actions" />
 
                     <a
-                        v-for="action in mainActions"
+                        v-for="action in actions"
                         :key="action.link"
                         class="ff-btn"
                         :class="`ff-btn-${action.theme ?? 'brand'}`"
@@ -100,14 +118,14 @@ async function copy() {
                 <slot name="home-hero-actions-after" />
             </div>
 
-            <div v-if="hasImage" class="ff-hero-image">
+            <div v-if="hasImage()" class="ff-hero-image">
                 <slot name="home-hero-image">
                     <VPImage v-if="image" class="ff-hero-image-src" :image="image" />
                 </slot>
             </div>
 
-            <aside v-else-if="hasPanel" class="ff-hero-panel">
-                <p class="ff-hero-panel-label ff-label">Install</p>
+            <aside v-else-if="hasPanel()" class="ff-hero-panel">
+                <p class="ff-hero-panel-label ff-label">{{ labels.heroInstall }}</p>
 
                 <div class="ff-hero-command">
                     <code>
@@ -118,18 +136,18 @@ async function copy() {
                     <button
                         type="button"
                         class="ff-hero-copy ff-label"
-                        :aria-label="`Copy ${command}`"
+                        :aria-label="format(labels.heroCopyLabel, command ?? '')"
                         @click="copy"
                     >
-                        {{ copied ? 'Copied' : 'Copy' }}
+                        {{ copied ? labels.heroCopied : labels.heroCopy }}
                     </button>
                 </div>
 
-                <div v-if="asideActions?.length" class="ff-hero-actions">
+                <div v-if="actions?.length" class="ff-hero-actions">
                     <slot name="home-hero-actions-before-actions" />
 
                     <a
-                        v-for="action in asideActions"
+                        v-for="action in actions"
                         :key="action.link"
                         class="ff-btn"
                         :class="`ff-btn-${action.theme ?? 'brand'}`"

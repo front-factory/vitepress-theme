@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useThemeOptions } from '../composables/options'
+import { useLabels, useThemeOptions } from '../composables/options'
 
 const options = useThemeOptions()
+const labels = useLabels()
 const banner = computed(() => options.value.banner)
 
 const el = ref<HTMLElement>()
@@ -64,7 +65,7 @@ onUnmounted(() => {
         <button
             type="button"
             class="ff-banner-close"
-            aria-label="Dismiss announcement"
+            :aria-label="labels.bannerDismiss"
             @click="dismiss"
         >
             &#215;

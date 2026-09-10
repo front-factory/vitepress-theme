@@ -53,6 +53,36 @@ themeConfig: {
 Changing `banner.id` brings the bar back for readers who dismissed the previous one. That is the point — reuse an id and it stays hidden.
 :::
 
+## Translating
+
+Every string the theme adds lives in `themeConfig.ff.labels`, so it is declared per locale like any other default-theme label. `{0}` stands for the value the label describes.
+
+```ts
+themeConfig: {
+    returnToTopLabel: 'Retour en haut',
+    ff: {
+        labels: {
+            readingTime: '{0} min de lecture',
+            lastUpdated: 'Mis à jour {0}',
+            heroInstall: 'Installation',
+            backToTop: 'Haut'
+        }
+    }
+}
+```
+
+| Label | Default |
+| --- | --- |
+| `bannerDismiss` | `Dismiss announcement` |
+| `readingTime` | `{0} min read` |
+| `lastUpdated` | `Updated {0}` |
+| `heroInstall` | `Install` |
+| `heroCopy` / `heroCopied` | `Copy` / `Copied` |
+| `heroCopyLabel` | `Copy {0}` |
+| `backToTop` | `Top` |
+
+The banner's `text` and `linkText` are content rather than labels, so they stay under `ff.banner`.
+
 ## Fonts
 
 ```css
