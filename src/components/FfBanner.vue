@@ -9,7 +9,7 @@ const el = ref<HTMLElement>()
 let observer: ResizeObserver | undefined
 
 // The class is set on <html> by an inline script injected in the head, so a dismissed banner never
-// paints. See extendConfig() in config.js.
+// paints. See transformHead() in config.js.
 const DISMISSED = 'ff-banner-dismissed'
 
 function height() {

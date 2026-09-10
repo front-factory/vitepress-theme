@@ -12,21 +12,20 @@ Node 20 or later is required, and `vitepress` and `vue` stay in your own project
 
 ## Wire the config
 
-`extendConfig` injects the component swaps and the Vite settings the theme needs.
+`extends: baseConfig` brings in the component swaps and the Vite settings the theme needs.
 
 ```ts
 // .vitepress/config.ts
 import { defineConfig } from 'vitepress'
-import { extendConfig } from '@frontfactory/vitepress-theme/config'
+import baseConfig from '@frontfactory/vitepress-theme/config'
 
-export default extendConfig(
-    defineConfig({
-        title: 'My project',
-        themeConfig: {
-            nav: [{ text: 'Guide', link: '/guide/' }]
-        }
-    })
-)
+export default defineConfig({
+    extends: baseConfig,
+    title: 'My project',
+    themeConfig: {
+        nav: [{ text: 'Guide', link: '/guide/' }]
+    }
+})
 ```
 
 ## Use the theme
@@ -47,7 +46,7 @@ Extending it further works the same way as extending the default theme — sprea
 <Steps>
 
 1. Install the package.
-2. Wrap the config with `extendConfig`.
+2. Add `extends: baseConfig` to the config.
 3. Re-export the theme from `.vitepress/theme/index.ts`.
 4. Set your accent colour and ship.
 

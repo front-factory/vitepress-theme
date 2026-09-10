@@ -20,16 +20,15 @@ shipped compiled, so Sass is not needed downstream.
 ```ts
 // .vitepress/config.ts
 import { defineConfig } from 'vitepress'
-import { extendConfig } from '@frontfactory/vitepress-theme/config'
+import baseConfig from '@frontfactory/vitepress-theme/config'
 
-export default extendConfig(
-    defineConfig({
-        title: 'My project',
-        themeConfig: {
-            nav: [{ text: 'Guide', link: '/guide/' }]
-        }
-    })
-)
+export default defineConfig({
+    extends: baseConfig,
+    title: 'My project',
+    themeConfig: {
+        nav: [{ text: 'Guide', link: '/guide/' }]
+    }
+})
 ```
 
 ```ts
@@ -39,8 +38,9 @@ import Theme from '@frontfactory/vitepress-theme'
 export default Theme
 ```
 
-`extendConfig` is required: it swaps the components the theme replaces, keeps the package out of
-dependency pre-bundling, and injects the inline script that keeps a dismissed banner from painting.
+`extends: baseConfig` is required: it swaps the components the theme replaces, keeps the package out
+of dependency pre-bundling, and injects the inline script that keeps a dismissed banner from
+painting in the built site.
 
 ## Rebranding
 
