@@ -54,7 +54,7 @@ export default defineConfig<ThemeConfig>({
             { icon: 'x', link: 'https://x.com' }
         ],
         footer: {
-            message: 'Released under the MIT License.',
+            message: 'Developed with love.',
             copyright: 'Copyright © 2026 Front Factory'
         },
         ff: {
