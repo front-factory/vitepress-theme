@@ -202,8 +202,10 @@ actions, sized to the panel's own fixed box. Add `hero.image` (standard VitePres
 `<img>` source including a gif) or fill the `home-hero-image` slot, and that image claims the second
 column instead, split 50/50 with the text rather than the panel's narrower share — the panel drops
 under the text on the left rather than disappearing, still carrying the command but not the actions,
-which already sit under the text either way. `hero.meta` prints a colophon strip under the hero.
-Both `hero.command` and `hero.meta` are typed by the exported `HeroExtras` interface.
+which already sit under the text either way. `hero.quote` prints a short line under the tagline,
+ruled and set in italics the same way a markdown blockquote is — inline HTML works, so a term inside
+it can carry its own `<strong>`. `hero.meta` prints a colophon strip under the hero. `hero.command`,
+`hero.quote` and `hero.meta` are all typed by the exported `HeroExtras` interface.
 
 ```yaml
 ---
@@ -214,6 +216,7 @@ hero:
   text: A headline that carries the page.
   tagline: One or two sentences of standfirst.
   command: npm install my-project
+  quote: <strong>My project</strong> — what the name means, in one line.
   meta:
     - label: Licence
       value: MIT

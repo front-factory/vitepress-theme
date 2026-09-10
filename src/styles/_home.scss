@@ -117,6 +117,26 @@
         text-wrap: pretty;
     }
 
+    // Same rule-and-italic treatment a markdown blockquote gets in the doc column, so a term
+    // defined here reads as the same kind of aside wherever it turns up on the site.
+
+    .ff-hero-quote {
+        max-width: 38ch;
+        margin: 1.75rem 0 0;
+        padding-left: 1.25rem;
+        border-left: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-rule-strong")};
+        font-size: #{mg.ref("size-body")};
+        font-style: italic;
+        line-height: 1.55;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .ff-hero-quote strong {
+        font-style: normal;
+        font-weight: 620;
+        color: #{mg.ref("color-ink")};
+    }
+
     .ff-hero-actions {
         display: flex;
         flex-wrap: wrap;

@@ -86,6 +86,12 @@ export interface HeroExtras {
      * under it, carrying the command only, when an image claims that column instead.
      */
     command?: string
+    /**
+     * A short line under the tagline, set off with the same rule-and-italic treatment as a
+     * markdown blockquote. Inline HTML is allowed, so a term inside it can be marked up, e.g.
+     * `<strong>Charpente</strong> /ʃaʁ.pɑ̃t/ — French for…`.
+     */
+    quote?: string
     /** Colophon strip under the hero. */
     meta?: HeroMetaItem[]
 }

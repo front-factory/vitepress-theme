@@ -26,12 +26,14 @@ const { frontmatter } = useData()
 const labels = useLabels()
 const slots = useSlots()
 
-// Two additions to the standard home frontmatter, both optional:
+// Three additions to the standard home frontmatter, all optional:
 //
 //   hero.command   the install line, printed in a panel beside the headline
+//   hero.quote     a short line under the tagline, ruled like a markdown blockquote
 //   hero.meta      a colophon strip under the hero: [{ label, value }, …]
 const hero = computed<HeroExtras>(() => frontmatter.value.hero ?? {})
 const command = computed<string | undefined>(() => hero.value.command)
+const quote = computed<string | undefined>(() => hero.value.quote)
 const meta = computed<HeroMetaItem[]>(() => hero.value.meta ?? [])
 
 /**
@@ -98,6 +100,8 @@ async function copy() {
                     <h1 v-if="text" class="ff-hero-title ff-display" v-html="text" />
 
                     <p v-if="tagline" class="ff-hero-tagline" v-html="tagline" />
+
+                    <blockquote v-if="quote" class="ff-hero-quote" v-html="quote" />
                 </slot>
 
                 <slot name="home-hero-info-after" />
