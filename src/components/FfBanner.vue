@@ -49,12 +49,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div v-if="banner" ref="el" class="ff-banner">
+    <div
+        v-if="banner"
+        ref="el"
+        class="ff-banner"
+        :data-variant="banner.variant ?? 'ink'"
+        :data-gradient="banner.gradient || undefined"
+    >
         <component
             :is="banner.link ? 'a' : 'div'"
             class="ff-banner-body"
             :href="banner.link"
         >
+            <span v-if="banner.icon" class="ff-banner-icon" aria-hidden="true">{{ banner.icon }}</span>
             <span class="ff-banner-text" v-html="banner.text" />
             <span v-if="banner.link" class="ff-banner-cta">
                 {{ banner.linkText ?? 'Read more' }}

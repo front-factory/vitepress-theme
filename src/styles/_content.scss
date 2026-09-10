@@ -43,6 +43,52 @@
         color: #{mg.ref("color-paper")};
     }
 
+    // Each variant sets the two custom properties the flat and gradient backgrounds below read
+    // from. Ink stays the theme's original bar; the others borrow the same status colours the
+    // rest of the theme already uses for tips, success and warning states.
+    .ff-banner[data-variant="ink"] {
+        --ff-banner-from: #{mg.ref("color-ink")};
+        --ff-banner-to: #{mg.ref("color-ink-muted")};
+        color: #{mg.ref("color-paper")};
+    }
+
+    .ff-banner[data-variant="accent"] {
+        --ff-banner-from: #{mg.ref("color-accent")};
+        --ff-banner-to: #{mg.ref("color-accent-hover")};
+        color: #{mg.ref("color-accent-contrast")};
+    }
+
+    .ff-banner[data-variant="success"] {
+        --ff-banner-from: #{mg.ref("color-success")};
+        --ff-banner-to: #{mg.ref("color-ink")};
+        color: #{mg.ref("color-paper")};
+    }
+
+    .ff-banner[data-variant="warning"] {
+        --ff-banner-from: #{mg.ref("color-warning")};
+        --ff-banner-to: #{mg.ref("color-ink")};
+        color: #{mg.ref("color-paper")};
+    }
+
+    .ff-banner[data-variant="danger"] {
+        --ff-banner-from: #{mg.ref("color-danger")};
+        --ff-banner-to: #{mg.ref("color-ink")};
+        color: #{mg.ref("color-paper")};
+    }
+
+    .ff-banner:not([data-gradient]) {
+        background: var(--ff-banner-from);
+    }
+
+    .ff-banner[data-gradient] {
+        background: linear-gradient(100deg, var(--ff-banner-from), var(--ff-banner-to));
+    }
+
+    .ff-banner-icon {
+        font-size: 1rem;
+        line-height: 1;
+    }
+
     .ff-banner-body {
         display: flex;
         align-items: center;

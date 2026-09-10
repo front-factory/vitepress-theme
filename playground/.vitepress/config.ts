@@ -59,10 +59,13 @@ export default defineConfig<ThemeConfig>({
         },
         ff: {
             banner: {
-                id: 'v1',
-                text: 'Version 1.0 is out.',
+                id: `v${pkg.version}`,
+                text: `Version ${pkg.version} is out.`,
                 link: '/guide/getting-started',
-                linkText: 'Read the notes'
+                linkText: 'Read the notes',
+                variant: 'accent',
+                gradient: true,
+                icon: '🎉'
             },
             footerColumns: [
                 {
