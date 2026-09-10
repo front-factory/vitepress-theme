@@ -113,6 +113,9 @@ themeConfig: {
             { title: 'Docs', items: [{ text: 'Guide', link: '/guide/' }] }
         ],
 
+        // Column of `themeConfig.socialLinks` icons, pinned to the right of those columns.
+        footerSocial: true,
+
         backToTop: true
     }
 }
@@ -144,7 +147,8 @@ locales: {
                     heroCopy: 'Copier',
                     heroCopied: 'Copié',
                     heroCopyLabel: 'Copier {0}',
-                    backToTop: 'Haut'
+                    backToTop: 'Haut',
+                    footerSocial: 'Nous suivre'
                 }
             }
         }
@@ -162,6 +166,7 @@ locales: {
 | `heroCopied`      | `Copied`                |
 | `heroCopyLabel`   | `Copy {0}`              |
 | `backToTop`       | `Top`                   |
+| `footerSocial`    | `Follow`                |
 
 The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
 back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is

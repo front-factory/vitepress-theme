@@ -44,7 +44,8 @@ themeConfig: {
         backToTop: true,
         footerColumns: [
             { title: 'Docs', items: [{ text: 'Guide', link: '/guide/' }] }
-        ]
+        ],
+        footerSocial: true
     }
 }
 ```
@@ -65,7 +66,8 @@ themeConfig: {
             readingTime: '{0} min de lecture',
             lastUpdated: 'Mis à jour {0}',
             heroInstall: 'Installation',
-            backToTop: 'Haut'
+            backToTop: 'Haut',
+            footerSocial: 'Nous suivre'
         }
     }
 }
@@ -80,6 +82,7 @@ themeConfig: {
 | `heroCopy` / `heroCopied` | `Copy` / `Copied` |
 | `heroCopyLabel` | `Copy {0}` |
 | `backToTop` | `Top` |
+| `footerSocial` | `Follow` |
 
 The banner's `text` and `linkText` are content rather than labels, so they stay under `ff.banner`.
 

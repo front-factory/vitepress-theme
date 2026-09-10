@@ -39,7 +39,11 @@ export default defineConfig<ThemeConfig>({
                 ]
             }
         ],
-        socialLinks: [{ icon: 'github', link: 'https://github.com' }],
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com' },
+            { icon: 'bluesky', link: 'https://bsky.app' },
+            { icon: 'x', link: 'https://x.com' }
+        ],
         footer: {
             message: 'Released under the MIT License.',
             copyright: 'Copyright © 2026 Front Factory'

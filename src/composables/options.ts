@@ -21,7 +21,8 @@ export const defaultLabels: Required<ThemeLabels> = {
     heroCopy: 'Copy',
     heroCopied: 'Copied',
     heroCopyLabel: 'Copy {0}',
-    backToTop: 'Top'
+    backToTop: 'Top',
+    footerSocial: 'Follow'
 }
 
 /**

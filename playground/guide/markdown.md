@@ -68,6 +68,7 @@ yarn add @frontfactory/vitepress-theme
 | `meta` | `MetaConfig \| false` | `true` |
 | `backToTop` | `boolean` | `true` |
 | `footerColumns` | `FooterColumn[]` | `[]` |
+| `footerSocial` | `boolean` | `true` |
 
 ## Quotes
 

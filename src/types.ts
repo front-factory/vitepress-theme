@@ -57,6 +57,8 @@ export interface ThemeLabels {
     heroCopyLabel?: string
     /** Visible text of the back-to-top control. Defaults to `Top`. */
     backToTop?: string
+    /** Heading of the footer social column. Defaults to `Follow`. */
+    footerSocial?: string
 }
 
 /** One entry of the colophon strip printed under the hero. */
@@ -83,6 +85,11 @@ export interface ThemeOptions {
     meta?: MetaConfig | false
     /** Link columns added to the site footer. */
     footerColumns?: FooterColumn[]
+    /**
+     * Column of `themeConfig.socialLinks` icons, pinned to the right of the footer columns.
+     * Defaults to `true`, and shows nothing when the site declares no social link.
+     */
+    footerSocial?: boolean
     /** Floating back-to-top control. Defaults to `true`. */
     backToTop?: boolean
     /** Overrides for the strings this theme adds. Declare them per locale to translate them. */
