@@ -6,9 +6,6 @@ hero:
   text: Documentation that reads like print.
   tagline: An editorial VitePress theme — hairline rules, numbered sections and monospaced metadata. One accent token to make it yours.
   command: npm install @frontfactory/vitepress-theme
-  image:
-    src: /hero-demo.svg
-    alt: Empty slot for a product screenshot or gif
   meta:
     - label: Licence
       value: MIT
