@@ -26,10 +26,10 @@ $scales: (
         "meta": 0.75rem,
         "body": 1rem,
         "lead": 1.125rem,
-        "h1": clamp(2.125rem, 1.6rem + 2.2vw, 3rem),
+        "h1": clamp(1.875rem, 1.45rem + 1.8vw, 2.5rem),
         "h2": 1.5rem,
         "h3": 1.1875rem,
-        "hero": clamp(2.75rem, 1.9rem + 3.6vw, 4.5rem)
+        "hero": clamp(2.25rem, 1.5rem + 3vw, 3.75rem)
     ),
     "leading": (
         "body": 1.75,
