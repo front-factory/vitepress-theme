@@ -35,7 +35,7 @@
         "@commitlint/cli": "^20.4.2",
         "@commitlint/config-conventional": "^20.4.2",
         "@magnesium/theme": "^5.2.2",
-        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/changelog": "^7.0.0",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/github": "^12.0.9",
         "conventional-changelog-conventionalcommits": "^9.3.1",
