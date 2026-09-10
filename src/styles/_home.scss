@@ -201,19 +201,66 @@
         color: #{mg.ref("color-accent")};
     }
 
+    // Mirrors the copy button on code blocks (see _code.scss): same icon, size and border-radius
+    // choreography, so the two don't read as two different controls. It stays fully opaque here
+    // rather than fading in on hover — this one isn't tucked in the corner of a block, it's the
+    // install line's only affordance.
+
+    .ff-hero-copy-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    // Absolutely positioned off the group rather than laid out in flow: the label's width tracks
+    // the active locale's word for "Copied", and floating it means that never nudges the command
+    // line or reflows the panel — it just overlaps, flush against the button it belongs to.
+
+    .ff-hero-copied {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        height: 1.75rem;
+        padding: 0 0.625rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
+        border-right: 0;
+        border-radius: #{mg.ref("radius-sm")} 0 0 #{mg.ref("radius-sm")};
+        background: #{mg.ref("color-surface-alt")};
+        color: #{mg.ref("color-ink-muted")};
+        white-space: nowrap;
+    }
+
     .ff-hero-copy {
         flex-shrink: 0;
-        padding: 0.25rem 0.5rem;
+        width: 1.75rem;
+        height: 1.75rem;
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         border-radius: #{mg.ref("radius-sm")};
-        background: transparent;
+        background-color: transparent;
+        background-image: var(--vp-icon-copy);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 0.875rem;
         cursor: pointer;
-        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+        transition:
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .ff-hero-copy:hover {
         border-color: #{mg.ref("color-rule-strong")};
-        color: #{mg.ref("color-ink")};
+        background-color: #{mg.ref("color-surface-alt")};
+    }
+
+    .ff-hero-copy.copied {
+        border-radius: 0 #{mg.ref("radius-sm")} #{mg.ref("radius-sm")} 0;
+        border-color: #{mg.ref("color-rule-strong")};
+        background-color: #{mg.ref("color-surface-alt")};
+        background-image: var(--vp-icon-copied);
     }
 
     .ff-hero-image {

@@ -133,14 +133,18 @@ async function copy() {
                             {{ command }}
                         </code>
 
-                        <button
-                            type="button"
-                            class="ff-hero-copy ff-label"
-                            :aria-label="format(labels.heroCopyLabel, command ?? '')"
-                            @click="copy"
-                        >
-                            {{ copied ? labels.heroCopied : labels.heroCopy }}
-                        </button>
+                        <span class="ff-hero-copy-group">
+                            <span v-if="copied" class="ff-hero-copied ff-label">{{ labels.heroCopied }}</span>
+
+                            <button
+                                type="button"
+                                class="ff-hero-copy"
+                                :class="{ copied }"
+                                :title="format(labels.heroCopyLabel, command ?? '')"
+                                :aria-label="format(labels.heroCopyLabel, command ?? '')"
+                                @click="copy"
+                            />
+                        </span>
                     </div>
                 </div>
             </div>
@@ -160,14 +164,18 @@ async function copy() {
                         {{ command }}
                     </code>
 
-                    <button
-                        type="button"
-                        class="ff-hero-copy ff-label"
-                        :aria-label="format(labels.heroCopyLabel, command ?? '')"
-                        @click="copy"
-                    >
-                        {{ copied ? labels.heroCopied : labels.heroCopy }}
-                    </button>
+                    <span class="ff-hero-copy-group">
+                        <span v-if="copied" class="ff-hero-copied ff-label">{{ labels.heroCopied }}</span>
+
+                        <button
+                            type="button"
+                            class="ff-hero-copy"
+                            :class="{ copied }"
+                            :title="format(labels.heroCopyLabel, command ?? '')"
+                            :aria-label="format(labels.heroCopyLabel, command ?? '')"
+                            @click="copy"
+                        />
+                    </span>
                 </div>
 
                 <div v-if="actions?.length" class="ff-hero-actions">
