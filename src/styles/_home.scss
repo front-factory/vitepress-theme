@@ -89,19 +89,32 @@
         background: #{mg.ref("color-accent")};
     }
 
+    // The headline is the one place the theme changes voice: the mono it uses everywhere else for
+    // machine text, here at display size. max-width is in ch, so against a monospaced face it is
+    // an exact character count — the headline breaks on a measure, not on a guess.
+
     .ff-hero-title {
-        max-width: 18ch;
+        max-width: 20ch;
         margin: 0;
+        font-family: #{mg.ref("font-title")};
         font-size: #{mg.ref("size-hero")};
-        letter-spacing: -0.04em;
+        font-weight: 600;
+        // Capitals on a monospaced face put every glyph on the same square cell — the blockiest
+        // the headline can get without shipping a webfont. Uppercase needs the tracking back:
+        // the negative fit that suits lowercase closes capitals up.
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
         color: #{mg.ref("color-ink")};
         text-wrap: balance;
+
+        // Drops the optical-size axis .ff-display sets for Inter.
+        font-variation-settings: normal;
     }
 
     .ff-hero-tagline {
         max-width: 42ch;
         margin: 1.75rem 0 0;
-        font-size: 1.25rem;
+        font-size: #{mg.ref("size-body")};
         line-height: 1.55;
         color: #{mg.ref("color-ink-muted")};
         text-wrap: pretty;

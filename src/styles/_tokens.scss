@@ -14,6 +14,11 @@
 $scales: (
     "font": (
         "display": (Inter, ui-sans-serif, system-ui, sans-serif),
+
+        // The hero headline only. It borrows the mono the theme already speaks in its labels,
+        // section numbers and install line, so the front page sounds like the tool it documents.
+        "title": var(--vp-font-family-mono),
+
         "body": var(--vp-font-family-base),
         "mono": var(--vp-font-family-mono)
     ),
@@ -29,7 +34,7 @@ $scales: (
         "h1": clamp(1.625rem, 1.3rem + 1.3vw, 2rem),
         "h2": 1.5rem,
         "h3": 1.1875rem,
-        "hero": clamp(2.25rem, 1.5rem + 3vw, 3.75rem)
+        "hero": clamp(1.75rem, 1.125rem + 2.5vw, 3rem)
     ),
     "leading": (
         "body": 1.75,
