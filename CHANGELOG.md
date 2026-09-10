@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/front-factory/vitepress-theme/compare/v1.2.0...v1.3.0) (2026-09-10)
+
+### Features
+
+* **hero:** support command tabs and a bare install panel ([6abb42c](https://github.com/front-factory/vitepress-theme/commit/6abb42ccbab64fd077b6d089e7d50be6f0bab4e1))
+
 ## [1.2.0](https://github.com/front-factory/vitepress-theme/compare/v1.1.0...v1.2.0) (2026-09-10)
 
 ### Features
