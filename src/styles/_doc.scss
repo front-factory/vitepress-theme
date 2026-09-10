@@ -89,8 +89,13 @@
     }
 
     .vp-doc h2 {
+        // The gap between the section rule and the heading. The anchor hangs off the same value —
+        // the default theme sets its own `top` to match its own padding, and this theme changes
+        // that padding, so the two have to be declared once and read twice.
+        --ff-h2-rule-gap: 1.75rem;
+
         margin: 3.5rem 0 1.25rem;
-        padding-top: 1.75rem;
+        padding-top: var(--ff-h2-rule-gap);
         border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
 
         // The section rule fades out to the right rather than cutting the page in two.
@@ -128,6 +133,10 @@
         color: #{mg.ref("color-ink-faint")};
         opacity: 0;
         transition: opacity #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc h2 .header-anchor {
+        top: var(--ff-h2-rule-gap);
     }
 
     .vp-doc h1:hover .header-anchor,
