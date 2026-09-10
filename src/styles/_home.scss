@@ -141,6 +141,14 @@
         margin: 0 0 1rem;
     }
 
+    // Same panel, dropped under the text instead of beside it — an image already claims the
+    // second column, so this is what the install line falls back to rather than disappearing.
+
+    .ff-hero-panel-inline {
+        max-width: 28rem;
+        margin-top: 2.5rem;
+    }
+
     .ff-hero-panel .ff-hero-actions {
         margin-top: 1.25rem;
     }

@@ -63,6 +63,12 @@ function hasPanel() {
     return !hasImage() && !!command.value
 }
 
+// An image claims the second column, so the install panel has nowhere to sit beside the text —
+// it drops under it instead rather than disappearing.
+function hasInlineCommand() {
+    return hasImage() && !!command.value
+}
+
 const copied = ref(false)
 
 async function copy() {
@@ -113,6 +119,26 @@ async function copy() {
                 </div>
 
                 <slot name="home-hero-actions-after" />
+
+                <div v-if="hasInlineCommand()" class="ff-hero-panel ff-hero-panel-inline">
+                    <p class="ff-hero-panel-label ff-label">{{ labels.heroInstall }}</p>
+
+                    <div class="ff-hero-command">
+                        <code>
+                            <span class="ff-hero-prompt" aria-hidden="true">$</span>
+                            {{ command }}
+                        </code>
+
+                        <button
+                            type="button"
+                            class="ff-hero-copy ff-label"
+                            :aria-label="format(labels.heroCopyLabel, command ?? '')"
+                            @click="copy"
+                        >
+                            {{ copied ? labels.heroCopied : labels.heroCopy }}
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div v-if="hasImage()" class="ff-hero-image">
