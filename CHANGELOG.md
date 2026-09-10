@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/front-factory/vitepress-theme/compare/v1.1.0...v1.2.0) (2026-09-10)
+
+### Features
+
+* **banner:** add a rainbow variant ([8f92631](https://github.com/front-factory/vitepress-theme/commit/8f92631b2bfc6ce5cc80781a30230ba154616dba))
+* **banner:** add variant, gradient and icon options ([c7894c2](https://github.com/front-factory/vitepress-theme/commit/c7894c2f36fbd4c75faeb2822354815b3185fc56))
+* **footer:** pin a social column to the right of the link columns ([56db5b0](https://github.com/front-factory/vitepress-theme/commit/56db5b0608754c17b60aa6e72c25310ccec81819))
+* **hero:** add hero.quote ([672d2c3](https://github.com/front-factory/vitepress-theme/commit/672d2c325464210adec53fca8c170b0933ea4559))
+* **hero:** keep the install panel when the hero has an image ([ee8ed76](https://github.com/front-factory/vitepress-theme/commit/ee8ed76f39bdf46c9fffb56f1ac61e24a789d08a))
+* **nav:** add an option to put the menu before the search box ([f25c5d2](https://github.com/front-factory/vitepress-theme/commit/f25c5d21a2ea96bb028b49bb34601f6743b13b1e))
+* **playground:** derive the displayed version from package.json ([3758539](https://github.com/front-factory/vitepress-theme/commit/37585394f9d560f58a1f53581ba25ca32b59c35e))
+
+### Bug Fixes
+
+* **code:** give error/warning/diff line annotations a visible mark ([d4ae4dd](https://github.com/front-factory/vitepress-theme/commit/d4ae4dd8a24843608764d53960ca1c612cd7ab9e))
+
 ## [1.1.0](https://github.com/front-factory/vitepress-theme/compare/v1.0.0...v1.1.0) (2026-09-10)
 
 ### Features
