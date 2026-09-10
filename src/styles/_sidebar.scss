@@ -86,7 +86,7 @@
     .VPSidebarItem.level-2 .text,
     .VPSidebarItem.level-3 .text {
         padding: 0.25rem 0;
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
         font-weight: 450;
         line-height: 1.6;
         color: #{mg.ref("color-ink-muted")};
@@ -107,7 +107,7 @@
     .VPSidebarItem.level-2 .text,
     .VPSidebarItem.level-3 .text {
         padding: 0.375rem 0;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
     }
 
     .VPSidebarItem.is-active > .item > .indicator {
