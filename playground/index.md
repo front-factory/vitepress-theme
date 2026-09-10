@@ -10,7 +10,7 @@ hero:
     - label: Licence
       value: MIT
     - label: Version
-      value: 0.0.0
+      value: 0.0.0 # overridden at build time from package.json, see .vitepress/config.ts
     - label: Built on
       value: VitePress 2
     - label: Tokens

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import baseConfig from '../../config.js'
 import type { ThemeConfig } from '../../src/types.ts'
+import pkg from '../../package.json' with { type: 'json' }
 
 export default defineConfig<ThemeConfig>({
     extends: baseConfig,
@@ -9,6 +10,14 @@ export default defineConfig<ThemeConfig>({
     srcDir: '.',
     lastUpdated: true,
     cleanUrls: true,
+    transformPageData(pageData) {
+        if (pageData.frontmatter.layout === 'home') {
+            const versionRow = pageData.frontmatter.hero?.meta?.find(
+                (row: { label: string }) => row.label === 'Version'
+            )
+            if (versionRow) versionRow.value = pkg.version
+        }
+    },
     themeConfig: {
         search: { provider: 'local' },
         editLink: {
@@ -19,7 +28,7 @@ export default defineConfig<ThemeConfig>({
             { text: 'Guide', link: '/guide/getting-started' },
             { text: 'Components', link: '/guide/components' },
             {
-                text: '0.0.0',
+                text: pkg.version,
                 items: [{ text: 'Changelog', link: 'https://example.com' }]
             }
         ],
