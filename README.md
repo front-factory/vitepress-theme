@@ -97,8 +97,16 @@ themeConfig: {
             id: 'v5',
             text: 'Version 5 is out.',
             link: '/whats-new',
-            linkText: 'Read the notes'
+            linkText: 'Read the notes',
+            variant: 'accent',  // 'ink' (default) | 'accent' | 'success' | 'warning' | 'danger' | 'rainbow'
+            gradient: true,     // fade toward the variant's second shade; ignored by rainbow, always a gradient
+            icon: '🎉'
         },
+
+        // Order of the search box and the nav menu links in the top bar. 'search-first' is the
+        // default theme's own order; 'menu-first' pins the menu against the title instead. No
+        // effect on the mobile bar, which always falls back to the hamburger.
+        navOrder: 'search-first',
 
         // Kicker printed above every page title. Set to false to drop it.
         meta: {

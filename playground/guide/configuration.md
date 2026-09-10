@@ -39,13 +39,21 @@ Options live under `themeConfig.ff`.
 ```ts
 themeConfig: {
     ff: {
-        banner: { id: 'v5', text: 'Version 5 is out.', link: '/whats-new' },
+        banner: {
+            id: 'v5',
+            text: 'Version 5 is out.',
+            link: '/whats-new',
+            variant: 'accent',
+            gradient: true,
+            icon: '🎉'
+        },
         meta: { readingTime: true, wordsPerMinute: 200 },
         backToTop: true,
         footerColumns: [
             { title: 'Docs', items: [{ text: 'Guide', link: '/guide/' }] }
         ],
-        footerSocial: true
+        footerSocial: true,
+        navOrder: 'menu-first'
     }
 }
 ```
@@ -53,6 +61,8 @@ themeConfig: {
 ::: warning
 Changing `banner.id` brings the bar back for readers who dismissed the previous one. That is the point — reuse an id and it stays hidden.
 :::
+
+`banner.variant` is `ink` (the flat default), `accent`, `success`, `warning`, `danger`, or `rainbow` — which always renders as a gradient across the four status colours, whatever `gradient` says. `navOrder` is `search-first` (the default theme's own order) or `menu-first`, which pins the menu against the title instead; it has no effect on the mobile bar, which always falls back to the hamburger.
 
 ## Translating
 
