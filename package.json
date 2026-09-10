@@ -1,7 +1,7 @@
 {
     "name": "@frontfactory/vitepress-theme",
-    "version": "0.0.0",
-    "description": "Editorial VitePress theme \u2014 hairline rules, numbered sections and monospaced metadata.",
+    "version": "1.0.0",
+    "description": "Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata.",
     "type": "module",
     "scripts": {
         "build": "sass --no-source-map --pkg-importer=node --load-path=node_modules src/styles/index.scss dist/style.css",
