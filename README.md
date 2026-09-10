@@ -198,8 +198,9 @@ both at once and takes any value between `0` and `1`:
 Their colours come from `--ff-color-accent-glow` and `--ff-color-accent-soft`, per scheme.
 
 `hero.command` puts an install panel in the second column of the hero, carrying the command and the
-actions. Add `hero.image` (standard VitePress frontmatter, any `<img>` source including a gif) or
-fill the `home-hero-image` slot, and that image claims the second column instead — the panel drops
+actions, sized to the panel's own fixed box. Add `hero.image` (standard VitePress frontmatter, any
+`<img>` source including a gif) or fill the `home-hero-image` slot, and that image claims the second
+column instead, split 50/50 with the text rather than the panel's narrower share — the panel drops
 under the text on the left rather than disappearing, still carrying the command but not the actions,
 which already sit under the text either way. `hero.meta` prints a colophon strip under the hero.
 Both `hero.command` and `hero.meta` are typed by the exported `HeroExtras` interface.

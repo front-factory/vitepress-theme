@@ -81,7 +81,10 @@ export interface HeroMetaItem {
  * optional; everything else on `hero` stays the default theme's.
  */
 export interface HeroExtras {
-    /** Install line, printed in a panel beside the headline when the hero carries no image. */
+    /**
+     * Install line, printed in a panel. Beside the headline when the hero carries no image;
+     * under it, carrying the command only, when an image claims that column instead.
+     */
     command?: string
     /** Colophon strip under the hero. */
     meta?: HeroMetaItem[]
