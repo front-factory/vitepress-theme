@@ -37,7 +37,8 @@
         border-bottom-color: transparent;
     }
 
-    // Two washes of light, one accent and one neutral, so the page has a direction.
+    // Two washes of light, one accent and one neutral, so the page has a direction. Off unless the
+    // site asks for them: --ff-hero-glow-opacity carries the whole effect, both washes at once.
 
     .ff-hero-glow {
         position: absolute;
@@ -54,6 +55,7 @@
             #{mg.ref("color-accent-glow")},
             transparent
         );
+        opacity: #{mg.ref("hero-glow-opacity")};
         pointer-events: none;
     }
 

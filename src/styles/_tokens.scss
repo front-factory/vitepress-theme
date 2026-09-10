@@ -56,6 +56,13 @@ $scales: (
     "banner": (
         "height": 2.6875rem
     ),
+
+    // The two washes of light behind the hero. Off by default: they are a house style, not a
+    // structural part of the layout, and they read as noise under a headline that is already
+    // carried by its type. A site opts in by setting this to 1, or to anything in between.
+    "hero": (
+        "glow-opacity": 0
+    ),
     "layout": (
         "content": 44rem,
         "wide": 76rem

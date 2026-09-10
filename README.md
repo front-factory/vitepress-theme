@@ -81,6 +81,7 @@ follows.
 | `--ff-layout-wide`                            | Home and container width                |
 | `--ff-radius-sm` / `-md`                      | Corner radii                            |
 | `--ff-rule-width` / `--ff-rule-accent-width`  | Rule weights                            |
+| `--ff-hero-glow-opacity`                      | Hero light washes, `0` (off) by default |
 
 `dist/style.css` lists them all, grouped, at the top of the file.
 
@@ -170,6 +171,18 @@ formatted with `Intl.RelativeTimeFormat` in the page's own `lang`.
 
 Standard VitePress home frontmatter, read with an editorial hierarchy: `hero.name` becomes the
 kicker, `hero.text` the headline. Two additions fill the page out.
+
+The hero can also carry two soft washes of light, one accent and one neutral, behind the headline.
+They are off by default — a site turns them on by raising `--ff-hero-glow-opacity`, which drives
+both at once and takes any value between `0` and `1`:
+
+```css
+:root {
+    --ff-hero-glow-opacity: 1;
+}
+```
+
+Their colours come from `--ff-color-accent-glow` and `--ff-color-accent-soft`, per scheme.
 
 `hero.command` puts an install panel in the second column of the hero, carrying the command and the
 actions. It is used only when the page has no `hero.image` and nothing filled the `home-hero-image`
