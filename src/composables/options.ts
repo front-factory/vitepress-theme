@@ -22,7 +22,9 @@ export const defaultLabels: Required<ThemeLabels> = {
     heroCopied: 'Copied',
     heroCopyLabel: 'Copy {0}',
     backToTop: 'Top',
-    footerSocial: 'Follow'
+    footerSocial: 'Follow',
+    sponsors: 'Sponsors',
+    sponsorsAction: 'Become a sponsor'
 }
 
 /**

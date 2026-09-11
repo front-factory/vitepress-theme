@@ -11,7 +11,8 @@ const pkg = '@frontfactory/vitepress-theme'
 const overrides = {
     VPHero: 'src/components/FfHero.vue',
     VPFeature: 'src/components/FfFeature.vue',
-    VPFooter: 'src/components/FfFooter.vue'
+    VPFooter: 'src/components/FfFooter.vue',
+    VPHomeSponsors: 'src/components/FfHomeSponsors.vue'
 }
 
 const alias = Object.entries(overrides).map(([name, file]) => ({

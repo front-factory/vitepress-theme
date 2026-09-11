@@ -68,6 +68,10 @@ export interface ThemeLabels {
     backToTop?: string
     /** Heading of the footer social column. Defaults to `Follow`. */
     footerSocial?: string
+    /** Heading of the sponsors section. Defaults to `Sponsors`. */
+    sponsors?: string
+    /** Sponsors section action button, when the site sets `actionLink` but no `actionText`. Defaults to `Become a sponsor`. */
+    sponsorsAction?: string
 }
 
 /** One entry of the colophon strip printed under the hero. */

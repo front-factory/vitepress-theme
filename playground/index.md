@@ -39,3 +39,32 @@ features:
   - title: Written with Magnesium
     details: Tokens are declared in Sass and emitted as custom properties, then shipped compiled — no build step downstream.
 ---
+
+<script setup>
+import { VPHomeSponsors } from 'vitepress/theme';
+
+const sponsors = [
+  {
+    tier: 'Platinum Sponsors',
+    items: [
+      { name: 'Umbrella Corp', img: '/sponsor-umbrella.png', url: 'https://example.com' },
+      { name: 'Rabbit', img: '/sponsor-rabbit.png', url: 'https://example.com' }
+    ]
+  },
+  {
+    tier: 'Gold Sponsors',
+    items: [
+      { name: 'Acme Corp', img: '/sponsor-acme.png', url: 'https://example.com' },
+      { name: 'Globex', img: '/sponsor-globex.png', url: 'https://example.com' },
+      { name: 'Initech', img: '/sponsor-initech.png', url: 'https://example.com' }
+    ]
+  }
+]
+</script>
+
+<VPHomeSponsors
+  message="Thanks to the people funding this theme's development."
+  action-text="Become a sponsor"
+  action-link="https://github.com/sponsors"
+  :data="sponsors"
+/>
