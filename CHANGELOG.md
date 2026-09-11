@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/front-factory/vitepress-theme/compare/v1.3.1...v1.3.2) (2026-09-11)
+
+### Bug Fixes
+
+* **home:** even hero top spacing, top-align columns when uneven height ([2d8dd0a](https://github.com/front-factory/vitepress-theme/commit/2d8dd0a1e05c07abe8d42a10518a0e25299390df))
+
 ## [1.3.1](https://github.com/front-factory/vitepress-theme/compare/v1.3.0...v1.3.1) (2026-09-11)
 
 ### Bug Fixes
