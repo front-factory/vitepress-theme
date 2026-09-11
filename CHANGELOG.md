@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/front-factory/vitepress-theme/compare/v1.4.2...v1.5.0) (2026-09-11)
+
+### Features
+
+* **home:** add a themed sponsors section ([fb8c3db](https://github.com/front-factory/vitepress-theme/commit/fb8c3db346749c9a55cb45172c837b08dcf55119))
+
 ## [1.4.2](https://github.com/front-factory/vitepress-theme/compare/v1.4.1...v1.4.2) (2026-09-11)
 
 ### Bug Fixes
