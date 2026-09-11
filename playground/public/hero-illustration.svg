@@ -1,23 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" fill="none">
     <!-- Corner registration ticks, printer's-proof style -->
-    <g stroke="#423e38" stroke-width="1.5">
+    <g stroke="#d3cec4" stroke-width="1.5">
         <path d="M69 54h10M74 49v10" />
         <path d="M361 54h10M366 49v10" />
         <path d="M69 381h10M74 376v10" />
         <path d="M361 381h10M366 376v10" />
     </g>
 
-    <!-- The plate -->
-    <rect x="90" y="70" width="260" height="300" rx="10" fill="#1a1917" stroke="#423e38" stroke-width="1.5" />
+    <!-- A stack of pages rather than one dark plate — plain paper tones only, no fill that reads as
+         a colour choice, so it sits neutrally against any accent a downstream site picks. -->
 
-    <!-- The one accent mark -->
-    <rect x="118" y="104" width="64" height="6" rx="3" fill="#94a8ff" />
+    <!-- Back page -->
+    <rect x="98" y="108" width="232" height="272" rx="8" fill="#f4f2ee" stroke="#e6e2da" stroke-width="1.5" transform="rotate(-5 220 220)" />
 
-    <!-- Hairline rules -->
-    <line x1="118" y1="136" x2="322" y2="136" stroke="#423e38" stroke-width="1.5" />
-    <line x1="118" y1="154" x2="246" y2="154" stroke="#423e38" stroke-width="1.5" stroke-opacity="0.6" />
+    <!-- Middle page -->
+    <rect x="94" y="94" width="232" height="272" rx="8" fill="#fbfaf8" stroke="#e6e2da" stroke-width="1.5" transform="rotate(3 220 220)" />
+
+    <!-- Front page — the one with content -->
+    <rect x="90" y="80" width="232" height="272" rx="8" fill="#ffffff" stroke="#d3cec4" stroke-width="1.5" />
+
+    <!-- A heading bar standing in for a title, then a paragraph of hairline text -->
+    <rect x="116" y="112" width="96" height="10" rx="5" fill="#1a1917" />
+
+    <line x1="116" y1="146" x2="288" y2="146" stroke="#8b867d" stroke-width="1.5" />
+    <line x1="116" y1="164" x2="288" y2="164" stroke="#8b867d" stroke-width="1.5" />
+    <line x1="116" y1="182" x2="230" y2="182" stroke="#8b867d" stroke-width="1.5" />
+
+    <line x1="116" y1="214" x2="288" y2="214" stroke="#e6e2da" stroke-width="1.5" />
+    <line x1="116" y1="232" x2="288" y2="232" stroke="#e6e2da" stroke-width="1.5" />
+    <line x1="116" y1="250" x2="256" y2="250" stroke="#e6e2da" stroke-width="1.5" />
 
     <!-- Colophon: a rule and a folio number, same grammar as the meta strip under the hero -->
-    <line x1="118" y1="328" x2="322" y2="328" stroke="#423e38" stroke-width="1" />
-    <text x="322" y="353" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#ece9e3">01</text>
+    <line x1="116" y1="316" x2="296" y2="316" stroke="#d3cec4" stroke-width="1" />
+    <text x="296" y="341" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#8b867d">01</text>
 </svg>
