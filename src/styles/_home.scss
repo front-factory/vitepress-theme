@@ -367,7 +367,7 @@
         grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
         gap: 1.5rem;
         max-width: #{mg.ref("layout-wide")};
-        margin: 4rem auto 0;
+        margin: 0 auto;
         padding-top: 1.75rem;
         border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
