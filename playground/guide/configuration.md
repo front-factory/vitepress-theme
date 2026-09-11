@@ -53,7 +53,8 @@ themeConfig: {
             { title: 'Docs', items: [{ text: 'Guide', link: '/guide/' }] }
         ],
         footerSocial: true,
-        navOrder: 'menu-first'
+        navOrder: 'menu-first',
+        navSticky: false
     }
 }
 ```
@@ -62,7 +63,7 @@ themeConfig: {
 Changing `banner.id` brings the bar back for readers who dismissed the previous one. That is the point — reuse an id and it stays hidden.
 :::
 
-`banner.variant` is `ink` (the flat default), `accent`, `success`, `warning`, `danger`, or `rainbow` — which always renders as a gradient across the four status colours, whatever `gradient` says. `navOrder` is `search-first` (the default theme's own order) or `menu-first`, which pins the menu against the title instead; it has no effect on the mobile bar, which always falls back to the hamburger.
+`banner.variant` is `ink` (the flat default), `accent`, `success`, `warning`, `danger`, or `rainbow` — which always renders as a gradient across the four status colours, whatever `gradient` says. `navOrder` is `search-first` (the default theme's own order) or `menu-first`, which pins the menu against the title instead; it has no effect on the mobile bar, which always falls back to the hamburger. `navSticky` defaults to `true`; set it to `false` to have the bar — and the announcement banner above it — scroll away with the page instead of staying pinned.
 
 ## Translating
 

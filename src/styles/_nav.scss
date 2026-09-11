@@ -17,6 +17,31 @@
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
 
+    // `ff.navSticky: false` scrolls the bar away with the page instead of pinning it. The default
+    // theme only fixes it from 960px up (.VPNav, scoped, wins below that already), so this only
+    // has to undo that one media query. It also unconditionally offsets the bar by the banner's
+    // height with `top`, to clear the banner sitting fixed above it — with the banner back in flow
+    // too, that offset just pushes the bar down a second time, so it goes as well.
+
+    &[data-nav-sticky="false"] .VPNav {
+        position: relative;
+        top: 0;
+    }
+
+    // The default theme reserves the fixed bar's height above the content (and the banner's above
+    // that) so nothing sits underneath them. Once both are back in normal flow that reservation is
+    // dead space stacked on top of the room they already take — drop it.
+
+    &[data-nav-sticky="false"] .VPContent {
+        margin-top: 0;
+    }
+
+    @media (min-width: 960px) {
+        &[data-nav-sticky="false"] .VPContent {
+            padding-top: 0;
+        }
+    }
+
     // The default theme's markup always renders search before the menu links inside
     // .content-body, a plain flex row with no slot between the two, and pins the pair with a push
     // rather than plain order: .menu carries flex-grow so it eats the row's free space and

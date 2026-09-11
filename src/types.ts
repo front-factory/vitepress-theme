@@ -120,6 +120,11 @@ export interface ThemeOptions {
     backToTop?: boolean
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */
     navOrder?: 'search-first' | 'menu-first'
+    /**
+     * Pins the navigation bar to the top of the viewport while scrolling. Defaults to `true`; set
+     * to `false` to have it scroll away with the page instead.
+     */
+    navSticky?: boolean
     /** Overrides for the strings this theme adds. Declare them per locale to translate them. */
     labels?: ThemeLabels
 }

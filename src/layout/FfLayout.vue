@@ -18,7 +18,11 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
 </script>
 
 <template>
-    <div class="ff-theme" :data-nav-order="options.navOrder ?? 'search-first'">
+    <div
+        class="ff-theme"
+        :data-nav-order="options.navOrder ?? 'search-first'"
+        :data-nav-sticky="options.navSticky === false ? 'false' : 'true'"
+    >
         <Layout>
             <template #layout-top>
                 <FfBanner />

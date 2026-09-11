@@ -43,6 +43,13 @@
         color: #{mg.ref("color-paper")};
     }
 
+    // `ff.navSticky: false` un-fixes the bar it sits above, so the banner follows it into normal
+    // flow instead of staying pinned on its own.
+
+    &[data-nav-sticky="false"] .ff-banner {
+        position: relative;
+    }
+
     // Each variant sets the two custom properties the flat and gradient backgrounds below read
     // from. Ink stays the theme's original bar; the others borrow the same status colours the
     // rest of the theme already uses for tips, success and warning states.

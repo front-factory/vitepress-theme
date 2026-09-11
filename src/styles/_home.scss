@@ -30,6 +30,13 @@
         overflow: hidden;
     }
 
+    // With `ff.navSticky: false` the bar sits in normal flow instead of floating over the hero, so
+    // the layout already reserves its height above — the hero has nothing left to compensate for.
+
+    &[data-nav-sticky="false"] .ff-hero {
+        --ff-hero-offset: 0px;
+    }
+
     // The surface already goes transparent here through --vp-nav-home-bg-color; the rule this
     // theme draws itself does not.
 
