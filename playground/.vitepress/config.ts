@@ -55,7 +55,7 @@ export default defineConfig<ThemeConfig>({
         ],
         footer: {
             message: 'Developed with love.',
-            copyright: 'Copyright © 2026 Front Factory'
+            copyright: `Copyright © 2026 <a href="https://frontfactory.dev">Front Factory</a>.`
         },
         ff: {
             navOrder: 'menu-first',
