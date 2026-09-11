@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import { searchForWorkspaceRoot } from 'vite'
 
 const dir = import.meta.dirname
 const pkg = '@frontfactory/vitepress-theme'
@@ -23,8 +24,13 @@ const alias = Object.entries(overrides).map(([name, file]) => ({
  * https://vitepress.dev/guide/custom-theme#distributing-a-custom-theme.
  *
  * Swaps the components the theme replaces, keeps the package out of dependency pre-bundling and
- * SSR externalisation, and lets Vite serve a locally linked checkout. `transformHead` injects the
- * inline script that keeps a dismissed banner from painting — it needs the banner id from the
+ * SSR externalisation, and lets Vite serve a locally linked checkout. The `fs.allow` entry adds to
+ * Vite's default allow list rather than replacing it — `dir` is only needed on top of it, for the
+ * case where the theme is npm-linked from outside the host project's own root (this repo's
+ * playground, `npm link`). Replacing the list instead of extending it used to lock the dev server
+ * out of the host project's own files whenever the theme was installed as a normal dependency
+ * (e.g. on StackBlitz), because `dir` then points inside `node_modules`. `transformHead` injects
+ * the inline script that keeps a dismissed banner from painting — it needs the banner id from the
  * host's own themeConfig, which is only known once VitePress has resolved the merged config, so it
  * cannot be a static head entry here.
  */
@@ -33,7 +39,7 @@ const config = {
         resolve: { alias },
         optimizeDeps: { exclude: [pkg] },
         ssr: { noExternal: [pkg] },
-        server: { fs: { allow: [dir] } }
+        server: { fs: { allow: [dir, searchForWorkspaceRoot(process.cwd())] } }
     },
     transformHead({ siteData }) {
         const id = siteData.themeConfig?.ff?.banner?.id
