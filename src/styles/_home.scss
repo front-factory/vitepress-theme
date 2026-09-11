@@ -25,7 +25,7 @@
 
         position: relative;
         margin-top: calc(var(--ff-hero-offset) * -1);
-        padding: var(--ff-hero-offset) 1.5rem 3.5rem;
+        padding: calc(var(--ff-hero-offset) + 1.5rem) 1.5rem 3.5rem;
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         overflow: hidden;
     }
@@ -390,13 +390,13 @@
 
     @media (min-width: 640px) {
         .ff-hero {
-            padding: var(--ff-hero-offset) 3rem 4rem;
+            padding: calc(var(--ff-hero-offset) + 2rem) 3rem 4rem;
         }
     }
 
     @media (min-width: 960px) {
         .ff-hero {
-            padding: var(--ff-hero-offset) 4rem 4.5rem;
+            padding: calc(var(--ff-hero-offset) + 2.25rem) 4rem 4.5rem;
         }
 
         .ff-hero-container {
@@ -409,12 +409,12 @@
 
         .ff-hero.has-panel .ff-hero-container {
             grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-            align-items: center;
+            align-items: start;
         }
 
         .ff-hero.has-image .ff-hero-container {
             grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            align-items: center;
+            align-items: start;
         }
     }
 
