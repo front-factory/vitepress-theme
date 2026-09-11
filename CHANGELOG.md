@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/front-factory/vitepress-theme/compare/v1.3.2...v1.4.0) (2026-09-11)
+
+### Features
+
+* **theme:** add ff.navSticky option to un-fix the nav and banner ([6d82b32](https://github.com/front-factory/vitepress-theme/commit/6d82b3266240e86357599ff28f768275735e5482))
+
+### Bug Fixes
+
+* **home:** shrink the features section's top/bottom padding ([4d9886d](https://github.com/front-factory/vitepress-theme/commit/4d9886dc5142249f85aae6a4663cb7f8f5b07763))
+
 ## [1.3.2](https://github.com/front-factory/vitepress-theme/compare/v1.3.1...v1.3.2) (2026-09-11)
 
 ### Bug Fixes
