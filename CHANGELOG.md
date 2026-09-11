@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/front-factory/vitepress-theme/compare/v1.4.0...v1.4.1) (2026-09-11)
+
+### Bug Fixes
+
+* **home:** drop the hero meta strip's top margin ([9d748c4](https://github.com/front-factory/vitepress-theme/commit/9d748c4b23fc26218a64768f87810fd7ef3708f8))
+
 ## [1.4.0](https://github.com/front-factory/vitepress-theme/compare/v1.3.2...v1.4.0) (2026-09-11)
 
 ### Features
