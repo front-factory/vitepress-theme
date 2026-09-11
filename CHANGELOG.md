@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/front-factory/vitepress-theme/compare/v1.4.1...v1.4.2) (2026-09-11)
+
+### Bug Fixes
+
+* **config:** extend Vite's fs.allow instead of replacing it ([30fdf17](https://github.com/front-factory/vitepress-theme/commit/30fdf17043d6bf41d68bed9bc497f0589f09b926))
+
 ## [1.4.1](https://github.com/front-factory/vitepress-theme/compare/v1.4.0...v1.4.1) (2026-09-11)
 
 ### Bug Fixes
