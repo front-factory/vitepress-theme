@@ -69,7 +69,7 @@ export default defineConfig<ThemeConfig>({
             },
             footerColumns: [
                 {
-                    title: 'Docs',
+                    title: 'Guide',
                     items: [
                         { text: 'Getting started', link: '/guide/getting-started' },
                         { text: 'Configuration', link: '/guide/configuration' }
