@@ -462,7 +462,7 @@
     // ----------------------------------------------------------------------------------------- //
 
     .VPFeatures {
-        padding: 4rem 1.5rem 5rem;
+        padding: 2.5rem 1.5rem 3rem;
     }
 
     .VPFeatures .container {
@@ -567,7 +567,7 @@
 
     @media (min-width: 640px) {
         .VPFeatures {
-            padding: 5rem 3rem 6rem;
+            padding: 3rem 3rem 3.5rem;
         }
 
         .VPFeatures .items {
@@ -577,7 +577,7 @@
 
     @media (min-width: 960px) {
         .VPFeatures {
-            padding: 6rem 4rem 7rem;
+            padding: 3.5rem 4rem 4rem;
         }
 
         .VPFeatures .items:has(.grid-3) {
