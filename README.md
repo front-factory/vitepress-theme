@@ -10,6 +10,12 @@ token to make it yours.
 It extends the VitePress default theme rather than forking it: search, i18n, mobile navigation and
 every markdown feature keep working, while the whole surface is redrawn.
 
+## Playground
+
+Try it live on StackBlitz — no installation required:
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/~/github.com/front-factory/vitepress-theme?startScript=dev:playground)
+
 ## Install
 
 ```bash
