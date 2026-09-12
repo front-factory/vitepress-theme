@@ -36,7 +36,11 @@ export default defineConfig<ThemeConfig>({
             },
             {
                 text: 'Components',
-                link: '/guide/components' 
+                link: '/guide/components'
+            },
+            {
+                text: 'Team',
+                link: '/team'
             },
             {
                 text: pkg.version,
@@ -67,11 +71,26 @@ export default defineConfig<ThemeConfig>({
                 items: [
                     {
                         text: 'Components',
-                        link: '/guide/components' 
+                        link: '/guide/components'
                     },
                     {
                         text: 'Markdown',
-                        link: '/guide/markdown' 
+                        link: '/guide/markdown'
+                    }
+                ]
+            },
+            {
+                text: 'Nesting demo',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'Sub-section',
+                        items: [
+                            {
+                                text: 'Deep link',
+                                link: '/guide/markdown'
+                            }
+                        ]
                     }
                 ]
             }
