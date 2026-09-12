@@ -12,7 +12,7 @@ every markdown feature keep working, while the whole surface is redrawn.
 npm install @frontfactory/vitepress-theme
 ```
 
-Requires Node 20+, `vitepress` 2 and `vue` 3.5 in the host project. Nothing else — the stylesheet is
+Requires Node 24+, `vitepress` 2 and `vue` 3.5 in the host project. Nothing else — the stylesheet is
 shipped compiled, so Sass is not needed downstream.
 
 ## Use

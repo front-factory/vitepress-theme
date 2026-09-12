@@ -8,7 +8,7 @@ The theme installs like any other VitePress theme: one package, one config wrapp
 npm install @frontfactory/vitepress-theme
 ```
 
-Node 20 or later is required, and `vitepress` and `vue` stay in your own project as usual.
+Node 24 or later is required, and `vitepress` and `vue` stay in your own project as usual.
 
 ## Wire the config
 
