@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/front-factory/vitepress-theme/compare/v1.5.1...v1.5.2) (2026-09-12)
+
+### Bug Fixes
+
+* **release:** add a Performance changelog section for perf commits ([26044d2](https://github.com/front-factory/vitepress-theme/commit/26044d2e6536dee315c90ee30bb9247867b7287d))
+
 ## [1.5.1](https://github.com/front-factory/vitepress-theme/compare/v1.5.0...v1.5.1) (2026-09-12)
 
 ### Performance
