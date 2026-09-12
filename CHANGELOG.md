@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/front-factory/vitepress-theme/compare/v1.5.2...v1.5.3) (2026-09-12)
+
+### Bug Fixes
+
+* **config:** escape the banner id before inlining it into the head script ([a1e22a4](https://github.com/front-factory/vitepress-theme/commit/a1e22a489663fcf787838f86fa344ca3433e838e))
+* **feature:** hide the decorative icon from assistive tech ([835b418](https://github.com/front-factory/vitepress-theme/commit/835b4180846097c2ae1ae7739e231595e66f37a8))
+* **hero-command:** clear the copy-feedback timer on unmount ([c8bbe2f](https://github.com/front-factory/vitepress-theme/commit/c8bbe2f5a126d0550237a0b7ee9674b186a25fe2))
+
 ## [1.5.2](https://github.com/front-factory/vitepress-theme/compare/v1.5.1...v1.5.2) (2026-09-12)
 
 ### Bug Fixes
