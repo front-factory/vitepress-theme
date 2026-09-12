@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/front-factory/vitepress-theme/compare/v1.5.3...v1.6.0) (2026-09-12)
+
+### Features
+
+* **playground:** add a custom 404 page ([fc08f30](https://github.com/front-factory/vitepress-theme/commit/fc08f303a6713102490d29f48bf1f871722eee7d))
+* **playground:** add a team page ([5098161](https://github.com/front-factory/vitepress-theme/commit/50981617a5fd108b22ccfa6cab29ac940dc32119))
+* **playground:** demonstrate VPDocAsideSponsors in the doc aside ([d4af98a](https://github.com/front-factory/vitepress-theme/commit/d4af98a3a28d9b9147918b0ba32e423da94463e5))
+* **playground:** reach the team page from the top nav ([b948cad](https://github.com/front-factory/vitepress-theme/commit/b948cad271c0707030b4bc7f88025645a4b44d9b))
+
+### Bug Fixes
+
+* **sidebar:** center a level-0 caret with the label it collapses ([bfb7dac](https://github.com/front-factory/vitepress-theme/commit/bfb7dac6e4173136333f1277cd55759940eb3fe5))
+* **sidebar:** distinguish a nested group heading from a real link ([16217ae](https://github.com/front-factory/vitepress-theme/commit/16217ae8d986e1fbc2cb98658edceeb8c415caae))
+
 ## [1.5.3](https://github.com/front-factory/vitepress-theme/compare/v1.5.2...v1.5.3) (2026-09-12)
 
 ### Bug Fixes
