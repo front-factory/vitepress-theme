@@ -10,7 +10,5 @@
 /.playwright-mcp
 /dist
 /node_modules
-
-# VitePress
-playground/.vitepress/cache
-playground/.vitepress/dist
+/playground/.vitepress/cache
+/playground/.vitepress/dist
