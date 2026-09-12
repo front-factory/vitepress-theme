@@ -69,11 +69,13 @@ const config = {
             return [];
         }
 
+        const key = JSON.stringify(`ff-banner-${id}`);
+
         return [
             [
                 'script',
                 {},
-                `try{if(localStorage.getItem('ff-banner-${id}'))` +
+                `try{if(localStorage.getItem(${key}))` +
                     'document.documentElement.classList.add(\'ff-banner-dismissed\')}catch(e){}'
             ]
         ];
