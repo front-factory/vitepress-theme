@@ -9,6 +9,9 @@
         "dev:playground": "npm run build && vitepress dev playground",
         "build:playground": "npm run build && vitepress build playground",
         "typecheck": "vue-tsc --noEmit",
+        "lint:js": "eslint .",
+        "lint:css": "stylelint \"src/**/*.scss\"",
+        "lint": "npm run lint:js && npm run lint:css",
         "prepare": "husky",
         "prepack": "npm run build",
         "release": "semantic-release"
