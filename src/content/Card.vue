@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { VPLink } from '../internal';
+import { cardLinkProps } from '../composables/link';
 
-defineProps<{
+const props = defineProps<{
     title: string
     /** Inline SVG or emoji shown above the title. */
     icon?: string
@@ -14,11 +15,7 @@ defineProps<{
 <template>
   <VPLink
     class="ff-card"
-    :href="link"
-    :rel="rel"
-    :target="target"
-    :no-icon="true"
-    :tag="link ? 'a' : 'div'"
+    v-bind="cardLinkProps(props.link, props.rel, props.target)"
   >
     <span
       v-if="icon"

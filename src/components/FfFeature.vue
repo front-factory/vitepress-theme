@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { VPImage, VPLink } from '../internal';
+import { cardLinkProps } from '../composables/link';
 import type { DefaultTheme } from 'vitepress/theme';
 
-defineProps<{
+const props = defineProps<{
     icon?: DefaultTheme.FeatureIcon
     title: string
     details?: string | string[]
@@ -16,11 +17,7 @@ defineProps<{
 <template>
   <VPLink
     class="VPFeature ff-feature"
-    :href="link"
-    :rel="rel"
-    :target="target"
-    :no-icon="true"
-    :tag="link ? 'a' : 'div'"
+    v-bind="cardLinkProps(props.link, props.rel, props.target)"
   >
     <span
       class="ff-feature-index"
