@@ -1,5 +1,9 @@
 # @frontfactory/vitepress-theme
 
+[![Version](https://flat.badgen.net/npm/v/@frontfactory/vitepress-theme)](https://www.npmjs.com/package/@frontfactory/vitepress-theme)
+[![Downloads](https://flat.badgen.net/npm/dt/@frontfactory/vitepress-theme)](https://www.npmjs.com/package/@frontfactory/vitepress-theme)
+[![License](https://flat.badgen.net/npm/license/@frontfactory/vitepress-theme)](https://www.npmjs.com/package/@frontfactory/vitepress-theme)
+
 Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata. One accent
 token to make it yours.
 
