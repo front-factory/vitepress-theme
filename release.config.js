@@ -45,6 +45,10 @@ export default {
                             section: 'Bug Fixes'
                         },
                         {
+                            type: 'perf',
+                            section: 'Performance'
+                        },
+                        {
                             type: 'chore',
                             scope: 'deps',
                             section: 'Dependencies'
