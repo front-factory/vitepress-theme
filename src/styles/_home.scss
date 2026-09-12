@@ -5,6 +5,7 @@
 @use "theme" as mg;
 
 .ff-theme {
+
     // ----------------------------------------------------------------------------------------- //
     // Hero
     //
@@ -101,6 +102,7 @@
         font-family: #{mg.ref("font-title")};
         font-size: #{mg.ref("size-hero")};
         font-weight: 600;
+
         // Capitals on a monospaced face put every glyph on the same square cell — the blockiest
         // the headline can get without shipping a webfont. A monospaced face already sets its own
         // cell width, so at this size the capitals need no tracking added on top. The word gap is
@@ -161,7 +163,7 @@
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         border-radius: #{mg.ref("radius-md")};
         background: #{mg.ref("color-surface")};
-        box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 5%);
+        box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 0.05);
     }
 
     .ff-hero-panel-label {
@@ -340,6 +342,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
         // Caps it against the viewport rather than the column: at narrow widths the column itself
         // is the limit; past 960px the column is half the hero, wide enough that this is the one
         // that bites, so the image can run as large as the site's own picture allows.
@@ -351,7 +354,7 @@
         height: auto;
     }
 
-    @media (min-width: 960px) {
+    @media (width >= 960px) {
         .ff-hero-image {
             max-width: none;
         }
@@ -395,13 +398,13 @@
         color: #{mg.ref("color-ink")};
     }
 
-    @media (min-width: 640px) {
+    @media (width >= 640px) {
         .ff-hero {
             padding: calc(var(--ff-hero-offset) + 2rem) 3rem 4rem;
         }
     }
 
-    @media (min-width: 960px) {
+    @media (width >= 960px) {
         .ff-hero {
             padding: calc(var(--ff-hero-offset) + 2.25rem) 4rem 4.5rem;
         }
@@ -586,7 +589,7 @@
         color: #{mg.ref("color-accent")};
     }
 
-    @media (min-width: 640px) {
+    @media (width >= 640px) {
         .VPFeatures {
             padding: 3rem 3rem 3.5rem;
         }
@@ -596,7 +599,7 @@
         }
     }
 
-    @media (min-width: 960px) {
+    @media (width >= 960px) {
         .VPFeatures {
             padding: 3.5rem 4rem 4rem;
         }
@@ -622,6 +625,7 @@
     // ----------------------------------------------------------------------------------------- //
 
     .ff-sponsors {
+
         // Matches `.VPFeatures`'s own padding exactly, top/bottom included, so the two sections
         // read as one continuous rhythm rather than the sponsors block sitting noticeably taller.
         padding: 2.5rem 1.5rem 3rem;
@@ -668,6 +672,7 @@
     }
 
     .ff-sponsors-message {
+
         // Matches `.ff-hero-tagline`'s measure — 32ch was breaking this sentence into an unbalanced
         // two-line stub.
         max-width: 42ch;
@@ -726,7 +731,7 @@
         margin-top: 2rem;
     }
 
-    @media (min-width: 640px) {
+    @media (width >= 640px) {
         .ff-sponsors {
             padding: 3rem 3rem 3.5rem;
         }
@@ -737,7 +742,7 @@
         }
     }
 
-    @media (min-width: 960px) {
+    @media (width >= 960px) {
         .ff-sponsors {
             padding: 3.5rem 4rem 4rem;
         }

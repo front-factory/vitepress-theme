@@ -1,7 +1,7 @@
-import { defineConfig } from 'vitepress'
-import baseConfig from '../../config.js'
-import type { ThemeConfig } from '../../src/types.ts'
-import pkg from '../../package.json' with { type: 'json' }
+import { defineConfig } from 'vitepress';
+import baseConfig from '../../config.js';
+import type { ThemeConfig } from '../../src/types.ts';
+import pkg from '../../package.json' with { type: 'json' };
 
 export default defineConfig<ThemeConfig>({
     extends: baseConfig,
@@ -14,48 +14,85 @@ export default defineConfig<ThemeConfig>({
         if (pageData.frontmatter.layout === 'home') {
             const versionRow = pageData.frontmatter.hero?.meta?.find(
                 (row: { label: string }) => row.label === 'Version'
-            )
-            if (versionRow) versionRow.value = pkg.version
+            );
+
+            if (versionRow) {
+                versionRow.value = pkg.version;
+            }
         }
     },
     themeConfig: {
-        search: { provider: 'local' },
+        search: {
+            provider: 'local' 
+        },
         editLink: {
             pattern: 'https://example.com/edit/:path',
             text: 'Edit this page'
         },
         nav: [
-            { text: 'Guide', link: '/guide/getting-started' },
-            { text: 'Components', link: '/guide/components' },
+            {
+                text: 'Guide',
+                link: '/guide/getting-started' 
+            },
+            {
+                text: 'Components',
+                link: '/guide/components' 
+            },
             {
                 text: pkg.version,
-                items: [{ text: 'Changelog', link: 'https://example.com' }]
+                items: [
+                    {
+                        text: 'Changelog',
+                        link: 'https://example.com' 
+                    }
+                ]
             }
         ],
         sidebar: [
             {
                 text: 'Introduction',
                 items: [
-                    { text: 'Getting started', link: '/guide/getting-started' },
-                    { text: 'Configuration', link: '/guide/configuration' }
+                    {
+                        text: 'Getting started',
+                        link: '/guide/getting-started' 
+                    },
+                    {
+                        text: 'Configuration',
+                        link: '/guide/configuration' 
+                    }
                 ]
             },
             {
                 text: 'Writing',
                 items: [
-                    { text: 'Components', link: '/guide/components' },
-                    { text: 'Markdown', link: '/guide/markdown' }
+                    {
+                        text: 'Components',
+                        link: '/guide/components' 
+                    },
+                    {
+                        text: 'Markdown',
+                        link: '/guide/markdown' 
+                    }
                 ]
             }
         ],
         socialLinks: [
-            { icon: 'github', link: 'https://github.com' },
-            { icon: 'bluesky', link: 'https://bsky.app' },
-            { icon: 'x', link: 'https://x.com' }
+            {
+                icon: 'github',
+                link: 'https://github.com' 
+            },
+            {
+                icon: 'bluesky',
+                link: 'https://bsky.app' 
+            },
+            {
+                icon: 'x',
+                link: 'https://x.com' 
+            }
         ],
         footer: {
             message: 'Developed with love.',
-            copyright: `Copyright © 2026 <a href="https://frontfactory.dev">Front Factory</a>.`
+            copyright: 'Copyright © 2026 <a href="https://frontfactory.dev">Front Factory</a>.'
         },
         ff: {
             navOrder: 'menu-first',
@@ -71,18 +108,30 @@ export default defineConfig<ThemeConfig>({
                 {
                     title: 'Guide',
                     items: [
-                        { text: 'Getting started', link: '/guide/getting-started' },
-                        { text: 'Configuration', link: '/guide/configuration' }
+                        {
+                            text: 'Getting started',
+                            link: '/guide/getting-started' 
+                        },
+                        {
+                            text: 'Configuration',
+                            link: '/guide/configuration' 
+                        }
                     ]
                 },
                 {
                     title: 'Project',
                     items: [
-                        { text: 'GitHub', link: 'https://github.com' },
-                        { text: 'Changelog', link: 'https://github.com' }
+                        {
+                            text: 'GitHub',
+                            link: 'https://github.com' 
+                        },
+                        {
+                            text: 'Changelog',
+                            link: 'https://github.com' 
+                        }
                     ]
                 }
             ]
         }
     }
-})
+});

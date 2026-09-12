@@ -1,8 +1,8 @@
-import { resolve } from 'node:path'
-import { searchForWorkspaceRoot } from 'vite'
+import { resolve } from 'node:path';
+import { searchForWorkspaceRoot } from 'vite';
 
-const dir = import.meta.dirname
-const pkg = '@frontfactory/vitepress-theme'
+const dir = import.meta.dirname;
+const pkg = '@frontfactory/vitepress-theme';
 
 /**
  * Default theme components this theme replaces wholesale. VitePress resolves them by path, so the
@@ -13,12 +13,15 @@ const overrides = {
     VPFeature: 'src/components/FfFeature.vue',
     VPFooter: 'src/components/FfFooter.vue',
     VPHomeSponsors: 'src/components/FfHomeSponsors.vue'
-}
+};
 
-const alias = Object.entries(overrides).map(([name, file]) => ({
+const alias = Object.entries(overrides).map(([
+    name,
+    file
+]) => ({
     find: new RegExp(`^.*\\/${name}\\.vue$`),
     replacement: resolve(dir, file)
-}))
+}));
 
 /**
  * Base config for `extends`, per
@@ -37,25 +40,44 @@ const alias = Object.entries(overrides).map(([name, file]) => ({
  */
 const config = {
     vite: {
-        resolve: { alias },
-        optimizeDeps: { exclude: [pkg] },
-        ssr: { noExternal: [pkg] },
-        server: { fs: { allow: [dir, searchForWorkspaceRoot(process.cwd())] } }
+        resolve: {
+            alias 
+        },
+        optimizeDeps: {
+            exclude: [
+                pkg
+            ] 
+        },
+        ssr: {
+            noExternal: [
+                pkg
+            ] 
+        },
+        server: {
+            fs: {
+                allow: [
+                    dir,
+                    searchForWorkspaceRoot(process.cwd())
+                ] 
+            } 
+        }
     },
     transformHead({ siteData }) {
-        const id = siteData.themeConfig?.ff?.banner?.id
+        const id = siteData.themeConfig?.ff?.banner?.id;
 
-        if (!id) return []
+        if (!id) {
+            return [];
+        }
 
         return [
             [
                 'script',
                 {},
                 `try{if(localStorage.getItem('ff-banner-${id}'))` +
-                    `document.documentElement.classList.add('ff-banner-dismissed')}catch(e){}`
+                    'document.documentElement.classList.add(\'ff-banner-dismissed\')}catch(e){}'
             ]
-        ]
+        ];
     }
-}
+};
 
-export default config
+export default config;

@@ -5,6 +5,7 @@
 @use "theme" as mg;
 
 .ff-theme {
+
     // ----------------------------------------------------------------------------------------- //
     // Top bar
     // ----------------------------------------------------------------------------------------- //
@@ -36,7 +37,7 @@
         margin-top: 0;
     }
 
-    @media (min-width: 960px) {
+    @media (width >= 960px) {
         &[data-nav-sticky="false"] .VPContent {
             padding-top: 0;
         }
@@ -56,6 +57,7 @@
         .menu {
             order: 1;
             flex-grow: 0;
+
             // Search owes its own breathing room from the title to its box's border and padding;
             // plain text links have neither, so without this they sit right against the title.
             margin-left: 1.5rem;
@@ -105,13 +107,13 @@
     // The gutters have to match the ones the hero uses, or the bar lands a few pixels off the
     // content it sits above.
 
-    @media (min-width: 640px) {
+    @media (width >= 640px) {
         .VPNavBar:not(.has-sidebar) .wrapper {
             padding: 0 3rem;
         }
     }
 
-    @media (min-width: 960px) {
+    @media (width >= 960px) {
         .VPNavBar:not(.has-sidebar) .wrapper {
             padding: 0 4rem;
         }

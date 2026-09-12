@@ -1,5 +1,5 @@
 <template>
-    <div class="ff-steps">
-        <slot />
-    </div>
+  <div class="ff-steps">
+    <slot />
+  </div>
 </template>

@@ -13,7 +13,7 @@
 
 
 .ff-theme {
-    @media (min-width: 960px) {
+    @media (width >= 960px) {
         .VPSidebar {
             padding-left: var(--ff-frame);
             width: calc(var(--ff-frame) + var(--vp-sidebar-width));
@@ -39,7 +39,7 @@
     // The outline lives in a container of a fixed width, so the column that holds it must never be
     // squeezed by the text: it would spill out of the band, past the bar above it.
 
-    @media (min-width: 1280px) {
+    @media (width >= 1280px) {
         .VPDoc .aside {
             flex: 0 0 auto;
             width: 16rem;
@@ -89,6 +89,7 @@
     }
 
     .vp-doc h2 {
+
         // The gap between the section rule and the heading. The anchor hangs off the same value —
         // the default theme sets its own `top` to match its own padding, and this theme changes
         // that padding, so the two have to be declared once and read twice.
@@ -100,10 +101,10 @@
 
         // The section rule fades out to the right rather than cutting the page in two.
         border-image: linear-gradient(
-                90deg,
-                #{mg.ref("color-rule-strong")},
-                transparent 85%
-            )
+            90deg,
+            #{mg.ref("color-rule-strong")},
+            transparent 85%
+        )
             1;
         font-size: #{mg.ref("size-h2")};
         font-weight: 600;

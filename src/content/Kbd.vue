@@ -1,3 +1,3 @@
 <template>
-    <kbd class="ff-kbd"><slot /></kbd>
+  <kbd class="ff-kbd"><slot /></kbd>
 </template>

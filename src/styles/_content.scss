@@ -20,6 +20,7 @@
 }
 
 .ff-theme {
+
     // ----------------------------------------------------------------------------------------- //
     // Announcement bar
     // ----------------------------------------------------------------------------------------- //
@@ -56,30 +57,35 @@
     .ff-banner[data-variant="ink"] {
         --ff-banner-from: #{mg.ref("color-ink")};
         --ff-banner-to: #{mg.ref("color-ink-muted")};
+
         color: #{mg.ref("color-paper")};
     }
 
     .ff-banner[data-variant="accent"] {
         --ff-banner-from: #{mg.ref("color-accent")};
         --ff-banner-to: #{mg.ref("color-accent-hover")};
+
         color: #{mg.ref("color-accent-contrast")};
     }
 
     .ff-banner[data-variant="success"] {
         --ff-banner-from: #{mg.ref("color-success")};
         --ff-banner-to: #{mg.ref("color-ink")};
+
         color: #{mg.ref("color-paper")};
     }
 
     .ff-banner[data-variant="warning"] {
         --ff-banner-from: #{mg.ref("color-warning")};
         --ff-banner-to: #{mg.ref("color-ink")};
+
         color: #{mg.ref("color-paper")};
     }
 
     .ff-banner[data-variant="danger"] {
         --ff-banner-from: #{mg.ref("color-danger")};
         --ff-banner-to: #{mg.ref("color-ink")};
+
         color: #{mg.ref("color-paper")};
     }
 
@@ -283,7 +289,7 @@
         margin: 0;
     }
 
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         .ff-footer {
             padding: 4rem 3rem 2.5rem;
         }
@@ -348,7 +354,7 @@
         color: #{mg.ref("color-ink-muted")};
     }
 
-    @media (max-width: 640px) {
+    @media (width <= 640px) {
         .vp-doc .ff-card-grid {
             grid-template-columns: minmax(0, 1fr);
         }

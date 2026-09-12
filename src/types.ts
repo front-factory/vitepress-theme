@@ -1,4 +1,4 @@
-import type { DefaultTheme } from 'vitepress/theme'
+import type { DefaultTheme } from 'vitepress/theme';
 
 export interface BannerConfig {
     /** Stable id — changing it brings the banner back for readers who dismissed the previous one. */
@@ -137,4 +137,4 @@ export interface ThemeConfig extends DefaultTheme.Config {
     ff?: ThemeOptions
 }
 
-export type { DefaultTheme }
+export type { DefaultTheme };
