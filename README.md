@@ -132,6 +132,13 @@ themeConfig: {
 Per page, `docMeta: false` in the frontmatter drops the kicker, and `section: Guide` overrides the
 section name.
 
+Banner text, hero title/tagline/quote, feature title/details, footer message/copyright and card icon
+all render as HTML (`v-html`), not escaped text — a `<strong>` or a hand-written `<a>` in any of them
+shows up as markup. The trust boundary is the config file itself: these strings are meant to come
+from whoever writes `themeConfig.ff` in the VitePress config, not from a reader, a comment, or a CMS
+field someone else can edit. If a site ever pipes such input into these fields, sanitize it before it
+reaches the config — the theme does not.
+
 ## Translating
 
 Every string the theme adds sits in `themeConfig.ff.labels`, so it is translated the same way as any
