@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-    computed, ref, watch 
+    computed, onUnmounted, ref, watch
 } from 'vue';
 import { format, useLabels } from '../composables/options';
 import type { HeroCommandTab } from '../types';
@@ -31,6 +31,7 @@ const activeCommand = computed<string>(() =>
 );
 
 const copied = ref(false);
+let copiedTimer: ReturnType<typeof setTimeout> | undefined;
 
 async function copy() {
     if (!activeCommand.value) {
@@ -39,8 +40,12 @@ async function copy() {
 
     await navigator.clipboard.writeText(activeCommand.value);
     copied.value = true;
-    setTimeout(() => (copied.value = false), 2000);
+
+    clearTimeout(copiedTimer);
+    copiedTimer = setTimeout(() => (copied.value = false), 2000);
 }
+
+onUnmounted(() => clearTimeout(copiedTimer));
 </script>
 
 <template>
