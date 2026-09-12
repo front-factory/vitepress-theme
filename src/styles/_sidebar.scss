@@ -97,6 +97,22 @@
         font-weight: 600;
     }
 
+    // A sub-group with no link of its own (`items` but no `link`) still renders a `.text` node, but
+    // as a direct child of `.item` rather than nested in `.link` like every real page — the same
+    // distinction the level-0 section headings above already rely on. Borrow their faint-caps
+    // voice, scaled down, so a category reads as a category rather than a destination.
+
+    .VPSidebarItem.level-1 > .item > .text,
+    .VPSidebarItem.level-2 > .item > .text,
+    .VPSidebarItem.level-3 > .item > .text {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #{mg.ref("color-ink-faint")};
+    }
+
     // Nested levels step down in size and hang off a rule.
 
     .VPSidebarItem.level-1 .items {
