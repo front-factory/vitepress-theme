@@ -4,7 +4,7 @@
     "description": "Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata.",
     "type": "module",
     "scripts": {
-        "build": "sass --no-source-map --pkg-importer=node --load-path=node_modules src/styles/index.scss dist/style.css",
+        "build": "sass --style=compressed --no-source-map --pkg-importer=node --load-path=node_modules src/styles/index.scss dist/style.css",
         "dev": "npm run build -- --watch",
         "dev:playground": "npm run build && vitepress dev playground",
         "build:playground": "npm run build && vitepress build playground",
