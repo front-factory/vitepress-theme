@@ -38,6 +38,7 @@ const props = defineProps<{
     <div
       v-else-if="icon"
       class="ff-feature-icon"
+      aria-hidden="true"
       v-html="icon"
     />
 
