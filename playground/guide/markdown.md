@@ -24,6 +24,23 @@ Red for things that bite now.
 Collapsibles keep a frame: they are objects on the page, not asides.
 :::
 
+GitHub's alert syntax renders through the same custom-block styling:
+
+> [!NOTE]
+> Same rule, same label — just a different way to write it.
+
+> [!TIP]
+> Useful for content pasted in from a README.
+
+> [!IMPORTANT]
+> Key information readers need to notice.
+
+> [!WARNING]
+> Urgent info needing immediate attention.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes.
+
 ## Code
 
 ```scss
