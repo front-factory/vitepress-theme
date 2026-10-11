@@ -18,7 +18,6 @@ export const defaultLabels: Required<ThemeLabels> = {
     readingTime: '{0} min read',
     lastUpdated: 'Updated {0}',
     heroInstall: 'Install',
-    heroCopy: 'Copy',
     heroCopied: 'Copied',
     heroCopyLabel: 'Copy {0}',
     backToTop: 'Top',

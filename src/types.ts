@@ -58,8 +58,6 @@ export interface ThemeLabels {
     lastUpdated?: string
     /** Heading of the hero install panel. Defaults to `Install`. */
     heroInstall?: string
-    /** Hero copy button. Defaults to `Copy`. */
-    heroCopy?: string
     /** Hero copy button once the command is on the clipboard. Defaults to `Copied`. */
     heroCopied?: string
     /** Accessible name of the hero copy button; `{0}` is the command. Defaults to `Copy {0}`. */
