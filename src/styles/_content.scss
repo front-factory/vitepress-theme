@@ -141,20 +141,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 2rem;
+        height: 2rem;
         border-radius: #{mg.ref("radius-sm")};
         background: transparent;
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         line-height: 1;
         color: inherit;
-        opacity: 0.6;
         transform: translateY(-50%);
         cursor: pointer;
     }
 
     .ff-banner-close:hover {
-        opacity: 1;
+        background: color-mix(in srgb, currentcolor 18%, transparent);
     }
 
     // ----------------------------------------------------------------------------------------- //

@@ -94,7 +94,18 @@ onUnmounted(() => {
       :aria-label="labels.bannerDismiss"
       @click="dismiss"
     >
-      &#215;
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M1.5 1.5l9 9M10.5 1.5l-9 9" />
+      </svg>
     </button>
   </div>
 </template>
