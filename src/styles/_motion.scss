@@ -213,3 +213,14 @@
             transform #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .ff-theme {
+        .ff-to-top,
+        .ff-hero-command-tab,
+        .ff-hero-command-tab::after,
+        .ff-hero-copy {
+            transition: none;
+        }
+    }
+}
