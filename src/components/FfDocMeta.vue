@@ -93,6 +93,10 @@ const updated = computed(() => {
     return formatRelative(page.value.lastUpdated, lang.value);
 });
 
+const updatedAt = computed(() =>
+    page.value.lastUpdated ? new Date(page.value.lastUpdated).toISOString() : undefined
+);
+
 const hidden = computed(() => !meta.value || frontmatter.value.layout === 'home');
 </script>
 
@@ -113,12 +117,13 @@ const hidden = computed(() => !meta.value || frontmatter.value.layout === 'home'
       >
         {{ format(labels.readingTime, minutes) }}
       </span>
-      <span
+      <time
         v-if="updated"
         class="ff-doc-meta-item"
+        :datetime="updatedAt"
       >
         {{ format(labels.lastUpdated, updated) }}
-      </span>
+      </time>
     </ClientOnly>
   </div>
 </template>
