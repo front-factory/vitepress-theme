@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/front-factory/vitepress-theme/compare/v1.6.0...v1.7.0) (2026-10-11)
+
+### Features
+
+* **a11y:** support forced colours ([391e35c](https://github.com/front-factory/vitepress-theme/commit/391e35cd8fc65a7638acf5d5fddefdda003764ab))
+
+### Bug Fixes
+
+* **a11y:** honour reduced motion on the remaining transitions ([a3529d7](https://github.com/front-factory/vitepress-theme/commit/a3529d783851719230601b5832bb08fffd6de21e))
+* **a11y:** label the hero install group and drop its aside landmark ([1d303e2](https://github.com/front-factory/vitepress-theme/commit/1d303e2dc41bc95ee44beabb205eec4c0d9681a2))
+* **a11y:** name footer navs and announce links opening in a new tab ([5c18122](https://github.com/front-factory/vitepress-theme/commit/5c18122a18be72c1e25233f2d08564929ff7cb27))
+* **a11y:** raise the contrast of the faint ink token ([0e5a4fe](https://github.com/front-factory/vitepress-theme/commit/0e5a4fe5b604ef05c0baa362cc6502c4b9d08981))
+* **back-to-top:** throttle scroll and respect reduced motion ([8549fc5](https://github.com/front-factory/vitepress-theme/commit/8549fc523414b4347d837cb43d0b17670dd2beb6))
+* **banner:** enlarge and centre the dismiss button ([f9043c6](https://github.com/front-factory/vitepress-theme/commit/f9043c642633b06cbdde0c4a298995df476bfedf))
+* **banner:** survive unavailable localStorage ([4a317f2](https://github.com/front-factory/vitepress-theme/commit/4a317f27147818b14f0e7d862071937effc2fa78))
+* **doc-meta:** mark the last-updated stamp up as a time element ([303459f](https://github.com/front-factory/vitepress-theme/commit/303459fcebaa1688df122300a8f3041925f086da))
+* **hero:** handle clipboard failure and announce the copy ([d2a29c1](https://github.com/front-factory/vitepress-theme/commit/d2a29c1e4cd67cac04b1942e4015e8ad1d6f94b3))
+
 ## [1.6.0](https://github.com/front-factory/vitepress-theme/compare/v1.5.3...v1.6.0) (2026-09-13)
 
 ### Features
