@@ -141,7 +141,7 @@ function hasInlineCommand() {
             :class="`ff-btn-${action.theme ?? 'brand'}`"
             :href="action.link"
             :target="action.target"
-            :rel="action.rel"
+            :rel="action.rel ?? (action.target === '_blank' ? 'noopener' : undefined)"
           >
             {{ action.text }}
           </a>
@@ -176,7 +176,7 @@ function hasInlineCommand() {
         </slot>
       </div>
 
-      <aside
+      <div
         v-else-if="hasPanel()"
         class="ff-hero-panel"
         :class="{ 'ff-hero-panel-bare': !hasActions }"
@@ -199,12 +199,12 @@ function hasInlineCommand() {
             :class="`ff-btn-${action.theme ?? 'brand'}`"
             :href="action.link"
             :target="action.target"
-            :rel="action.rel"
+            :rel="action.rel ?? (action.target === '_blank' ? 'noopener' : undefined)"
           >
             {{ action.text }}
           </a>
         </div>
-      </aside>
+      </div>
     </div>
 
     <dl

@@ -67,6 +67,7 @@ onUnmounted(() => clearTimeout(copiedTimer));
       v-if="tabs"
       class="ff-hero-command-tabs"
       role="group"
+      :aria-label="labels.heroInstall"
     >
       <button
         v-for="(tab, index) in tabs"
