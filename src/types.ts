@@ -137,4 +137,15 @@ export interface ThemeConfig extends DefaultTheme.Config {
     ff?: ThemeOptions
 }
 
+// Declares `themeConfig.ff` on the default theme's own config type, so a host's `defineConfig`
+// accepts it and the theme reads it without a cast.
+declare module 'vitepress/theme' {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace DefaultTheme {
+        interface Config {
+            ff?: ThemeOptions
+        }
+    }
+}
+
 export type { DefaultTheme };
