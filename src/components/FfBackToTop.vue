@@ -17,25 +17,40 @@ const enabled = computed(() => options.value.backToTop !== false);
 
 const visible = ref(false);
 
-function onScroll() {
+function update() {
     visible.value = window.scrollY > window.innerHeight;
+}
+
+// At most one state update per frame, however many scroll events fire.
+let frame = 0;
+
+function onScroll() {
+    if (!frame) {
+        frame = requestAnimationFrame(() => {
+            frame = 0;
+            update();
+        });
+    }
 }
 
 function toTop() {
     window.scrollTo({
         top: 0,
-        behavior: 'smooth' 
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
     });
 }
 
 onMounted(() => {
-    onScroll();
+    update();
     window.addEventListener('scroll', onScroll, {
         passive: true 
     });
 });
 
-onUnmounted(() => window.removeEventListener('scroll', onScroll));
+onUnmounted(() => {
+    cancelAnimationFrame(frame);
+    window.removeEventListener('scroll', onScroll);
+});
 </script>
 
 <template>
@@ -45,8 +60,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
       type="button"
       class="ff-to-top ff-label"
       :class="{ 'is-visible': visible }"
-      :tabindex="visible ? 0 : -1"
-      :aria-hidden="!visible"
+      :inert="visible ? undefined : true"
       :title="title"
       @click="toTop"
     >
