@@ -10,6 +10,36 @@ export default defineConfig<ThemeConfig>({
     srcDir: '.',
     lastUpdated: true,
     cleanUrls: true,
+    head: [
+        [
+            'meta',
+            {
+                name: 'theme-color',
+                content: '#fbfaf8' 
+            }
+        ],
+        [
+            'meta',
+            {
+                property: 'og:type',
+                content: 'website' 
+            }
+        ],
+        [
+            'meta',
+            {
+                property: 'og:site_name',
+                content: 'Front Factory' 
+            }
+        ],
+        [
+            'meta',
+            {
+                name: 'twitter:card',
+                content: 'summary' 
+            }
+        ]
+    ],
     transformPageData(pageData) {
         if (pageData.frontmatter.layout === 'home') {
             const versionRow = pageData.frontmatter.hero?.meta?.find(
