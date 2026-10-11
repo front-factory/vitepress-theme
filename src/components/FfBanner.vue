@@ -32,7 +32,12 @@ function dismiss() {
         return;
     }
 
-    localStorage.setItem(`ff-banner-${banner.value.id}`, 'dismissed');
+    try {
+        localStorage.setItem(`ff-banner-${banner.value.id}`, 'dismissed');
+    } catch {
+        // Private mode or full quota: the banner is dismissed for this page view only.
+    }
+
     document.documentElement.classList.add(DISMISSED);
     height();
 }
