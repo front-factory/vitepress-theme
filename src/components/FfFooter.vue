@@ -55,10 +55,11 @@ const visible = computed(
           v-if="columns.length"
           class="ff-footer-columns"
         >
-          <div
+          <nav
             v-for="column in columns"
             :key="column.title"
             class="ff-footer-column"
+            :aria-label="column.title"
           >
             <p class="ff-label">
               {{ column.title }}
@@ -78,12 +79,13 @@ const visible = computed(
                 </VPLink>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
-        <div
+        <nav
           v-if="social.length"
           class="ff-footer-column ff-footer-social"
+          :aria-label="labels.footerSocial"
         >
           <p class="ff-label">
             {{ labels.footerSocial }}
@@ -97,14 +99,18 @@ const visible = computed(
               <a
                 :href="item.link"
                 :target="item.target ?? '_blank'"
-                rel="me noopener"
+                rel="me noopener noreferrer"
               >
                 <VPIcon :icon="item.icon" />
                 <span>{{ item.text }}</span>
+                <span
+                  v-if="(item.target ?? '_blank') === '_blank'"
+                  class="visually-hidden"
+                >({{ labels.newTab }})</span>
               </a>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
 
       <div

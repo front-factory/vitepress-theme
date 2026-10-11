@@ -23,6 +23,7 @@ export const defaultLabels: Required<ThemeLabels> = {
     heroCopyLabel: 'Copy {0}',
     backToTop: 'Top',
     footerSocial: 'Follow',
+    newTab: 'opens in a new tab',
     sponsors: 'Sponsors',
     sponsorsAction: 'Become a sponsor'
 };

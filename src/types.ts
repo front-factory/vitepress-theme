@@ -68,6 +68,8 @@ export interface ThemeLabels {
     backToTop?: string
     /** Heading of the footer social column. Defaults to `Follow`. */
     footerSocial?: string
+    /** Hidden hint after links that open in a new tab. Defaults to `opens in a new tab`. */
+    newTab?: string
     /** Heading of the sponsors section. Defaults to `Sponsors`. */
     sponsors?: string
     /** Sponsors section action button, when the site sets `actionLink` but no `actionText`. Defaults to `Become a sponsor`. */
@@ -108,6 +110,11 @@ export interface HeroExtras {
     meta?: HeroMetaItem[]
 }
 
+/**
+ * Text fields documented as accepting inline HTML (banner text, hero and feature copy, footer
+ * message) are rendered as-is. They come from the site's own config and frontmatter, so they are
+ * trusted: never feed them user-submitted content.
+ */
 export interface ThemeOptions {
     /** Dismissible announcement bar above the navigation. */
     banner?: BannerConfig
