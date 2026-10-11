@@ -94,6 +94,7 @@ themeConfig: {
 | `heroCopyLabel` | `Copy {0}` |
 | `backToTop` | `Top` |
 | `footerSocial` | `Follow` |
+| `newTab` | `opens in a new tab` |
 
 The banner's `text` and `linkText` are content rather than labels, so they stay under `ff.banner`.
 
