@@ -52,6 +52,13 @@ export default Theme
 of dependency pre-bundling, and injects the inline script that keeps a dismissed banner from
 painting in the built site.
 
+The package ships its Vue and TypeScript sources as-is (`main`, `module` and `types` point at
+`src/index.ts`) and relies on Vite to compile them, which `extends: baseConfig` sets up. Tooling that
+type-checks outside Vite, such as `vue-tsc`, may need `skipLibCheck`. Importing
+`@frontfactory/vitepress-theme/config` from `.vitepress/config.ts`, as above, also makes
+`themeConfig.ff` known to TypeScript. `@frontfactory/vitepress-theme/style.css` is exported for
+tooling that needs the stylesheet on its own; the theme entry already imports it.
+
 ## Rebranding
 
 Every value is a `--ff-*` custom property. Point the accent at your own colour and the whole site
@@ -169,11 +176,11 @@ locales: {
                     readingTime: '{0} min de lecture',
                     lastUpdated: 'Mis à jour {0}',
                     heroInstall: 'Installation',
-                    heroCopy: 'Copier',
                     heroCopied: 'Copié',
                     heroCopyLabel: 'Copier {0}',
                     backToTop: 'Haut',
-                    footerSocial: 'Nous suivre'
+                    footerSocial: 'Nous suivre',
+                    newTab: 's\u2019ouvre dans un nouvel onglet'
                 }
             }
         }
@@ -187,11 +194,13 @@ locales: {
 | `readingTime`     | `{0} min read`          |
 | `lastUpdated`     | `Updated {0}`           |
 | `heroInstall`     | `Install`               |
-| `heroCopy`        | `Copy`                  |
 | `heroCopied`      | `Copied`                |
 | `heroCopyLabel`   | `Copy {0}`              |
 | `backToTop`       | `Top`                   |
 | `footerSocial`    | `Follow`                |
+| `newTab`          | `opens in a new tab`    |
+| `sponsors`        | `Sponsors`              |
+| `sponsorsAction`  | `Become a sponsor`      |
 
 The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
 back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is
