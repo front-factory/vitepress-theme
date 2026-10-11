@@ -8,7 +8,7 @@ hero:
   command: npm install @frontfactory/vitepress-theme
   image:
     src: /hero-illustration.svg
-    alt: placeholder
+    alt: ""
   quote: Imagination is more important than knowledge. — <strong>Albert Einstein</strong>
   meta:
     - label: Licence
