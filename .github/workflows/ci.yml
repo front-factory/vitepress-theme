@@ -47,6 +47,19 @@ jobs:
           test -s dist/style.css
           grep -q -- '--ff-color-accent' dist/style.css
 
+      # What gets published is what `files` selects, built by `prepack`: the
+      # stylesheet has to be in it, and nothing else from dist.
+      - name: Check the package contents
+        run: |
+          npm pack --dry-run --json > pack.json
+          node -e "
+            const out = JSON.parse(require('fs').readFileSync('pack.json'));
+            const files = (Array.isArray(out) ? out[0] : Object.values(out)[0]).files.map((f) => f.path);
+            if (!files.includes('dist/style.css')) throw new Error('dist/style.css is missing');
+            const stray = files.filter((f) => f.startsWith('dist/') && f !== 'dist/style.css');
+            if (stray.length) throw new Error('unexpected files in dist: ' + stray);
+          "
+
       # The playground consumes the theme the way a site does, so it is what
       # catches a component the build cannot resolve.
       - name: Build the playground
