@@ -38,7 +38,13 @@ async function copy() {
         return;
     }
 
-    await navigator.clipboard.writeText(activeCommand.value);
+    try {
+        await navigator.clipboard.writeText(activeCommand.value);
+    } catch {
+        // Insecure context or denied permission: there is nothing to confirm.
+        return;
+    }
+
     copied.value = true;
 
     clearTimeout(copiedTimer);
@@ -60,16 +66,15 @@ onUnmounted(() => clearTimeout(copiedTimer));
     <div
       v-if="tabs"
       class="ff-hero-command-tabs"
-      role="tablist"
+      role="group"
     >
       <button
         v-for="(tab, index) in tabs"
         :key="tab.label"
         type="button"
-        role="tab"
         class="ff-hero-command-tab"
         :class="{ active: index === activeTab }"
-        :aria-selected="index === activeTab"
+        :aria-pressed="index === activeTab"
         @click="activeTab = index"
       >
         {{ tab.label }}
@@ -89,13 +94,18 @@ onUnmounted(() => clearTimeout(copiedTimer));
         <span
           v-if="copied"
           class="ff-hero-copied ff-label"
+          aria-hidden="true"
         >{{ labels.heroCopied }}</span>
+
+        <span
+          class="visually-hidden"
+          aria-live="polite"
+        >{{ copied ? labels.heroCopied : '' }}</span>
 
         <button
           type="button"
           class="ff-hero-copy"
           :class="{ copied }"
-          :title="format(labels.heroCopyLabel, activeCommand)"
           :aria-label="format(labels.heroCopyLabel, activeCommand)"
           @click="copy"
         />
