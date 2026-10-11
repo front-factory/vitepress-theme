@@ -59,8 +59,14 @@
         "vue-tsc": "^3.3.13"
     },
     "peerDependencies": {
+        "vite": ">=5",
         "vitepress": "^2.0.0-alpha.20",
         "vue": "^3.5.0"
+    },
+    "peerDependenciesMeta": {
+        "vite": {
+            "optional": true
+        }
     },
     "keywords": [
         "vitepress",
