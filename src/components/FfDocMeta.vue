@@ -4,6 +4,7 @@ import {
 } from 'vue';
 import { useData } from 'vitepress';
 import { useLayout } from '../internal';
+import { formatRelative } from '../composables/relativeTime';
 import {
     format, useLabels, useThemeOptions 
 } from '../composables/options';
@@ -84,53 +85,12 @@ const minutes = computed(() => {
 // Last updated
 // --------------------------------------------------------------------------------------------- //
 
-const units: [Intl.RelativeTimeFormatUnit, number][] = [
-    [
-        'year',
-        31536000000
-    ],
-    [
-        'month',
-        2592000000
-    ],
-    [
-        'week',
-        604800000
-    ],
-    [
-        'day',
-        86400000
-    ],
-    [
-        'hour',
-        3600000
-    ],
-    [
-        'minute',
-        60000
-    ]
-];
-
 const updated = computed(() => {
     if (!meta.value || meta.value.lastUpdated === false || !page.value.lastUpdated) {
         return null;
     }
 
-    const elapsed = page.value.lastUpdated - Date.now();
-    const relative = new Intl.RelativeTimeFormat(lang.value, {
-        numeric: 'auto' 
-    });
-
-    for (const [
-        unit,
-        ms
-    ] of units) {
-        if (Math.abs(elapsed) >= ms) {
-            return relative.format(Math.round(elapsed / ms), unit);
-        }
-    }
-
-    return relative.format(0, 'minute');
+    return formatRelative(page.value.lastUpdated, lang.value);
 });
 
 const hidden = computed(() => !meta.value || frontmatter.value.layout === 'home');
