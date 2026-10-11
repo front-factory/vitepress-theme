@@ -119,3 +119,22 @@
         color: #{mg.ref("color-danger")};
     }
 }
+
+// --------------------------------------------------------------------------------------------- //
+// Forced colours (Windows high contrast)
+//
+// Borders and text are remapped by the browser; what it drops are the colours painted as a
+// background, such as the active tab's underline.
+// --------------------------------------------------------------------------------------------- //
+
+@media (forced-colors: active) {
+    .ff-theme {
+        .ff-hero-command-tab.active::after {
+            background: Highlight;
+        }
+
+        .ff-hero-copy {
+            border-color: ButtonText;
+        }
+    }
+}
