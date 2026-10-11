@@ -84,7 +84,8 @@
     ],
     "files": [
         "src",
-        "dist",
+        "dist/style.css",
+        "CHANGELOG.md",
         "config.js",
         "config.d.ts"
     ],
