@@ -6,6 +6,7 @@ export default tseslint.config(
     {
         ignores: [
             'dist/**',
+            'types/**',
             'playground/.vitepress/cache/**',
             'playground/.vitepress/dist/**'
         ]

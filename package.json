@@ -4,10 +4,12 @@
     "description": "Editorial VitePress theme — hairline rules, numbered sections and monospaced metadata.",
     "type": "module",
     "scripts": {
-        "build": "sass --style=compressed --no-source-map --pkg-importer=node --load-path=node_modules src/styles/index.scss dist/style.css",
-        "dev": "npm run build -- --watch",
-        "dev:playground": "npm run build && vitepress dev playground",
-        "build:playground": "npm run build && vitepress build playground",
+        "build": "npm run build:css && npm run build:types",
+        "build:css": "sass --style=compressed --no-source-map --pkg-importer=node --load-path=node_modules src/styles/index.scss dist/style.css",
+        "dev": "npm run build:css -- --watch",
+        "dev:playground": "npm run build:css && vitepress dev playground",
+        "build:playground": "npm run build:css && vitepress build playground",
+        "build:types": "vue-tsc -p tsconfig.build.json",
         "typecheck": "vue-tsc --noEmit",
         "lint:js": "eslint .",
         "lint:css": "stylelint \"src/**/*.scss\"",
@@ -19,12 +21,10 @@
     "engines": {
         "node": ">=24"
     },
-    "main": "./src/index.ts",
-    "module": "./src/index.ts",
-    "types": "./src/index.ts",
+    "types": "./types/index.d.ts",
     "exports": {
         ".": {
-            "types": "./src/index.ts",
+            "types": "./types/index.d.ts",
             "default": "./src/index.ts"
         },
         "./config": {
@@ -83,6 +83,7 @@
     "files": [
         "src",
         "dist/style.css",
+        "types",
         "CHANGELOG.md",
         "config.js",
         "config.d.ts"

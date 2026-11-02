@@ -48,7 +48,8 @@ jobs:
           grep -q -- '--ff-color-accent' dist/style.css
 
       # What gets published is what `files` selects, built by `prepack`: the
-      # stylesheet has to be in it, and nothing else from dist.
+      # stylesheet and the generated type declarations have to be in it, and
+      # nothing else from dist.
       - name: Check the package contents
         run: |
           npm pack --dry-run --json > pack.json
@@ -56,6 +57,7 @@ jobs:
             const out = JSON.parse(require('fs').readFileSync('pack.json'));
             const files = (Array.isArray(out) ? out[0] : Object.values(out)[0]).files.map((f) => f.path);
             if (!files.includes('dist/style.css')) throw new Error('dist/style.css is missing');
+            if (!files.includes('types/index.d.ts')) throw new Error('types/index.d.ts is missing');
             const stray = files.filter((f) => f.startsWith('dist/') && f !== 'dist/style.css');
             if (stray.length) throw new Error('unexpected files in dist: ' + stray);
           "

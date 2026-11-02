@@ -12,3 +12,4 @@
 /node_modules
 /playground/.vitepress/cache
 /playground/.vitepress/dist
+/types
