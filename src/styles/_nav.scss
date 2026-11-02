@@ -2,6 +2,7 @@
 //                                          NAVIGATION                                           //
 // ============================================================================================= //
 
+@use "breakpoints" as bp;
 @use "theme" as mg;
 
 .ff-theme {
@@ -37,7 +38,7 @@
         margin-top: 0;
     }
 
-    @media (width >= 960px) {
+    @include bp.up("md") {
         &[data-nav-sticky="false"] .VPContent {
             padding-top: 0;
         }
@@ -107,13 +108,13 @@
     // The gutters have to match the ones the hero uses, or the bar lands a few pixels off the
     // content it sits above.
 
-    @media (width >= 640px) {
+    @include bp.up("sm") {
         .VPNavBar:not(.has-sidebar) .wrapper {
             padding: 0 3rem;
         }
     }
 
-    @media (width >= 960px) {
+    @include bp.up("md") {
         .VPNavBar:not(.has-sidebar) .wrapper {
             padding: 0 4rem;
         }

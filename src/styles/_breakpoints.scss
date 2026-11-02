@@ -1,0 +1,26 @@
+// ============================================================================================= //
+//                                         BREAKPOINTS                                           //
+// ============================================================================================= //
+
+@use "sass:map";
+
+// The three widths every partial lays out against. Media queries cannot read custom properties,
+// so these stay Sass values rather than --ff-* tokens.
+
+$widths: (
+    "sm": 640px,
+    "md": 960px,
+    "lg": 1280px
+);
+
+@mixin up($name) {
+    @media (width >= map.get($widths, $name)) {
+        @content;
+    }
+}
+
+@mixin down($name) {
+    @media (width < map.get($widths, $name)) {
+        @content;
+    }
+}

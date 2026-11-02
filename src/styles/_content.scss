@@ -2,6 +2,7 @@
 //                                        THEME COMPONENTS                                       //
 // ============================================================================================= //
 
+@use "breakpoints" as bp;
 @use "theme" as mg;
 
 // The dismissal class is set on <html>, outside the themed root. It carries the themed root in the
@@ -284,7 +285,7 @@
         margin: 0;
     }
 
-    @media (width >= 640px) {
+    @include bp.up("sm") {
         .ff-footer {
             padding: 4rem 3rem 2.5rem;
         }
@@ -348,7 +349,7 @@
         color: #{mg.ref("color-ink-muted")};
     }
 
-    @media (width < 640px) {
+    @include bp.down("sm") {
         .vp-doc .ff-card-grid {
             grid-template-columns: minmax(0, 1fr);
         }

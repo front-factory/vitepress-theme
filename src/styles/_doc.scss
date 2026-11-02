@@ -2,6 +2,7 @@
 //                                          DOCUMENT                                             //
 // ============================================================================================= //
 
+@use "breakpoints" as bp;
 @use "theme" as mg;
 
 // The frame: the band every page lives in.
@@ -13,7 +14,7 @@
 
 
 .ff-theme {
-    @media (width >= 960px) {
+    @include bp.up("md") {
         .VPSidebar {
             padding-left: var(--ff-frame);
             width: calc(var(--ff-frame) + var(--vp-sidebar-width));
@@ -39,7 +40,7 @@
     // The outline lives in a container of a fixed width, so the column that holds it must never be
     // squeezed by the text: it would spill out of the band, past the bar above it.
 
-    @media (width >= 1280px) {
+    @include bp.up("lg") {
         .VPDoc .aside {
             flex: 0 0 auto;
             width: 16rem;

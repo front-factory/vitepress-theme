@@ -2,6 +2,7 @@
 //                                             HOME                                              //
 // ============================================================================================= //
 
+@use "breakpoints" as bp;
 @use "theme" as mg;
 
 .ff-theme {
@@ -351,7 +352,7 @@
         height: auto;
     }
 
-    @media (width >= 960px) {
+    @include bp.up("md") {
         .ff-hero-image {
             max-width: none;
         }
@@ -395,13 +396,13 @@
         color: #{mg.ref("color-ink")};
     }
 
-    @media (width >= 640px) {
+    @include bp.up("sm") {
         .ff-hero {
             padding: calc(var(--ff-hero-offset) + 2rem) 3rem 4rem;
         }
     }
 
-    @media (width >= 960px) {
+    @include bp.up("md") {
         .ff-hero {
             padding: calc(var(--ff-hero-offset) + 2.25rem) 4rem 4.5rem;
         }
@@ -586,7 +587,7 @@
         color: #{mg.ref("color-accent")};
     }
 
-    @media (width >= 640px) {
+    @include bp.up("sm") {
         .VPFeatures {
             padding: 3rem 3rem 3.5rem;
         }
@@ -596,7 +597,7 @@
         }
     }
 
-    @media (width >= 960px) {
+    @include bp.up("md") {
         .VPFeatures {
             padding: 3.5rem 4rem 4rem;
         }
@@ -728,7 +729,7 @@
         margin-top: 2rem;
     }
 
-    @media (width >= 640px) {
+    @include bp.up("sm") {
         .ff-sponsors {
             padding: 3rem 3rem 3.5rem;
         }
@@ -739,7 +740,7 @@
         }
     }
 
-    @media (width >= 960px) {
+    @include bp.up("md") {
         .ff-sponsors {
             padding: 3.5rem 4rem 4rem;
         }
