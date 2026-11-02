@@ -219,7 +219,8 @@
         .ff-to-top,
         .ff-hero-command-tab,
         .ff-hero-command-tab::after,
-        .ff-hero-copy {
+        .ff-hero-copy,
+        .VPNavBarMenuLink::after {
             transition: none;
         }
     }
