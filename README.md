@@ -62,7 +62,7 @@ tooling that needs the stylesheet on its own; the theme entry already imports it
 ## Rebranding
 
 Every value is a `--ff-*` custom property. Point the accent at your own colour and the whole site
-follows.
+follows. For a ready-made accent instead, set `themeConfig.ff.preset` (see [Options](#options)).
 
 ```css
 /* .vitepress/theme/custom.css, imported after the theme */
@@ -99,6 +99,8 @@ follows.
 | `--ff-radius-sm` / `-md`                      | Corner radii                            |
 | `--ff-rule-width` / `--ff-rule-accent-width`  | Rule weights                            |
 | `--ff-hero-glow-opacity`                      | Hero light washes, `0` (off) by default |
+| `--ff-motion-duration` / `-slow` / `-enter`   | Hover, slow and hero entrance timings   |
+| `--ff-motion-ease`                            | Easing shared by every transition       |
 
 `dist/style.css` lists them all, grouped, at the top of the file.
 
@@ -124,6 +126,10 @@ themeConfig: {
         // default theme's own order; 'menu-first' pins the menu against the title instead. No
         // effect on the mobile bar, which always falls back to the hamburger.
         navOrder: 'search-first',
+
+        // Ready-made accent for both schemes instead of the default indigo:
+        // 'emerald' | 'crimson' | 'violet' | 'amber'. Set on <html> before the first paint.
+        preset: 'emerald',
 
         // Kicker printed above every page title. Set to false to drop it.
         meta: {
