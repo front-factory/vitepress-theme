@@ -2,6 +2,9 @@
 //                                            TOKENS                                             //
 // ============================================================================================= //
 
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
 @use "theme" as mg;
 
 // --------------------------------------------------------------------------------------------- //
@@ -53,10 +56,10 @@ $scales: (
     "motion": (
         "duration": 200ms,
         "duration-slow": 420ms,
+        "duration-enter": 650ms,
         "ease": cubic-bezier(0.2, 0.6, 0.2, 1)
     ),
     "banner": (
-        "duration-enter": 650ms,
         "height": 2.6875rem
     ),
 
@@ -144,6 +147,58 @@ $dark: (
     @include mg.emit($dark);
 
     color-scheme: dark;
+}
+
+// --------------------------------------------------------------------------------------------- //
+// Accent presets
+//
+// Ready-made accents picked with `themeConfig.ff.preset`, which sets data-ff-preset on <html>.
+// Each one is an accent and its hover per scheme; the soft and glow washes derive from the accent.
+// The light accents keep at least 4.5:1 against both the paper and white text on top of them.
+// --------------------------------------------------------------------------------------------- //
+
+$presets: (
+    "emerald": (
+        "light": (#0f7a55, #0b5e41, #fff),
+        "dark": (#4fd1a1, #7fe0bc, #0c1512)
+    ),
+    "crimson": (
+        "light": (#b4233c, #8f1a2f, #fff),
+        "dark": (#ff8a9b, #ffb0bc, #1a0d10)
+    ),
+    "violet": (
+        "light": (#6d3fd1, #5530a8, #fff),
+        "dark": (#b9a2ff, #d0c2ff, #140f20)
+    ),
+    "amber": (
+        "light": (#a35200, #7f3f00, #fff),
+        "dark": (#f5b452, #f8ca82, #1a1206)
+    )
+);
+
+@function -accent($colors, $soft, $glow) {
+    $accent: list.nth($colors, 1);
+
+    @return (
+        "color": (
+            "accent": $accent,
+            "accent-hover": list.nth($colors, 2),
+            "accent-contrast": list.nth($colors, 3),
+            "accent-soft": color.change($accent, $alpha: $soft),
+            "accent-glow": color.change($accent, $alpha: $glow)
+        )
+    );
+}
+
+// The dark selector carries the attribute too, so it outweighs the light preset rule.
+@each $name, $preset in $presets {
+    :root[data-ff-preset="#{$name}"] {
+        @include mg.emit(-accent(map.get($preset, "light"), 0.09, 0.16));
+    }
+
+    :root.dark[data-ff-preset="#{$name}"] {
+        @include mg.emit(-accent(map.get($preset, "dark"), 0.13, 0.2));
+    }
 }
 
 // --------------------------------------------------------------------------------------------- //

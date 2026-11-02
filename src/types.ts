@@ -140,6 +140,11 @@ export interface ThemeOptions {
      * to `false` to have it scroll away with the page instead.
      */
     navSticky?: boolean
+    /**
+     * Ready-made accent, in both schemes, instead of the default indigo. Set on `<html>` by an
+     * inline head script, so it paints from the first frame and reaches teleported overlays.
+     */
+    preset?: 'emerald' | 'crimson' | 'violet' | 'amber'
     /** Overrides for the strings this theme adds. Declare them per locale to translate them. */
     labels?: ThemeLabels
 }

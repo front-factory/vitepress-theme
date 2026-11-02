@@ -36,7 +36,8 @@ const alias = Object.entries(overrides).map(([
  * (e.g. on StackBlitz), because `dir` then points inside `node_modules`. `transformHead` injects
  * the inline script that keeps a dismissed banner from painting — it needs the banner id from the
  * host's own themeConfig, which is only known once VitePress has resolved the merged config, so it
- * cannot be a static head entry here.
+ * cannot be a static head entry here. The accent preset goes the same way, so it is on <html> before
+ * the first paint.
  */
 const config = {
     vite: {
@@ -63,22 +64,29 @@ const config = {
         }
     },
     transformHead({ siteData }) {
-        const id = siteData.themeConfig?.ff?.banner?.id;
+        const ff = siteData.themeConfig?.ff;
+        const head = [];
 
-        if (!id) {
-            return [];
+        if (ff?.preset) {
+            head.push([
+                'script',
+                {},
+                `document.documentElement.dataset.ffPreset=${JSON.stringify(ff.preset)}`
+            ]);
         }
 
-        const key = JSON.stringify(`ff-banner-${id}`);
+        if (ff?.banner?.id) {
+            const key = JSON.stringify(`ff-banner-${ff.banner.id}`);
 
-        return [
-            [
+            head.push([
                 'script',
                 {},
                 `try{if(localStorage.getItem(${key}))` +
                     'document.documentElement.classList.add(\'ff-banner-dismissed\')}catch(e){}'
-            ]
-        ];
+            ]);
+        }
+
+        return head;
     }
 };
 
