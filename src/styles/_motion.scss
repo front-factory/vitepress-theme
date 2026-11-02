@@ -41,6 +41,14 @@
             animation: ff-drift 26s #{mg.ref("motion-ease")} infinite alternate;
         }
 
+        // The washes are off by default (--ff-hero-glow-opacity: 0). Where style queries exist,
+        // do not run a 26s loop on two large layers nobody can see.
+        @container style(--ff-hero-glow-opacity: 0) {
+            .ff-hero-glow {
+                animation: none;
+            }
+        }
+
         .ff-hero-kicker,
         .ff-hero-title,
         .ff-hero-tagline,
