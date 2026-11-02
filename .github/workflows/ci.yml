@@ -67,6 +67,35 @@ jobs:
       - name: Build the playground
         run: npx vitepress build playground
 
+  # The theme imports default-theme internals from `vitepress/dist/...` and its
+  # peer range accepts every future 2.0 alpha. This job builds against the
+  # newest one so an upstream break shows up before a site hits it. It is kept
+  # out of `publish.needs` on purpose: an upstream alpha should not block a
+  # release of the theme.
+  vitepress-next:
+    name: Build (vitepress@next)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install Dependencies
+        run: |
+          npm ci --no-audit
+          npm install --no-save --no-audit vitepress@next
+        env:
+          HUSKY: 0
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build the playground
+        run: npm run build:playground
+
   publish:
     runs-on: ubuntu-latest
     needs: [ build ]
