@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-    computed, onMounted, onUnmounted, ref 
+    computed, onMounted, onUnmounted, ref, watch
 } from 'vue';
 import { useLabels, useThemeOptions } from '../composables/options';
 import { normalizeLink } from '../internal';
@@ -43,14 +43,22 @@ function dismiss() {
     height();
 }
 
-onMounted(() => {
+// The banner can appear or go away after mount (locale switch, `v-if`), so the observer follows the
+// element rather than being wired once.
+watch(el, (node) => {
+    observer?.disconnect();
+    observer = undefined;
     height();
 
-    if (el.value) {
+    if (node) {
         observer = new ResizeObserver(height);
-        observer.observe(el.value);
+        observer.observe(node);
     }
+}, {
+    flush: 'post'
 });
+
+onMounted(height);
 
 onUnmounted(() => {
     observer?.disconnect();
