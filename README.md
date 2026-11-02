@@ -127,6 +127,10 @@ themeConfig: {
         // effect on the mobile bar, which always falls back to the hamburger.
         navOrder: 'search-first',
 
+        // Pins the top bar while scrolling. Set to false to have the bar, and the banner above
+        // it, scroll away with the page.
+        navSticky: true,
+
         // Ready-made accent for both schemes instead of the default indigo:
         // 'emerald' | 'crimson' | 'violet' | 'amber'. Set on <html> before the first paint.
         preset: 'emerald',
