@@ -56,7 +56,7 @@
         .ff-hero-panel,
         .ff-hero-meta,
         .ff-hero-image {
-            animation: ff-rise 0.65s #{mg.ref("motion-ease")} both;
+            animation: ff-rise #{mg.ref("motion-duration-enter")} #{mg.ref("motion-ease")} both;
         }
 
         .ff-hero-title {
