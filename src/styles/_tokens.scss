@@ -93,7 +93,11 @@ $light: (
         "accent-glow": rgb(39 69 207 / 0.16),
         "success": #1c7a52,
         "warning": #8a5a00,
-        "danger": #b32835
+        "danger": #b32835,
+        "shadow-sm": rgb(0 0 0 / 0.05),
+        "shadow-md": rgb(0 0 0 / 0.08),
+        "shadow-lg": rgb(0 0 0 / 0.1),
+        "shadow-xl": rgb(0 0 0 / 0.12)
     )
 );
 
@@ -114,7 +118,11 @@ $dark: (
         "accent-glow": rgb(148 168 255 / 0.2),
         "success": #4ac48b,
         "warning": #e0a942,
-        "danger": #f0707f
+        "danger": #f0707f,
+        "shadow-sm": rgb(0 0 0 / 0.3),
+        "shadow-md": rgb(0 0 0 / 0.4),
+        "shadow-lg": rgb(0 0 0 / 0.45),
+        "shadow-xl": rgb(0 0 0 / 0.5)
     )
 );
 
@@ -179,9 +187,9 @@ $dark: (
     /* Elevation is a hairline job here — only overlays keep a shadow. */
     --vp-shadow-1: none;
     --vp-shadow-2: none;
-    --vp-shadow-3: 0 16px 40px rgb(0 0 0 / 0.08);
-    --vp-shadow-4: 0 16px 40px rgb(0 0 0 / 0.1);
-    --vp-shadow-5: 0 24px 64px rgb(0 0 0 / 0.12);
+    --vp-shadow-3: 0 16px 40px #{mg.ref("color-shadow-md")};
+    --vp-shadow-4: 0 16px 40px #{mg.ref("color-shadow-lg")};
+    --vp-shadow-5: 0 24px 64px #{mg.ref("color-shadow-xl")};
 
     /**
      * Distance from the edge of the viewport to the content band — the frame the whole theme is

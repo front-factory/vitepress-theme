@@ -163,7 +163,7 @@
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         border-radius: #{mg.ref("radius-md")};
         background: #{mg.ref("color-surface")};
-        box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 0.05);
+        box-shadow: 0 1.5rem 3rem #{mg.ref("color-shadow-sm")};
     }
 
     .ff-hero-panel-label {
