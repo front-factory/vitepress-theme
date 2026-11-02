@@ -54,8 +54,8 @@
         "stylelint": "^17.16.0",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.72.1",
-        "vitepress": "^2.0.0-alpha.20",
-        "vue": "^3.5.43",
+        "vitepress": "^2.0.0-alpha.21",
+        "vue": "^3.5.44",
         "vue-tsc": "^3.3.14"
     },
     "peerDependencies": {
