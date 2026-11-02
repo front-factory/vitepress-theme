@@ -35,8 +35,8 @@
         "./package.json": "./package.json"
     },
     "devDependencies": {
-        "@commitlint/cli": "^21.2.3",
-        "@commitlint/config-conventional": "^21.2.3",
+        "@commitlint/cli": "^21.2.4",
+        "@commitlint/config-conventional": "^21.2.4",
         "@eslint/js": "^10.0.1",
         "@front-factory/eslint-config": "^2.5.0",
         "@front-factory/stylelint-config": "^1.12.1",
