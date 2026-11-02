@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VPSponsors } from '../internal';
+import { normalizeLink, VPSponsors } from '../internal';
 import { useLabels } from '../composables/options';
 
 export interface SponsorItem {
@@ -48,7 +48,7 @@ const labels = useLabels();
       >
         <a
           class="ff-btn ff-btn-alt no-icon"
-          :href="actionLink"
+          :href="normalizeLink(actionLink)"
         >{{ actionText ?? labels.sponsorsAction }}</a>
       </div>
     </div>

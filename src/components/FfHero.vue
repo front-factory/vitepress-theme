@@ -3,7 +3,7 @@ import {
     Comment, computed, Fragment, Text, useSlots, type VNode 
 } from 'vue';
 import { useData } from 'vitepress';
-import { VPImage } from '../internal';
+import { normalizeLink, VPImage } from '../internal';
 import FfHeroCommand from './FfHeroCommand.vue';
 import type { HeroExtras, HeroMetaItem } from '../types';
 import type { DefaultTheme } from 'vitepress/theme';
@@ -139,7 +139,7 @@ function hasInlineCommand() {
             :key="action.link"
             class="ff-btn"
             :class="`ff-btn-${action.theme ?? 'brand'}`"
-            :href="action.link"
+            :href="normalizeLink(action.link)"
             :target="action.target"
             :rel="action.rel ?? (action.target === '_blank' ? 'noopener' : undefined)"
           >
@@ -197,7 +197,7 @@ function hasInlineCommand() {
             :key="action.link"
             class="ff-btn"
             :class="`ff-btn-${action.theme ?? 'brand'}`"
-            :href="action.link"
+            :href="normalizeLink(action.link)"
             :target="action.target"
             :rel="action.rel ?? (action.target === '_blank' ? 'noopener' : undefined)"
           >

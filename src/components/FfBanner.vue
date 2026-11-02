@@ -3,6 +3,7 @@ import {
     computed, onMounted, onUnmounted, ref 
 } from 'vue';
 import { useLabels, useThemeOptions } from '../composables/options';
+import { normalizeLink } from '../internal';
 
 const options = useThemeOptions();
 const labels = useLabels();
@@ -68,7 +69,7 @@ onUnmounted(() => {
     <component
       :is="banner.link ? 'a' : 'div'"
       class="ff-banner-body"
-      :href="banner.link"
+      :href="banner.link ? normalizeLink(banner.link) : undefined"
     >
       <span
         v-if="banner.icon"
