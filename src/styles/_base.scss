@@ -95,7 +95,7 @@
         font-size: #{mg.ref("size-label")};
         font-weight: 500;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: #{mg.ref("tracking-label-tight")};
         color: #{mg.ref("color-ink-muted")};
     }
 

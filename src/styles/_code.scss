@@ -75,7 +75,7 @@
         font-family: #{mg.ref("font-mono")};
         font-size: #{mg.ref("size-label")};
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: #{mg.ref("tracking-label-tight")};
     }
 
     .vp-doc div[class*="language-"].line-numbers-mode {

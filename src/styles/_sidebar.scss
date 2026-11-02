@@ -76,7 +76,7 @@
         font-weight: 600;
         line-height: 1.4;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: #{mg.ref("tracking-label-wide")};
         color: #{mg.ref("color-ink")};
     }
 
@@ -110,7 +110,7 @@
         font-size: #{mg.ref("size-label")};
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: #{mg.ref("tracking-label-tight")};
         color: #{mg.ref("color-ink-faint")};
     }
 
