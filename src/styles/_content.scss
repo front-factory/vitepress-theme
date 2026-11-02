@@ -284,7 +284,7 @@
         margin: 0;
     }
 
-    @media (width >= 768px) {
+    @media (width >= 640px) {
         .ff-footer {
             padding: 4rem 3rem 2.5rem;
         }
@@ -348,7 +348,7 @@
         color: #{mg.ref("color-ink-muted")};
     }
 
-    @media (width <= 640px) {
+    @media (width < 640px) {
         .vp-doc .ff-card-grid {
             grid-template-columns: minmax(0, 1fr);
         }
