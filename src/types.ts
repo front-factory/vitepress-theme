@@ -72,6 +72,12 @@ export interface ThemeLabels {
     sponsors?: string
     /** Sponsors section action button, when the site sets `actionLink` but no `actionText`. Defaults to `Become a sponsor`. */
     sponsorsAction?: string
+    /** API tag stating the version a symbol appeared in; `{0}` is the version. Defaults to `since {0}`. */
+    apiSince?: string
+    /** API tag marking a deprecated symbol. Defaults to `deprecated`. */
+    apiDeprecated?: string
+    /** Banner call to action when the banner has a link but no `linkText`. Defaults to `Read more`. */
+    bannerCta?: string
 }
 
 /** One entry of the colophon strip printed under the hero. */

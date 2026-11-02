@@ -24,7 +24,10 @@ export const defaultLabels: Required<ThemeLabels> = {
     footerSocial: 'Follow',
     newTab: 'opens in a new tab',
     sponsors: 'Sponsors',
-    sponsorsAction: 'Become a sponsor'
+    sponsorsAction: 'Become a sponsor',
+    apiSince: 'since {0}',
+    apiDeprecated: 'deprecated',
+    bannerCta: 'Read more'
 };
 
 /**

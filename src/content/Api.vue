@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { format, useLabels } from '../composables/options';
+
+const labels = useLabels();
+
 defineProps<{
     /** Symbol being documented, e.g. `refs()`. */
     name: string
@@ -28,11 +32,11 @@ defineProps<{
       <span
         v-if="since"
         class="ff-api-tag ff-label"
-      >since {{ since }}</span>
+      >{{ format(labels.apiSince, since) }}</span>
       <span
         v-if="deprecated"
         class="ff-api-tag ff-api-deprecated ff-label"
-      >deprecated</span>
+      >{{ labels.apiDeprecated }}</span>
     </header>
 
     <p

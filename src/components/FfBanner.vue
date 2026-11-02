@@ -92,7 +92,7 @@ onUnmounted(() => {
         v-if="banner.link"
         class="ff-banner-cta"
       >
-        {{ banner.linkText ?? 'Read more' }}
+        {{ banner.linkText ?? labels.bannerCta }}
         <span aria-hidden="true">&#8594;</span>
       </span>
     </component>
