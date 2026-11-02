@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-    Comment, computed, Fragment, Text, useSlots, type VNode 
+    Comment, computed, Fragment, onBeforeUpdate, Text, useSlots, type VNode
 } from 'vue';
 import { useData } from 'vitepress';
 import { normalizeLink, VPImage } from '../internal';
@@ -64,9 +64,19 @@ function filled(nodes?: VNode[]): boolean {
 }
 
 // Called from the template rather than cached in a computed: the slot has to be rendered where its
-// dependencies are tracked, and it changes with the page.
+// dependencies are tracked, and it changes with the page. It is still only rendered once per
+// render — the template and the helpers below ask several times — so the answer is kept until the
+// next update starts.
+let imageCache: boolean | undefined;
+
+onBeforeUpdate(() => {
+    imageCache = undefined;
+});
+
 function hasImage() {
-    return !!props.image || filled(slots['home-hero-image']?.());
+    imageCache ??= !!props.image || filled(slots['home-hero-image']?.());
+
+    return imageCache;
 }
 
 // The second column carries the image when there is one, and the starting point otherwise. The
