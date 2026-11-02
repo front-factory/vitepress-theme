@@ -321,9 +321,6 @@
         background-repeat: no-repeat;
         background-size: 0.875rem;
         cursor: pointer;
-        transition:
-            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .ff-hero-copy:hover {

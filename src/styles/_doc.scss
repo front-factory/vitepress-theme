@@ -395,7 +395,6 @@
         white-space: normal;
         overflow: visible;
         overflow-wrap: break-word;
-        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .VPDocAsideOutline .outline-link:hover {

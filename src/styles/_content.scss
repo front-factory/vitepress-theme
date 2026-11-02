@@ -191,10 +191,6 @@
         opacity: 0;
         transform: translateY(0.5rem);
         pointer-events: none;
-        transition:
-            opacity #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .ff-to-top.is-visible {
@@ -317,7 +313,6 @@
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         border-radius: #{mg.ref("radius-md")};
         background: #{mg.ref("color-surface")};
-        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .vp-doc a.ff-card {

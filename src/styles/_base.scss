@@ -73,10 +73,6 @@
         border-width: #{mg.ref("rule-width")};
         font-weight: 550;
         letter-spacing: 0.01em;
-        transition:
-            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
-            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .VPButton.medium {
