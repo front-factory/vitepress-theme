@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-    computed, onMounted, onUnmounted, ref 
+    computed, onMounted, ref, watchEffect
 } from 'vue';
 import { useData } from 'vitepress';
 import { useLabels, useThemeOptions } from '../composables/options';
@@ -40,16 +40,25 @@ function toTop() {
     });
 }
 
+// Listens only while the control is enabled, and follows the option if it changes (locale switch).
+// The effect is stopped with the component, which runs its cleanup.
 onMounted(() => {
-    update();
-    window.addEventListener('scroll', onScroll, {
-        passive: true 
-    });
-});
+    watchEffect((onCleanup) => {
+        if (!enabled.value) {
+            return;
+        }
 
-onUnmounted(() => {
-    cancelAnimationFrame(frame);
-    window.removeEventListener('scroll', onScroll);
+        update();
+        window.addEventListener('scroll', onScroll, {
+            passive: true
+        });
+
+        onCleanup(() => {
+            cancelAnimationFrame(frame);
+            frame = 0;
+            window.removeEventListener('scroll', onScroll);
+        });
+    });
 });
 </script>
 

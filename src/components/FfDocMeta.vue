@@ -64,14 +64,26 @@ const section = computed(() => {
 
 const words = ref(0);
 
+// Splitting the whole page is only worth it when the estimate can be shown.
+const measured = computed(() => !!meta.value && meta.value.readingTime !== false);
+
 function measure() {
+    if (!measured.value) {
+        words.value = 0;
+
+        return;
+    }
+
     words.value =
         document.querySelector('.vp-doc')?.textContent?.trim().split(/\s+/).filter(Boolean)
             .length ?? 0;
 }
 
 onMounted(() => nextTick(measure));
-watch(() => page.value.relativePath, () => nextTick(measure));
+watch([
+    () => page.value.relativePath,
+    measured
+], () => nextTick(measure));
 
 const minutes = computed(() => {
     if (!meta.value || meta.value.readingTime === false || !words.value) {
