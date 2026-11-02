@@ -184,10 +184,6 @@
 
     .VPNavBarMenuLink.active {
         color: #{mg.ref("color-ink")};
-        text-decoration: underline;
-        text-decoration-color: #{mg.ref("color-accent")};
-        text-decoration-thickness: 2px;
-        text-underline-offset: 0.5rem;
     }
 
     // Search trigger
