@@ -207,7 +207,7 @@ $dark: (
      */
     --vp-nav-bg-color: #{mg.ref("color-paper")};
     --vp-nav-backdrop-filter: none;
-    --vp-layout-max-width: 76rem;
+    --vp-layout-max-width: #{mg.ref("layout-wide")};
     --vp-sidebar-width: 15rem;
     --vp-header-anchor-symbol: "#";
     --vp-code-font-size: 0.8125em;

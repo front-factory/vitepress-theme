@@ -696,12 +696,12 @@
     // dead padding. Fixed values here instead, sized so the mark actually fills its tile.
 
     .ff-sponsors-grid .vp-sponsor-grid-link {
-        min-height: 90px;
+        min-height: 5.625rem;
     }
 
     .ff-sponsors-grid .vp-sponsor-grid-image {
-        max-width: 120px;
-        max-height: 32px;
+        max-width: 7.5rem;
+        max-height: 2rem;
     }
 
     // Same background band as the default (`--vp-c-bg-soft`, already remapped to the theme's own
@@ -712,11 +712,11 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        height: 60px;
+        height: 3.75rem;
         margin: 0 0 0.25rem;
         padding: 0 1.25rem;
         font-family: #{mg.ref("font-mono")};
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 500;
         letter-spacing: #{mg.ref("tracking-label")};
         text-align: left;
