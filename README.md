@@ -297,6 +297,7 @@ Registered globally, no import needed.
 | `<Callout type title>`                           | A `::: tip`-style note usable inside components   |
 | `<CardGrid :columns>` / `<Card title icon link>` | Card grids                                        |
 | `<Steps>`                                        | Wraps an ordered list into a numbered rail        |
+| `<Tabs syncKey>` / `<Tab label>`                 | Tab groups; a shared `syncKey` links them         |
 | `<Kbd>`                                          | A key                                             |
 
 ## Version

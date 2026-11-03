@@ -8,6 +8,8 @@ import Card from './content/Card.vue';
 import CardGrid from './content/CardGrid.vue';
 import Kbd from './content/Kbd.vue';
 import Steps from './content/Steps.vue';
+import Tab from './content/Tab.vue';
+import Tabs from './content/Tabs.vue';
 
 import '../dist/style.css';
 
@@ -28,6 +30,8 @@ const theme: Theme = {
         app.component('CardGrid', CardGrid);
         app.component('Kbd', Kbd);
         app.component('Steps', Steps);
+        app.component('Tab', Tab);
+        app.component('Tabs', Tabs);
     }
 };
 
@@ -39,6 +43,8 @@ export { default as Card } from './content/Card.vue';
 export { default as CardGrid } from './content/CardGrid.vue';
 export { default as Kbd } from './content/Kbd.vue';
 export { default as Steps } from './content/Steps.vue';
+export { default as Tab } from './content/Tab.vue';
+export { default as Tabs } from './content/Tabs.vue';
 
 export {
     defaultLabels, useLabels, useThemeOptions 

@@ -75,6 +75,45 @@ Without a `title`, the type is printed instead.
 
 </Steps>
 
+## Tabs
+
+Groups sharing a `syncKey` switch together, and the choice is remembered. Markdown inside a `<Tab>`
+needs a blank line before and after it.
+
+<Tabs syncKey="pm">
+<Tab label="npm">
+
+```sh
+npm install @frontfactory/vitepress-theme
+```
+
+</Tab>
+<Tab label="pnpm">
+
+```sh
+pnpm add @frontfactory/vitepress-theme
+```
+
+</Tab>
+</Tabs>
+
+<Tabs syncKey="pm">
+<Tab label="npm">
+
+```sh
+npm run docs:dev
+```
+
+</Tab>
+<Tab label="pnpm">
+
+```sh
+pnpm docs:dev
+```
+
+</Tab>
+</Tabs>
+
 ## Keys
 
 <Kbd>⌘</Kbd> <Kbd>K</Kbd> opens the search dialog.

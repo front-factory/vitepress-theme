@@ -467,4 +467,69 @@
         text-align: center;
         color: #{mg.ref("color-ink-muted")};
     }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Tabs
+    // ----------------------------------------------------------------------------------------- //
+
+    .vp-doc .ff-tabs {
+        margin: 1.5rem 0;
+    }
+
+    .vp-doc .ff-tabs-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .vp-doc .ff-tabs-tab {
+        position: relative;
+        padding: 0 0.75rem 0.625rem;
+        border: 0;
+        background: transparent;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+        cursor: pointer;
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc .ff-tabs-tab:first-child {
+        padding-left: 0;
+    }
+
+    .vp-doc .ff-tabs-tab::after {
+        position: absolute;
+        right: 0;
+        bottom: calc(#{mg.ref("rule-accent-width")} * -1);
+        left: 0;
+        height: #{mg.ref("rule-accent-width")};
+        background: transparent;
+        content: "";
+        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc .ff-tabs-tab:hover,
+    .vp-doc .ff-tabs-tab.active {
+        color: #{mg.ref("color-ink")};
+    }
+
+    .vp-doc .ff-tabs-tab.active::after {
+        background: #{mg.ref("color-accent")};
+    }
+
+    // The first and last blocks of a panel carry their own margins, which would double up with
+    // the gap under the tab list.
+
+    .vp-doc .ff-tabs-panel > :first-child {
+        margin-top: 0;
+    }
+
+    .vp-doc .ff-tabs-panel > :last-child {
+        margin-bottom: 0;
+    }
 }
