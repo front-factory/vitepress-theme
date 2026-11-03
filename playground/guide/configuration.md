@@ -67,11 +67,68 @@ themeConfig: {
 }
 ```
 
+| Option | Default | What it does |
+| --- | --- | --- |
+| `banner` | — | Dismissible announcement bar above the navigation. See [Banner](#banner). |
+| `meta` | `{}` | Kicker above each page title: section, reading time, last update. `false` drops it. |
+| `backToTop` | `true` | Floating back-to-top control. |
+| `progress` | `false` | Thin reading-progress bar at the top of the viewport. |
+| `feedback` | — | "Was this page helpful?" widget under each doc page. See [Feedback](#feedback). |
+| `copyMarkdown` | `false` | "Copy as Markdown" button in the page kicker. See [Copy as Markdown](#copy-as-markdown). |
+| `versions` | — | Version menu beside the site name. See [Versions](#versions). |
+| `footerColumns` | `[]` | Link columns in the site footer. |
+| `footerSocial` | `true` | Column of `socialLinks` icons beside the footer columns. |
+| `navOrder` | `'search-first'` | `'menu-first'` pins the menu against the title. No effect on the mobile bar. |
+| `navSticky` | `true` | `false` lets the bar, and the banner above it, scroll away with the page. |
+| `preset` | — | Ready-made accent: `emerald`, `crimson`, `violet` or `amber`. Applied before the first paint. |
+| `labels` | — | Overrides for every string the theme adds. See [Translating](#translating). |
+
+### Per page
+
+| Frontmatter | Effect |
+| --- | --- |
+| `docMeta: false` | Drops the kicker. |
+| `section: Guide` | Overrides the section name in the kicker. |
+| `progress: false` | Hides the progress bar. |
+| `feedback: false` | Hides the feedback widget. |
+
+### Banner
+
+`variant` is `ink` (the flat default), `accent`, `success`, `warning`, `danger` or `rainbow`. `gradient: true` fades the bar toward a second shade; `rainbow` is always a gradient.
+
 ::: warning
 Changing `banner.id` brings the bar back for readers who dismissed the previous one. That is the point — reuse an id and it stays hidden.
 :::
 
-`banner.variant` is `ink` (the flat default), `accent`, `success`, `warning`, `danger`, or `rainbow` — which always renders as a gradient across the four status colours, whatever `gradient` says. `navOrder` is `search-first` (the default theme's own order) or `menu-first`, which pins the menu against the title instead; it has no effect on the mobile bar, which always falls back to the hamburger. `navSticky` defaults to `true`; set it to `false` to have the bar — and the announcement banner above it — scroll away with the page instead of staying pinned. `preset` swaps the indigo accent for a ready-made one in both schemes: `emerald`, `crimson`, `violet` or `amber`. It is set on `<html>` before the first paint; a site that sets `--ff-color-accent` itself does not need it. `progress` adds a thin reading-progress bar at the top of the viewport; it is off by default, and a page opts out with `progress: false` in its frontmatter. `feedback` adds a "Was this page helpful?" widget under each doc page (`feedback: false` in the frontmatter hides it): each vote is posted to `feedback.url` with `navigator.sendBeacon` as the JSON string `{ page, value, lang }`, and always fires an `ff:feedback` event on `window` with the same object in `detail`. `copyMarkdown` adds a "Copy as Markdown" button to the page kicker; the source comes from `ffTransformPageData`, exported by the config. VitePress replaces a hook the site declares instead of merging it, so a site with its own `transformPageData` calls `ffTransformPageData(pageData, ctx)` from it and returns the result. `versions` adds a menu to the navigation bar: `current` is the text of its button and `items` are `{ text, link }` entries, one per other version of the docs; `labels.versionSwitcher` is its accessible name.
+### Feedback
+
+`feedback` is `true` or `{ url, question }`. `question` replaces the label.
+
+Each vote is sent to `url` with `navigator.sendBeacon`, as the JSON string `{ page, value, lang }`. It also fires an `ff:feedback` event on `window`, with the same object in `detail`:
+
+```ts
+window.addEventListener('ff:feedback', (event) => console.log(event.detail))
+```
+
+### Copy as Markdown
+
+The source is read at build time by `ffTransformPageData`, which `extends: baseConfig` wires in. VitePress replaces a hook declared by the site instead of merging it, so a site with its own `transformPageData` calls the helper and returns its result:
+
+```ts
+import baseConfig, { ffTransformPageData } from '@frontfactory/vitepress-theme/config'
+
+export default defineConfig({
+    extends: baseConfig,
+    transformPageData(pageData, ctx) {
+        // ...your own changes...
+        return ffTransformPageData(pageData, ctx)
+    }
+})
+```
+
+### Versions
+
+`current` is the text of the menu button; `items` are `{ text, link }` entries, one per other version of the docs. `labels.versionSwitcher` is the menu's accessible name.
 
 ## Translating
 
