@@ -4,6 +4,7 @@ import DefaultTheme from 'vitepress/theme';
 import FfBackToTop from '../components/FfBackToTop.vue';
 import FfBanner from '../components/FfBanner.vue';
 import FfDocMeta from '../components/FfDocMeta.vue';
+import FfProgress from '../components/FfProgress.vue';
 import { useThemeOptions } from '../composables/options';
 
 const { Layout } = DefaultTheme;
@@ -29,6 +30,7 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
   >
     <Layout>
       <template #layout-top>
+        <FfProgress />
         <FfBanner />
         <slot name="layout-top" />
       </template>

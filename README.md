@@ -151,13 +151,16 @@ themeConfig: {
         // Column of `themeConfig.socialLinks` icons, pinned to the right of those columns.
         footerSocial: true,
 
-        backToTop: true
+        backToTop: true,
+
+        // Thin reading-progress bar at the very top of the viewport. Off by default.
+        progress: true
     }
 }
 ```
 
-Per page, `docMeta: false` in the frontmatter drops the kicker, and `section: Guide` overrides the
-section name.
+Per page, `docMeta: false` in the frontmatter drops the kicker, `section: Guide` overrides the
+section name, and `progress: false` hides the progress bar.
 
 Banner text, hero title/tagline/quote, feature title/details, footer message/copyright and card icon
 all render as HTML (`v-html`), not escaped text — a `<strong>` or a hand-written `<a>` in any of them

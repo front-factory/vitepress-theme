@@ -133,6 +133,11 @@ export interface ThemeOptions {
     footerSocial?: boolean
     /** Floating back-to-top control. Defaults to `true`. */
     backToTop?: boolean
+    /**
+     * Thin reading-progress bar pinned to the top of the viewport. Off by default; a page opts out
+     * with `progress: false` in its frontmatter.
+     */
+    progress?: boolean
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */
     navOrder?: 'search-first' | 'menu-first'
     /**

@@ -201,6 +201,24 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // Reading progress
+    // ----------------------------------------------------------------------------------------- //
+
+    // One step above the layout-top band, so it also covers the banner and the navigation.
+
+    .ff-progress {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: calc(var(--vp-z-index-layout-top) + 1);
+        height: 2px;
+        background: #{mg.ref("color-accent")};
+        transform-origin: left;
+        pointer-events: none;
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Footer
     // ----------------------------------------------------------------------------------------- //
 

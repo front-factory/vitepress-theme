@@ -49,6 +49,7 @@ themeConfig: {
         },
         meta: { readingTime: true, wordsPerMinute: 200 },
         backToTop: true,
+        progress: true,
         footerColumns: [
             { title: 'Docs', items: [{ text: 'Guide', link: '/guide/' }] }
         ],
@@ -64,7 +65,7 @@ themeConfig: {
 Changing `banner.id` brings the bar back for readers who dismissed the previous one. That is the point — reuse an id and it stays hidden.
 :::
 
-`banner.variant` is `ink` (the flat default), `accent`, `success`, `warning`, `danger`, or `rainbow` — which always renders as a gradient across the four status colours, whatever `gradient` says. `navOrder` is `search-first` (the default theme's own order) or `menu-first`, which pins the menu against the title instead; it has no effect on the mobile bar, which always falls back to the hamburger. `navSticky` defaults to `true`; set it to `false` to have the bar — and the announcement banner above it — scroll away with the page instead of staying pinned. `preset` swaps the indigo accent for a ready-made one in both schemes: `emerald`, `crimson`, `violet` or `amber`. It is set on `<html>` before the first paint; a site that sets `--ff-color-accent` itself does not need it.
+`banner.variant` is `ink` (the flat default), `accent`, `success`, `warning`, `danger`, or `rainbow` — which always renders as a gradient across the four status colours, whatever `gradient` says. `navOrder` is `search-first` (the default theme's own order) or `menu-first`, which pins the menu against the title instead; it has no effect on the mobile bar, which always falls back to the hamburger. `navSticky` defaults to `true`; set it to `false` to have the bar — and the announcement banner above it — scroll away with the page instead of staying pinned. `preset` swaps the indigo accent for a ready-made one in both schemes: `emerald`, `crimson`, `violet` or `amber`. It is set on `<html>` before the first paint; a site that sets `--ff-color-accent` itself does not need it. `progress` adds a thin reading-progress bar at the top of the viewport; it is off by default, and a page opts out with `progress: false` in its frontmatter.
 
 ## Translating
 
