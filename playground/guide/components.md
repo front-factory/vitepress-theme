@@ -114,6 +114,21 @@ pnpm docs:dev
 </Tab>
 </Tabs>
 
+## Timeline
+
+<Timeline>
+<TimelineItem date="2026" title="Components">
+
+Callouts, tabs, badges, file trees and timelines.
+
+</TimelineItem>
+<TimelineItem date="2025" title="Accent presets">
+
+Four ready-made accents behind a single option.
+
+</TimelineItem>
+</Timeline>
+
 ## File tree
 
 A trailing `/` or nested items mark a folder.

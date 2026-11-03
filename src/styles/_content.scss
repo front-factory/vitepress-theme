@@ -583,4 +583,61 @@
         font-size: inherit;
         color: inherit;
     }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Timeline
+    // ----------------------------------------------------------------------------------------- //
+
+    // The same ruled rail as the steps, with a square marker on the line instead of a number.
+
+    .vp-doc .ff-timeline {
+        margin: 1.75rem 0;
+        padding-left: 2.5rem;
+        border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .vp-doc .ff-timeline-item {
+        position: relative;
+        padding-bottom: 1.75rem;
+    }
+
+    .vp-doc .ff-timeline-item:last-child {
+        padding-bottom: 0;
+    }
+
+    .vp-doc .ff-timeline-item::before {
+        position: absolute;
+        top: 0.3125rem;
+        left: -2.8125rem;
+        width: 0.625rem;
+        height: 0.625rem;
+        border: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-accent")};
+        background: #{mg.ref("color-paper")};
+        content: "";
+    }
+
+    .vp-doc .ff-timeline-date {
+        margin: 0;
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .vp-doc .ff-timeline-title {
+        margin: 0.25rem 0 0;
+        padding: 0;
+        border: 0;
+        font-size: 1.0625rem;
+        letter-spacing: normal;
+    }
+
+    .vp-doc .ff-timeline-body > :first-child {
+        margin-top: 0.5rem;
+    }
+
+    .vp-doc .ff-timeline-body > :last-child {
+        margin-bottom: 0;
+    }
 }

@@ -12,6 +12,8 @@ import Kbd from './content/Kbd.vue';
 import Steps from './content/Steps.vue';
 import Tab from './content/Tab.vue';
 import Tabs from './content/Tabs.vue';
+import Timeline from './content/Timeline.vue';
+import TimelineItem from './content/TimelineItem.vue';
 
 import '../dist/style.css';
 
@@ -40,6 +42,8 @@ const theme: Theme = {
         app.component('Steps', Steps);
         app.component('Tab', Tab);
         app.component('Tabs', Tabs);
+        app.component('Timeline', Timeline);
+        app.component('TimelineItem', TimelineItem);
     }
 };
 
@@ -55,6 +59,8 @@ export { default as Kbd } from './content/Kbd.vue';
 export { default as Steps } from './content/Steps.vue';
 export { default as Tab } from './content/Tab.vue';
 export { default as Tabs } from './content/Tabs.vue';
+export { default as Timeline } from './content/Timeline.vue';
+export { default as TimelineItem } from './content/TimelineItem.vue';
 
 export {
     defaultLabels, useLabels, useThemeOptions 

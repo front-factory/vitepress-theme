@@ -300,6 +300,7 @@ Registered globally, no import needed.
 | `<Tabs syncKey>` / `<Tab label>`                 | Tab groups; a shared `syncKey` links them         |
 | `<Badge text type>`                              | `new`, `beta`, `deprecated`, `since` variants     |
 | `<FileTree>`                                     | A Markdown list drawn as a file tree              |
+| `<Timeline>` / `<TimelineItem date title>`       | A vertical rail of dated entries                  |
 | `<Kbd>`                                          | A key                                             |
 
 ## Version
