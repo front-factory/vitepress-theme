@@ -299,6 +299,7 @@ Registered globally, no import needed.
 | `<Steps>`                                        | Wraps an ordered list into a numbered rail        |
 | `<Tabs syncKey>` / `<Tab label>`                 | Tab groups; a shared `syncKey` links them         |
 | `<Badge text type>`                              | `new`, `beta`, `deprecated`, `since` variants     |
+| `<FileTree>`                                     | A Markdown list drawn as a file tree              |
 | `<Kbd>`                                          | A key                                             |
 
 ## Version

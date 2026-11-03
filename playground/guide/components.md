@@ -114,6 +114,25 @@ pnpm docs:dev
 </Tab>
 </Tabs>
 
+## File tree
+
+A trailing `/` or nested items mark a folder.
+
+<FileTree>
+
+- src/
+  - components/
+    - FfHeader.vue
+    - FfFooter.vue
+  - styles/
+    - _tokens.scss
+    - index.scss
+  - index.ts
+- package.json
+- README.md
+
+</FileTree>
+
 ## Badges
 
 <Badge type="new" text="new" /> <Badge type="beta" text="beta" /> <Badge type="deprecated" text="deprecated" /> <Badge type="since" text="1.7.0" />

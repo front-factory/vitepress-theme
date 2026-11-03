@@ -532,4 +532,55 @@
     .vp-doc .ff-tabs-panel > :last-child {
         margin-bottom: 0;
     }
+
+    // ----------------------------------------------------------------------------------------- //
+    // File tree
+    // ----------------------------------------------------------------------------------------- //
+
+    .vp-doc .ff-filetree {
+        margin: 1.75rem 0;
+        font-family: #{mg.ref("font-mono")};
+        font-size: 0.875rem;
+    }
+
+    .vp-doc .ff-filetree ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    // Each level hangs from a hairline guide, like the rail of the steps.
+
+    .vp-doc .ff-filetree ul ul {
+        margin-left: 0.5rem;
+        padding-left: 1rem;
+        border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .vp-doc .ff-filetree li {
+        margin: 0;
+        padding: 0.125rem 0;
+        line-height: 1.6;
+    }
+
+    .vp-doc .ff-filetree .is-file > .ff-filetree-name {
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .vp-doc .ff-filetree .is-folder > .ff-filetree-name {
+        font-weight: 500;
+        color: #{mg.ref("color-ink")};
+    }
+
+    .vp-doc .ff-filetree .is-folder > .ff-filetree-name::after {
+        content: "/";
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .vp-doc .ff-filetree code {
+        padding: 0;
+        background: transparent;
+        font-size: inherit;
+        color: inherit;
+    }
 }
