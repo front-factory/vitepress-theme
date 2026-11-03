@@ -90,6 +90,36 @@ export interface ThemeLabels {
     copyMarkdown?: string
     /** Accessible name of the version menu. Defaults to `Version`. */
     versionSwitcher?: string
+    /** Author line of a post; `{0}` is the name. Defaults to `By {0}`. */
+    blogBy?: string
+    /** Message of a blog index without any post. Defaults to `No posts yet`. */
+    blogEmpty?: string
+}
+
+/** One author of the blog, declared in `ff.blog.authors` and referred to by key from a post. */
+export interface BlogAuthor {
+    name: string
+    /** Page the author's name links to. */
+    link?: string
+    /** Small portrait printed before the name. */
+    avatar?: string
+}
+
+/** RSS feed of the blog, set with `ff.blog.rss`. Needs the optional `feed` package. */
+export interface BlogRssConfig {
+    /** Absolute site address the feed links to. Defaults to `sitemap.hostname`. */
+    hostname?: string
+    copyright?: string
+}
+
+/** Blog settings, `ff.blog`. A post is a Markdown page under `dir` with a `date` in its frontmatter. */
+export interface BlogConfig {
+    /** Directory of the posts, relative to the source root. Defaults to `blog`. */
+    dir?: string
+    /** Authors by key; a post's `author` is such a key, or a plain name. */
+    authors?: Record<string, BlogAuthor>
+    /** Writes `feed.xml` at the end of the build. Off by default. */
+    rss?: boolean | BlogRssConfig
 }
 
 /** Options of the page feedback widget, when `ff.feedback` is an object instead of `true`. */
@@ -184,6 +214,11 @@ export interface ThemeOptions {
      * default; a page opts out with `llms: false` in its frontmatter.
      */
     llms?: boolean
+    /**
+     * Blog: `layout: blog` on the index page lists the posts of `dir`, each post gets a dated
+     * header, and `rss` writes a feed at build time.
+     */
+    blog?: BlogConfig
     /** Version menu in the navigation bar, after the other controls. */
     versions?: VersionsConfig
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */

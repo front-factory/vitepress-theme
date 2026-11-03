@@ -2,6 +2,7 @@ import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 
 import FfLayout from './layout/FfLayout.vue';
+import FfBlog from './layout/FfBlog.vue';
 import Api from './content/Api.vue';
 import Badge from './content/Badge.vue';
 import Callout from './content/Callout.vue';
@@ -34,6 +35,9 @@ const theme: Theme = {
 
         app.component('Api', Api);
         app.component('Badge', Badge);
+        // `layout: blog` in the frontmatter resolves to this component by name.
+        // eslint-disable-next-line vue/component-definition-name-casing
+        app.component('blog', FfBlog);
         app.component('Callout', Callout);
         app.component('Card', Card);
         app.component('CardGrid', CardGrid);
@@ -68,6 +72,9 @@ export {
 
 export type {
     BannerConfig,
+    BlogAuthor,
+    BlogConfig,
+    BlogRssConfig,
     FeedbackConfig,
     FooterColumn,
     FooterLink,

@@ -6,6 +6,7 @@ import FfBackToTop from '../components/FfBackToTop.vue';
 import FfBanner from '../components/FfBanner.vue';
 import FfDocMeta from '../components/FfDocMeta.vue';
 import FfFeedback from '../components/FfFeedback.vue';
+import FfPost from '../components/FfPost.vue';
 import FfProgress from '../components/FfProgress.vue';
 import { useThemeOptions } from '../composables/options';
 
@@ -42,6 +43,7 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
 
       <template #doc-before>
         <FfDocMeta />
+        <FfPost />
         <slot name="doc-before" />
       </template>
 

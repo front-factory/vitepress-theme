@@ -53,6 +53,10 @@ themeConfig: {
         feedback: { url: 'https://example.com/feedback' },
         copyMarkdown: true,
         llms: true,
+        blog: {
+            authors: { ada: { name: 'Ada Lovelace' } },
+            rss: { hostname: 'https://example.com' }
+        },
         versions: {
             current: 'v1.7',
             items: [{ text: 'v1.6', link: 'https://example.com/v1.6/' }]
@@ -77,6 +81,7 @@ themeConfig: {
 | `feedback` | — | "Was this page helpful?" widget under each doc page. See [Feedback](#feedback). |
 | `copyMarkdown` | `false` | "Copy as Markdown" button in the page kicker. See [Copy as Markdown](#copy-as-markdown). |
 | `llms` | `false` | Writes `llms.txt` and `llms-full.txt` at the end of the build. See [llms.txt](#llms-txt). |
+| `blog` | — | Blog index, post header and RSS feed. See [Blog](#blog). |
 | `versions` | — | Version menu beside the site name. See [Versions](#versions). |
 | `footerColumns` | `[]` | Link columns in the site footer. |
 | `footerSocial` | `true` | Column of `socialLinks` icons beside the footer columns. |
@@ -150,6 +155,19 @@ export default defineConfig({
 
 The same applies to `transformHead` and `ffTransformHead`, which returns the entries to merge with yours.
 
+### Blog
+
+Posts are Markdown pages under `blog.dir` (default `blog`) with a `date` in their frontmatter. Give the index page `layout: blog` to list them, newest first; each post gets a header with its date, author and tags. See the [playground blog](/blog/).
+
+| Frontmatter | Effect |
+| --- | --- |
+| `date` | Required for a page to count as a post. |
+| `author` | A key of `blog.authors` (`{ name, link?, avatar? }`), or a plain name. |
+| `tags` | List of tags, printed as labels. |
+| `excerpt` | Summary shown in the list and in the feed. |
+
+`rss` is `true` or `{ hostname?, copyright? }`. It writes `feed.xml` through `ffBuildEnd` and adds the alternate link through `ffTransformHead`. It needs the optional peer dependency `feed` (`npm install feed`) and an absolute address: `rss.hostname`, else `sitemap.hostname`.
+
 ### Versions
 
 `current` is the text of the menu button; `items` are `{ text, link }` entries, one per other version of the docs. `labels.versionSwitcher` is the menu's accessible name.
@@ -190,6 +208,8 @@ themeConfig: {
 | `feedbackThanks` | `Thanks for your feedback` |
 | `copyMarkdown` | `Copy as Markdown` |
 | `versionSwitcher` | `Version` |
+| `blogBy` | `By {0}` |
+| `blogEmpty` | `No posts yet` |
 
 The banner's `text` and `linkText` are content rather than labels, so they stay under `ff.banner`.
 

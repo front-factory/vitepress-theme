@@ -167,6 +167,13 @@ themeConfig: {
         // Writes llms.txt and llms-full.txt at the end of the build. Needs `ffBuildEnd`, see below.
         llms: true,
 
+        // Blog: `layout: blog` on the index page, a dated header on each post, an RSS feed.
+        blog: {
+            dir: 'blog',    // default
+            authors: { ada: { name: 'Ada Lovelace', link: 'https://example.com/ada' } },
+            rss: { hostname: 'https://example.com' }   // or true with `sitemap.hostname`
+        },
+
         // Version menu beside the site name; each item links to that version's docs.
         versions: {
             current: 'v2',
@@ -237,6 +244,25 @@ export default defineConfig({
 })
 ```
 
+### Blog
+
+Posts are Markdown pages under `blog.dir` (default `blog`) with a `date`. The index page, `blog/index.md`,
+uses `layout: blog` and lists them newest first; each post gets a header with its date, author and tags.
+
+```md
+---
+title: Hello, editorial
+date: 2026-10-12
+author: ada          # a key of blog.authors, or a plain name
+tags: [theme, design]
+excerpt: Shown in the list and in the feed.
+---
+```
+
+`rss` writes `feed.xml` at the end of the build (through `ffBuildEnd`) and adds the
+`<link rel="alternate">` tag through `ffTransformHead`. It needs the optional peer dependency
+`feed` (`npm install feed`) and an absolute address: `rss.hostname`, else `sitemap.hostname`.
+
 ## Printing
 
 No option needed. Printing a page drops the navigation, sidebar, outline, banner, back-to-top
@@ -294,6 +320,8 @@ locales: {
 | `feedbackThanks`  | `Thanks for your feedback` |
 | `copyMarkdown`    | `Copy as Markdown`      |
 | `versionSwitcher` | `Version`               |
+| `blogBy`          | `By {0}`                |
+| `blogEmpty`       | `No posts yet`          |
 
 The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
 back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is

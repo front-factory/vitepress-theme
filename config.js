@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
 import { generateLlms } from './node/llms.js';
+import { generateRss } from './node/rss.js';
 
 const dir = import.meta.dirname;
 const pkg = '@frontfactory/vitepress-theme';
@@ -55,8 +56,8 @@ export async function ffTransformPageData(pageData, { siteConfig }) {
 }
 
 /**
- * Writes the files generated at the end of the build: `llms.txt` and `llms-full.txt`, each only
- * when its `themeConfig.ff` option is on.
+ * Writes the files generated at the end of the build: `llms.txt` and `llms-full.txt`, the blog's
+ * `feed.xml`, each only when its `themeConfig.ff` option is on.
  *
  * Like every hook, a `buildEnd` declared by the host replaces ours: call this from it.
  *
@@ -68,11 +69,15 @@ export async function ffBuildEnd(siteConfig) {
     if (ff?.llms) {
         await generateLlms(siteConfig);
     }
+
+    if (ff?.blog?.rss) {
+        await generateRss(siteConfig);
+    }
 }
 
 /**
  * Head entries this theme adds: the accent preset and the banner scripts, which have to run before
- * the first paint. A host declaring its own `transformHead` calls this from it and merges the
+ * the first paint, and the link to the blog's RSS feed. A host declaring its own `transformHead` calls this from it and merges the
  * result into its own entries.
  *
  * @param {import('vitepress').TransformContext} ctx
@@ -98,6 +103,18 @@ export function ffTransformHead({ siteData }) {
             {},
             `try{if(localStorage.getItem(${key}))` +
                 'document.documentElement.classList.add(\'ff-banner-dismissed\')}catch(e){}'
+        ]);
+    }
+
+    if (ff?.blog?.rss) {
+        head.push([
+            'link',
+            {
+                rel: 'alternate',
+                type: 'application/rss+xml',
+                title: siteData.title,
+                href: `${siteData.base}feed.xml`
+            }
         ]);
     }
 

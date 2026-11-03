@@ -71,6 +71,10 @@ export default defineConfig<ThemeConfig>({
                 link: '/guide/components'
             },
             {
+                text: 'Blog',
+                link: '/blog/'
+            },
+            {
                 text: 'Team',
                 link: '/team'
             }
@@ -144,6 +148,18 @@ export default defineConfig<ThemeConfig>({
             navOrder: 'menu-first',
             progress: true,
             llms: true,
+            blog: {
+                authors: {
+                    ada: {
+                        name: 'Ada Lovelace',
+                        link: 'https://example.com/ada'
+                    }
+                },
+                rss: {
+                    hostname: 'https://example.com',
+                    copyright: 'Copyright © 2026 Front Factory'
+                }
+            },
             copyMarkdown: true,
             versions: {
                 current: pkg.version,
