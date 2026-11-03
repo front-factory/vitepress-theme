@@ -27,7 +27,11 @@ export const defaultLabels: Required<ThemeLabels> = {
     sponsorsAction: 'Become a sponsor',
     apiSince: 'since {0}',
     apiDeprecated: 'deprecated',
-    bannerCta: 'Read more'
+    bannerCta: 'Read more',
+    feedbackQuestion: 'Was this page helpful?',
+    feedbackYes: 'Yes',
+    feedbackNo: 'No',
+    feedbackThanks: 'Thanks for your feedback'
 };
 
 /**

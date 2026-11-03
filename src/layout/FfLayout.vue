@@ -4,17 +4,19 @@ import DefaultTheme from 'vitepress/theme';
 import FfBackToTop from '../components/FfBackToTop.vue';
 import FfBanner from '../components/FfBanner.vue';
 import FfDocMeta from '../components/FfDocMeta.vue';
+import FfFeedback from '../components/FfFeedback.vue';
 import FfProgress from '../components/FfProgress.vue';
 import { useThemeOptions } from '../composables/options';
 
 const { Layout } = DefaultTheme;
 const options = useThemeOptions();
 
-// Three slots carry the additions of this theme; every other slot the site passes in is forwarded
+// Four slots carry the additions of this theme; every other slot the site passes in is forwarded
 // untouched, so the whole default slot surface keeps working.
 const owned = [
     'layout-top',
     'doc-before',
+    'doc-footer-before',
     'layout-bottom'
 ];
 
@@ -38,6 +40,11 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
       <template #doc-before>
         <FfDocMeta />
         <slot name="doc-before" />
+      </template>
+
+      <template #doc-footer-before>
+        <FfFeedback />
+        <slot name="doc-footer-before" />
       </template>
 
       <template #layout-bottom>

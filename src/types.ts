@@ -78,6 +78,22 @@ export interface ThemeLabels {
     apiDeprecated?: string
     /** Banner call to action when the banner has a link but no `linkText`. Defaults to `Read more`. */
     bannerCta?: string
+    /** Question asked by the feedback widget. Defaults to `Was this page helpful?`. */
+    feedbackQuestion?: string
+    /** Positive answer of the feedback widget. Defaults to `Yes`. */
+    feedbackYes?: string
+    /** Negative answer of the feedback widget. Defaults to `No`. */
+    feedbackNo?: string
+    /** Message shown once a vote is cast. Defaults to `Thanks for your feedback`. */
+    feedbackThanks?: string
+}
+
+/** Options of the page feedback widget, when `ff.feedback` is an object instead of `true`. */
+export interface FeedbackConfig {
+    /** Endpoint that receives each vote as a `sendBeacon` POST. Without it, only the `ff:feedback` event fires. */
+    url?: string
+    /** Question to ask, instead of the `feedbackQuestion` label. */
+    question?: string
 }
 
 /** One entry of the colophon strip printed under the hero. */
@@ -138,6 +154,13 @@ export interface ThemeOptions {
      * with `progress: false` in its frontmatter.
      */
     progress?: boolean
+    /**
+     * "Was this page helpful?" widget under each doc page. Off by default; a page opts out with
+     * `feedback: false` in its frontmatter. Each vote is sent to `url` with `navigator.sendBeacon`
+     * as a JSON string `{ page, value: 'yes' | 'no', lang }`, and always dispatched on `window` as
+     * an `ff:feedback` CustomEvent carrying the same object in `detail`.
+     */
+    feedback?: boolean | FeedbackConfig
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */
     navOrder?: 'search-first' | 'menu-first'
     /**

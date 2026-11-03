@@ -68,6 +68,7 @@ export {
 
 export type {
     BannerConfig,
+    FeedbackConfig,
     FooterColumn,
     FooterLink,
     HeroCommandTab,

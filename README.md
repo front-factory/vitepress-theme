@@ -154,13 +154,26 @@ themeConfig: {
         backToTop: true,
 
         // Thin reading-progress bar at the very top of the viewport. Off by default.
-        progress: true
+        progress: true,
+
+        // "Was this page helpful?" widget under each doc page. `true`, or an object: `url` receives
+        // each vote through `navigator.sendBeacon`, `question` replaces the label. Every vote is
+        // also dispatched on `window` as an `ff:feedback` event.
+        feedback: { url: 'https://example.com/feedback' }
     }
 }
 ```
 
 Per page, `docMeta: false` in the frontmatter drops the kicker, `section: Guide` overrides the
-section name, and `progress: false` hides the progress bar.
+section name, `progress: false` hides the progress bar, and `feedback: false` hides the feedback widget.
+
+A vote is sent as the JSON string `{ page, value, lang }` (`value` is `'yes'` or `'no'`, `page` the
+source path), and also fires `ff:feedback` on `window` with that object in `detail`, so a site can
+forward it to its own analytics:
+
+```ts
+window.addEventListener('ff:feedback', (event) => console.log(event.detail))
+```
 
 Banner text, hero title/tagline/quote, feature title/details, footer message/copyright and card icon
 all render as HTML (`v-html`), not escaped text — a `<strong>` or a hand-written `<a>` in any of them
@@ -214,6 +227,10 @@ locales: {
 | `newTab`          | `opens in a new tab`    |
 | `sponsors`        | `Sponsors`              |
 | `sponsorsAction`  | `Become a sponsor`      |
+| `feedbackQuestion`| `Was this page helpful?`|
+| `feedbackYes`     | `Yes`                   |
+| `feedbackNo`      | `No`                    |
+| `feedbackThanks`  | `Thanks for your feedback` |
 
 The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
 back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is

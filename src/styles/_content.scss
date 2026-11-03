@@ -219,6 +219,44 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // Page feedback
+    // ----------------------------------------------------------------------------------------- //
+
+    .ff-feedback {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem 1rem;
+        margin-bottom: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .ff-feedback-question,
+    .ff-feedback-thanks {
+        margin: 0;
+    }
+
+    .ff-feedback-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .ff-feedback-button {
+        padding: 0.5rem 0.75rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-sm")};
+        background: transparent;
+        color: #{mg.ref("color-ink-muted")};
+        cursor: pointer;
+    }
+
+    .ff-feedback-button:hover {
+        border-color: #{mg.ref("color-rule-strong")};
+        background: #{mg.ref("color-surface-alt")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Footer
     // ----------------------------------------------------------------------------------------- //
 

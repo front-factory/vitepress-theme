@@ -146,6 +146,9 @@ export default defineConfig<ThemeConfig>({
         ff: {
             navOrder: 'menu-first',
             progress: true,
+            feedback: {
+                url: 'https://example.com/feedback'
+            },
             banner: {
                 id: `v${pkg.version}`,
                 text: `<strong>${pkg.version}</strong> — the banner now ships in colour. This is it.`,
