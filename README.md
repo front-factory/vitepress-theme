@@ -174,7 +174,8 @@ themeConfig: {
 ```
 
 Per page, `docMeta: false` in the frontmatter drops the kicker, `section: Guide` overrides the
-section name, `progress: false` hides the progress bar, and `feedback: false` hides the feedback widget.
+section name, `progress: false` hides the progress bar, `feedback: false` hides the feedback widget, and `wide: true` widens the text column to the full
+band and hides the outline (wide tables, API listings).
 
 A vote is sent as the JSON string `{ page, value, lang }` (`value` is `'yes'` or `'no'`, `page` the
 source path), and also fires `ff:feedback` on `window` with that object in `detail`, so a site can

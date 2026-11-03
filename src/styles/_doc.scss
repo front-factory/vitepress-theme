@@ -68,6 +68,19 @@
         max-width: none;
     }
 
+    // `wide: true` in the frontmatter: wide tables and API listings take the full band and give the
+    // outline column back.
+
+    &[data-layout="wide"] {
+        .VPDoc .content-container {
+            max-width: #{mg.ref("layout-wide")};
+        }
+
+        .VPDoc .aside {
+            display: none;
+        }
+    }
+
     // ----------------------------------------------------------------------------------------- //
     // Headings
     // ----------------------------------------------------------------------------------------- //

@@ -91,6 +91,7 @@ themeConfig: {
 | `section: Guide` | Overrides the section name in the kicker. |
 | `progress: false` | Hides the progress bar. |
 | `feedback: false` | Hides the feedback widget. |
+| `wide: true` | Widens the text column to the full band and hides the outline. See [Wide layout](/guide/wide). |
 
 ### Banner
 

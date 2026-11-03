@@ -99,6 +99,10 @@ export default defineConfig<ThemeConfig>({
                     {
                         text: 'Markdown',
                         link: '/guide/markdown'
+                    },
+                    {
+                        text: 'Wide layout',
+                        link: '/guide/wide'
                     }
                 ]
             },
