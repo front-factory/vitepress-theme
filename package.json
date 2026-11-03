@@ -57,13 +57,21 @@
         "vue-tsc": "^3.3.14"
     },
     "peerDependencies": {
+        "@resvg/resvg-js": "^2.6.2",
         "feed": "^6.0.0",
+        "satori": "^0.63.2",
         "vite": "^8.2.1",
         "vitepress": "^2.0.0-alpha.20",
         "vue": "^3.5.0"
     },
     "peerDependenciesMeta": {
+        "@resvg/resvg-js": {
+            "optional": true
+        },
         "feed": {
+            "optional": true
+        },
+        "satori": {
             "optional": true
         }
     },
