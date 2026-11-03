@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import {
-    computed, onUnmounted, ref, watch
-} from 'vue';
+import { computed } from 'vue';
 import { format, useLabels } from '../composables/options';
+import { useCopy, useTabs } from '../composables/tabs';
 import type { HeroCommandTab } from '../types';
 
 // Used from both hero panel positions (inline and beside the headline, see FfHero), which are
@@ -19,39 +18,13 @@ const tabs = computed<HeroCommandTab[] | undefined>(() =>
     Array.isArray(props.command) ? props.command : undefined
 );
 
-const activeTab = ref(0);
-
-// Client-side navigation can swap the tabs a shorter or longer array without remounting this
-// component (two home pages in the same site), so the index is reset rather than left pointing
-// past the end.
-watch(tabs, () => (activeTab.value = 0));
+const { active: activeTab, select } = useTabs(() => tabs.value?.map((tab) => tab.label) ?? []);
 
 const activeCommand = computed<string>(() =>
     tabs.value ? (tabs.value[activeTab.value]?.value ?? '') : (props.command as string)
 );
 
-const copied = ref(false);
-let copiedTimer: ReturnType<typeof setTimeout> | undefined;
-
-async function copy() {
-    if (!activeCommand.value) {
-        return;
-    }
-
-    try {
-        await navigator.clipboard.writeText(activeCommand.value);
-    } catch {
-        // Insecure context or denied permission: there is nothing to confirm.
-        return;
-    }
-
-    copied.value = true;
-
-    clearTimeout(copiedTimer);
-    copiedTimer = setTimeout(() => (copied.value = false), 2000);
-}
-
-onUnmounted(() => clearTimeout(copiedTimer));
+const { copied, copy } = useCopy(activeCommand);
 </script>
 
 <template>
@@ -76,7 +49,7 @@ onUnmounted(() => clearTimeout(copiedTimer));
         class="ff-hero-command-tab"
         :class="{ active: index === activeTab }"
         :aria-pressed="index === activeTab"
-        @click="activeTab = index"
+        @click="select(index)"
       >
         {{ tab.label }}
       </button>
