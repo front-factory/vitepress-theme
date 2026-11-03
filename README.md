@@ -207,6 +207,12 @@ export default defineConfig({
 
 Without the option the helper does nothing, so no source text reaches the bundle.
 
+## Printing
+
+No option needed. Printing a page drops the navigation, sidebar, outline, banner, back-to-top
+control, progress bar, feedback widget and previous/next links, forces the light palette (code
+included) even in dark mode, and prints the address after each external link.
+
 ## Translating
 
 Every string the theme adds sits in `themeConfig.ff.labels`, so it is translated the same way as any

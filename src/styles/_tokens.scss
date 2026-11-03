@@ -176,7 +176,7 @@ $presets: (
     )
 );
 
-@function -accent($colors, $soft, $glow) {
+@function preset-colors($colors, $soft, $glow) {
     $accent: list.nth($colors, 1);
 
     @return (
@@ -193,11 +193,11 @@ $presets: (
 // The dark selector carries the attribute too, so it outweighs the light preset rule.
 @each $name, $preset in $presets {
     :root[data-ff-preset="#{$name}"] {
-        @include mg.emit(-accent(map.get($preset, "light"), 0.09, 0.16));
+        @include mg.emit(preset-colors(map.get($preset, "light"), 0.09, 0.16));
     }
 
     :root.dark[data-ff-preset="#{$name}"] {
-        @include mg.emit(-accent(map.get($preset, "dark"), 0.13, 0.2));
+        @include mg.emit(preset-colors(map.get($preset, "dark"), 0.13, 0.2));
     }
 }
 

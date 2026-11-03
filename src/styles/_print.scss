@@ -1,0 +1,77 @@
+// ============================================================================================= //
+//                                             PRINT                                             //
+// ============================================================================================= //
+
+@use "theme" as mg;
+@use "tokens";
+@use "sass:map";
+
+// Declared last in the stylesheet: the print palette re-emits the light tokens on the same
+// selectors the dark scheme uses, so source order is what makes it win.
+
+@media print {
+
+    // ----------------------------------------------------------------------------------------- //
+    // Light palette, whichever scheme the reader browses in
+    // ----------------------------------------------------------------------------------------- //
+
+    :root.dark {
+        @include mg.emit(tokens.$light);
+
+        color-scheme: light;
+    }
+
+    @each $name, $preset in tokens.$presets {
+        :root.dark[data-ff-preset="#{$name}"] {
+            @include mg.emit(tokens.preset-colors(map.get($preset, "light"), 0.09, 0.16));
+        }
+    }
+
+    // The default theme switches highlighted code to its dark colours on `.dark`.
+
+    :root.dark .shiki span {
+        color: var(--shiki-light, inherit);
+        font-weight: var(--shiki-light-font-weight, inherit);
+        text-decoration: var(--shiki-light-text-decoration, inherit);
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Chrome that means nothing on paper
+    // ----------------------------------------------------------------------------------------- //
+
+    .ff-theme {
+        .VPNav,
+        .VPLocalNav,
+        .VPSidebar,
+        .VPDoc .aside,
+        .VPDocFooter .prev-next,
+        .ff-banner,
+        .ff-to-top,
+        .ff-progress,
+        .ff-feedback {
+            display: none;
+        }
+
+        // The content wrapper made room for the fixed navigation, the sidebar and the banner.
+
+        .VPContent,
+        .VPContent.has-sidebar {
+            margin-top: 0;
+            padding-top: 0;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .VPDoc .container {
+            display: block;
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Links keep their destination
+    // ----------------------------------------------------------------------------------------- //
+
+    .vp-doc a[href^="http"]:not(.header-anchor)::after {
+        content: " (" attr(href) ")";
+    }
+}

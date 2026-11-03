@@ -107,6 +107,10 @@ themeConfig: {
 
 The banner's `text` and `linkText` are content rather than labels, so they stay under `ff.banner`.
 
+## Printing
+
+No option needed. Printing a page drops the navigation, sidebar, outline, banner, back-to-top control, progress bar, feedback widget and previous/next links, forces the light palette — code included — even in dark mode, and prints the address after each external link.
+
 ## Fonts
 
 ```css
