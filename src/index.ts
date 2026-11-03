@@ -3,6 +3,7 @@ import DefaultTheme from 'vitepress/theme';
 
 import FfLayout from './layout/FfLayout.vue';
 import Api from './content/Api.vue';
+import Badge from './content/Badge.vue';
 import Callout from './content/Callout.vue';
 import Card from './content/Card.vue';
 import CardGrid from './content/CardGrid.vue';
@@ -24,7 +25,12 @@ const theme: Theme = {
     extends: DefaultTheme,
     Layout: FfLayout,
     enhanceApp({ app }) {
+        // DefaultTheme registers its own `Badge` before this runs; registering over it makes Vue warn
+        // in dev, so the original is dropped first.
+        delete app._context.components.Badge;
+
         app.component('Api', Api);
+        app.component('Badge', Badge);
         app.component('Callout', Callout);
         app.component('Card', Card);
         app.component('CardGrid', CardGrid);
@@ -38,6 +44,7 @@ const theme: Theme = {
 export default theme;
 
 export { default as Api } from './content/Api.vue';
+export { default as Badge } from './content/Badge.vue';
 export { default as Callout } from './content/Callout.vue';
 export { default as Card } from './content/Card.vue';
 export { default as CardGrid } from './content/CardGrid.vue';

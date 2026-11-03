@@ -114,6 +114,10 @@ pnpm docs:dev
 </Tab>
 </Tabs>
 
+## Badges
+
+<Badge type="new" text="new" /> <Badge type="beta" text="beta" /> <Badge type="deprecated" text="deprecated" /> <Badge type="since" text="1.7.0" />
+
 ## Keys
 
 <Kbd>⌘</Kbd> <Kbd>K</Kbd> opens the search dialog.

@@ -298,6 +298,7 @@ Registered globally, no import needed.
 | `<CardGrid :columns>` / `<Card title icon link>` | Card grids                                        |
 | `<Steps>`                                        | Wraps an ordered list into a numbered rail        |
 | `<Tabs syncKey>` / `<Tab label>`                 | Tab groups; a shared `syncKey` links them         |
+| `<Badge text type>`                              | `new`, `beta`, `deprecated`, `since` variants     |
 | `<Kbd>`                                          | A key                                             |
 
 ## Version

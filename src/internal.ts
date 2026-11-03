@@ -6,6 +6,7 @@
 // exception: it is not public, but it is what VPLink and VPButton run every href through (site
 // `base`, `.html` suffix without `cleanUrls`), and the theme's own links need the same treatment.
 
+export { default as VPBadge } from 'vitepress/dist/client/theme-default/components/VPBadge.vue';
 export { default as VPIcon } from 'vitepress/dist/client/theme-default/components/VPIcon.vue';
 export { default as VPImage } from 'vitepress/dist/client/theme-default/components/VPImage.vue';
 export { default as VPLink } from 'vitepress/dist/client/theme-default/components/VPLink.vue';

@@ -101,4 +101,28 @@
     .vp-doc .custom-block.details[open] summary {
         margin-bottom: 0.75rem;
     }
+
+    // Status badges for `<Badge type="…">`: they extend the tip / warning / danger colours of
+    // the base badge, so only the ones that differ from it are declared.
+
+    .VPBadge.new {
+        border-color: #{mg.ref("color-accent")};
+        color: #{mg.ref("color-accent")};
+    }
+
+    .VPBadge.beta {
+        border-color: #{mg.ref("color-warning")};
+        color: #{mg.ref("color-warning")};
+    }
+
+    .VPBadge.deprecated {
+        border-color: #{mg.ref("color-danger")};
+        color: #{mg.ref("color-danger")};
+        text-decoration: line-through;
+    }
+
+    .VPBadge.since {
+        border-color: #{mg.ref("color-rule-strong")};
+        color: #{mg.ref("color-ink-muted")};
+    }
 }
