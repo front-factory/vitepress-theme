@@ -77,5 +77,6 @@ export type {
     MetaConfig,
     ThemeConfig,
     ThemeLabels,
-    ThemeOptions
+    ThemeOptions,
+    VersionsConfig
 } from './types';

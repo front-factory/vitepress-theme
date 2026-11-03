@@ -88,6 +88,8 @@ export interface ThemeLabels {
     feedbackThanks?: string
     /** Button copying the page as Markdown. Defaults to `Copy as Markdown`. */
     copyMarkdown?: string
+    /** Accessible name of the version menu. Defaults to `Version`. */
+    versionSwitcher?: string
 }
 
 /** Options of the page feedback widget, when `ff.feedback` is an object instead of `true`. */
@@ -96,6 +98,14 @@ export interface FeedbackConfig {
     url?: string
     /** Question to ask, instead of the `feedbackQuestion` label. */
     question?: string
+}
+
+/** Version menu of the navigation bar, set with `ff.versions`. */
+export interface VersionsConfig {
+    /** Version of the site being read; it is the text of the menu button. */
+    current: string
+    /** Other versions, each pointing at its own copy of the docs. */
+    items: FooterLink[]
 }
 
 /** One entry of the colophon strip printed under the hero. */
@@ -169,6 +179,8 @@ export interface ThemeOptions {
      * call from it.
      */
     copyMarkdown?: boolean
+    /** Version menu in the navigation bar, after the other controls. */
+    versions?: VersionsConfig
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */
     navOrder?: 'search-first' | 'menu-first'
     /**

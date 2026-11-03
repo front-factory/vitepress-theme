@@ -168,6 +168,82 @@
         background: #{mg.ref("color-accent")};
     }
 
+    // FfNavBarTitle replaces the default title, whose scoped layout rules go with it: they are
+    // restated here, with the row now holding the title link and the version switcher.
+
+    .VPNavBarTitle {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        height: var(--vp-nav-height);
+    }
+
+    .VPNavBarTitle .title {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        height: 100%;
+        color: var(--vp-c-text-1);
+        transition: opacity 0.25s;
+    }
+
+    // Wherever the bar runs out of room, the title text gives way first.
+    .VPNavBarTitle .title > span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .VPNavBarTitle .logo {
+        flex: none;
+        height: var(--vp-nav-logo-height);
+    }
+
+    @include bp.up("md") {
+        .VPNavBarTitle .title {
+            flex-shrink: 0;
+        }
+
+        .VPNavBarTitle.has-sidebar {
+            max-width: calc(var(--vp-sidebar-width) - 4rem);
+        }
+    }
+
+    // Version switcher: a small framed tag beside the site name, set like the theme's labels. Its
+    // menu opens from its left edge, since the tag sits at the left of the bar. The space above the
+    // menu is padding, not an offset: VPFlyout closes as soon as the pointer leaves the button for
+    // anything outside the menu box, so a gap between the two would close it on the way down.
+
+    .ff-version-switcher {
+        flex: none;
+    }
+
+    .ff-version-switcher .button {
+        height: auto;
+        padding: 0.25rem 0.5rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-sm")};
+        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-version-switcher .button:hover,
+    .ff-version-switcher .button[aria-expanded="true"] {
+        border-color: #{mg.ref("color-rule-strong")};
+    }
+
+    .ff-version-switcher .text {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        line-height: 1;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .ff-version-switcher .menu {
+        top: 100%;
+        inset-inline: 0 auto;
+        padding-top: 0.5rem;
+    }
+
     // Menu links
 
     .VPNavBarMenuLink,

@@ -162,7 +162,13 @@ themeConfig: {
         feedback: { url: 'https://example.com/feedback' },
 
         // "Copy as Markdown" button in the page kicker. Needs `ffTransformPageData`, see below.
-        copyMarkdown: true
+        copyMarkdown: true,
+
+        // Version menu beside the site name; each item links to that version's docs.
+        versions: {
+            current: 'v2',
+            items: [{ text: 'v1', link: 'https://v1.example.com' }]
+        }
     }
 }
 ```
@@ -263,6 +269,7 @@ locales: {
 | `feedbackNo`      | `No`                    |
 | `feedbackThanks`  | `Thanks for your feedback` |
 | `copyMarkdown`    | `Copy as Markdown`      |
+| `versionSwitcher` | `Version`               |
 
 The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
 back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is

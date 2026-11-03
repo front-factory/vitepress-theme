@@ -13,7 +13,8 @@ const overrides = {
     VPHero: 'src/components/FfHero.vue',
     VPFeature: 'src/components/FfFeature.vue',
     VPFooter: 'src/components/FfFooter.vue',
-    VPHomeSponsors: 'src/components/FfHomeSponsors.vue'
+    VPHomeSponsors: 'src/components/FfHomeSponsors.vue',
+    VPNavBarTitle: 'src/components/FfNavBarTitle.vue'
 };
 
 const alias = Object.entries(overrides).map(([

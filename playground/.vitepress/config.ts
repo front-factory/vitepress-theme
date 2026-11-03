@@ -73,15 +73,6 @@ export default defineConfig<ThemeConfig>({
             {
                 text: 'Team',
                 link: '/team'
-            },
-            {
-                text: pkg.version,
-                items: [
-                    {
-                        text: 'Changelog',
-                        link: 'https://example.com' 
-                    }
-                ]
             }
         ],
         sidebar: [
@@ -149,6 +140,15 @@ export default defineConfig<ThemeConfig>({
             navOrder: 'menu-first',
             progress: true,
             copyMarkdown: true,
+            versions: {
+                current: pkg.version,
+                items: [
+                    {
+                        text: 'Changelog',
+                        link: 'https://example.com'
+                    }
+                ]
+            },
             feedback: {
                 url: 'https://example.com/feedback'
             },
