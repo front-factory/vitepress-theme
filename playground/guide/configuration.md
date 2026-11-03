@@ -52,6 +52,7 @@ themeConfig: {
         progress: true,
         feedback: { url: 'https://example.com/feedback' },
         copyMarkdown: true,
+        llms: true,
         versions: {
             current: 'v1.7',
             items: [{ text: 'v1.6', link: 'https://example.com/v1.6/' }]
@@ -75,6 +76,7 @@ themeConfig: {
 | `progress` | `false` | Thin reading-progress bar at the top of the viewport. |
 | `feedback` | — | "Was this page helpful?" widget under each doc page. See [Feedback](#feedback). |
 | `copyMarkdown` | `false` | "Copy as Markdown" button in the page kicker. See [Copy as Markdown](#copy-as-markdown). |
+| `llms` | `false` | Writes `llms.txt` and `llms-full.txt` at the end of the build. See [llms.txt](#llms-txt). |
 | `versions` | — | Version menu beside the site name. See [Versions](#versions). |
 | `footerColumns` | `[]` | Link columns in the site footer. |
 | `footerSocial` | `true` | Column of `socialLinks` icons beside the footer columns. |
@@ -91,6 +93,7 @@ themeConfig: {
 | `section: Guide` | Overrides the section name in the kicker. |
 | `progress: false` | Hides the progress bar. |
 | `feedback: false` | Hides the feedback widget. |
+| `llms: false` | Leaves the page out of `llms.txt` and `llms-full.txt`. |
 | `wide: true` | Widens the text column to the full band and hides the outline. See [Wide layout](/guide/wide). |
 
 ### Banner
@@ -126,6 +129,26 @@ export default defineConfig({
     }
 })
 ```
+
+### llms.txt
+
+`llms: true` writes two files to the output directory: `llms.txt`, an index (title, link and description of each page), and `llms-full.txt`, the Markdown of every page. Links are absolute when `sitemap.hostname` is set, and respect `base` and `cleanUrls`. `404.md` and pages with `llms: false` are skipped.
+
+The files are written by `ffBuildEnd`, which `extends: baseConfig` wires in. A site with its own `buildEnd` calls the helper from it:
+
+```ts
+import baseConfig, { ffBuildEnd } from '@frontfactory/vitepress-theme/config'
+
+export default defineConfig({
+    extends: baseConfig,
+    async buildEnd(siteConfig) {
+        // ...your own work...
+        await ffBuildEnd(siteConfig)
+    }
+})
+```
+
+The same applies to `transformHead` and `ffTransformHead`, which returns the entries to merge with yours.
 
 ### Versions
 

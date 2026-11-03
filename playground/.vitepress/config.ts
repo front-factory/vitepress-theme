@@ -143,6 +143,7 @@ export default defineConfig<ThemeConfig>({
         ff: {
             navOrder: 'menu-first',
             progress: true,
+            llms: true,
             copyMarkdown: true,
             versions: {
                 current: pkg.version,

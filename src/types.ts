@@ -179,6 +179,11 @@ export interface ThemeOptions {
      * call from it.
      */
     copyMarkdown?: boolean
+    /**
+     * Writes `llms.txt` and `llms-full.txt` to the output directory at the end of the build. Off by
+     * default; a page opts out with `llms: false` in its frontmatter.
+     */
+    llms?: boolean
     /** Version menu in the navigation bar, after the other controls. */
     versions?: VersionsConfig
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */

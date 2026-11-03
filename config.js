@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
+import { generateLlms } from './node/llms.js';
 
 const dir = import.meta.dirname;
 const pkg = '@frontfactory/vitepress-theme';
@@ -54,6 +55,56 @@ export async function ffTransformPageData(pageData, { siteConfig }) {
 }
 
 /**
+ * Writes the files generated at the end of the build: `llms.txt` and `llms-full.txt`, each only
+ * when its `themeConfig.ff` option is on.
+ *
+ * Like every hook, a `buildEnd` declared by the host replaces ours: call this from it.
+ *
+ * @param {import('vitepress').SiteConfig} siteConfig
+ */
+export async function ffBuildEnd(siteConfig) {
+    const ff = siteConfig.site.themeConfig?.ff;
+
+    if (ff?.llms) {
+        await generateLlms(siteConfig);
+    }
+}
+
+/**
+ * Head entries this theme adds: the accent preset and the banner scripts, which have to run before
+ * the first paint. A host declaring its own `transformHead` calls this from it and merges the
+ * result into its own entries.
+ *
+ * @param {import('vitepress').TransformContext} ctx
+ * @returns {import('vitepress').HeadConfig[]}
+ */
+export function ffTransformHead({ siteData }) {
+    const ff = siteData.themeConfig?.ff;
+    const head = [];
+
+    if (ff?.preset) {
+        head.push([
+            'script',
+            {},
+            `document.documentElement.dataset.ffPreset=${JSON.stringify(ff.preset)}`
+        ]);
+    }
+
+    if (ff?.banner?.id) {
+        const key = JSON.stringify(`ff-banner-${ff.banner.id}`);
+
+        head.push([
+            'script',
+            {},
+            `try{if(localStorage.getItem(${key}))` +
+                'document.documentElement.classList.add(\'ff-banner-dismissed\')}catch(e){}'
+        ]);
+    }
+
+    return head;
+}
+
+/**
  * Base config for `extends`, per
  * https://vitepress.dev/guide/custom-theme#distributing-a-custom-theme.
  *
@@ -67,7 +118,8 @@ export async function ffTransformPageData(pageData, { siteConfig }) {
  * the inline script that keeps a dismissed banner from painting — it needs the banner id from the
  * host's own themeConfig, which is only known once VitePress has resolved the merged config, so it
  * cannot be a static head entry here. The accent preset goes the same way, so it is on <html> before
- * the first paint. `transformPageData` feeds the copy-as-Markdown button; see `ffTransformPageData`.
+ * the first paint. `transformPageData` feeds the copy-as-Markdown button; see `ffTransformPageData`. `buildEnd` writes the generated files; see
+ * `ffBuildEnd`.
  */
 const config = {
     vite: {
@@ -94,31 +146,8 @@ const config = {
         }
     },
     transformPageData: ffTransformPageData,
-    transformHead({ siteData }) {
-        const ff = siteData.themeConfig?.ff;
-        const head = [];
-
-        if (ff?.preset) {
-            head.push([
-                'script',
-                {},
-                `document.documentElement.dataset.ffPreset=${JSON.stringify(ff.preset)}`
-            ]);
-        }
-
-        if (ff?.banner?.id) {
-            const key = JSON.stringify(`ff-banner-${ff.banner.id}`);
-
-            head.push([
-                'script',
-                {},
-                `try{if(localStorage.getItem(${key}))` +
-                    'document.documentElement.classList.add(\'ff-banner-dismissed\')}catch(e){}'
-            ]);
-        }
-
-        return head;
-    }
+    transformHead: ffTransformHead,
+    buildEnd: ffBuildEnd
 };
 
 export default config;

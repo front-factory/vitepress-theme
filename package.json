@@ -86,7 +86,8 @@
         "types",
         "CHANGELOG.md",
         "config.js",
-        "config.d.ts"
+        "config.d.ts",
+        "node"
     ],
     "publishConfig": {
         "access": "public",

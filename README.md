@@ -164,6 +164,9 @@ themeConfig: {
         // "Copy as Markdown" button in the page kicker. Needs `ffTransformPageData`, see below.
         copyMarkdown: true,
 
+        // Writes llms.txt and llms-full.txt at the end of the build. Needs `ffBuildEnd`, see below.
+        llms: true,
+
         // Version menu beside the site name; each item links to that version's docs.
         versions: {
             current: 'v2',
@@ -213,6 +216,26 @@ export default defineConfig({
 ```
 
 Without the option the helper does nothing, so no source text reaches the bundle.
+
+### llms.txt
+
+`llms: true` writes `llms.txt` (an index of the pages) and `llms-full.txt` (their Markdown) to the
+output directory. Links are absolute when `sitemap.hostname` is set. `404.md` and pages with
+`llms: false` in their frontmatter are skipped.
+
+The files come from `ffBuildEnd`, wired in by `extends: baseConfig`. A site with its own `buildEnd`
+(or `transformHead`) calls the helper from it, as for `ffTransformPageData`:
+
+```ts
+import baseConfig, { ffBuildEnd } from '@frontfactory/vitepress-theme/config'
+
+export default defineConfig({
+    extends: baseConfig,
+    async buildEnd(siteConfig) {
+        await ffBuildEnd(siteConfig)
+    }
+})
+```
 
 ## Printing
 
