@@ -1,4 +1,5 @@
-import { resolve } from 'node:path';
+import { readFile } from 'node:fs/promises';
+import { join, resolve } from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
 
 const dir = import.meta.dirname;
@@ -24,6 +25,34 @@ const alias = Object.entries(overrides).map(([
 }));
 
 /**
+ * Stores the page's Markdown source, frontmatter stripped, on `pageData.ffMarkdown` for the "copy as
+ * Markdown" button. Does nothing unless `themeConfig.ff.copyMarkdown` is on, so a site that does not
+ * use it ships no source text.
+ *
+ * A hook declared by the host replaces the one in this config instead of adding to it. A site that
+ * defines its own `transformPageData` calls this from it and returns the result:
+ * `transformPageData: (pageData, ctx) => ffTransformPageData(pageData, ctx)`.
+ *
+ * @param {import('vitepress').PageData} pageData
+ * @param {import('vitepress').TransformPageContext} ctx
+ */
+export async function ffTransformPageData(pageData, { siteConfig }) {
+    if (!siteConfig.site.themeConfig?.ff?.copyMarkdown || !pageData.filePath) {
+        return;
+    }
+
+    try {
+        const source = await readFile(join(siteConfig.srcDir, pageData.filePath), 'utf8');
+
+        return {
+            ffMarkdown: source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '').trim()
+        };
+    } catch {
+        // Virtual or generated page: there is no source file to copy.
+    }
+}
+
+/**
  * Base config for `extends`, per
  * https://vitepress.dev/guide/custom-theme#distributing-a-custom-theme.
  *
@@ -37,7 +66,7 @@ const alias = Object.entries(overrides).map(([
  * the inline script that keeps a dismissed banner from painting — it needs the banner id from the
  * host's own themeConfig, which is only known once VitePress has resolved the merged config, so it
  * cannot be a static head entry here. The accent preset goes the same way, so it is on <html> before
- * the first paint.
+ * the first paint. `transformPageData` feeds the copy-as-Markdown button; see `ffTransformPageData`.
  */
 const config = {
     vite: {
@@ -63,6 +92,7 @@ const config = {
             } 
         }
     },
+    transformPageData: ffTransformPageData,
     transformHead({ siteData }) {
         const ff = siteData.themeConfig?.ff;
         const head = [];

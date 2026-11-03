@@ -86,6 +86,8 @@ export interface ThemeLabels {
     feedbackNo?: string
     /** Message shown once a vote is cast. Defaults to `Thanks for your feedback`. */
     feedbackThanks?: string
+    /** Button copying the page as Markdown. Defaults to `Copy as Markdown`. */
+    copyMarkdown?: string
 }
 
 /** Options of the page feedback widget, when `ff.feedback` is an object instead of `true`. */
@@ -161,6 +163,12 @@ export interface ThemeOptions {
      * an `ff:feedback` CustomEvent carrying the same object in `detail`.
      */
     feedback?: boolean | FeedbackConfig
+    /**
+     * Button in the page kicker that copies the page's Markdown source. Off by default. The source
+     * is injected by `ffTransformPageData`, which a site defining its own `transformPageData` must
+     * call from it.
+     */
+    copyMarkdown?: boolean
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */
     navOrder?: 'search-first' | 'menu-first'
     /**

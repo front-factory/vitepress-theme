@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-import baseConfig from '../../config.js';
+import baseConfig, { ffTransformPageData } from '../../config.js';
 import type { ThemeConfig } from '../../src/types.ts';
 import pkg from '../../package.json' with { type: 'json' };
 
@@ -40,7 +40,7 @@ export default defineConfig<ThemeConfig>({
             }
         ]
     ],
-    transformPageData(pageData) {
+    transformPageData(pageData, ctx) {
         if (pageData.frontmatter.layout === 'home') {
             const versionRow = pageData.frontmatter.hero?.meta?.find(
                 (row: { label: string }) => row.label === 'Version'
@@ -50,6 +50,8 @@ export default defineConfig<ThemeConfig>({
                 versionRow.value = pkg.version;
             }
         }
+
+        return ffTransformPageData(pageData, ctx);
     },
     themeConfig: {
         search: {
@@ -146,6 +148,7 @@ export default defineConfig<ThemeConfig>({
         ff: {
             navOrder: 'menu-first',
             progress: true,
+            copyMarkdown: true,
             feedback: {
                 url: 'https://example.com/feedback'
             },

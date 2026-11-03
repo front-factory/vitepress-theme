@@ -31,7 +31,8 @@ export const defaultLabels: Required<ThemeLabels> = {
     feedbackQuestion: 'Was this page helpful?',
     feedbackYes: 'Yes',
     feedbackNo: 'No',
-    feedbackThanks: 'Thanks for your feedback'
+    feedbackThanks: 'Thanks for your feedback',
+    copyMarkdown: 'Copy as Markdown'
 };
 
 /**

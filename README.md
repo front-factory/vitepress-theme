@@ -50,7 +50,7 @@ export default Theme
 
 `extends: baseConfig` is required: it swaps the components the theme replaces, keeps the package out
 of dependency pre-bundling, and injects the inline script that keeps a dismissed banner from
-painting in the built site.
+painting in the built site, and reads each page's source for the copy-as-Markdown button.
 
 The package ships its Vue and TypeScript sources as-is (`main`, `module` and `types` point at
 `src/index.ts`) and relies on Vite to compile them, which `extends: baseConfig` sets up. Tooling that
@@ -159,7 +159,10 @@ themeConfig: {
         // "Was this page helpful?" widget under each doc page. `true`, or an object: `url` receives
         // each vote through `navigator.sendBeacon`, `question` replaces the label. Every vote is
         // also dispatched on `window` as an `ff:feedback` event.
-        feedback: { url: 'https://example.com/feedback' }
+        feedback: { url: 'https://example.com/feedback' },
+
+        // "Copy as Markdown" button in the page kicker. Needs `ffTransformPageData`, see below.
+        copyMarkdown: true
     }
 }
 ```
@@ -181,6 +184,28 @@ shows up as markup. The trust boundary is the config file itself: these strings 
 from whoever writes `themeConfig.ff` in the VitePress config, not from a reader, a comment, or a CMS
 field someone else can edit. If a site ever pipes such input into these fields, sanitize it before it
 reaches the config — the theme does not.
+
+### Copy as Markdown
+
+`copyMarkdown` puts a button in the kicker that copies the page's Markdown source, frontmatter
+removed. The source is read at build time by `ffTransformPageData`, which `extends: baseConfig`
+already wires in. VitePress replaces a hook declared by the site instead of merging it, so a site
+with its own `transformPageData` calls the helper from it and returns the result:
+
+```ts
+import baseConfig, { ffTransformPageData } from '@frontfactory/vitepress-theme/config'
+
+export default defineConfig({
+    extends: baseConfig,
+    transformPageData(pageData, ctx) {
+        // ...your own changes to pageData...
+
+        return ffTransformPageData(pageData, ctx)
+    }
+})
+```
+
+Without the option the helper does nothing, so no source text reaches the bundle.
 
 ## Translating
 
@@ -231,6 +256,7 @@ locales: {
 | `feedbackYes`     | `Yes`                   |
 | `feedbackNo`      | `No`                    |
 | `feedbackThanks`  | `Thanks for your feedback` |
+| `copyMarkdown`    | `Copy as Markdown`      |
 
 The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
 back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is

@@ -4,6 +4,7 @@ import {
 } from 'vue';
 import { useData } from 'vitepress';
 import { useLayout } from '../internal';
+import { useCopy } from '../composables/tabs';
 import { formatRelative } from '../composables/relativeTime';
 import {
     format, useLabels, useThemeOptions 
@@ -109,7 +110,23 @@ const updatedAt = computed(() =>
     page.value.lastUpdated ? new Date(page.value.lastUpdated).toISOString() : undefined
 );
 
-const hidden = computed(() => !meta.value || frontmatter.value.layout === 'home');
+// --------------------------------------------------------------------------------------------- //
+// Copy as Markdown
+//
+// The source is put on the page data at build time by `ffTransformPageData`; without it the
+// button has nothing to copy and stays out.
+// --------------------------------------------------------------------------------------------- //
+
+const markdown = computed(() => (page.value as { ffMarkdown?: string }).ffMarkdown ?? '');
+
+const copyable = computed(() => options.value.copyMarkdown === true && !!markdown.value);
+
+const { copied, copy } = useCopy(markdown);
+
+// The block stays for the button even when the kicker itself is switched off.
+const hidden = computed(
+    () => (!meta.value && !copyable.value) || frontmatter.value.layout === 'home'
+);
 </script>
 
 <template>
@@ -137,5 +154,15 @@ const hidden = computed(() => !meta.value || frontmatter.value.layout === 'home'
         {{ format(labels.lastUpdated, updated) }}
       </time>
     </ClientOnly>
+
+    <button
+      v-if="copyable"
+      type="button"
+      class="ff-doc-meta-copy"
+      :class="{ copied }"
+      @click="copy"
+    >
+      <span aria-live="polite">{{ copied ? labels.heroCopied : labels.copyMarkdown }}</span>
+    </button>
   </div>
 </template>
