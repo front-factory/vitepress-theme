@@ -82,6 +82,8 @@ export type {
     HeroExtras,
     HeroMetaItem,
     MetaConfig,
+    OgConfig,
+    OgFont,
     ThemeConfig,
     ThemeLabels,
     ThemeOptions,

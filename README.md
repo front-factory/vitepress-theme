@@ -174,6 +174,12 @@ themeConfig: {
             rss: { hostname: 'https://example.com' }   // or true with `sitemap.hostname`
         },
 
+        // Open Graph image per page (needs fonts) plus the og:* and twitter:card tags.
+        og: {
+            hostname: 'https://example.com',   // else `sitemap.hostname`
+            fonts: [{ name: 'JetBrains Mono', path: 'fonts/JetBrainsMono-Bold.ttf', weight: 700 }]
+        },
+
         // Version menu beside the site name; each item links to that version's docs.
         versions: {
             current: 'v2',
@@ -262,6 +268,17 @@ excerpt: Shown in the list and in the feed.
 `rss` writes `feed.xml` at the end of the build (through `ffBuildEnd`) and adds the
 `<link rel="alternate">` tag through `ffTransformHead`. It needs the optional peer dependency
 `feed` (`npm install feed`) and an absolute address: `rss.hostname`, else `sitemap.hostname`.
+
+### Open Graph images
+
+`og` draws a 1200x630 PNG for each page into `og/` at the end of the build, and adds `og:image`,
+`og:title`, `og:description` and `twitter:card: summary_large_image` to the page head
+(`ffBuildEnd` and `ffTransformHead`). A page opts out with `og: false` in its frontmatter.
+
+It needs the optional peer dependencies `satori` and `@resvg/resvg-js` (`npm install satori @resvg/resvg-js`),
+at least one font file (TTF, OTF or WOFF, not WOFF2; `path` is relative to the source directory, the first
+font of the list sets the family), and an absolute address (`og.hostname`, else `sitemap.hostname`).
+`true` alone is rejected for lack of a font.
 
 ## Printing
 

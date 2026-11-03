@@ -31,13 +31,6 @@ export default defineConfig<ThemeConfig>({
                 property: 'og:site_name',
                 content: 'Front Factory' 
             }
-        ],
-        [
-            'meta',
-            {
-                name: 'twitter:card',
-                content: 'summary' 
-            }
         ]
     ],
     transformPageData(pageData, ctx) {
@@ -148,6 +141,21 @@ export default defineConfig<ThemeConfig>({
             navOrder: 'menu-first',
             progress: true,
             llms: true,
+            og: {
+                hostname: 'https://example.com',
+                fonts: [
+                    {
+                        name: 'JetBrains Mono',
+                        path: '.vitepress/fonts/JetBrainsMono-Regular.ttf',
+                        weight: 400
+                    },
+                    {
+                        name: 'JetBrains Mono',
+                        path: '.vitepress/fonts/JetBrainsMono-Bold.ttf',
+                        weight: 700
+                    }
+                ]
+            },
             blog: {
                 authors: {
                     ada: {

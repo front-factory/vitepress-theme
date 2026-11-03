@@ -122,6 +122,23 @@ export interface BlogConfig {
     rss?: boolean | BlogRssConfig
 }
 
+/** One font handed to the Open Graph image renderer. */
+export interface OgFont {
+    /** Family name, also used to draw the text. The first font of the list is the one used. */
+    name: string
+    /** TTF, OTF or WOFF file (not WOFF2), relative to the site's source directory. */
+    path: string
+    weight?: number
+    style?: 'normal' | 'italic'
+}
+
+/** Open Graph images, set with `ff.og`. Needs the optional `satori` and `@resvg/resvg-js` packages. */
+export interface OgConfig {
+    fonts: OgFont[]
+    /** Absolute site address the image URLs point to. Defaults to `sitemap.hostname`. */
+    hostname?: string
+}
+
 /** Options of the page feedback widget, when `ff.feedback` is an object instead of `true`. */
 export interface FeedbackConfig {
     /** Endpoint that receives each vote as a `sendBeacon` POST. Without it, only the `ff:feedback` event fires. */
@@ -219,6 +236,12 @@ export interface ThemeOptions {
      * header, and `rss` writes a feed at build time.
      */
     blog?: BlogConfig
+    /**
+     * One 1200x630 PNG per page in `og/`, with the matching `og:image` and `twitter:card` tags.
+     * Off by default; a page opts out with `og: false` in its frontmatter. It needs fonts, so it
+     * is an object (`true` alone is rejected at build time).
+     */
+    og?: boolean | OgConfig
     /** Version menu in the navigation bar, after the other controls. */
     versions?: VersionsConfig
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */

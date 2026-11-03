@@ -124,3 +124,31 @@ export async function readPages(siteConfig) {
 
     return pages;
 }
+
+/** Filename (without extension) of a page's generated image: its source path, flattened. */
+export function ogSlug(page) {
+    return page.replace(/\.md$/, '').replace(/\//g, '-');
+}
+
+/**
+ * Settings of `ff.og`, validated. `satori` cannot draw without a font, and the image URL must be
+ * absolute for crawlers, so both are required: fail with a message that says what to add.
+ */
+export function ogOptions(siteConfig) {
+    const og = siteConfig.site.themeConfig?.ff?.og;
+    const hostname = hostnameOf(siteConfig, typeof og === 'object' ? og.hostname : undefined);
+    const fonts = typeof og === 'object' ? og.fonts ?? [] : [];
+
+    if (!fonts.length) {
+        throw new Error('[vitepress-theme] `ff.og` needs at least one font: set `ff.og.fonts` (TTF, OTF or WOFF files).');
+    }
+
+    if (!hostname) {
+        throw new Error('[vitepress-theme] `ff.og` needs an absolute address: set `ff.og.hostname` or `sitemap.hostname`.');
+    }
+
+    return {
+        fonts,
+        hostname
+    };
+}

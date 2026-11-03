@@ -53,6 +53,10 @@ themeConfig: {
         feedback: { url: 'https://example.com/feedback' },
         copyMarkdown: true,
         llms: true,
+        og: {
+            hostname: 'https://example.com',
+            fonts: [{ name: 'JetBrains Mono', path: '.vitepress/fonts/JetBrainsMono-Bold.ttf', weight: 700 }]
+        },
         blog: {
             authors: { ada: { name: 'Ada Lovelace' } },
             rss: { hostname: 'https://example.com' }
@@ -81,6 +85,7 @@ themeConfig: {
 | `feedback` | — | "Was this page helpful?" widget under each doc page. See [Feedback](#feedback). |
 | `copyMarkdown` | `false` | "Copy as Markdown" button in the page kicker. See [Copy as Markdown](#copy-as-markdown). |
 | `llms` | `false` | Writes `llms.txt` and `llms-full.txt` at the end of the build. See [llms.txt](#llms-txt). |
+| `og` | — | Open Graph image for each page, and the matching head tags. See [Open Graph images](#open-graph-images). |
 | `blog` | — | Blog index, post header and RSS feed. See [Blog](#blog). |
 | `versions` | — | Version menu beside the site name. See [Versions](#versions). |
 | `footerColumns` | `[]` | Link columns in the site footer. |
@@ -99,6 +104,7 @@ themeConfig: {
 | `progress: false` | Hides the progress bar. |
 | `feedback: false` | Hides the feedback widget. |
 | `llms: false` | Leaves the page out of `llms.txt` and `llms-full.txt`. |
+| `og: false` | Generates no Open Graph image for the page, and adds no `og:image` tag. |
 | `wide: true` | Widens the text column to the full band and hides the outline. See [Wide layout](/guide/wide). |
 
 ### Banner
@@ -167,6 +173,14 @@ Posts are Markdown pages under `blog.dir` (default `blog`) with a `date` in thei
 | `excerpt` | Summary shown in the list and in the feed. |
 
 `rss` is `true` or `{ hostname?, copyright? }`. It writes `feed.xml` through `ffBuildEnd` and adds the alternate link through `ffTransformHead`. It needs the optional peer dependency `feed` (`npm install feed`) and an absolute address: `rss.hostname`, else `sitemap.hostname`.
+
+### Open Graph images
+
+`og` is an object `{ fonts, hostname? }`. At the end of the build, `ffBuildEnd` draws a 1200x630 PNG per page into `og/` (site name, page title, description, a rule in the accent colour); `ffTransformHead` adds `og:image`, `og:title`, `og:description` and `twitter:card` to the page head.
+
+- `fonts` is a list of `{ name, path, weight?, style? }`. Files are TTF, OTF or WOFF (not WOFF2), `path` is relative to the source directory, and the first font sets the family. This playground uses JetBrains Mono (OFL, licence in `.vitepress/fonts/`).
+- `hostname` is the absolute address the image URLs start with. It defaults to `sitemap.hostname`.
+- It needs the optional peer dependencies `satori` and `@resvg/resvg-js`: `npm install satori @resvg/resvg-js`.
 
 ### Versions
 

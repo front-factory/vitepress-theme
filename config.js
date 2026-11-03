@@ -2,6 +2,8 @@ import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
 import { generateLlms } from './node/llms.js';
+import { generateOg } from './node/og.js';
+import { ogOptions, ogSlug } from './node/pages.js';
 import { generateRss } from './node/rss.js';
 
 const dir = import.meta.dirname;
@@ -57,7 +59,7 @@ export async function ffTransformPageData(pageData, { siteConfig }) {
 
 /**
  * Writes the files generated at the end of the build: `llms.txt` and `llms-full.txt`, the blog's
- * `feed.xml`, each only when its `themeConfig.ff` option is on.
+ * `feed.xml` and the Open Graph images in `og/`, each only when its `themeConfig.ff` option is on.
  *
  * Like every hook, a `buildEnd` declared by the host replaces ours: call this from it.
  *
@@ -73,17 +75,21 @@ export async function ffBuildEnd(siteConfig) {
     if (ff?.blog?.rss) {
         await generateRss(siteConfig);
     }
+
+    if (ff?.og) {
+        await generateOg(siteConfig);
+    }
 }
 
 /**
  * Head entries this theme adds: the accent preset and the banner scripts, which have to run before
- * the first paint, and the link to the blog's RSS feed. A host declaring its own `transformHead` calls this from it and merges the
+ * the first paint, the link to the blog's RSS feed, and the Open Graph and Twitter tags. A host declaring its own `transformHead` calls this from it and merges the
  * result into its own entries.
  *
  * @param {import('vitepress').TransformContext} ctx
  * @returns {import('vitepress').HeadConfig[]}
  */
-export function ffTransformHead({ siteData }) {
+export function ffTransformHead({ siteData, siteConfig, page, pageData }) {
     const ff = siteData.themeConfig?.ff;
     const head = [];
 
@@ -116,6 +122,59 @@ export function ffTransformHead({ siteData }) {
                 href: `${siteData.base}feed.xml`
             }
         ]);
+    }
+
+    // The image itself is drawn by `ffBuildEnd`; the two must agree on its address and on which pages
+    // have one.
+    if (ff?.og && page !== '404.md' && pageData.frontmatter.og !== false) {
+        const { hostname } = ogOptions(siteConfig);
+        const title = pageData.title || siteData.title;
+        const description = pageData.description || siteData.description;
+
+        head.push(
+            [
+                'meta',
+                {
+                    property: 'og:title',
+                    content: title 
+                }
+            ],
+            [
+                'meta',
+                {
+                    property: 'og:description',
+                    content: description 
+                }
+            ],
+            [
+                'meta',
+                {
+                    property: 'og:image',
+                    content: `${hostname}${siteData.base}og/${ogSlug(page)}.png` 
+                }
+            ],
+            [
+                'meta',
+                {
+                    property: 'og:image:width',
+                    content: '1200' 
+                }
+            ],
+            [
+                'meta',
+                {
+                    property: 'og:image:height',
+                    content: '630' 
+                }
+            ],
+            [
+                'meta',
+                {
+                    name: 'twitter:card',
+                    content: 'summary_large_image' 
+                }
+            ]
+        );
     }
 
     return head;
