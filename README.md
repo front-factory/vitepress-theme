@@ -294,6 +294,7 @@ Registered globally, no import needed.
 | Component                                        | Use                                               |
 |--------------------------------------------------|---------------------------------------------------|
 | `<Api name kind signature since deprecated>`     | An API entry: ruled heading, monospaced signature |
+| `<Callout type title>`                           | A `::: tip`-style note usable inside components   |
 | `<CardGrid :columns>` / `<Card title icon link>` | Card grids                                        |
 | `<Steps>`                                        | Wraps an ordered list into a numbered rail        |
 | `<Kbd>`                                          | A key                                             |

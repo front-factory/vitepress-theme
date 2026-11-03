@@ -3,6 +3,7 @@ import DefaultTheme from 'vitepress/theme';
 
 import FfLayout from './layout/FfLayout.vue';
 import Api from './content/Api.vue';
+import Callout from './content/Callout.vue';
 import Card from './content/Card.vue';
 import CardGrid from './content/CardGrid.vue';
 import Kbd from './content/Kbd.vue';
@@ -22,6 +23,7 @@ const theme: Theme = {
     Layout: FfLayout,
     enhanceApp({ app }) {
         app.component('Api', Api);
+        app.component('Callout', Callout);
         app.component('Card', Card);
         app.component('CardGrid', CardGrid);
         app.component('Kbd', Kbd);
@@ -32,6 +34,7 @@ const theme: Theme = {
 export default theme;
 
 export { default as Api } from './content/Api.vue';
+export { default as Callout } from './content/Callout.vue';
 export { default as Card } from './content/Card.vue';
 export { default as CardGrid } from './content/CardGrid.vue';
 export { default as Kbd } from './content/Kbd.vue';

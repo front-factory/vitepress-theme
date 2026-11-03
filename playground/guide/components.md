@@ -1,6 +1,6 @@
 # Components
 
-Five components are registered globally, so any page can use them without an import.
+These components are registered globally, so any page can use them without an import.
 
 ## Cards
 
@@ -47,6 +47,23 @@ Declares the custom properties for a token map.
 Replaced by `refs()`.
 
 </Api>
+
+## Callouts
+
+The same note as a `::: tip` container, for places a container cannot reach — inside another
+component, or with a type bound to data.
+
+<Callout type="warning" title="Heads up">
+
+Callouts take Markdown, as long as it is separated from the tags by blank lines.
+
+</Callout>
+
+<Callout type="tip">
+
+Without a `title`, the type is printed instead.
+
+</Callout>
 
 ## Steps
 
