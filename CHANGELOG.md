@@ -2,6 +2,61 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.0](https://github.com/front-factory/vitepress-theme/compare/v1.7.0...v1.8.0) (2026-11-04)
+
+### Features
+
+* **blog:** add a blog layout with rss feed ([6025542](https://github.com/front-factory/vitepress-theme/commit/60255428b91af2591e48f597c688b9be16547b89))
+* **build:** generate llms.txt ([667dbda](https://github.com/front-factory/vitepress-theme/commit/667dbdaa1e4e8685aff3cda9fe1e01b5a441f24d))
+* **build:** generate open graph images ([b6c2491](https://github.com/front-factory/vitepress-theme/commit/b6c249178798df1cadda134505e009d02d25a47a))
+* **content:** add a Callout component ([928e3b0](https://github.com/front-factory/vitepress-theme/commit/928e3b0400e6ee2ab21e0851211270c647f18eab))
+* **content:** add a FileTree component ([00fca33](https://github.com/front-factory/vitepress-theme/commit/00fca331a234b7d038efe490a52c37496387ab3c))
+* **content:** add new, beta, deprecated and since badge variants ([f252ec6](https://github.com/front-factory/vitepress-theme/commit/f252ec640c34bb3fdb361ab8925fcf873b17c397))
+* **content:** add Tabs and Tab components ([ecb0aff](https://github.com/front-factory/vitepress-theme/commit/ecb0aff234c620d927832e1d93f8ed77b994dada))
+* **content:** add Timeline and TimelineItem components ([0ed25c0](https://github.com/front-factory/vitepress-theme/commit/0ed25c0e8f38f5226871178f33b5c31fbe898436))
+* **doc:** add a copy-as-markdown button ([5de1450](https://github.com/front-factory/vitepress-theme/commit/5de1450a835b17ac42eb71f812569cb8755d12f2))
+* **doc:** add a page feedback widget ([4efd586](https://github.com/front-factory/vitepress-theme/commit/4efd5861312f3d23f4e7926cb3c3940ddf5df072))
+* **i18n:** route banner CTA and API tags through theme labels ([cfff3f9](https://github.com/front-factory/vitepress-theme/commit/cfff3f9408bbd59a376e454f3ed8abaa3ab3f024))
+* **layout:** add a reading progress bar ([e524519](https://github.com/front-factory/vitepress-theme/commit/e5245199deb281c0e3101569d9be7a30cb4a6d83))
+* **layout:** add a wide doc layout ([2cf68f8](https://github.com/front-factory/vitepress-theme/commit/2cf68f89dbb0c7ce6b0295fddf4b5ba3a4b9b276))
+* **nav:** add a version switcher ([fd26deb](https://github.com/front-factory/vitepress-theme/commit/fd26deb1d3bd56950518485d1166416bca4d328a))
+* **styles:** add print styles ([2ff9899](https://github.com/front-factory/vitepress-theme/commit/2ff9899f6c88c7c337dfd06d30145a12def94a65))
+* **theme:** add accent presets ([97c38cc](https://github.com/front-factory/vitepress-theme/commit/97c38cc382045b2a3c62f09b4b06f920ac203d39))
+* **timeline:** add a level prop for entry headings ([82476b9](https://github.com/front-factory/vitepress-theme/commit/82476b9a94f1e92c7c638e1dc3665af0400e2e7c))
+* **tokens:** add an enter duration token for the hero animation ([13d9e19](https://github.com/front-factory/vitepress-theme/commit/13d9e19875075e3734a8c725751b25dded21020d))
+
+### Bug Fixes
+
+* **a11y:** announce code block copies to screen readers ([83b45a3](https://github.com/front-factory/vitepress-theme/commit/83b45a38c83ecc2651b647afba56a4184829116d))
+* **a11y:** expose the hero command switcher as tabs ([90bd51c](https://github.com/front-factory/vitepress-theme/commit/90bd51c25b4ae75f4d9ea749456067380cbec6ce))
+* **a11y:** hand focus to the skip link when the banner is dismissed ([4c455f5](https://github.com/front-factory/vitepress-theme/commit/4c455f58de5b9247adcb1fd596899aed207254ba))
+* **a11y:** include the current version in the version switcher name ([73ef48b](https://github.com/front-factory/vitepress-theme/commit/73ef48be2c306bd9086fda0ac4a01216d34956b9))
+* **a11y:** link only the feature title, stretched over the card ([d55d946](https://github.com/front-factory/vitepress-theme/commit/d55d946c302273d27fc22ce2632da1dc9eff01fb))
+* **a11y:** make doc link underline visible by default ([a45d78c](https://github.com/front-factory/vitepress-theme/commit/a45d78c539c0689d0962a1154ab0d96e887f900d))
+* **a11y:** move focus to the thank-you line after a feedback vote ([990577b](https://github.com/front-factory/vitepress-theme/commit/990577b70d3f2a08485adbdb32a7c7ea0bb31955))
+* align vite peer range with the one vitepress 2 requires ([e5da335](https://github.com/front-factory/vitepress-theme/commit/e5da3351a7106fd7ba9a0bb464be778dff192289))
+* **blog:** annotate posts loader type to fix declaration build ([5a422c3](https://github.com/front-factory/vitepress-theme/commit/5a422c37002d7df04d87adc254e344109b5d7b1c))
+* **code:** keep removed diff lines at full opacity for contrast ([0d1956c](https://github.com/front-factory/vitepress-theme/commit/0d1956cee66bc93e1369f8991b610ea796a26b92))
+* **code:** keep the copy button fully opaque for non-text contrast ([a94e45b](https://github.com/front-factory/vitepress-theme/commit/a94e45b5b38f3482e9a09a7727e22394468542f7))
+* **dark:** add shadow tokens with a dark scheme variant ([742b858](https://github.com/front-factory/vitepress-theme/commit/742b8584736088ff339cd4fdceed6bf11d3bb8ed))
+* make vite a required peer dependency ([08b0df4](https://github.com/front-factory/vitepress-theme/commit/08b0df4f436b696ded556a6192874013fc426797))
+* **motion:** honour reduced motion on the nav underline ([cf70693](https://github.com/front-factory/vitepress-theme/commit/cf706934a8295e1cac2b3f770b992cbf62fb6c49))
+* observe banner height when it mounts after the layout ([27949c6](https://github.com/front-factory/vitepress-theme/commit/27949c6b14dda17b53a716f8dd4fd989d44a72af))
+* resolve hero, banner and sponsors links against site base ([2f1ed04](https://github.com/front-factory/vitepress-theme/commit/2f1ed043c7b653e2a632cb495f362896a8886f41))
+* **responsive:** align content breakpoints on 640px without overlap ([66d5e34](https://github.com/front-factory/vitepress-theme/commit/66d5e34032a9e5c4cfa061c390de0041a197f1ab))
+* ship generated type declarations instead of raw sources ([6aafc8d](https://github.com/front-factory/vitepress-theme/commit/6aafc8d11184f58fd90f7fbbcb161580ca4fa127))
+
+### Performance
+
+* only listen to scroll and measure the page when their option is on ([9a14af7](https://github.com/front-factory/vitepress-theme/commit/9a14af7a9397572eba7478726185145e9d634716))
+* render the hero image slot once per render ([684d78e](https://github.com/front-factory/vitepress-theme/commit/684d78e8e35b29c002be0ccd0ca125cbb1dca2dc))
+* stop the hero glow animation while the glow is disabled ([2ea95f5](https://github.com/front-factory/vitepress-theme/commit/2ea95f556cf9966b348b3c81f780297d93b6ea8d))
+
+### Dependencies
+
+* **deps:** add feed as an optional peer dependency ([198d81e](https://github.com/front-factory/vitepress-theme/commit/198d81e9d44eba4c92e39b0c4f468f7c85262822))
+* **deps:** add satori and resvg as optional peer dependencies ([5e8fefa](https://github.com/front-factory/vitepress-theme/commit/5e8fefa242b8b0b870e30af22294ee7f72aa840c))
+
 ## [1.7.0](https://github.com/front-factory/vitepress-theme/compare/v1.6.0...v1.7.0) (2026-10-11)
 
 ### Features
