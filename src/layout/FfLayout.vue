@@ -4,6 +4,7 @@ import { useData } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import FfBackToTop from '../components/FfBackToTop.vue';
 import FfBanner from '../components/FfBanner.vue';
+import FfCopyStatus from '../components/FfCopyStatus.vue';
 import FfDocMeta from '../components/FfDocMeta.vue';
 import FfFeedback from '../components/FfFeedback.vue';
 import FfPost from '../components/FfPost.vue';
@@ -55,6 +56,7 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
       <template #layout-bottom>
         <slot name="layout-bottom" />
         <FfBackToTop />
+        <FfCopyStatus />
       </template>
 
       <template
