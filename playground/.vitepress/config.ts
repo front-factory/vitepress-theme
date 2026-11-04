@@ -33,6 +33,114 @@ export default defineConfig<ThemeConfig>({
             }
         ]
     ],
+    locales: {
+        root: {
+            label: 'English',
+            lang: 'en'
+        },
+        fr: {
+            label: 'Français',
+            lang: 'fr',
+            link: '/fr/',
+            title: 'Front Factory',
+            description: 'Un thème VitePress éditorial.',
+            themeConfig: {
+                nav: [
+                    {
+                        text: 'Guide',
+                        link: '/fr/guide/getting-started'
+                    },
+                    {
+                        text: 'Composants',
+                        link: '/fr/guide/components'
+                    },
+                    {
+                        text: 'Blog',
+                        link: '/blog/'
+                    },
+                    {
+                        text: 'Équipe',
+                        link: '/fr/team'
+                    }
+                ],
+                editLink: {
+                    pattern: 'https://example.com/edit/:path',
+                    text: 'Modifier cette page'
+                },
+                footer: {
+                    message: 'Développé avec amour.',
+                    copyright: 'Copyright © 2026 <a href="https://frontfactory.dev">Front Factory</a>.'
+                },
+                outline: {
+                    label: 'Sur cette page'
+                },
+                docFooter: {
+                    prev: 'Page précédente',
+                    next: 'Page suivante'
+                },
+                darkModeSwitchLabel: 'Apparence',
+                sidebarMenuLabel: 'Menu',
+                returnToTopLabel: 'Retour en haut',
+                langMenuLabel: 'Changer de langue',
+                skipToContentLabel: 'Aller au contenu',
+                ff: {
+                    // Same shape as the root columns: arrays are merged index by index.
+                    footerColumns: [
+                        {
+                            title: 'Guide',
+                            items: [
+                                {
+                                    text: 'Prise en main',
+                                    link: '/fr/guide/getting-started'
+                                },
+                                {
+                                    text: 'Configuration',
+                                    link: '/guide/configuration'
+                                }
+                            ]
+                        },
+                        {
+                            title: 'Projet',
+                            items: [
+                                {
+                                    text: 'GitHub',
+                                    link: 'https://github.com'
+                                },
+                                {
+                                    text: 'Journal des modifications',
+                                    link: 'https://github.com'
+                                }
+                            ]
+                        }
+                    ],
+                    labels: {
+                        bannerDismiss: 'Fermer l’annonce',
+                        readingTime: '{0} min de lecture',
+                        lastUpdated: 'Mis à jour {0}',
+                        heroInstall: 'Installation',
+                        heroCopied: 'Copié',
+                        heroCopyLabel: 'Copier {0}',
+                        backToTop: 'Haut',
+                        footerSocial: 'Suivre',
+                        newTab: 's’ouvre dans un nouvel onglet',
+                        sponsors: 'Sponsors',
+                        sponsorsAction: 'Devenir sponsor',
+                        apiSince: 'depuis {0}',
+                        apiDeprecated: 'obsolète',
+                        bannerCta: 'En savoir plus',
+                        feedbackQuestion: 'Cette page vous a-t-elle été utile ?',
+                        feedbackYes: 'Oui',
+                        feedbackNo: 'Non',
+                        feedbackThanks: 'Merci pour votre retour',
+                        copyMarkdown: 'Copier en Markdown',
+                        versionSwitcher: 'Version',
+                        blogBy: 'Par {0}',
+                        blogEmpty: 'Aucun article pour le moment'
+                    }
+                }
+            }
+        }
+    },
     transformPageData(pageData, ctx) {
         if (pageData.frontmatter.layout === 'home') {
             const versionRow = pageData.frontmatter.hero?.meta?.find(
@@ -72,53 +180,79 @@ export default defineConfig<ThemeConfig>({
                 link: '/team'
             }
         ],
-        sidebar: [
-            {
-                text: 'Introduction',
-                items: [
-                    {
-                        text: 'Getting started',
-                        link: '/guide/getting-started' 
-                    },
-                    {
-                        text: 'Configuration',
-                        link: '/guide/configuration' 
-                    }
-                ]
-            },
-            {
-                text: 'Writing',
-                items: [
-                    {
-                        text: 'Components',
-                        link: '/guide/components'
-                    },
-                    {
-                        text: 'Markdown',
-                        link: '/guide/markdown'
-                    },
-                    {
-                        text: 'Wide layout',
-                        link: '/guide/wide'
-                    }
-                ]
-            },
-            {
-                text: 'Nesting demo',
-                collapsed: true,
-                items: [
-                    {
-                        text: 'Sub-section',
-                        items: [
-                            {
-                                text: 'Deep link',
-                                link: '/guide/markdown'
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
+        sidebar: {
+            '/fr/': [
+                {
+                    text: 'Introduction',
+                    items: [
+                        {
+                            text: 'Prise en main',
+                            link: '/fr/guide/getting-started'
+                        }
+                    ]
+                },
+                {
+                    text: 'Rédaction',
+                    items: [
+                        {
+                            text: 'Composants',
+                            link: '/fr/guide/components'
+                        },
+                        {
+                            text: 'Mise en page large',
+                            link: '/fr/guide/wide'
+                        }
+                    ]
+                }
+            ],
+            '/': [
+                {
+                    text: 'Introduction',
+                    items: [
+                        {
+                            text: 'Getting started',
+                            link: '/guide/getting-started' 
+                        },
+                        {
+                            text: 'Configuration',
+                            link: '/guide/configuration' 
+                        }
+                    ]
+                },
+                {
+                    text: 'Writing',
+                    items: [
+                        {
+                            text: 'Components',
+                            link: '/guide/components'
+                        },
+                        {
+                            text: 'Markdown',
+                            link: '/guide/markdown'
+                        },
+                        {
+                            text: 'Wide layout',
+                            link: '/guide/wide'
+                        }
+                    ]
+                },
+                {
+                    text: 'Nesting demo',
+                    collapsed: true,
+                    items: [
+                        {
+                            text: 'Sub-section',
+                            items: [
+                                {
+                                    text: 'Deep link',
+                                    link: '/guide/markdown'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
         socialLinks: [
             {
                 icon: 'github',
