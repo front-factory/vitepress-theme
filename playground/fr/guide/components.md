@@ -116,6 +116,8 @@ pnpm docs:dev
 
 ## Chronologie
 
+Les titres des entrées sont des `<h3>` par défaut. Réglez `level` sur `<Timeline>` (de 2 à 6) pour suivre le plan de la page.
+
 <Timeline>
 <TimelineItem date="2026" title="Composants">
 

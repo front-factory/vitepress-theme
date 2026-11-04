@@ -723,7 +723,13 @@
         margin: 0.25rem 0 0;
         padding: 0;
         border: 0;
+        font-family: #{mg.ref("font-display")};
         font-size: 1.0625rem;
+
+        // Pinned rather than inherited: the title can be any heading level (see Timeline `level`).
+        font-weight: 600;
+        font-variation-settings: "opsz" 32;
+        line-height: 1.75rem;
         letter-spacing: normal;
     }
 

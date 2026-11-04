@@ -116,6 +116,8 @@ pnpm docs:dev
 
 ## Timeline
 
+Entry titles are `<h3>` by default. Set `level` on `<Timeline>` (2 to 6) to fit the surrounding outline.
+
 <Timeline>
 <TimelineItem date="2026" title="Components">
 

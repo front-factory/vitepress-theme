@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { inject, ref } from 'vue';
+import { TIMELINE_LEVEL } from './timeline';
+
+// h3 outside a <Timeline>, matching the timeline's own default.
+const level = inject(TIMELINE_LEVEL, ref(3));
+
 defineProps<{
     /** Date or period, printed as a small monospaced label above the title. */
     date?: string
@@ -16,12 +22,13 @@ defineProps<{
       {{ date }}
     </p>
 
-    <h3
+    <component
+      :is="`h${level}`"
       v-if="title"
       class="ff-timeline-title"
     >
       {{ title }}
-    </h3>
+    </component>
 
     <div class="ff-timeline-body">
       <slot />
