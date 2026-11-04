@@ -24,7 +24,9 @@
         "src/**/*.ts",
         "src/**/*.vue",
         "config.d.ts",
-        "playground/.vitepress/**/*.ts"
+        "playground/.vitepress/**/*.ts",
+        "playwright.config.ts",
+        "tests/**/*.ts"
     ],
     "exclude": [
         "node_modules",

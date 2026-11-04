@@ -13,3 +13,7 @@
 /playground/.vitepress/cache
 /playground/.vitepress/dist
 /types
+
+## Tests
+/playwright-report
+/test-results
