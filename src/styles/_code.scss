@@ -53,11 +53,8 @@
         border-radius: #{mg.ref("radius-sm")};
         background-color: transparent;
         background-size: 0.875rem;
-        opacity: 0.55;
-    }
 
-    .vp-doc [class*="language-"]:hover > button.copy,
-    .vp-doc [class*="language-"] > button.copy:focus {
+        // Fully opaque at rest: dimmed, the grey icon falls under the 3:1 non-text contrast minimum.
         opacity: 1;
     }
 
