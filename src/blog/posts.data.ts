@@ -1,4 +1,4 @@
-import { createContentLoader } from 'vitepress';
+import { createContentLoader, type LoaderModule } from 'vitepress';
 import type { ThemeConfig } from '../types.ts';
 
 export interface Post {
@@ -22,7 +22,8 @@ const { site } = (globalThis as unknown as { VITEPRESS_CONFIG: { site: { themeCo
     .VITEPRESS_CONFIG;
 const dir = (site.themeConfig?.ff?.blog?.dir ?? 'blog').replace(/^\/+|\/+$/g, '');
 
-export default createContentLoader([
+// Annotated so the emitted declaration doesn't reference VitePress's private `GlobOptions` (TS4082).
+const loader: LoaderModule<Post[]> = createContentLoader([
     `${dir}/**/*.md`,
     `!${dir}/index.md`
 ], {
@@ -41,3 +42,5 @@ export default createContentLoader([
             .sort((a, b) => b.date.localeCompare(a.date));
     }
 });
+
+export default loader;
