@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-    computed, ref, watch 
+    computed, nextTick, ref, watch
 } from 'vue';
 import { useData } from 'vitepress';
 import { useLabels, useThemeOptions } from '../composables/options';
@@ -22,6 +22,7 @@ const config = computed(() => {
 const question = computed(() => config.value?.question || labels.value.feedbackQuestion);
 
 const voted = ref(false);
+const thanks = ref<HTMLElement | null>(null);
 
 // The widget is reused across client-side navigation, so each page starts unanswered.
 watch(() => page.value.relativePath, () => (voted.value = false));
@@ -34,6 +35,9 @@ function vote(value: 'yes' | 'no') {
     };
 
     voted.value = true;
+
+    // The buttons leave the DOM with the vote: hand focus to the thank-you line instead of <body>.
+    nextTick(() => thanks.value?.focus());
 
     // A string keeps the request CORS-safelisted (text/plain); a JSON Blob would trigger a
     // preflight that cross-origin endpoints rarely answer.
@@ -81,7 +85,9 @@ function vote(value: 'yes' | 'no') {
     </div>
 
     <p
+      ref="thanks"
       class="ff-feedback-thanks ff-label"
+      tabindex="-1"
       aria-live="polite"
     >
       {{ voted ? labels.feedbackThanks : '' }}
