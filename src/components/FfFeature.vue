@@ -15,9 +15,11 @@ const props = defineProps<{
 </script>
 
 <template>
-  <VPLink
+  <!-- Only the title is the link, stretched over the card in CSS: wrapping the whole card made the
+       heading, details and call to action all part of the link's accessible name. -->
+  <article
     class="VPFeature ff-feature"
-    v-bind="cardLinkProps(props.link, props.rel, props.target)"
+    :class="{ 'ff-feature-linked': link }"
   >
     <span
       class="ff-feature-index"
@@ -42,10 +44,19 @@ const props = defineProps<{
       v-html="icon"
     />
 
-    <h2
-      class="ff-feature-title"
-      v-html="title"
-    />
+    <h2 class="ff-feature-title">
+      <VPLink
+        v-if="link"
+        class="ff-feature-anchor"
+        v-bind="cardLinkProps(props.link, props.rel, props.target)"
+      >
+        <span v-html="title" />
+      </VPLink>
+      <span
+        v-else
+        v-html="title"
+      />
+    </h2>
 
     <ul
       v-if="Array.isArray(details)"
@@ -70,5 +81,5 @@ const props = defineProps<{
       {{ linkText }}
       <span aria-hidden="true">&#8594;</span>
     </span>
-  </VPLink>
+  </article>
 </template>

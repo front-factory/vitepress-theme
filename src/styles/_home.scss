@@ -540,7 +540,7 @@
         transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
-    a.ff-feature:hover .ff-feature-index::before {
+    .ff-feature-linked:hover .ff-feature-index::before {
         color: #{mg.ref("color-accent")};
     }
 
@@ -562,6 +562,28 @@
         font-weight: 620;
         letter-spacing: -0.015em;
         color: #{mg.ref("color-ink")};
+    }
+
+    .ff-feature-anchor {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    // Stretched over the whole card, so it stays clickable everywhere.
+    .ff-feature-anchor::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
+
+    // The focus ring goes around the card the link covers, not around the title alone.
+    .ff-feature-anchor:focus-visible {
+        outline: none;
+    }
+
+    .ff-feature:has(.ff-feature-anchor:focus-visible) {
+        outline: 2px solid #{mg.ref("color-accent")};
+        outline-offset: -2px;
     }
 
     .ff-feature-icon + .ff-feature-title {

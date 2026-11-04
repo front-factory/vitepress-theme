@@ -160,7 +160,7 @@
         transition: opacity #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
     }
 
-    a.ff-feature:hover::after {
+    .ff-feature-linked:hover::after {
         opacity: 1;
     }
 
