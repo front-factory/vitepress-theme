@@ -90,9 +90,34 @@ export function useTabs(labels: MaybeRefOrGetter<string[]>, syncKey?: MaybeRefOr
         }
     });
 
+    // Roving focus across the tab list, as the ARIA tabs pattern expects: arrows wrap around, Home
+    // and End jump to the ends, and selection follows focus. Bound on the `role="tablist"` element.
+    function onKeydown(event: KeyboardEvent) {
+        const count = toValue(labels).length;
+        const targets: Record<string, number> = {
+            ArrowRight: (active.value + 1) % count,
+            ArrowLeft: (active.value - 1 + count) % count,
+            Home: 0,
+            End: count - 1
+        };
+        const next = targets[event.key];
+
+        if (next === undefined) {
+            return;
+        }
+
+        event.preventDefault();
+        select(next);
+
+        const tabs = (event.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('[role="tab"]');
+
+        tabs[next]?.focus();
+    }
+
     return {
         active,
-        select
+        select,
+        onKeydown
     };
 }
 

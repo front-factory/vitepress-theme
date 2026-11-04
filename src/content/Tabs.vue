@@ -31,31 +31,7 @@ function labels() {
     return panels().map((node) => String(node.props?.label ?? ''));
 }
 
-const { active, select } = useTabs(labels, () => props.syncKey);
-
-// Roving focus across the tab list, as the ARIA tabs pattern expects: arrows wrap around, Home
-// and End jump to the ends, and selection follows focus.
-function onKeydown(event: KeyboardEvent) {
-    const count = labels().length;
-    const targets: Record<string, number> = {
-        ArrowRight: (active.value + 1) % count,
-        ArrowLeft: (active.value - 1 + count) % count,
-        Home: 0,
-        End: count - 1
-    };
-    const next = targets[event.key];
-
-    if (next === undefined) {
-        return;
-    }
-
-    event.preventDefault();
-    select(next);
-
-    const tabs = (event.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('[role="tab"]');
-
-    tabs[next]?.focus();
-}
+const { active, select, onKeydown } = useTabs(labels, () => props.syncKey);
 </script>
 
 <template>
