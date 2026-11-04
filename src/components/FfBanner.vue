@@ -39,8 +39,17 @@ function dismiss() {
         // Private mode or full quota: the banner is dismissed for this page view only.
     }
 
+    // Read before hiding: a mouse click leaves no visible focus, so only a keyboard user is moved.
+    const keyboard = document.activeElement?.matches(':focus-visible') ?? false;
+
     document.documentElement.classList.add(DISMISSED);
     height();
+
+    // The banner goes `display: none` under the focused close button. Hand focus to the next stop,
+    // VitePress' skip link, instead of letting it drop to <body>.
+    if (keyboard) {
+        document.querySelector<HTMLElement>('.VPSkipLink')?.focus();
+    }
 }
 
 // The banner can appear or go away after mount (locale switch, `v-if`), so the observer follows the
