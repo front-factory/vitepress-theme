@@ -20,14 +20,36 @@ export default defineConfig({
     ] : 'list',
     use: {
         baseURL: 'http://localhost:4173',
-        reducedMotion: 'reduce',
-        colorScheme: 'light'
+        reducedMotion: 'reduce'
     },
+    // The playground keeps VitePress' default `appearance: 'auto'`, so `colorScheme` drives `.dark`.
     projects: [
         {
-            name: 'chromium',
+            name: 'desktop-light',
             use: {
-                ...devices['Desktop Chrome'] 
+                ...devices['Desktop Chrome'],
+                colorScheme: 'light'
+            }
+        },
+        {
+            name: 'desktop-dark',
+            use: {
+                ...devices['Desktop Chrome'],
+                colorScheme: 'dark'
+            }
+        },
+        {
+            name: 'mobile-light',
+            use: {
+                ...devices['Pixel 7'],
+                colorScheme: 'light'
+            }
+        },
+        {
+            name: 'mobile-dark',
+            use: {
+                ...devices['Pixel 7'],
+                colorScheme: 'dark'
             }
         }
     ],
