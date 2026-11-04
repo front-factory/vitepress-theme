@@ -111,8 +111,11 @@
         box-shadow: inset #{mg.ref("rule-accent-width")} 0 0 0 #{mg.ref("color-success")};
     }
 
+    // The default theme also fades a removed line to 0.7, which drops its tokens below 4.5:1; the
+    // rule and the "-" marker already say the line is gone.
     .vp-doc [class*="language-"] code .diff.remove {
         box-shadow: inset #{mg.ref("rule-accent-width")} 0 0 0 #{mg.ref("color-danger")};
+        opacity: 1;
     }
 
     // ----------------------------------------------------------------------------------------- //
