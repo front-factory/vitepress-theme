@@ -184,7 +184,7 @@ Posts are Markdown pages under `blog.dir` (default `blog`) with a `date` in thei
 
 ### Versions
 
-`current` is the text of the menu button; `items` are `{ text, link }` entries, one per other version of the docs. `labels.versionSwitcher` is the menu's accessible name.
+`current` is the text of the menu button; `items` are `{ text, link }` entries, one per other version of the docs. `labels.versionSwitcher` starts the menu's accessible name, followed by `current` so the name contains the visible text.
 
 ## Translating
 

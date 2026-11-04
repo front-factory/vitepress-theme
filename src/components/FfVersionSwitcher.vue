@@ -15,6 +15,6 @@ const versions = computed(() => options.value.versions);
     class="ff-version-switcher"
     :button="versions.current"
     :items="versions.items"
-    :label="labels.versionSwitcher"
+    :label="`${labels.versionSwitcher} ${versions.current}`"
   />
 </template>

@@ -88,7 +88,7 @@ export interface ThemeLabels {
     feedbackThanks?: string
     /** Button copying the page as Markdown. Defaults to `Copy as Markdown`. */
     copyMarkdown?: string
-    /** Accessible name of the version menu. Defaults to `Version`. */
+    /** Accessible name of the version menu, followed by the current version. Defaults to `Version`. */
     versionSwitcher?: string
     /** Author line of a post; `{0}` is the name. Defaults to `By {0}`. */
     blogBy?: string
