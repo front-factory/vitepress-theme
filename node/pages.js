@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -86,6 +87,16 @@ export function hostnameOf(siteConfig, explicit) {
 }
 
 /**
+ * Whether a page has a source file on disk. Dynamic routes and generated pages do not.
+ *
+ * @param {import('vitepress').SiteConfig} siteConfig
+ * @param {string} page Path relative to `srcDir`.
+ */
+export function hasSource(siteConfig, page) {
+    return existsSync(join(siteConfig.srcDir, page));
+}
+
+/**
  * Every Markdown page of the site, source read and frontmatter parsed. `404.md` is left out.
  *
  * @param {import('vitepress').SiteConfig} siteConfig
@@ -98,15 +109,12 @@ export async function readPages(siteConfig) {
             continue;
         }
 
-        let source;
-
-        try {
-            source = await readFile(join(siteConfig.srcDir, page), 'utf8');
-        } catch {
-            // Dynamic route or generated page: no source to read.
+        // Dynamic route or generated page: no source to read.
+        if (!hasSource(siteConfig, page)) {
             continue;
         }
 
+        const source = await readFile(join(siteConfig.srcDir, page), 'utf8');
         const { data, body } = parseSource(source);
         const heading = /^#\s+(.+)$/m.exec(body)?.[1].trim();
 

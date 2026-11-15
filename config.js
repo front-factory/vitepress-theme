@@ -3,7 +3,9 @@ import { join, resolve } from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
 import { generateLlms } from './node/llms.js';
 import { generateOg } from './node/og.js';
-import { ogOptions, ogSlug } from './node/pages.js';
+import {
+    hasSource, ogOptions, ogSlug
+} from './node/pages.js';
 import { generateRss } from './node/rss.js';
 
 const dir = import.meta.dirname;
@@ -145,36 +147,42 @@ export function ffTransformHead({ siteData, siteConfig, page, pageData }) {
                     property: 'og:description',
                     content: description 
                 }
-            ],
-            [
-                'meta',
-                {
-                    property: 'og:image',
-                    content: `${hostname}${siteData.base}og/${ogSlug(page)}.png` 
-                }
-            ],
-            [
-                'meta',
-                {
-                    property: 'og:image:width',
-                    content: '1200' 
-                }
-            ],
-            [
-                'meta',
-                {
-                    property: 'og:image:height',
-                    content: '630' 
-                }
-            ],
-            [
-                'meta',
-                {
-                    name: 'twitter:card',
-                    content: 'summary_large_image' 
-                }
             ]
         );
+
+        // No source file, no image drawn: leave out the tags that point to it.
+        if (pageData.filePath && hasSource(siteConfig, pageData.filePath)) {
+            head.push(
+                [
+                    'meta',
+                    {
+                        property: 'og:image',
+                        content: `${hostname}${siteData.base}og/${ogSlug(page)}.png`
+                    }
+                ],
+                [
+                    'meta',
+                    {
+                        property: 'og:image:width',
+                        content: '1200'
+                    }
+                ],
+                [
+                    'meta',
+                    {
+                        property: 'og:image:height',
+                        content: '630'
+                    }
+                ],
+                [
+                    'meta',
+                    {
+                        name: 'twitter:card',
+                        content: 'summary_large_image'
+                    }
+                ]
+            );
+        }
     }
 
     return head;
