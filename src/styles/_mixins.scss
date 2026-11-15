@@ -1,0 +1,47 @@
+// ============================================================================================= //
+//                                            MIXINS                                             //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+// A tab in a strip under which the active one carries the accent rule. Shared by the hero panel
+// tabs and the tabs block.
+
+@mixin tab {
+    position: relative;
+    padding: 0 0.75rem 0.625rem;
+    border: 0;
+    background: transparent;
+    font-family: #{mg.ref("font-mono")};
+    font-size: #{mg.ref("size-label")};
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: #{mg.ref("tracking-label")};
+    color: #{mg.ref("color-ink-faint")};
+    cursor: pointer;
+    transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+
+    &:first-child {
+        padding-left: 0;
+    }
+
+    &::after {
+        position: absolute;
+        right: 0;
+        bottom: calc(#{mg.ref("rule-accent-width")} * -1);
+        left: 0;
+        height: #{mg.ref("rule-accent-width")};
+        background: transparent;
+        content: "";
+        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    &:hover,
+    &.active {
+        color: #{mg.ref("color-ink")};
+    }
+
+    &.active::after {
+        background: #{mg.ref("color-accent")};
+    }
+}

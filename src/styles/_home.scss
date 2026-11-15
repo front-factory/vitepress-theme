@@ -3,6 +3,7 @@
 // ============================================================================================= //
 
 @use "breakpoints" as bp;
+@use "mixins";
 @use "theme" as mg;
 
 .ff-theme {
@@ -183,45 +184,7 @@
     }
 
     .ff-hero-command-tab {
-        position: relative;
-        padding: 0 0.75rem 0.625rem;
-        border: 0;
-        background: transparent;
-        font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: #{mg.ref("tracking-label")};
-        color: #{mg.ref("color-ink-faint")};
-        cursor: pointer;
-        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    .ff-hero-command-tab:first-child {
-        padding-left: 0;
-    }
-
-    .ff-hero-command-tab::after {
-        position: absolute;
-        right: 0;
-        bottom: calc(#{mg.ref("rule-accent-width")} * -1);
-        left: 0;
-        height: #{mg.ref("rule-accent-width")};
-        background: transparent;
-        content: "";
-        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    .ff-hero-command-tab:hover {
-        color: #{mg.ref("color-ink")};
-    }
-
-    .ff-hero-command-tab.active {
-        color: #{mg.ref("color-ink")};
-    }
-
-    .ff-hero-command-tab.active::after {
-        background: #{mg.ref("color-accent")};
+        @include mixins.tab;
     }
 
     // Same panel, dropped under the text instead of beside it — an image already claims the

@@ -3,6 +3,7 @@
 // ============================================================================================= //
 
 @use "breakpoints" as bp;
+@use "mixins";
 @use "theme" as mg;
 
 // The dismissal class is set on <html>, outside the themed root. It carries the themed root in the
@@ -705,42 +706,7 @@
     }
 
     .vp-doc .ff-tabs-tab {
-        position: relative;
-        padding: 0 0.75rem 0.625rem;
-        border: 0;
-        background: transparent;
-        font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: #{mg.ref("tracking-label")};
-        color: #{mg.ref("color-ink-faint")};
-        cursor: pointer;
-        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    .vp-doc .ff-tabs-tab:first-child {
-        padding-left: 0;
-    }
-
-    .vp-doc .ff-tabs-tab::after {
-        position: absolute;
-        right: 0;
-        bottom: calc(#{mg.ref("rule-accent-width")} * -1);
-        left: 0;
-        height: #{mg.ref("rule-accent-width")};
-        background: transparent;
-        content: "";
-        transition: background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
-    }
-
-    .vp-doc .ff-tabs-tab:hover,
-    .vp-doc .ff-tabs-tab.active {
-        color: #{mg.ref("color-ink")};
-    }
-
-    .vp-doc .ff-tabs-tab.active::after {
-        background: #{mg.ref("color-accent")};
+        @include mixins.tab;
     }
 
     // The first and last blocks of a panel carry their own margins, which would double up with
