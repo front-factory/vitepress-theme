@@ -353,7 +353,7 @@
     .ff-hero-meta dd {
         margin: 0;
         font-family: #{mg.ref("font-display")};
-        font-size: 1.125rem;
+        font-size: #{mg.ref("size-lead")};
         font-weight: 600;
         letter-spacing: -0.01em;
         color: #{mg.ref("color-ink")};
