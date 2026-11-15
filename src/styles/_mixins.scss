@@ -4,20 +4,27 @@
 
 @use "theme" as mg;
 
-// A tab in a strip under which the active one carries the accent rule. Shared by the hero panel
-// tabs and the tabs block.
+// The label voice: small uppercase mono, faint. Also the `.ff-label` class.
 
-@mixin tab {
-    position: relative;
-    padding: 0 0.75rem 0.625rem;
-    border: 0;
-    background: transparent;
+@mixin label {
     font-family: #{mg.ref("font-mono")};
     font-size: #{mg.ref("size-label")};
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: #{mg.ref("tracking-label")};
     color: #{mg.ref("color-ink-faint")};
+}
+
+// A tab in a strip under which the active one carries the accent rule. Shared by the hero panel
+// tabs and the tabs block.
+
+@mixin tab {
+    @include label;
+
+    position: relative;
+    padding: 0 0.75rem 0.625rem;
+    border: 0;
+    background: transparent;
     cursor: pointer;
     transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
 

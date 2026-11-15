@@ -3,6 +3,7 @@
 // ============================================================================================= //
 
 @use "breakpoints" as bp;
+@use "mixins";
 @use "theme" as mg;
 
 // The frame: the band every page lives in.
@@ -268,13 +269,9 @@
         border: 0;
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
         background: transparent;
-        font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
-        font-weight: 500;
         text-align: left;
-        text-transform: uppercase;
-        letter-spacing: #{mg.ref("tracking-label")};
-        color: #{mg.ref("color-ink-faint")};
+
+        @include mixins.label;
     }
 
     .vp-doc td {
@@ -344,12 +341,7 @@
     }
 
     .VPDocFooter .pager-link .desc {
-        font-family: #{mg.ref("font-mono")};
-        font-size: #{mg.ref("size-label")};
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: #{mg.ref("tracking-label")};
-        color: #{mg.ref("color-ink-faint")};
+        @include mixins.label;
     }
 
     .VPDocFooter .pager-link .title {

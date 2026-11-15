@@ -2,6 +2,7 @@
 //                                             BASE                                              //
 // ============================================================================================= //
 
+@use "mixins";
 @use "theme" as mg;
 
 // Everything the theme restyles is scoped under .ff-theme, the class the layout puts on its root
@@ -24,13 +25,9 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    font-family: #{mg.ref("font-mono")};
-    font-size: #{mg.ref("size-label")};
-    font-weight: 500;
     line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: #{mg.ref("tracking-label")};
-    color: #{mg.ref("color-ink-faint")};
+
+    @include mixins.label;
 }
 
 .ff-display {
