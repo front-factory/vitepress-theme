@@ -4,7 +4,7 @@ import {
 } from 'vue';
 import { useData } from 'vitepress';
 import { useLayout } from '../internal';
-import { useCopy } from '../composables/tabs';
+import { useCopy } from '../composables/copy';
 import { formatRelative } from '../composables/relativeTime';
 import {
     format, useLabels, useThemeOptions 

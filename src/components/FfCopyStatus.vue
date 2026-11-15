@@ -15,7 +15,7 @@ const BUTTON = 'div[class*="language-"] > button.copy';
 let timer: ReturnType<typeof setTimeout> | undefined;
 
 function announce() {
-    message.value = labels.value.heroCopied;
+    message.value = labels.value.codeCopied;
 
     clearTimeout(timer);
     timer = setTimeout(() => (message.value = ''), 2000);

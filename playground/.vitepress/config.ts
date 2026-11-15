@@ -135,7 +135,9 @@ export default defineConfig<ThemeConfig>({
                         copyMarkdown: 'Copier en Markdown',
                         versionSwitcher: 'Version',
                         blogBy: 'Par {0}',
-                        blogEmpty: 'Aucun article pour le moment'
+                        blogEmpty: 'Aucun article pour le moment',
+                        returnToTop: 'Retour en haut',
+                        codeCopied: 'Copié'
                     }
                 }
             }

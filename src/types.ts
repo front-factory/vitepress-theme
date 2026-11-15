@@ -94,6 +94,10 @@ export interface ThemeLabels {
     blogBy?: string
     /** Message of a blog index without any post. Defaults to `No posts yet`. */
     blogEmpty?: string
+    /** Tooltip of the back-to-top control, unless the default theme's `returnToTopLabel` is set. Defaults to `Return to top`. */
+    returnToTop?: string
+    /** Screen-reader announcement once a code block is copied. Defaults to `Copied`. */
+    codeCopied?: string
 }
 
 /** One author of the blog, declared in `ff.blog.authors` and referred to by key from a post. */

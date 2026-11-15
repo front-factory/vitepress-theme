@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue';
 import { format, useLabels } from '../composables/options';
-import { useCopy, useTabs } from '../composables/tabs';
+import { useCopy } from '../composables/copy';
+import { useTabs } from '../composables/tabs';
 import type { HeroCommandTab } from '../types';
 
 // Used from both hero panel positions (inline and beside the headline, see FfHero), which are

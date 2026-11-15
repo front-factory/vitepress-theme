@@ -340,9 +340,11 @@ locales: {
 | `versionSwitcher` | `Version`               |
 | `blogBy`          | `By {0}`                |
 | `blogEmpty`       | `No posts yet`          |
+| `returnToTop`     | `Return to top`         |
+| `codeCopied`      | `Copied`                |
 
 The banner's own `text` and `linkText` are content, not labels, so they stay under `ff.banner`. The
-back-to-top tooltip reuses the default theme's `returnToTopLabel`, and the last-updated stamp is
+back-to-top tooltip reuses the default theme's `returnToTopLabel` when set (otherwise `returnToTop`), and the last-updated stamp is
 formatted with `Intl.RelativeTimeFormat` in the page's own `lang`.
 
 ## Home page

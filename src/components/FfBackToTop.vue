@@ -11,7 +11,7 @@ const labels = useLabels();
 
 // The visible text is the accessible name; the tooltip reuses the default theme's own option,
 // so a site that already localised its mobile return-to-top link gets this one for free.
-const title = computed(() => theme.value.returnToTopLabel ?? 'Return to top');
+const title = computed(() => theme.value.returnToTopLabel ?? labels.value.returnToTop);
 
 const enabled = computed(() => options.value.backToTop !== false);
 
