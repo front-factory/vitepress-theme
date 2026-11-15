@@ -11,9 +11,11 @@ export function useBlog() {
     const dir = computed(() => (options.value.blog?.dir ?? 'blog').replace(/^\/+|\/+$/g, ''));
 
     // A post is a dated page under the blog directory, the index excluded.
-    const isPost = computed(
-        () => page.value.relativePath.startsWith(`${dir.value}/`) && !!frontmatter.value.date
-    );
+    const isPost = computed(() => {
+        const path = page.value.relativePath;
+
+        return path.startsWith(`${dir.value}/`) && path !== `${dir.value}/index.md` && !!frontmatter.value.date;
+    });
 
     return {
         dir,
