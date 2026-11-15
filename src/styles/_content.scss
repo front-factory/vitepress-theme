@@ -557,7 +557,7 @@
     .vp-doc .ff-card-title {
         margin: 0;
         font-family: #{mg.ref("font-display")};
-        font-size: 1rem;
+        font-size: #{mg.ref("size-body")};
         font-weight: 620;
         letter-spacing: -0.01em;
         color: #{mg.ref("color-ink")};
@@ -684,7 +684,7 @@
         border-radius: #{mg.ref("radius-sm")};
         background: #{mg.ref("color-surface")};
         font-family: #{mg.ref("font-mono")};
-        font-size: 0.75rem;
+        font-size: #{mg.ref("size-meta")};
         line-height: 1.4;
         text-align: center;
         color: #{mg.ref("color-ink-muted")};

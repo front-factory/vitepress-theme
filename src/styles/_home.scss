@@ -521,7 +521,7 @@
     .ff-feature-title {
         margin: 2.25rem 0 0;
         font-family: #{mg.ref("font-display")};
-        font-size: 1.1875rem;
+        font-size: #{mg.ref("size-h3")};
         font-weight: 620;
         letter-spacing: -0.015em;
         color: #{mg.ref("color-ink")};

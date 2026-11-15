@@ -134,7 +134,7 @@
 
     .vp-doc h4 {
         margin: 2rem 0 0.5rem;
-        font-size: 1rem;
+        font-size: #{mg.ref("size-body")};
         font-weight: 600;
     }
 
@@ -210,7 +210,7 @@
     }
 
     .vp-doc blockquote > p {
-        font-size: 1rem;
+        font-size: #{mg.ref("size-body")};
         font-style: italic;
         color: #{mg.ref("color-ink-muted")};
     }
