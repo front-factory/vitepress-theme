@@ -36,6 +36,10 @@ Everything the theme draws comes from custom properties. Redeclare the ones you 
 
 Options live under `themeConfig.ff`.
 
+::: info Native VitePress options
+This page only covers the options added by the theme. Every native VitePress option, such as `nav`, `sidebar`, `search`, `editLink`, `footer` or `outline`, still works and is set as usual in `themeConfig`, or per page in the frontmatter (for example `editLink: false`). See the [VitePress default theme reference](https://vitepress.dev/reference/default-theme-config).
+:::
+
 ```ts
 themeConfig: {
     ff: {
