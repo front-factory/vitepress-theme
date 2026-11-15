@@ -33,7 +33,7 @@ export function useTabs(labels: MaybeRefOrGetter<string[]>, syncKey?: MaybeRefOr
 
     // Client-side navigation can swap the labels without remounting the component (two pages
     // using the same layout), so the index is reset rather than left pointing past the end.
-    watch(() => toValue(labels), () => (local.value = 0));
+    watch(() => JSON.stringify(toValue(labels)), () => (local.value = 0));
 
     const active = computed(() => {
         const list = toValue(labels);
