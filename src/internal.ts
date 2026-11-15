@@ -15,3 +15,4 @@ export { default as VPSponsors } from 'vitepress/dist/client/theme-default/compo
 export { useLangs } from 'vitepress/dist/client/theme-default/composables/langs.js';
 export { useLayout } from 'vitepress/dist/client/theme-default/composables/layout.js';
 export { normalizeLink } from 'vitepress/dist/client/theme-default/support/utils.js';
+export { isExternal } from 'vitepress/dist/client/shared.js';

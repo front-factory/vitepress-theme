@@ -3,7 +3,8 @@ import {
     Comment, computed, Fragment, onBeforeUpdate, Text, useSlots, type VNode
 } from 'vue';
 import { useData } from 'vitepress';
-import { normalizeLink, VPImage } from '../internal';
+import { VPImage } from '../internal';
+import FfHeroActions from './FfHeroActions.vue';
 import FfHeroCommand from './FfHeroCommand.vue';
 import type { HeroExtras, HeroMetaItem } from '../types';
 import type { DefaultTheme } from 'vitepress/theme';
@@ -138,24 +139,14 @@ function hasInlineCommand() {
 
         <slot name="home-hero-info-after" />
 
-        <div
+        <FfHeroActions
           v-if="hasActions && !hasPanel()"
-          class="ff-hero-actions"
+          :actions="actions!"
         >
-          <slot name="home-hero-actions-before-actions" />
-
-          <a
-            v-for="action in actions"
-            :key="action.link"
-            class="ff-btn"
-            :class="`ff-btn-${action.theme ?? 'brand'}`"
-            :href="normalizeLink(action.link)"
-            :target="action.target"
-            :rel="action.rel ?? (action.target === '_blank' ? 'noopener' : undefined)"
-          >
-            {{ action.text }}
-          </a>
-        </div>
+          <template #before>
+            <slot name="home-hero-actions-before-actions" />
+          </template>
+        </FfHeroActions>
 
         <slot name="home-hero-actions-after" />
 
@@ -196,24 +187,14 @@ function hasInlineCommand() {
           :bare="!hasActions"
         />
 
-        <div
+        <FfHeroActions
           v-if="hasActions"
-          class="ff-hero-actions"
+          :actions="actions!"
         >
-          <slot name="home-hero-actions-before-actions" />
-
-          <a
-            v-for="action in actions"
-            :key="action.link"
-            class="ff-btn"
-            :class="`ff-btn-${action.theme ?? 'brand'}`"
-            :href="normalizeLink(action.link)"
-            :target="action.target"
-            :rel="action.rel ?? (action.target === '_blank' ? 'noopener' : undefined)"
-          >
-            {{ action.text }}
-          </a>
-        </div>
+          <template #before>
+            <slot name="home-hero-actions-before-actions" />
+          </template>
+        </FfHeroActions>
       </div>
     </div>
 
