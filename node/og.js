@@ -152,7 +152,7 @@ export async function generateOg(siteConfig) {
         });
 
         await writeFile(
-            join(dir, `${ogSlug(page)}.png`),
+            join(dir, `${ogSlug(siteConfig.rewrites?.map?.[page] ?? page)}.png`),
             new Resvg(svg).render().asPng()
         );
     }
