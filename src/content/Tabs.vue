@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-    Fragment, useId, useSlots, type VNode
+    Fragment, onBeforeUpdate, useId, useSlots, type VNode
 } from 'vue';
 import Tab from './Tab.vue';
 import { useTabs } from '../composables/tabs';
@@ -15,10 +15,10 @@ const id = useId();
 
 // The tabs are read off the slot rather than registered by each <Tab> on setup: during SSR the
 // list is printed before any child runs, so a registration would come too late.
-function panels(nodes: VNode[] = slots.default?.() ?? []): VNode[] {
+function collect(nodes: VNode[]): VNode[] {
     return nodes.flatMap((node) => {
         if (node.type === Fragment && Array.isArray(node.children)) {
-            return panels(node.children as VNode[]);
+            return collect(node.children as VNode[]);
         }
 
         return node.type === Tab ? [
@@ -27,11 +27,32 @@ function panels(nodes: VNode[] = slots.default?.() ?? []): VNode[] {
     });
 }
 
-function labels() {
-    return panels().map((node) => String(node.props?.label ?? ''));
+// Render-only cache: the template reads the tabs twice (labels, then panels), and both come from
+// one slot call. It is dropped before each re-render so a changed slot is picked up. `useTabs` does
+// not use it: its computed and watch call the slot themselves, which is what tracks the slot's
+// reactive reads and re-evaluates them when the content changes.
+let cached: VNode[] | null = null;
+
+onBeforeUpdate(() => {
+    cached = null;
+});
+
+function labelsOf(nodes: VNode[]) {
+    return nodes.map((node) => String(node.props?.label ?? ''));
 }
 
-const { active, select, onKeydown } = useTabs(labels, () => props.syncKey);
+function panels(): VNode[] {
+    return cached ??= collect(slots.default?.() ?? []);
+}
+
+function labels() {
+    return labelsOf(panels());
+}
+
+const { active, select, onKeydown } = useTabs(
+    () => labelsOf(collect(slots.default?.() ?? [])),
+    () => props.syncKey
+);
 </script>
 
 <template>
