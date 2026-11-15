@@ -281,7 +281,7 @@
         padding: 0.75rem 0.875rem 0.75rem 0;
         border: 0;
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
-        font-size: 0.9375rem;
+        font-size: #{mg.ref("size-ui-lg")};
         line-height: 1.6;
         vertical-align: top;
     }
@@ -402,7 +402,7 @@
     .VPDocAsideOutline .outline-link {
         display: block;
         padding: 0.25rem 0;
-        font-size: 0.875rem;
+        font-size: #{mg.ref("size-ui")};
         font-weight: 450;
         line-height: 1.5;
         color: #{mg.ref("color-ink-muted")};
@@ -425,6 +425,6 @@
     }
 
     .VPDocAsideOutline .VPDocOutlineItem.nested .outline-link {
-        font-size: 0.8125rem;
+        font-size: #{mg.ref("size-small")};
     }
 }

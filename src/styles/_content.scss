@@ -123,7 +123,7 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        font-size: 0.8125rem;
+        font-size: #{mg.ref("size-small")};
         color: inherit;
     }
 
@@ -481,7 +481,7 @@
     }
 
     .ff-footer-column a {
-        font-size: 0.875rem;
+        font-size: #{mg.ref("size-ui")};
         color: #{mg.ref("color-ink-muted")};
         transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
@@ -566,7 +566,7 @@
     .vp-doc .ff-card-body,
     .vp-doc .ff-card-body p {
         margin: 0.5rem 0 0;
-        font-size: 0.9375rem;
+        font-size: #{mg.ref("size-ui-lg")};
         line-height: 1.6;
         color: #{mg.ref("color-ink-muted")};
     }
@@ -664,7 +664,7 @@
     }
 
     .vp-doc .ff-api-signature code {
-        font-size: 0.8125rem;
+        font-size: #{mg.ref("size-small")};
         color: #{mg.ref("color-ink-muted")};
     }
 
@@ -727,7 +727,7 @@
     .vp-doc .ff-filetree {
         margin: 1.75rem 0;
         font-family: #{mg.ref("font-mono")};
-        font-size: 0.875rem;
+        font-size: #{mg.ref("size-ui")};
     }
 
     .vp-doc .ff-filetree ul {

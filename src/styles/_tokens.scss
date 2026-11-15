@@ -34,6 +34,9 @@ $scales: (
     "size": (
         "label": 0.6875rem,
         "meta": 0.75rem,
+        "small": 0.8125rem,
+        "ui": 0.875rem,
+        "ui-lg": 0.9375rem,
         "body": 1rem,
         "lead": 1.125rem,
         "h1": clamp(1.625rem, 1.3rem + 1.3vw, 2rem),
@@ -291,7 +294,7 @@ $presets: (
     --vp-button-alt-hover-text: #{mg.ref("color-ink")};
     --vp-button-alt-hover-bg: transparent;
     --vp-button-alt-active-bg: #{mg.ref("color-surface-alt")};
-    --vp-custom-block-font-size: 0.9375rem;
-    --vp-custom-block-code-font-size: 0.8125rem;
+    --vp-custom-block-font-size: #{mg.ref("size-ui-lg")};
+    --vp-custom-block-code-font-size: #{mg.ref("size-small")};
     --vp-home-hero-name-color: #{mg.ref("color-ink")};
 }

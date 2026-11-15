@@ -78,13 +78,13 @@
     .VPButton.medium {
         padding: 0 1.25rem;
         line-height: 2.75rem;
-        font-size: 0.875rem;
+        font-size: #{mg.ref("size-ui")};
     }
 
     .VPButton.big {
         padding: 0 1.75rem;
         line-height: 3.25rem;
-        font-size: 0.9375rem;
+        font-size: #{mg.ref("size-ui-lg")};
     }
 
     .VPBadge {

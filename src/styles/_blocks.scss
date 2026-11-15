@@ -16,7 +16,7 @@
         border-left: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-rule-strong")};
         border-radius: 0;
         background: transparent;
-        font-size: 0.9375rem;
+        font-size: #{mg.ref("size-ui-lg")};
     }
 
     .vp-doc .custom-block p,

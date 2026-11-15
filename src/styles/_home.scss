@@ -230,7 +230,7 @@
 
     .ff-hero-command code {
         font-family: #{mg.ref("font-mono")};
-        font-size: 0.8125rem;
+        font-size: #{mg.ref("size-small")};
         color: #{mg.ref("color-ink")};
         overflow-x: auto;
     }
@@ -400,7 +400,7 @@
         padding: 0 1.375rem;
         border: #{mg.ref("rule-width")} solid transparent;
         border-radius: #{mg.ref("radius-sm")};
-        font-size: 0.875rem;
+        font-size: #{mg.ref("size-ui")};
         font-weight: 550;
         text-decoration: none;
         white-space: nowrap;
@@ -557,7 +557,7 @@
         flex-grow: 1;
         margin: 0.75rem 0 0;
         padding: 0;
-        font-size: 0.9375rem;
+        font-size: #{mg.ref("size-ui-lg")};
         line-height: 1.7;
         color: #{mg.ref("color-ink-muted")};
     }
@@ -702,7 +702,7 @@
         margin: 0 0 0.25rem;
         padding: 0 1.25rem;
         font-family: #{mg.ref("font-mono")};
-        font-size: 0.875rem;
+        font-size: #{mg.ref("size-ui")};
         font-weight: 500;
         letter-spacing: #{mg.ref("tracking-label")};
         text-align: left;
