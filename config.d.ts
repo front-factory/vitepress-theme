@@ -23,9 +23,10 @@ export declare function ffTransformPageData(
 export declare function ffBuildEnd(siteConfig: SiteConfig<ThemeConfig>): Promise<void>;
 
 /**
- * Head entries added by the theme (accent preset, banner script). Call it from your own
+ * Head entries added by the theme: the accent preset and banner scripts, the link to the blog's RSS
+ * feed, and the Open Graph and Twitter tags (`og:*`, `twitter:card`). Call it from your own
  * `transformHead` and merge the result with your entries.
  */
-export declare function ffTransformHead(ctx: TransformContext): HeadConfig[];
+export declare function ffTransformHead(ctx: TransformContext<ThemeConfig>): HeadConfig[];
 
 export default config;
