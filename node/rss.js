@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { blogDir } from './blog.js';
+import { blogDir, hasValidDate } from './blog.js';
 import { hostnameOf } from './pages.js';
 
 /**
@@ -47,7 +47,7 @@ export async function generateRss(siteConfig, allPages) {
     });
 
     const posts = allPages
-        .filter(({ page, data }) => page.startsWith(`${dir}/`) && page !== `${dir}/index.md` && data.date)
+        .filter(({ page, data }) => page.startsWith(`${dir}/`) && page !== `${dir}/index.md` && hasValidDate(data.date))
         .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
     for (const { url, title: name, data } of posts) {

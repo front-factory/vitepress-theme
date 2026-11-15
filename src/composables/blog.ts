@@ -1,7 +1,7 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 import { useThemeOptions } from './options';
-import { blogDir } from '../../node/blog.js';
+import { blogDir, hasValidDate } from '../../node/blog.js';
 import type { BlogAuthor } from '../types';
 
 /** Blog options, with the directory normalised (no slash at either end). */
@@ -15,7 +15,7 @@ export function useBlog() {
     const isPost = computed(() => {
         const path = page.value.relativePath;
 
-        return path.startsWith(`${dir.value}/`) && path !== `${dir.value}/index.md` && !!frontmatter.value.date;
+        return path.startsWith(`${dir.value}/`) && path !== `${dir.value}/index.md` && hasValidDate(frontmatter.value.date);
     });
 
     return {

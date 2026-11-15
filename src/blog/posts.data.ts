@@ -1,6 +1,6 @@
 import { createContentLoader, type LoaderModule } from 'vitepress';
 import type { ThemeConfig } from '../types.ts';
-import { blogDir } from '../../node/blog.js';
+import { blogDir, hasValidDate } from '../../node/blog.js';
 
 export interface Post {
     url: string
@@ -31,7 +31,7 @@ const loader: LoaderModule<Post[]> = createContentLoader([
     includeSrc: true,
     transform(raw) {
         return raw
-            .filter(({ frontmatter }) => frontmatter.date)
+            .filter(({ frontmatter }) => hasValidDate(frontmatter.date))
             .map(({ url, src, frontmatter }): Post => ({
                 url,
                 title: frontmatter.title || /^#\s+(.+)$/m.exec(src ?? '')?.[1].trim() || url,
