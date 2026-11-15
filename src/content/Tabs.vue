@@ -65,7 +65,7 @@ const { active, select, onKeydown } = useTabs(
       <button
         v-for="(label, index) in labels()"
         :id="`${id}-tab-${index}`"
-        :key="label"
+        :key="index"
         type="button"
         role="tab"
         class="ff-tabs-tab"

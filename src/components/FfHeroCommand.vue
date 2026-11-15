@@ -48,7 +48,7 @@ const { copied, copy } = useCopy(activeCommand);
       <button
         v-for="(tab, index) in tabs"
         :id="`${id}-tab-${index}`"
-        :key="tab.label"
+        :key="index"
         type="button"
         role="tab"
         class="ff-hero-command-tab"
