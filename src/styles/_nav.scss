@@ -264,7 +264,6 @@
 
     // Search trigger
 
-    .VPNavBarSearch .DocSearch-Button,
     .VPNavBarSearchButton {
         display: flex;
         align-items: center;
@@ -284,8 +283,7 @@
         color: #{mg.ref("color-ink-muted")};
     }
 
-    .VPNavBarSearchButton .keys kbd,
-    .VPNavBarSearchButton .keys .key-cmd {
+    .VPNavBarSearchButton .keys kbd {
         border: 0;
         border-radius: 0;
         background: transparent;
