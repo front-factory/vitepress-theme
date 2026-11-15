@@ -355,7 +355,7 @@
         font-family: #{mg.ref("font-display")};
         font-size: #{mg.ref("size-lead")};
         font-weight: 600;
-        letter-spacing: -0.01em;
+        letter-spacing: #{mg.ref("tracking-tight")};
         color: #{mg.ref("color-ink")};
     }
 
@@ -498,7 +498,7 @@
         font-size: 2rem;
         font-weight: 500;
         line-height: 1;
-        letter-spacing: -0.02em;
+        letter-spacing: #{mg.ref("tracking-heading")};
         color: #{mg.ref("color-rule-strong")};
         transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
@@ -523,7 +523,7 @@
         font-family: #{mg.ref("font-display")};
         font-size: #{mg.ref("size-h3")};
         font-weight: 620;
-        letter-spacing: -0.015em;
+        letter-spacing: #{mg.ref("tracking-subheading")};
         color: #{mg.ref("color-ink")};
     }
 

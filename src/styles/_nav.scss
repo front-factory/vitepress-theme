@@ -157,7 +157,7 @@
         font-family: #{mg.ref("font-display")};
         font-size: #{mg.ref("size-ui-lg")};
         font-weight: 620;
-        letter-spacing: -0.01em;
+        letter-spacing: #{mg.ref("tracking-tight")};
     }
 
     .VPNavBarTitle .title:not(:has(.logo))::before {

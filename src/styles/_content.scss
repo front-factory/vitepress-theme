@@ -559,7 +559,7 @@
         font-family: #{mg.ref("font-display")};
         font-size: #{mg.ref("size-body")};
         font-weight: 620;
-        letter-spacing: -0.01em;
+        letter-spacing: #{mg.ref("tracking-tight")};
         color: #{mg.ref("color-ink")};
     }
 

@@ -52,3 +52,12 @@
         background: #{mg.ref("color-accent")};
     }
 }
+
+// The page title: the doc h1 and the blog title read as the same voice.
+
+@mixin page-title {
+    font-size: #{mg.ref("size-h1")};
+    font-weight: 620;
+    line-height: #{mg.ref("leading-tight")};
+    letter-spacing: #{mg.ref("tracking-title")};
+}
