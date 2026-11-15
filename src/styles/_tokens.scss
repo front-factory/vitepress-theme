@@ -60,7 +60,11 @@ $scales: (
     "motion": (
         "duration": 200ms,
         "duration-slow": 420ms,
+        "duration-fade": 250ms,
         "duration-enter": 650ms,
+        "duration-enter-panel": 800ms,
+        "duration-enter-image": 900ms,
+        "stagger": 20ms,
         "ease": cubic-bezier(0.2, 0.6, 0.2, 1)
     ),
     "banner": (

@@ -183,7 +183,7 @@
         min-width: 0;
         height: 100%;
         color: var(--vp-c-text-1);
-        transition: opacity 0.25s;
+        transition: opacity #{mg.ref("motion-duration-fade")} #{mg.ref("motion-ease")};
     }
 
     // Wherever the bar runs out of room, the title text gives way first.

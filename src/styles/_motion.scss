@@ -60,29 +60,29 @@
         }
 
         .ff-hero-title {
-            animation-delay: 0.06s;
+            animation-delay: calc(#{mg.ref("motion-stagger")} * 3);
         }
 
         .ff-hero-tagline {
-            animation-delay: 0.12s;
+            animation-delay: calc(#{mg.ref("motion-stagger")} * 6);
         }
 
         .ff-hero-main .ff-hero-actions {
-            animation-delay: 0.18s;
+            animation-delay: calc(#{mg.ref("motion-stagger")} * 9);
         }
 
         .ff-hero-panel {
-            animation-delay: 0.2s;
-            animation-duration: 0.8s;
+            animation-delay: calc(#{mg.ref("motion-stagger")} * 10);
+            animation-duration: #{mg.ref("motion-duration-enter-panel")};
         }
 
         .ff-hero-meta {
-            animation-delay: 0.3s;
+            animation-delay: calc(#{mg.ref("motion-stagger")} * 15);
         }
 
         .ff-hero-image {
-            animation-delay: 0.14s;
-            animation-duration: 0.9s;
+            animation-delay: calc(#{mg.ref("motion-stagger")} * 7);
+            animation-duration: #{mg.ref("motion-duration-enter-image")};
         }
 
         // Nothing else animates on arrival. Revealing cells and cards on scroll was tried and
