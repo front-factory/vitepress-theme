@@ -1,11 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { blogDir } from './blog.js';
 import { hostnameOf } from './pages.js';
-
-/** Blog directory, without a slash at either end. */
-export function blogDir(ff) {
-    return (ff.blog?.dir ?? 'blog').replace(/^\/+|\/+$/g, '');
-}
 
 /**
  * Writes `feed.xml`, an RSS 2.0 feed of the blog posts (dated pages under the blog directory,

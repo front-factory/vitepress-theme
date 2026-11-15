@@ -1,5 +1,6 @@
 import { createContentLoader, type LoaderModule } from 'vitepress';
 import type { ThemeConfig } from '../types.ts';
+import { blogDir } from '../../node/blog.js';
 
 export interface Post {
     url: string
@@ -20,7 +21,7 @@ export { data };
 // reads it the same way), which is where the blog directory is read from.
 const { site } = (globalThis as unknown as { VITEPRESS_CONFIG: { site: { themeConfig?: ThemeConfig } } })
     .VITEPRESS_CONFIG;
-const dir = (site.themeConfig?.ff?.blog?.dir ?? 'blog').replace(/^\/+|\/+$/g, '');
+const dir = blogDir(site.themeConfig?.ff);
 
 // Annotated so the emitted declaration doesn't reference VitePress's private `GlobOptions` (TS4082).
 const loader: LoaderModule<Post[]> = createContentLoader([

@@ -1,6 +1,7 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 import { useThemeOptions } from './options';
+import { blogDir } from '../../node/blog.js';
 import type { BlogAuthor } from '../types';
 
 /** Blog options, with the directory normalised (no slash at either end). */
@@ -8,7 +9,7 @@ export function useBlog() {
     const options = useThemeOptions();
     const { page, frontmatter } = useData();
 
-    const dir = computed(() => (options.value.blog?.dir ?? 'blog').replace(/^\/+|\/+$/g, ''));
+    const dir = computed(() => blogDir(options.value));
 
     // A post is a dated page under the blog directory, the index excluded.
     const isPost = computed(() => {
