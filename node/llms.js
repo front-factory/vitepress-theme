@@ -1,17 +1,18 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { hostnameOf, readPages } from './pages.js';
+import { hostnameOf } from './pages.js';
 
 /**
  * Writes `llms.txt` (an index of the pages) and `llms-full.txt` (their Markdown, concatenated) to
  * the output directory, following https://llmstxt.org. A page opts out with `llms: false`.
  *
  * @param {import('vitepress').SiteConfig} siteConfig
+ * @param {Awaited<ReturnType<typeof import('./pages.js').readPages>>} allPages Pages read once by the caller.
  */
-export async function generateLlms(siteConfig) {
+export async function generateLlms(siteConfig, allPages) {
     const { title, description } = siteConfig.site;
     const hostname = hostnameOf(siteConfig) ?? '';
-    const pages = (await readPages(siteConfig)).filter(({ data }) => data.llms !== 'false');
+    const pages = allPages.filter(({ data }) => data.llms !== 'false');
 
     const index = pages.map(({ url, title: name, description: summary }) =>
         `- [${name}](${hostname}${url})${summary ? `: ${summary}` : ''}`);

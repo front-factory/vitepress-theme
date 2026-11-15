@@ -2,9 +2,7 @@ import {
     mkdir, readFile, writeFile 
 } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import {
-    ogOptions, ogSlug, readPages 
-} from './pages.js';
+import { ogOptions, ogSlug } from './pages.js';
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -104,8 +102,9 @@ function card({ siteTitle, title, description, family }) {
  * so parallelism would only add memory.
  *
  * @param {import('vitepress').SiteConfig} siteConfig
+ * @param {Awaited<ReturnType<typeof import('./pages.js').readPages>>} allPages Pages read once by the caller.
  */
-export async function generateOg(siteConfig) {
+export async function generateOg(siteConfig, allPages) {
     const { fonts } = ogOptions(siteConfig);
     let satori;
     let Resvg;
@@ -135,7 +134,7 @@ export async function generateOg(siteConfig) {
         recursive: true
     });
 
-    for (const { page, data, title, description } of await readPages(siteConfig)) {
+    for (const { page, data, title, description } of allPages) {
         if (data.og === 'false') {
             continue;
         }

@@ -4,7 +4,7 @@ import { searchForWorkspaceRoot } from 'vite';
 import { generateLlms } from './node/llms.js';
 import { generateOg } from './node/og.js';
 import {
-    hasSource, ogOptions, ogSlug
+    hasSource, ogOptions, ogSlug, readPages
 } from './node/pages.js';
 import { generateRss } from './node/rss.js';
 
@@ -70,16 +70,23 @@ export async function ffTransformPageData(pageData, { siteConfig }) {
 export async function ffBuildEnd(siteConfig) {
     const ff = siteConfig.site.themeConfig?.ff;
 
-    if (ff?.llms) {
-        await generateLlms(siteConfig);
+    if (!ff?.llms && !ff?.blog?.rss && !ff?.og) {
+        return;
     }
 
-    if (ff?.blog?.rss) {
-        await generateRss(siteConfig);
+    // Read once and shared: every generator needs the same parsed pages.
+    const pages = await readPages(siteConfig);
+
+    if (ff.llms) {
+        await generateLlms(siteConfig, pages);
     }
 
-    if (ff?.og) {
-        await generateOg(siteConfig);
+    if (ff.blog?.rss) {
+        await generateRss(siteConfig, pages);
+    }
+
+    if (ff.og) {
+        await generateOg(siteConfig, pages);
     }
 }
 

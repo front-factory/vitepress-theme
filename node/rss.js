@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { hostnameOf, readPages } from './pages.js';
+import { hostnameOf } from './pages.js';
 
 /** Blog directory, without a slash at either end. */
 export function blogDir(ff) {
@@ -13,8 +13,9 @@ export function blogDir(ff) {
  * actually requested.
  *
  * @param {import('vitepress').SiteConfig} siteConfig
+ * @param {Awaited<ReturnType<typeof import('./pages.js').readPages>>} allPages Pages read once by the caller.
  */
-export async function generateRss(siteConfig) {
+export async function generateRss(siteConfig, allPages) {
     const ff = siteConfig.site.themeConfig.ff;
     const rss = typeof ff.blog.rss === 'object' ? ff.blog.rss : {};
     const hostname = hostnameOf(siteConfig, rss.hostname);
@@ -49,7 +50,7 @@ export async function generateRss(siteConfig) {
         }
     });
 
-    const posts = (await readPages(siteConfig))
+    const posts = allPages
         .filter(({ page, data }) => page.startsWith(`${dir}/`) && page !== `${dir}/index.md` && data.date)
         .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
