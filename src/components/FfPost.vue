@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useData } from 'vitepress';
+import { useData, withBase } from 'vitepress';
 import {
     formatDate, resolveAuthor, useBlog 
 } from '../composables/blog';
 import { format, useLabels } from '../composables/options';
+import { normalizeLink } from '../internal';
 
 const { frontmatter, lang } = useData();
 const { isPost, authors } = useBlog();
@@ -30,13 +31,13 @@ const tags = computed<string[]>(() => (Array.isArray(frontmatter.value.tags) ? f
     >
       <img
         v-if="author.avatar"
-        :src="author.avatar"
+        :src="withBase(author.avatar)"
         alt=""
         class="ff-post-avatar"
       >
       <a
         v-if="author.link"
-        :href="author.link"
+        :href="normalizeLink(author.link)"
       >{{ format(labels.blogBy, author.name) }}</a>
       <template v-else>{{ format(labels.blogBy, author.name) }}</template>
     </span>
