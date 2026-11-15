@@ -302,13 +302,13 @@
     }
 
     .VPSwitch .check {
-        border-radius: 2px;
+        border-radius: #{mg.ref("radius-xs")};
         background: #{mg.ref("color-surface-alt")};
         box-shadow: none;
     }
 
     .VPSwitch .icon {
-        border-radius: 2px;
+        border-radius: #{mg.ref("radius-xs")};
     }
 
     // ----------------------------------------------------------------------------------------- //
