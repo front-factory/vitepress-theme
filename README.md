@@ -277,7 +277,7 @@ excerpt: Shown in the list and in the feed.
 (`ffBuildEnd` and `ffTransformHead`). A page opts out with `og: false` in its frontmatter.
 
 It needs the optional peer dependencies `satori` and `@resvg/resvg-js` (`npm install satori @resvg/resvg-js`),
-at least one font file (TTF, OTF or WOFF, not WOFF2; `path` is relative to the source directory, the first
+at least one font file (TTF, OTF or WOFF, not WOFF2; `path` is relative to the VitePress root (the folder holding `.vitepress`), the first
 font of the list sets the family), and an absolute address (`og.hostname`, else `sitemap.hostname`).
 `true` alone is rejected for lack of a font.
 

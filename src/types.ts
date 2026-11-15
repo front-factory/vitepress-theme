@@ -126,7 +126,7 @@ export interface BlogConfig {
 export interface OgFont {
     /** Family name, also used to draw the text. The first font of the list is the one used. */
     name: string
-    /** TTF, OTF or WOFF file (not WOFF2), relative to the site's source directory. */
+    /** TTF, OTF or WOFF file (not WOFF2), relative to the VitePress root (the folder holding `.vitepress`). */
     path: string
     weight?: number
     style?: 'normal' | 'italic'

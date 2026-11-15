@@ -178,7 +178,7 @@ Posts are Markdown pages under `blog.dir` (default `blog`) with a `date` in thei
 
 `og` is an object `{ fonts, hostname? }`. At the end of the build, `ffBuildEnd` draws a 1200x630 PNG per page into `og/` (site name, page title, description, a rule in the accent colour); `ffTransformHead` adds `og:image`, `og:title`, `og:description` and `twitter:card` to the page head.
 
-- `fonts` is a list of `{ name, path, weight?, style? }`. Files are TTF, OTF or WOFF (not WOFF2), `path` is relative to the source directory, and the first font sets the family. This playground uses JetBrains Mono (OFL, licence in `.vitepress/fonts/`).
+- `fonts` is a list of `{ name, path, weight?, style? }`. Files are TTF, OTF or WOFF (not WOFF2), `path` is relative to the VitePress root (the folder holding `.vitepress`), and the first font sets the family. This playground uses JetBrains Mono (OFL, licence in `.vitepress/fonts/`).
 - `hostname` is the absolute address the image URLs start with. It defaults to `sitemap.hostname`.
 - It needs the optional peer dependencies `satori` and `@resvg/resvg-js`: `npm install satori @resvg/resvg-js`.
 
