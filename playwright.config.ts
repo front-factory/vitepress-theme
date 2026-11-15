@@ -14,7 +14,7 @@ export default defineConfig({
         [
             'html',
             {
-                open: 'never' 
+                open: 'never'
             }
         ]
     ] : 'list',
