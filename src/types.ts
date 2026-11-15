@@ -88,6 +88,18 @@ export interface ThemeLabels {
     feedbackThanks?: string
     /** Button copying the page as Markdown. Defaults to `Copy as Markdown`. */
     copyMarkdown?: string
+    /** Second line of the Markdown menu item. Defaults to `Page source`. */
+    copyMarkdownHint?: string
+    /** Accessible name of the chevron opening the page actions menu. Defaults to `More page actions`. */
+    pageActions?: string
+    /** Main button copying the page URL. Defaults to `Copy link`. */
+    copyLink?: string
+    /** Trigger of the menu when there is nothing to copy. Defaults to `Share`. */
+    share?: string
+    /** Confirmation shown once the page URL is copied. Defaults to `Link copied`. */
+    linkCopied?: string
+    /** Share menu item; `{0}` is the network name. Defaults to `Share on {0}`. */
+    shareOn?: string
     /** Accessible name of the version menu, followed by the current version. Defaults to `Version`. */
     versionSwitcher?: string
     /** Author line of a post; `{0}` is the name. Defaults to `By {0}`. */
@@ -225,10 +237,20 @@ export interface ThemeOptions {
      */
     feedback?: boolean | FeedbackConfig
     /**
-     * Button in the page kicker that copies the page's Markdown source. Off by default. The source
-     * is injected by `ffTransformPageData`, which a site defining its own `transformPageData` must
-     * call from it.
+     * Menu in the page kicker with page actions. Off by default; `true` turns on every action. The
+     * Markdown source is injected by `ffTransformPageData`, which a site defining its own
+     * `transformPageData` must call from it. Mastodon has no universal share intent, so its link
+     * targets `mastodonInstance` (defaults to `mastodon.social`).
      */
+    pageActions?:
+        | boolean
+        | {
+            copyMarkdown?: boolean
+            copyLink?: boolean
+            share?: Array<'x' | 'linkedin' | 'bluesky' | 'mastodon'>
+            mastodonInstance?: string
+        }
+    /** @deprecated Use `pageActions: { copyMarkdown: true }`. */
     copyMarkdown?: boolean
     /**
      * Writes `llms.txt` and `llms-full.txt` to the output directory at the end of the build. Off by

@@ -162,8 +162,9 @@ themeConfig: {
         // also dispatched on `window` as an `ff:feedback` event.
         feedback: { url: 'https://example.com/feedback' },
 
-        // "Copy as Markdown" button in the page kicker. Needs `ffTransformPageData`, see below.
-        copyMarkdown: true,
+        // Page actions menu in the page kicker (copy as Markdown, copy link, share). Copying the
+        // Markdown needs `ffTransformPageData`, see below.
+        pageActions: true,
 
         // Writes llms.txt and llms-full.txt at the end of the build. Needs `ffBuildEnd`, see below.
         llms: true,
@@ -211,8 +212,11 @@ reaches the config — the theme does not.
 
 ### Copy as Markdown
 
-`copyMarkdown` puts a button in the kicker that copies the page's Markdown source, frontmatter
-removed. The source is read at build time by `ffTransformPageData`, which `extends: baseConfig`
+`pageActions: true` puts a split button in the kicker: the main part copies the page link, the
+chevron opens a menu to copy the page's Markdown source (frontmatter removed) and to share on X,
+LinkedIn, Bluesky and Mastodon. Pass an object (`copyMarkdown`, `copyLink`, `share`,
+`mastodonInstance`) to pick the actions; the former `copyMarkdown: true` option still works but is
+deprecated. The source is read at build time by `ffTransformPageData`, which `extends: baseConfig`
 already wires in. VitePress replaces a hook declared by the site instead of merging it, so a site
 with its own `transformPageData` calls the helper from it and returns the result:
 
@@ -337,6 +341,12 @@ locales: {
 | `feedbackNo`      | `No`                    |
 | `feedbackThanks`  | `Thanks for your feedback` |
 | `copyMarkdown`    | `Copy as Markdown`      |
+| `copyMarkdownHint` | `Page source`          |
+| `pageActions`     | `More page actions`     |
+| `copyLink`        | `Copy link`             |
+| `linkCopied`      | `Link copied`           |
+| `share`           | `Share`                 |
+| `shareOn`         | `Share on {0}`          |
 | `versionSwitcher` | `Version`               |
 | `blogBy`          | `By {0}`                |
 | `blogEmpty`       | `No posts yet`          |

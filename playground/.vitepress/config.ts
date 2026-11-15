@@ -133,6 +133,12 @@ export default defineConfig<ThemeConfig>({
                         feedbackNo: 'Non',
                         feedbackThanks: 'Merci pour votre retour',
                         copyMarkdown: 'Copier en Markdown',
+                        copyMarkdownHint: 'Source de la page',
+                        pageActions: 'Plus d\'actions',
+                        copyLink: 'Copier le lien',
+                        linkCopied: 'Lien copié',
+                        share: 'Partager',
+                        shareOn: 'Partager sur {0}',
                         versionSwitcher: 'Version',
                         blogBy: 'Par {0}',
                         blogEmpty: 'Aucun article pour le moment',
@@ -304,7 +310,7 @@ export default defineConfig<ThemeConfig>({
                     copyright: 'Copyright © 2026 Front Factory'
                 }
             },
-            copyMarkdown: true,
+            pageActions: true,
             versions: {
                 current: pkg.version,
                 items: [

@@ -33,7 +33,8 @@ const alias = Object.entries(overrides).map(([
 
 /**
  * Stores the page's Markdown source, frontmatter stripped, on `pageData.ffMarkdown` for the "copy as
- * Markdown" button. Does nothing unless `themeConfig.ff.copyMarkdown` is on, so a site that does not
+ * Markdown" button. Does nothing unless `themeConfig.ff.pageActions` enables it (or the deprecated
+ * `copyMarkdown` is on), so a site that does not
  * use it ships no source text.
  *
  * A hook declared by the host replaces the one in this config instead of adding to it. A site that
@@ -44,7 +45,12 @@ const alias = Object.entries(overrides).map(([
  * @param {import('vitepress').TransformPageContext} ctx
  */
 export async function ffTransformPageData(pageData, { siteConfig }) {
-    if (!siteConfig.site.themeConfig?.ff?.copyMarkdown || !pageData.filePath) {
+    const { pageActions, copyMarkdown } = siteConfig.site.themeConfig?.ff ?? {};
+
+    if (
+        !(pageActions === true || pageActions?.copyMarkdown || copyMarkdown) ||
+        !pageData.filePath
+    ) {
         return;
     }
 

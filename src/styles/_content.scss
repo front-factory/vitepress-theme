@@ -178,38 +178,165 @@
     // Pushed to the end of the row and framed like the hero copy button, so it reads as a control
     // rather than one more piece of metadata.
 
-    .ff-doc-meta-copy {
+    .ff-doc-meta-actions {
+        position: relative;
+        margin-left: auto;
+    }
+
+    // One pill: the main button and the chevron share the frame, split by a thin divider.
+
+    .ff-doc-meta-split {
+        display: inline-flex;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-sm")};
+        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-doc-meta-split:hover,
+    .ff-doc-meta-split.copied {
+        border-color: #{mg.ref("color-rule-strong")};
+    }
+
+    .ff-doc-meta-main,
+    .ff-doc-meta-toggle {
         display: inline-flex;
         align-items: center;
         gap: 0.5em;
-        margin-left: auto;
         padding: 0.375rem 0.625rem;
-        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
-        border-radius: #{mg.ref("radius-sm")};
+        border: 0;
         background: transparent;
         font: inherit;
         letter-spacing: inherit;
         text-transform: inherit;
         color: inherit;
         cursor: pointer;
+        transition:
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
-    .ff-doc-meta-copy::before {
-        content: "";
-        width: 0.875rem;
-        height: 0.875rem;
-        background: var(--vp-icon-copy) 50% / contain no-repeat;
+    .ff-doc-meta-main {
+        border-radius: #{mg.ref("radius-sm")} 0 0 #{mg.ref("radius-sm")};
     }
 
-    .ff-doc-meta-copy:hover,
-    .ff-doc-meta-copy.copied {
-        border-color: #{mg.ref("color-rule-strong")};
+    .ff-doc-meta-toggle {
+        border-radius: 0 #{mg.ref("radius-sm")} #{mg.ref("radius-sm")} 0;
+    }
+
+    .ff-doc-meta-main + .ff-doc-meta-toggle {
+        padding-inline: 0.5rem;
+        border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .ff-doc-meta-main:hover,
+    .ff-doc-meta-toggle:hover,
+    .ff-doc-meta-toggle.open,
+    .ff-doc-meta-split.copied .ff-doc-meta-main {
         background-color: #{mg.ref("color-surface-alt")};
         color: #{mg.ref("color-ink")};
     }
 
-    .ff-doc-meta-copy.copied::before {
-        background-image: var(--vp-icon-copied);
+    .ff-doc-meta-main:focus-visible,
+    .ff-doc-meta-toggle:focus-visible,
+    .ff-doc-meta-menu > :focus-visible {
+        outline: 2px solid var(--vp-c-brand-1);
+        outline-offset: -2px;
+    }
+
+    .ff-doc-meta-icon {
+        flex: none;
+        width: 1rem;
+        height: 1rem;
+        fill: none;
+        stroke: currentcolor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .ff-doc-meta-icon.brand {
+        fill: currentcolor;
+        stroke: none;
+    }
+
+    .ff-doc-meta-chevron {
+        transition: transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .ff-doc-meta-toggle.open .ff-doc-meta-chevron {
+        transform: rotate(180deg);
+    }
+
+    // Under the trigger and right-aligned with it, so it stays on screen: the pill sits at the end
+    // of the row.
+
+    .ff-doc-meta-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        min-width: 14rem;
+        max-width: calc(100vw - 2rem);
+        margin-top: 0.375rem;
+        padding: 0.375rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+        background: var(--vp-c-bg-elv);
+        box-shadow: var(--vp-shadow-3);
+        white-space: nowrap;
+    }
+
+    .ff-doc-meta-menu > button,
+    .ff-doc-meta-menu > a {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.5rem 0.625rem;
+        border: 0;
+        border-radius: #{mg.ref("radius-sm")};
+        background: transparent;
+        font: inherit;
+        letter-spacing: inherit;
+        text-transform: inherit;
+        text-align: left;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    .ff-doc-meta-menu > button:hover,
+    .ff-doc-meta-menu > a:hover,
+    .ff-doc-meta-menu > :focus-visible {
+        background-color: #{mg.ref("color-surface-alt")};
+        color: #{mg.ref("color-ink")};
+    }
+
+    .ff-doc-meta-menu-text {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 0.125rem;
+    }
+
+    .ff-doc-meta-menu small {
+        font-size: 0.85em;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .ff-doc-meta-external {
+        width: 0.875rem;
+        height: 0.875rem;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .ff-doc-meta-menu hr {
+        width: 100%;
+        height: 0;
+        margin: 0.375rem 0;
+        border: 0;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
 
     // ----------------------------------------------------------------------------------------- //

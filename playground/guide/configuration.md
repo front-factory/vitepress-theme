@@ -55,7 +55,7 @@ themeConfig: {
         backToTop: true,
         progress: true,
         feedback: { url: 'https://example.com/feedback' },
-        copyMarkdown: true,
+        pageActions: true,
         llms: true,
         og: {
             hostname: 'https://example.com',
@@ -87,7 +87,8 @@ themeConfig: {
 | `backToTop` | `true` | Floating back-to-top control. |
 | `progress` | `false` | Thin reading-progress bar at the top of the viewport. |
 | `feedback` | — | "Was this page helpful?" widget under each doc page. See [Feedback](#feedback). |
-| `copyMarkdown` | `false` | "Copy as Markdown" button in the page kicker. See [Copy as Markdown](#copy-as-markdown). |
+| `pageActions` | `false` | "Page actions" menu in the page kicker: copy as Markdown, copy link, share. See [Page actions](#page-actions). |
+| `copyMarkdown` | `false` | Deprecated: use `pageActions: { copyMarkdown: true }`. |
 | `llms` | `false` | Writes `llms.txt` and `llms-full.txt` at the end of the build. See [llms.txt](#llms-txt). |
 | `og` | — | Open Graph image for each page, and the matching head tags. See [Open Graph images](#open-graph-images). |
 | `blog` | — | Blog index, post header and RSS feed. See [Blog](#blog). |
@@ -129,9 +130,24 @@ Each vote is sent to `url` with `navigator.sendBeacon`, as the JSON string `{ pa
 window.addEventListener('ff:feedback', (event) => console.log(event.detail))
 ```
 
-### Copy as Markdown
+### Page actions
 
-The source is read at build time by `ffTransformPageData`, which `extends: baseConfig` wires in. VitePress replaces a hook declared by the site instead of merging it, so a site with its own `transformPageData` calls the helper and returns its result:
+`pageActions: true` turns on every action of the menu in the page kicker. For finer control, pass an object:
+
+```ts
+pageActions: {
+    copyMarkdown: true,
+    copyLink: true,
+    share: ['x', 'linkedin', 'bluesky', 'mastodon'],
+    mastodonInstance: 'mastodon.social'
+}
+```
+
+The kicker shows a split button. Its main part copies the page link, or the Markdown when `copyLink` is off; the chevron opens a menu with "Copy as Markdown" and the share links. With neither copy enabled, a single "Share" button opens the menu. Copied and shared URLs omit the query and the hash.
+
+Mastodon has no universal share intent, so its link opens the share page of `mastodonInstance`. Share links open in a new tab, with the page title and its URL. The menu is hidden on the home layout.
+
+The Markdown source is read at build time by `ffTransformPageData`, which `extends: baseConfig` wires in. VitePress replaces a hook declared by the site instead of merging it, so a site with its own `transformPageData` calls the helper and returns its result:
 
 ```ts
 import baseConfig, { ffTransformPageData } from '@frontfactory/vitepress-theme/config'
@@ -225,6 +241,12 @@ themeConfig: {
 | `feedbackNo` | `No` |
 | `feedbackThanks` | `Thanks for your feedback` |
 | `copyMarkdown` | `Copy as Markdown` |
+| `copyMarkdownHint` | `Page source` |
+| `pageActions` | `More page actions` |
+| `copyLink` | `Copy link` |
+| `linkCopied` | `Link copied` |
+| `share` | `Share` |
+| `shareOn` | `Share on {0}` |
 | `versionSwitcher` | `Version` |
 | `blogBy` | `By {0}` |
 | `blogEmpty` | `No posts yet` |
