@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.0](https://github.com/front-factory/vitepress-theme/compare/v1.8.0...v1.9.0) (2026-11-15)
+
+### Features
+
+* **doc-meta:** turn copy as Markdown into a page actions menu ([2e32e53](https://github.com/front-factory/vitepress-theme/commit/2e32e534330d6de309cacfc27ff10e6cf85dc6b5))
+* **i18n:** add returnToTop and codeCopied labels ([0d9f925](https://github.com/front-factory/vitepress-theme/commit/0d9f925d6370c1b855f27626f8d5f0539d0cb2a2))
+
+### Bug Fixes
+
+* **a11y:** stop focus from reshaping elements ([382ce06](https://github.com/front-factory/vitepress-theme/commit/382ce062730c9ceeabe60246fb8da5afe6e9a506))
+* **blog:** ignore posts with an unparsable date ([3211660](https://github.com/front-factory/vitepress-theme/commit/321166074e777ce994845f4cffe6da17db07e7c0))
+* **blog:** resolve author avatar and link against the base ([511647e](https://github.com/front-factory/vitepress-theme/commit/511647eaf6a3ddd3801dd6bc10d9f6ca7bb333f9))
+* **blog:** skip the post header on the blog index ([fc594ff](https://github.com/front-factory/vitepress-theme/commit/fc594ff7b26352c7ad5c534ee4696991384ad90f))
+* **hero:** open external actions in a new tab ([da62b11](https://github.com/front-factory/vitepress-theme/commit/da62b11630428aa0cfb5a537ef7c188695cafd05))
+* **layout:** read forwarded slots on each render ([0937b2c](https://github.com/front-factory/vitepress-theme/commit/0937b2cfbe338f62be5b6ee3cdd3d37a2a8db4ec))
+* **motion:** keep pager title on the slow transition ([b275606](https://github.com/front-factory/vitepress-theme/commit/b2756067413e60abac433b31dc00b9257c27c1ed))
+* **motion:** transition the feedback button hover ([8e851f6](https://github.com/front-factory/vitepress-theme/commit/8e851f62bbad9d3994a74748bdce31591484f9ea))
+* **og:** name images after the rewritten page path ([9de4a0e](https://github.com/front-factory/vitepress-theme/commit/9de4a0eb860c2cd090ed89797815cf6095f6cfaa))
+* **og:** omit image tags for pages without a source file ([20d80b6](https://github.com/front-factory/vitepress-theme/commit/20d80b69e41be764e49b73bad726555f13f26c2b))
+* **tabs:** key tab buttons by index ([7d25828](https://github.com/front-factory/vitepress-theme/commit/7d2582870e22b8e77e15ab179ffad595dff3e61a))
+* **tabs:** reset the selection only when the labels change ([d688e50](https://github.com/front-factory/vitepress-theme/commit/d688e505ef81ae39d6ce16bed4eac107e63406b2))
+* **types:** type ffTransformHead with the theme config ([963a48a](https://github.com/front-factory/vitepress-theme/commit/963a48a0add5e911f90bfa73280d8f0eea403789))
+
+### Performance
+
+* **build:** read and parse pages once for all generators ([0a3220c](https://github.com/front-factory/vitepress-theme/commit/0a3220c9a68e69ccbd6d213377b70c5eebb28e43))
+* **tabs:** read the slot once per render in the template ([054b33d](https://github.com/front-factory/vitepress-theme/commit/054b33dc8a9567b85d30a7abacb95874f5437c78))
+
 ## [1.8.0](https://github.com/front-factory/vitepress-theme/compare/v1.7.0...v1.8.0) (2026-11-04)
 
 ### Features
