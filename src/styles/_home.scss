@@ -500,7 +500,6 @@
         line-height: 1;
         letter-spacing: #{mg.ref("tracking-heading")};
         color: #{mg.ref("color-rule-strong")};
-        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .ff-feature-linked:hover .ff-feature-index::before {

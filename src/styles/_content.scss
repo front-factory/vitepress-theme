@@ -483,7 +483,6 @@
     .ff-footer-column a {
         font-size: #{mg.ref("size-ui")};
         color: #{mg.ref("color-ink-muted")};
-        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .ff-footer-column a:hover {

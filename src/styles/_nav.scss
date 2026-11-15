@@ -275,7 +275,6 @@
         background: transparent;
         font-size: #{mg.ref("size-small")};
         color: #{mg.ref("color-ink-faint")};
-        transition: border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .VPNavBarSearchButton:hover {
