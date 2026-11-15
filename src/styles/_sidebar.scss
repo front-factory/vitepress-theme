@@ -23,11 +23,8 @@
 
     .VPSidebar .nav {
         padding-top: 1.5rem;
-    }
 
-    // Sections are numbered from the stylesheet: 01, 02, 03 — no config, no markup.
-
-    .VPSidebar .nav {
+        // Sections are numbered from the stylesheet: 01, 02, 03 — no config, no markup.
         counter-reset: ff-section;
     }
 

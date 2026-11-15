@@ -151,15 +151,6 @@
 
     // Site name: display face, and a small accent square standing in for a logo when there is none.
 
-    .VPNavBarTitle .title {
-        border-bottom: 0;
-        gap: 0.625rem;
-        font-family: #{mg.ref("font-display")};
-        font-size: #{mg.ref("size-ui-lg")};
-        font-weight: 620;
-        letter-spacing: #{mg.ref("tracking-tight")};
-    }
-
     .VPNavBarTitle .title:not(:has(.logo))::before {
         content: "";
         width: 0.5rem;
@@ -182,6 +173,12 @@
         align-items: center;
         min-width: 0;
         height: 100%;
+        border-bottom: 0;
+        gap: 0.625rem;
+        font-family: #{mg.ref("font-display")};
+        font-size: #{mg.ref("size-ui-lg")};
+        font-weight: 620;
+        letter-spacing: #{mg.ref("tracking-tight")};
         color: var(--vp-c-text-1);
         transition: opacity #{mg.ref("motion-duration-fade")} #{mg.ref("motion-ease")};
     }

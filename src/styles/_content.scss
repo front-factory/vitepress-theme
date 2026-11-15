@@ -42,8 +42,6 @@
         gap: 1rem;
         min-height: #{mg.ref("banner-height")};
         padding: 0.625rem 3rem;
-        background: #{mg.ref("color-ink")};
-        color: #{mg.ref("color-paper")};
     }
 
     // `ff.navSticky: false` un-fixes the bar it sits above, so the banner follows it into normal
