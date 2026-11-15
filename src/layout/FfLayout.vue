@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useSlots } from 'vue';
+import { useSlots } from 'vue';
 import { useData } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import FfBackToTop from '../components/FfBackToTop.vue';
@@ -25,7 +25,7 @@ const owned = [
 ];
 
 const slots = useSlots();
-const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.includes(name)));
+const forwarded = () => Object.keys(slots).filter((name) => !owned.includes(name));
 </script>
 
 <template>
@@ -60,7 +60,7 @@ const forwarded = computed(() => Object.keys(slots).filter((name) => !owned.incl
       </template>
 
       <template
-        v-for="name in forwarded"
+        v-for="name in forwarded()"
         :key="name"
         #[name]="data"
       >
