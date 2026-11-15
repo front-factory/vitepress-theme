@@ -50,7 +50,6 @@
 .VPLocalSearchBox :focus-visible {
     outline: 2px solid #{mg.ref("color-accent")};
     outline-offset: 2px;
-    border-radius: #{mg.ref("radius-sm")};
 }
 
 .ff-theme * {
