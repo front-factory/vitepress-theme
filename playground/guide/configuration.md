@@ -79,7 +79,7 @@ themeConfig: {
 | Option | Default | What it does |
 | --- | --- | --- |
 | `banner` | — | Dismissible announcement bar above the navigation. See [Banner](#banner). |
-| `meta` | `{}` | Kicker above each page title: section, reading time, last update. `false` drops it. |
+| `meta` | `{}` | Kicker above each page title: section, reading time, last update. `false` drops it; set `section`, `readingTime` or `lastUpdated` to `false` to hide one item, e.g. `meta: { readingTime: false }`. |
 | `backToTop` | `true` | Floating back-to-top control. |
 | `progress` | `false` | Thin reading-progress bar at the top of the viewport. |
 | `feedback` | — | "Was this page helpful?" widget under each doc page. See [Feedback](#feedback). |

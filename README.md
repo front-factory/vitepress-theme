@@ -136,9 +136,10 @@ themeConfig: {
         preset: 'emerald',
 
         // Kicker printed above every page title. Set to false to drop it.
+        // Each item defaults to true; set it to false to hide just that item.
         meta: {
             section: true,        // section name, read from the sidebar
-            readingTime: true,
+            readingTime: true,    // reading-time estimate
             wordsPerMinute: 200,
             lastUpdated: true     // needs `lastUpdated: true` in the site config
         },
