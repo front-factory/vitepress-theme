@@ -53,6 +53,30 @@
     }
 }
 
+// The square copy button of a code block and of the hero install line: same size, radius and icon
+// size, so the two do not read as two different controls.
+
+@mixin copy-button {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: #{mg.ref("radius-sm")};
+    background-color: transparent;
+    background-size: 0.875rem;
+}
+
+// Once copied, the button squares off its left edge to sit flush against the "Copied" flag.
+
+@mixin copy-button-copied {
+    border-radius: 0 #{mg.ref("radius-sm")} #{mg.ref("radius-sm")} 0;
+}
+
+// The "Copied" flag, flush against the left of the button: same height, rounded on its far side.
+
+@mixin copied-flag {
+    height: 1.75rem;
+    border-radius: #{mg.ref("radius-sm")} 0 0 #{mg.ref("radius-sm")};
+}
+
 // The page title: the doc h1 and the blog title read as the same voice.
 
 @mixin page-title {

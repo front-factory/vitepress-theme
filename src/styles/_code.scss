@@ -46,11 +46,8 @@
     .vp-doc [class*="language-"] > button.copy {
         top: 0.4375rem;
         right: 0.625rem;
-        width: 1.75rem;
-        height: 1.75rem;
-        border-radius: #{mg.ref("radius-sm")};
-        background-color: transparent;
-        background-size: 0.875rem;
+
+        @include mixins.copy-button;
 
         // Fully opaque at rest: dimmed, the grey icon falls under the 3:1 non-text contrast minimum.
         opacity: 1;
@@ -58,14 +55,15 @@
 
     .vp-doc [class*="language-"] > button.copy.copied,
     .vp-doc [class*="language-"] > button.copy:hover.copied {
-        border-radius: 0 #{mg.ref("radius-sm")} #{mg.ref("radius-sm")} 0;
+        @include mixins.copy-button-copied;
     }
 
     .vp-doc [class*="language-"] > button.copy.copied::before,
     .vp-doc [class*="language-"] > button.copy:hover.copied::before {
         top: 0;
-        height: 1.75rem;
-        border-radius: #{mg.ref("radius-sm")} 0 0 #{mg.ref("radius-sm")};
+
+        @include mixins.copied-flag;
+
         background: #{mg.ref("color-surface")};
         font-family: #{mg.ref("font-mono")};
         font-size: #{mg.ref("size-label")};

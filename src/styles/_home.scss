@@ -240,10 +240,9 @@
         color: #{mg.ref("color-accent")};
     }
 
-    // Mirrors the copy button on code blocks (see _code.scss): same icon, size and border-radius
-    // choreography, so the two don't read as two different controls. It stays fully opaque here
-    // rather than fading in on hover — this one isn't tucked in the corner of a block, it's the
-    // install line's only affordance.
+    // The copy button shares its size and radius with the one on code blocks (see the mixins). It
+    // stays fully opaque here rather than fading in on hover — this one isn't tucked in the corner
+    // of a block, it's the install line's only affordance.
 
     .ff-hero-copy-group {
         position: relative;
@@ -263,11 +262,12 @@
         z-index: 1;
         display: flex;
         align-items: center;
-        height: 1.75rem;
         padding: 0 0.625rem;
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
         border-right: 0;
-        border-radius: #{mg.ref("radius-sm")} 0 0 #{mg.ref("radius-sm")};
+
+        @include mixins.copied-flag;
+
         background: #{mg.ref("color-surface-alt")};
         color: #{mg.ref("color-ink-muted")};
         white-space: nowrap;
@@ -275,15 +275,13 @@
 
     .ff-hero-copy {
         flex-shrink: 0;
-        width: 1.75rem;
-        height: 1.75rem;
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
-        border-radius: #{mg.ref("radius-sm")};
-        background-color: transparent;
+
+        @include mixins.copy-button;
+
         background-image: var(--vp-icon-copy);
         background-position: 50%;
         background-repeat: no-repeat;
-        background-size: 0.875rem;
         cursor: pointer;
     }
 
@@ -293,7 +291,8 @@
     }
 
     .ff-hero-copy.copied {
-        border-radius: 0 #{mg.ref("radius-sm")} #{mg.ref("radius-sm")} 0;
+        @include mixins.copy-button-copied;
+
         border-color: #{mg.ref("color-rule-strong")};
         background-color: #{mg.ref("color-surface-alt")};
         background-image: var(--vp-icon-copied);
