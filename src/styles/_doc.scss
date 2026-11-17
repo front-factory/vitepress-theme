@@ -303,16 +303,27 @@
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
 
+    // The stamp's own `<p class="VPLastUpdated">` sets its font and line height, so the rule has to
+    // target it rather than its wrapper; the `<time>` inherits. Both items share one line height
+    // so the row centres them on the same baseline.
+
     .VPDocFooter .edit-link-button,
-    .VPDocFooter .last-updated {
+    .VPDocFooter .last-updated .VPLastUpdated {
         font-family: #{mg.ref("font-mono")};
         font-size: #{mg.ref("size-meta")};
         font-weight: 400;
+        line-height: #{mg.ref("leading-body")};
         color: #{mg.ref("color-ink-faint")};
     }
 
     .VPDocFooter .edit-link-button {
         color: #{mg.ref("color-accent")};
+    }
+
+    // Vue condenses the whitespace between the label and the `<time>`, so the gap is drawn here.
+
+    .VPDocFooter .last-updated .VPLastUpdated time {
+        margin-inline-start: 1ch;
     }
 
     .VPDocFooter .prev-next {
