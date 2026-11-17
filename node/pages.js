@@ -88,6 +88,20 @@ export function hostnameOf(siteConfig, explicit) {
 }
 
 /**
+ * Same as `hostnameOf`, but throws when there is none: a feed or an image URL must be absolute.
+ * `optionPath` names the option to set, such as `ff.og`.
+ */
+export function requireHostname(siteConfig, explicit, optionPath) {
+    const hostname = hostnameOf(siteConfig, explicit);
+
+    if (!hostname) {
+        throw new Error(`[vitepress-theme] \`${optionPath}\` needs an absolute address: set \`${optionPath}.hostname\` or \`sitemap.hostname\`.`);
+    }
+
+    return hostname;
+}
+
+/**
  * Whether a page has a source file on disk. Dynamic routes and generated pages do not.
  *
  * @param {import('vitepress').SiteConfig} siteConfig
@@ -146,19 +160,14 @@ export function ogSlug(page) {
 export function ogOptions(siteConfig) {
     const og = siteConfig.site.themeConfig?.ff?.og;
     const config = resolveOption(og) ?? {};
-    const hostname = hostnameOf(siteConfig, config.hostname);
     const fonts = config.fonts ?? [];
 
     if (!fonts.length) {
         throw new Error('[vitepress-theme] `ff.og` needs at least one font: set `ff.og.fonts` (TTF, OTF or WOFF files).');
     }
 
-    if (!hostname) {
-        throw new Error('[vitepress-theme] `ff.og` needs an absolute address: set `ff.og.hostname` or `sitemap.hostname`.');
-    }
-
     return {
         fonts,
-        hostname
+        hostname: requireHostname(siteConfig, config.hostname, 'ff.og')
     };
 }

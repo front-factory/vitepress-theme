@@ -2,7 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { blogDir, hasValidDate } from './blog.js';
 import { resolveOption } from './options.js';
-import { hostnameOf } from './pages.js';
+import { requireHostname } from './pages.js';
 
 /**
  * Writes `feed.xml`, an RSS 2.0 feed of the blog posts (dated pages under the blog directory,
@@ -15,13 +15,7 @@ import { hostnameOf } from './pages.js';
 export async function generateRss(siteConfig, allPages) {
     const ff = siteConfig.site.themeConfig.ff;
     const rss = resolveOption(ff.blog.rss) ?? {};
-    const hostname = hostnameOf(siteConfig, rss.hostname);
-
-    if (!hostname) {
-        throw new Error(
-            '[vitepress-theme] `ff.blog.rss` needs an absolute address: set `ff.blog.rss.hostname` or `sitemap.hostname`.'
-        );
-    }
+    const hostname = requireHostname(siteConfig, rss.hostname, 'ff.blog.rss');
 
     let Feed;
 
