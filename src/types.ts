@@ -237,8 +237,9 @@ export interface ThemeOptions {
      */
     feedback?: boolean | FeedbackConfig
     /**
-     * Menu in the page kicker with page actions. Off by default; `true` turns on every action. The
-     * Markdown source is injected by `ffTransformPageData`, which a site defining its own
+     * Menu in the page kicker with page actions. By default only "Copy link" is on; `true` turns on
+     * every action and `false` turns the menu off.
+     * The Markdown source is injected by `ffTransformPageData`, which a site defining its own
      * `transformPageData` must call from it. Mastodon has no universal share intent, so its link
      * targets `mastodonInstance` (defaults to `mastodon.social`).
      */
