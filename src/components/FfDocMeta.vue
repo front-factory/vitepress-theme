@@ -5,6 +5,7 @@ import {
 import { useData } from 'vitepress';
 import { useLayout } from '../internal';
 import { useCopy } from '../composables/copy';
+import { resolvePageActions, type Network } from '../../node/page-actions.js';
 import { formatRelative } from '../composables/relativeTime';
 import {
     format, useLabels, useThemeOptions 
@@ -118,8 +119,6 @@ const updatedAt = computed(() =>
 // `pageActions: { copyMarkdown: true }`.
 // --------------------------------------------------------------------------------------------- //
 
-type Network = 'x' | 'linkedin' | 'bluesky' | 'mastodon';
-
 // 24px viewBox paths: the interface icons are stroked, the brand ones (Simple Icons, CC0) filled.
 const icons = {
     copy: 'M10 8h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2zM4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2',
@@ -194,15 +193,11 @@ MetaIcon.props = [
 const markdown = computed(() => (page.value as { ffMarkdown?: string }).ffMarkdown ?? '');
 
 const actions = computed(() => {
-    const { pageActions, copyMarkdown } = options.value;
-    const all = pageActions === true;
-    const config = typeof pageActions === 'object' ? pageActions : {};
+    const resolved = resolvePageActions(options.value);
 
     return {
-        markdown: (all || config.copyMarkdown || copyMarkdown === true) && !!markdown.value,
-        link: all || !!config.copyLink,
-        share: all ? (Object.keys(networks) as Network[]) : (config.share ?? []),
-        instance: config.mastodonInstance ?? 'mastodon.social'
+        ...resolved,
+        markdown: resolved.markdown && !!markdown.value 
     };
 });
 

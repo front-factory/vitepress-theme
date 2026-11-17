@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
 import { generateLlms } from './node/llms.js';
 import { generateOg } from './node/og.js';
+import { resolvePageActions } from './node/page-actions.js';
 import {
     hasSource, ogOptions, ogSlug, readPages
 } from './node/pages.js';
@@ -45,12 +46,7 @@ const alias = Object.entries(overrides).map(([
  * @param {import('vitepress').TransformPageContext} ctx
  */
 export async function ffTransformPageData(pageData, { siteConfig }) {
-    const { pageActions, copyMarkdown } = siteConfig.site.themeConfig?.ff ?? {};
-
-    if (
-        !(pageActions === true || pageActions?.copyMarkdown || copyMarkdown) ||
-        !pageData.filePath
-    ) {
+    if (!resolvePageActions(siteConfig.site.themeConfig?.ff).markdown || !pageData.filePath) {
         return;
     }
 
