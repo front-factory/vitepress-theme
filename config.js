@@ -1,11 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { searchForWorkspaceRoot } from 'vite';
+import { BANNER_DISMISSED_CLASS, bannerKey } from './node/banner.js';
 import { generateLlms } from './node/llms.js';
 import { generateOg } from './node/og.js';
 import { resolvePageActions } from './node/page-actions.js';
 import {
-    hasSource, ogOptions, ogSlug, readPages
+    hasSource, ogOptions, ogSlug, parseSource, readPages
 } from './node/pages.js';
 import { generateRss } from './node/rss.js';
 
@@ -54,7 +55,7 @@ export async function ffTransformPageData(pageData, { siteConfig }) {
         const source = await readFile(join(siteConfig.srcDir, pageData.filePath), 'utf8');
 
         return {
-            ffMarkdown: source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '').trim()
+            ffMarkdown: parseSource(source).body
         };
     } catch {
         // Virtual or generated page: there is no source file to copy.
@@ -113,13 +114,13 @@ export function ffTransformHead({ siteData, siteConfig, page, pageData }) {
     }
 
     if (ff?.banner?.id) {
-        const key = JSON.stringify(`ff-banner-${ff.banner.id}`);
+        const key = JSON.stringify(bannerKey(ff.banner.id));
 
         head.push([
             'script',
             {},
             `try{if(localStorage.getItem(${key}))` +
-                'document.documentElement.classList.add(\'ff-banner-dismissed\')}catch(e){}'
+                `document.documentElement.classList.add('${BANNER_DISMISSED_CLASS}')}catch(e){}`
         ]);
     }
 

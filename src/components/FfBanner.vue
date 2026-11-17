@@ -4,6 +4,7 @@ import {
 } from 'vue';
 import { useLabels, useThemeOptions } from '../composables/options';
 import { normalizeLink } from '../internal';
+import { BANNER_DISMISSED_CLASS, bannerKey } from '../../node/banner.js';
 
 const options = useThemeOptions();
 const labels = useLabels();
@@ -14,7 +15,7 @@ let observer: ResizeObserver | undefined;
 
 // The class is set on <html> by an inline script injected in the head, so a dismissed banner never
 // paints. See transformHead() in config.js.
-const DISMISSED = 'ff-banner-dismissed';
+const DISMISSED = BANNER_DISMISSED_CLASS;
 
 function height() {
     const root = document.documentElement;
@@ -34,7 +35,7 @@ function dismiss() {
     }
 
     try {
-        localStorage.setItem(`ff-banner-${banner.value.id}`, 'dismissed');
+        localStorage.setItem(bannerKey(banner.value.id), 'dismissed');
     } catch {
         // Private mode or full quota: the banner is dismissed for this page view only.
     }
