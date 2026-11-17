@@ -1,6 +1,8 @@
 import { createContentLoader, type LoaderModule } from 'vitepress';
 import type { ThemeConfig } from '../types.ts';
-import { blogDir, hasValidDate } from '../../node/blog.js';
+import {
+    blogDir, firstHeading, hasValidDate, toTags 
+} from '../../node/blog.js';
 
 export interface Post {
     url: string
@@ -34,10 +36,10 @@ const loader: LoaderModule<Post[]> = createContentLoader([
             .filter(({ frontmatter }) => hasValidDate(frontmatter.date))
             .map(({ url, src, frontmatter }): Post => ({
                 url,
-                title: frontmatter.title || /^#\s+(.+)$/m.exec(src ?? '')?.[1].trim() || url,
+                title: frontmatter.title || firstHeading(src ?? '') || url,
                 date: new Date(frontmatter.date).toISOString(),
                 author: frontmatter.author,
-                tags: Array.isArray(frontmatter.tags) ? frontmatter.tags.map(String) : [],
+                tags: toTags(frontmatter.tags).map(String),
                 excerpt: frontmatter.excerpt
             }))
             .sort((a, b) => b.date.localeCompare(a.date));

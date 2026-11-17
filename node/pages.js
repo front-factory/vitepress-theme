@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { firstHeading } from './blog.js';
 import { resolveOption } from './options.js';
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
@@ -131,7 +132,7 @@ export async function readPages(siteConfig) {
 
         const source = await readFile(join(siteConfig.srcDir, page), 'utf8');
         const { data, body } = parseSource(source);
-        const heading = /^#\s+(.+)$/m.exec(body)?.[1].trim();
+        const heading = firstHeading(body);
 
         pages.push({
             page,

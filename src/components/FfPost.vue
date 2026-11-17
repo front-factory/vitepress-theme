@@ -5,6 +5,7 @@ import {
     formatDate, resolveAuthor, useBlog 
 } from '../composables/blog';
 import { format, useLabels } from '../composables/options';
+import { toTags } from '../../node/blog.js';
 import { normalizeLink } from '../internal';
 
 const { frontmatter, lang } = useData();
@@ -13,7 +14,7 @@ const labels = useLabels();
 
 const date = computed(() => (isPost.value ? new Date(frontmatter.value.date).toISOString() : ''));
 const author = computed(() => resolveAuthor(authors.value, frontmatter.value.author));
-const tags = computed<string[]>(() => (Array.isArray(frontmatter.value.tags) ? frontmatter.value.tags : []));
+const tags = computed<string[]>(() => (toTags(frontmatter.value.tags) as string[]));
 </script>
 
 <template>

@@ -1,6 +1,8 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { blogDir, hasValidDate } from './blog.js';
+import {
+    blogDir, isPostPath, resolveAuthor, toTags
+} from './blog.js';
 import { resolveOption } from './options.js';
 import { requireHostname } from './pages.js';
 
@@ -42,13 +44,11 @@ export async function generateRss(siteConfig, allPages) {
     });
 
     const posts = allPages
-        .filter(({ page, data }) => page.startsWith(`${dir}/`) && page !== `${dir}/index.md` && hasValidDate(data.date))
+        .filter(({ page, data }) => isPostPath(dir, page, data.date))
         .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
     for (const { url, title: name, data } of posts) {
-        const author = authors[data.author] ?? (data.author ? {
-            name: data.author
-        } : null);
+        const author = resolveAuthor(authors, data.author);
 
         feed.addItem({
             title: name,
@@ -59,7 +59,7 @@ export async function generateRss(siteConfig, allPages) {
             author: author ? [
                 author
             ] : undefined,
-            category: (Array.isArray(data.tags) ? data.tags : []).map((tag) => ({
+            category: toTags(data.tags).map((tag) => ({
                 name: tag
             }))
         });

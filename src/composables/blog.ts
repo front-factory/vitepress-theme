@@ -1,8 +1,11 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 import { useThemeOptions } from './options';
-import { blogDir, hasValidDate } from '../../node/blog.js';
-import type { BlogAuthor } from '../types';
+import {
+    blogDir, isPostPath, resolveAuthor 
+} from '../../node/blog.js';
+
+export { resolveAuthor };
 
 /** Blog options, with the directory normalised (no slash at either end). */
 export function useBlog() {
@@ -12,24 +15,15 @@ export function useBlog() {
     const dir = computed(() => blogDir(options.value));
 
     // A post is a dated page under the blog directory, the index excluded.
-    const isPost = computed(() => {
-        const path = page.value.relativePath;
-
-        return path.startsWith(`${dir.value}/`) && path !== `${dir.value}/index.md` && hasValidDate(frontmatter.value.date);
-    });
+    const isPost = computed(() =>
+        isPostPath(dir.value, page.value.relativePath, frontmatter.value.date)
+    );
 
     return {
         dir,
         isPost,
         authors: computed(() => options.value.blog?.authors ?? {})
     };
-}
-
-/** `author` is a key of `ff.blog.authors`, or a plain name used as is. */
-export function resolveAuthor(authors: Record<string, BlogAuthor>, value?: string): BlogAuthor | null {
-    return value ? authors[value] ?? {
-        name: value
-    } : null;
 }
 
 // UTC, so the server and the browser print the same day whatever their time zone.
