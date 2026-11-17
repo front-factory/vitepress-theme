@@ -335,6 +335,15 @@
         border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
     }
 
+    // Single column, the image or panel is the container's last cell and would end flush against
+    // the colophon rule: give it the same 3rem the container puts between its own cells.
+    @include bp.down("md") {
+        .ff-hero.has-image .ff-hero-meta,
+        .ff-hero.has-panel .ff-hero-meta {
+            margin-top: 3rem;
+        }
+    }
+
     .ff-hero-meta-item {
         padding-left: 1.5rem;
         border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
