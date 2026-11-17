@@ -48,7 +48,8 @@ export default defineConfig<ThemeConfig>({
                 nav: [
                     {
                         text: 'Guide',
-                        link: '/fr/guide/getting-started'
+                        link: '/fr/guide/getting-started',
+                        activeMatch: '^/fr/guide/(?!components)'
                     },
                     {
                         text: 'Composants',
@@ -173,7 +174,8 @@ export default defineConfig<ThemeConfig>({
         nav: [
             {
                 text: 'Guide',
-                link: '/guide/getting-started' 
+                link: '/guide/getting-started',
+                activeMatch: '^/guide/(?!components)'
             },
             {
                 text: 'Components',
