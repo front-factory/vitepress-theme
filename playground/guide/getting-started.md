@@ -8,11 +8,11 @@ The theme installs like any other VitePress theme: one package, one config wrapp
 npm install @frontfactory/vitepress-theme
 ```
 
-Node 24 or later is required, and `vitepress` and `vue` stay in your own project as usual.
+Node 24 or later, `vitepress` 2 and `vue` 3.5 are required, and the last two stay in your own project as usual. The stylesheet is shipped compiled, so Sass is not needed.
 
 ## Wire the config
 
-`extends: baseConfig` brings in the component swaps and the Vite settings the theme needs.
+`extends: baseConfig` is required: it swaps the components the theme replaces, keeps the package out of dependency pre-bundling, injects the inline script that keeps a dismissed banner from painting in the built site, and reads each page's source for the copy-as-Markdown button.
 
 ```ts
 // .vitepress/config.ts
@@ -28,6 +28,8 @@ export default defineConfig({
 })
 ```
 
+The package ships its Vue and TypeScript sources as-is (`main`, `module` and `types` point at `src/index.ts`) and relies on Vite to compile them, which `extends: baseConfig` sets up. Tooling that type-checks outside Vite, such as `vue-tsc`, may need `skipLibCheck`. Importing `@frontfactory/vitepress-theme/config` from `.vitepress/config.ts`, as above, also makes `themeConfig.ff` known to TypeScript. For every option, see [Configuration](/guide/configuration).
+
 ## Use the theme
 
 ```ts
@@ -38,6 +40,8 @@ export default Theme
 ```
 
 ::: tip
+`@frontfactory/vitepress-theme/style.css` is exported for tooling that needs the stylesheet on its own; the theme entry already imports it.
+
 Extending it further works the same way as extending the default theme — spread it, then add your own `Layout` or `enhanceApp`.
 :::
 
