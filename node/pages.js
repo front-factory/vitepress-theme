@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { resolveOption } from './options.js';
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 
@@ -144,8 +145,9 @@ export function ogSlug(page) {
  */
 export function ogOptions(siteConfig) {
     const og = siteConfig.site.themeConfig?.ff?.og;
-    const hostname = hostnameOf(siteConfig, typeof og === 'object' ? og.hostname : undefined);
-    const fonts = typeof og === 'object' ? og.fonts ?? [] : [];
+    const config = resolveOption(og) ?? {};
+    const hostname = hostnameOf(siteConfig, config.hostname);
+    const fonts = config.fonts ?? [];
 
     if (!fonts.length) {
         throw new Error('[vitepress-theme] `ff.og` needs at least one font: set `ff.og.fonts` (TTF, OTF or WOFF files).');

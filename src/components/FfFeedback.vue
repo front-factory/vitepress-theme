@@ -4,20 +4,15 @@ import {
 } from 'vue';
 import { useData } from 'vitepress';
 import { useLabels, useThemeOptions } from '../composables/options';
+import { resolveOption } from '../../node/options.js';
 
 const { page, frontmatter, lang } = useData();
 const options = useThemeOptions();
 const labels = useLabels();
 
-const config = computed(() => {
-    const { feedback } = options.value;
-
-    if (!feedback || frontmatter.value.feedback === false) {
-        return null;
-    }
-
-    return feedback === true ? {} : feedback;
-});
+const config = computed(() =>
+    resolveOption(options.value.feedback, frontmatter.value.feedback === false)
+);
 
 const question = computed(() => config.value?.question || labels.value.feedbackQuestion);
 

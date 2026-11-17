@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { blogDir, hasValidDate } from './blog.js';
+import { resolveOption } from './options.js';
 import { hostnameOf } from './pages.js';
 
 /**
@@ -13,7 +14,7 @@ import { hostnameOf } from './pages.js';
  */
 export async function generateRss(siteConfig, allPages) {
     const ff = siteConfig.site.themeConfig.ff;
-    const rss = typeof ff.blog.rss === 'object' ? ff.blog.rss : {};
+    const rss = resolveOption(ff.blog.rss) ?? {};
     const hostname = hostnameOf(siteConfig, rss.hostname);
 
     if (!hostname) {

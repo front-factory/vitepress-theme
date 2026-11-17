@@ -5,6 +5,7 @@ import {
 import { useData } from 'vitepress';
 import { useLayout } from '../internal';
 import { useCopy } from '../composables/copy';
+import { resolveOption } from '../../node/options.js';
 import { resolvePageActions, type Network } from '../../node/page-actions.js';
 import { formatRelative } from '../composables/relativeTime';
 import {
@@ -17,13 +18,9 @@ const { sidebarGroups } = useLayout();
 const options = useThemeOptions();
 const labels = useLabels();
 
-const meta = computed(() => {
-    if (options.value.meta === false || frontmatter.value.docMeta === false) {
-        return null;
-    }
-
-    return options.value.meta ?? {};
-});
+const meta = computed(() =>
+    resolveOption(options.value.meta ?? true, frontmatter.value.docMeta === false)
+);
 
 // --------------------------------------------------------------------------------------------- //
 // Section, read from the sidebar the site already declares
