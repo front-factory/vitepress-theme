@@ -1,11 +1,9 @@
-import {
-    onUnmounted, ref, toValue, type MaybeRefOrGetter
-} from 'vue';
+import { toValue, type MaybeRefOrGetter } from 'vue';
+import { useTransientFlag } from './transient';
 
 /** Copies a string to the clipboard and flags it as copied for two seconds. */
 export function useCopy(text: MaybeRefOrGetter<string>) {
-    const copied = ref(false);
-    let timer: ReturnType<typeof setTimeout> | undefined;
+    const { active: copied, start } = useTransientFlag();
 
     async function copy() {
         const value = toValue(text);
@@ -21,13 +19,8 @@ export function useCopy(text: MaybeRefOrGetter<string>) {
             return;
         }
 
-        copied.value = true;
-
-        clearTimeout(timer);
-        timer = setTimeout(() => (copied.value = false), 2000);
+        start();
     }
-
-    onUnmounted(() => clearTimeout(timer));
 
     return {
         copied,

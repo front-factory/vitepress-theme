@@ -1,25 +1,18 @@
 <script setup lang="ts">
 import {
-    onMounted, onUnmounted, ref 
+    computed, onMounted, onUnmounted 
 } from 'vue';
 import { useLabels } from '../composables/options';
+import { useTransientFlag } from '../composables/transient';
 
 const labels = useLabels();
-const message = ref('');
+const { active, start, stop } = useTransientFlag();
+const message = computed(() => (active.value ? labels.value.codeCopied : ''));
 
 // VitePress confirms a code block copy with a CSS `::before` only, which screen readers never
 // hear. Its click handler adds `.copied` once the clipboard write succeeds, so the class is what
 // gets watched rather than the click itself.
 const BUTTON = 'div[class*="language-"] > button.copy';
-
-let timer: ReturnType<typeof setTimeout> | undefined;
-
-function announce() {
-    message.value = labels.value.codeCopied;
-
-    clearTimeout(timer);
-    timer = setTimeout(() => (message.value = ''), 2000);
-}
 
 function onClick(event: MouseEvent) {
     const button = (event.target as Element | null)?.closest?.(BUTTON);
@@ -29,12 +22,12 @@ function onClick(event: MouseEvent) {
     }
 
     // Cleared first, so a second copy within two seconds is announced again.
-    message.value = '';
+    stop();
 
     const observer = new MutationObserver(() => {
         if (button.classList.contains('copied')) {
             observer.disconnect();
-            announce();
+            start();
         }
     });
 
@@ -52,7 +45,6 @@ onMounted(() => window.addEventListener('click', onClick));
 
 onUnmounted(() => {
     window.removeEventListener('click', onClick);
-    clearTimeout(timer);
 });
 </script>
 

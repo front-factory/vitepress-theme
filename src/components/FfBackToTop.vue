@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import {
-    computed, onMounted, ref, watchEffect
-} from 'vue';
+import { computed, ref } from 'vue';
 import { useData } from 'vitepress';
 import { useLabels, useThemeOptions } from '../composables/options';
+import { useFrameListener } from '../composables/frame';
 
 const { theme } = useData();
 const options = useThemeOptions();
@@ -21,18 +20,6 @@ function update() {
     visible.value = window.scrollY > window.innerHeight;
 }
 
-// At most one state update per frame, however many scroll events fire.
-let frame = 0;
-
-function onScroll() {
-    if (!frame) {
-        frame = requestAnimationFrame(() => {
-            frame = 0;
-            update();
-        });
-    }
-}
-
 function toTop() {
     window.scrollTo({
         top: 0,
@@ -40,26 +27,9 @@ function toTop() {
     });
 }
 
-// Listens only while the control is enabled, and follows the option if it changes (locale switch).
-// The effect is stopped with the component, which runs its cleanup.
-onMounted(() => {
-    watchEffect((onCleanup) => {
-        if (!enabled.value) {
-            return;
-        }
-
-        update();
-        window.addEventListener('scroll', onScroll, {
-            passive: true
-        });
-
-        onCleanup(() => {
-            cancelAnimationFrame(frame);
-            frame = 0;
-            window.removeEventListener('scroll', onScroll);
-        });
-    });
-});
+useFrameListener(enabled, update, [
+    'scroll'
+]);
 </script>
 
 <template>
