@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.0](https://github.com/front-factory/vitepress-theme/compare/v1.9.0...v1.10.0) (2026-11-17)
+
+### Features
+
+* **page-actions:** show copy link by default ([459a121](https://github.com/front-factory/vitepress-theme/commit/459a1215e3317a9c2f2645db7c83b4808b5077f7))
+
+### Bug Fixes
+
+* **doc:** align last updated stamp with the edit link ([ae0a5a9](https://github.com/front-factory/vitepress-theme/commit/ae0a5a9594cd7c4238193ba535d0d128f886f8f2))
+* **home:** space the hero colophon from the image on mobile ([436fb84](https://github.com/front-factory/vitepress-theme/commit/436fb84c319b90a564fd17441a2ce5cf693c74ce))
+
 ## [1.9.0](https://github.com/front-factory/vitepress-theme/compare/v1.8.0...v1.9.0) (2026-11-15)
 
 ### Features
