@@ -7,7 +7,8 @@ hero:
   tagline: An editorial VitePress theme — hairline rules, numbered sections and monospaced metadata. One accent token to make it yours.
   command: npm install @frontfactory/vitepress-theme
   image:
-    src: /hero-illustration.svg
+    light: /hero-illustration.svg
+    dark: /hero-illustration-dark.svg
     alt: ""
   quote: Imagination is more important than knowledge. — <strong>Albert Einstein</strong>
   meta:
