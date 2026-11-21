@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.0](https://github.com/front-factory/vitepress-theme/compare/v1.10.0...v1.11.0) (2026-11-21)
+
+### Features
+
+* **styles:** style the 404 page ([dfe5187](https://github.com/front-factory/vitepress-theme/commit/dfe5187bf58ca9741296b1aa68113dc5acadac62))
+* **styles:** style the Algolia search ([caaa027](https://github.com/front-factory/vitepress-theme/commit/caaa02777be9b51500bcda410d352effbffca6e2))
+* **styles:** style the aside Carbon ad and sponsors ([20ced21](https://github.com/front-factory/vitepress-theme/commit/20ced21b54b82fc84f8b57ac7c837a829433e591))
+* **styles:** style the dropdown menus ([054ea09](https://github.com/front-factory/vitepress-theme/commit/054ea090abab0fef47416bc1ffa70f4b4991603a))
+* **styles:** style the nav hamburger, social links and backdrop ([53e4dd1](https://github.com/front-factory/vitepress-theme/commit/53e4dd13269edeb2569af24d8fc7ab051d19f5a3))
+* **styles:** style the team page ([bfcf7f9](https://github.com/front-factory/vitepress-theme/commit/bfcf7f9d335c5c4531d9912763d61363ae967710))
+* **tabs:** add an ariaLabel prop to name the tab list ([e549e9e](https://github.com/front-factory/vitepress-theme/commit/e549e9e7ea2afbd584616c185358f9a37edbf13c))
+
+### Bug Fixes
+
+* **content:** link only the card title ([69e33b4](https://github.com/front-factory/vitepress-theme/commit/69e33b4ce4e6e70ca7adcc59d7bdcce3276ce494))
+* dedupe blog tags and keep v-for keys unique ([398cfab](https://github.com/front-factory/vitepress-theme/commit/398cfabf897098991062c8938da849a516f2468a))
+* **doc-meta:** wire the page actions menu to its trigger ([07a4b7c](https://github.com/front-factory/vitepress-theme/commit/07a4b7c14fc0ba88da370034e3b900339501446e))
+* **home:** give the hero image vertical room and shrink it ([394aa7c](https://github.com/front-factory/vitepress-theme/commit/394aa7c8a59dc24f89ed39311c297c7946107836))
+* **styles:** use theme tokens for the page actions focus ring ([968d263](https://github.com/front-factory/vitepress-theme/commit/968d263c68d404b8bed91708052d87ed76a4927f))
+
 ## [1.10.0](https://github.com/front-factory/vitepress-theme/compare/v1.9.0...v1.10.0) (2026-11-17)
 
 ### Features
