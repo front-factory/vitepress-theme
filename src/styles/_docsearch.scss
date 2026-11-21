@@ -1,0 +1,94 @@
+// ============================================================================================= //
+//                                           DOCSEARCH                                           //
+// ============================================================================================= //
+
+@use "breakpoints" as bp;
+@use "mixins";
+@use "theme" as mg;
+
+// The Algolia modal, set like the local search box in `_nav.scss`: a paper shell with a hairline,
+// result rows framed by hairlines that take the accent when selected, labels in the mono voice.
+// Like the local search box it is teleported to <body>, outside the themed root, so these rules are
+// not scoped. The variables do most of the work; `html:root:root` outweighs the default theme's own
+// `:root:root` block that sets them.
+
+html:root:root {
+    --docsearch-primary-color: #{mg.ref("color-accent")};
+    --docsearch-focus-color: #{mg.ref("color-accent")};
+    --docsearch-highlight-color: #{mg.ref("color-accent")};
+    --docsearch-text-color: #{mg.ref("color-ink")};
+    --docsearch-hit-color: #{mg.ref("color-ink-muted")};
+    --docsearch-muted-color: #{mg.ref("color-ink-muted")};
+    --docsearch-icon-color: #{mg.ref("color-ink-muted")};
+    --docsearch-secondary-text-color: #{mg.ref("color-ink-muted")};
+    --docsearch-subtle-color: #{mg.ref("color-rule")};
+    --docsearch-border-radius: #{mg.ref("radius-sm")};
+    --docsearch-container-background: color-mix(in srgb, #{mg.ref("color-paper")} 85%, transparent);
+    --docsearch-modal-background: #{mg.ref("color-paper")};
+    --docsearch-modal-shadow: var(--vp-shadow-3);
+    --docsearch-searchbox-background: #{mg.ref("color-surface")};
+    --docsearch-searchbox-focus-background: #{mg.ref("color-paper")};
+    --docsearch-hit-background: transparent;
+    --docsearch-hit-shadow: none;
+    --docsearch-hit-highlight-color: #{mg.ref("color-accent-soft")};
+    --docsearch-key-background: #{mg.ref("color-surface-alt")};
+    --docsearch-key-gradient: none;
+    --docsearch-key-shadow: none;
+    --docsearch-footer-background: #{mg.ref("color-paper")};
+    --docsearch-footer-shadow: none;
+}
+
+.DocSearch-Container .DocSearch-Modal {
+    border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
+    border-radius: #{mg.ref("radius-md")};
+}
+
+.DocSearch-Modal .DocSearch-Hit a {
+    border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    border-radius: #{mg.ref("radius-sm")};
+    box-shadow: none;
+}
+
+.DocSearch-Modal .DocSearch-Hit[aria-selected="true"] a {
+    border-color: #{mg.ref("color-accent")};
+    background: #{mg.ref("color-accent-soft")};
+}
+
+.DocSearch-Modal .DocSearch-Hit-source {
+    @include mixins.label;
+}
+
+.DocSearch-Modal .DocSearch-Footer {
+    border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+}
+
+// The "Ask AI" trigger beside the search button: the same framed, quiet control.
+
+.ff-theme {
+    @include bp.up("md") {
+        button.VPNavBarAskAiButton {
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            padding: 0;
+            border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+            border-radius: #{mg.ref("radius-sm")};
+            background: transparent;
+            color: #{mg.ref("color-ink-faint")};
+            transition:
+                border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+                color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+        }
+
+        button.VPNavBarAskAiButton:hover {
+            border-color: #{mg.ref("color-rule-strong")};
+            color: #{mg.ref("color-ink-muted")};
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ff-theme button.VPNavBarAskAiButton {
+        transition: none;
+    }
+}
