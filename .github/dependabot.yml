@@ -8,3 +8,14 @@ updates:
       - "borisdamevin"
     reviewers:
       - "borisdamevin"
+    ignore:
+      - dependency-name: "conventional-changelog-conventionalcommits"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    assignees:
+      - "borisdamevin"
+    reviewers:
+      - "borisdamevin"
