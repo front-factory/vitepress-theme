@@ -255,6 +255,27 @@ The hero can also carry two soft washes of light, one accent and one neutral, be
 }
 ```
 
+### Sponsors
+
+The theme restyles the default theme's `VPHomeSponsors` component, so a sponsors section drops into the page body like any other content. It takes no frontmatter: import `VPHomeSponsors` from `vitepress/theme` and pass it props, as the playground home page does.
+
+```md
+<script setup>
+import { VPHomeSponsors } from 'vitepress/theme'
+const sponsors = [
+  { tier: 'Gold Sponsors', items: [{ name: 'Acme Corp', img: '/acme.png', url: 'https://example.com' }] }
+]
+</script>
+
+<VPHomeSponsors
+  message="Thanks to the people funding this project."
+  action-link="https://github.com/sponsors"
+  :data="sponsors"
+/>
+```
+
+`data` is a list of tiers (`tier`, optional `size`, `items`) or a flat list of `{ name, img, url }` items. `message` is an optional line under the heading, and the action button only shows with `action-link`. The heading reads the `sponsors` label and the button reads `action-text`, falling back to the `sponsorsAction` label (see [Translating](#translating)).
+
 ## Build output
 
 ### llms.txt
@@ -398,6 +419,9 @@ locales: {
 | `newTab` | `opens in a new tab` |
 | `sponsors` | `Sponsors` |
 | `sponsorsAction` | `Become a sponsor` |
+| `apiSince` | `since {0}` |
+| `apiDeprecated` | `deprecated` |
+| `bannerCta` | `Read more` |
 | `feedbackQuestion` | `Was this page helpful?` |
 | `feedbackYes` | `Yes` |
 | `feedbackNo` | `No` |
