@@ -56,8 +56,8 @@ const visible = computed(
           class="ff-footer-columns"
         >
           <nav
-            v-for="column in columns"
-            :key="column.title"
+            v-for="(column, index) in columns"
+            :key="`${index}-${column.title}`"
             class="ff-footer-column"
             :aria-label="column.title"
           >

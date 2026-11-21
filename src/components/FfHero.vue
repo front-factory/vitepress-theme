@@ -203,8 +203,8 @@ function hasInlineCommand() {
       class="ff-hero-meta"
     >
       <div
-        v-for="item in meta"
-        :key="item.label"
+        v-for="(item, index) in meta"
+        :key="`${index}-${item.label}`"
         class="ff-hero-meta-item"
       >
         <dt class="ff-label">

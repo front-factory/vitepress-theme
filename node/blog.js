@@ -59,5 +59,7 @@ export function firstHeading(body) {
  * @returns {unknown[]}
  */
 export function toTags(value) {
-    return Array.isArray(value) ? value : [];
+    return Array.isArray(value) ? [
+        ...new Set(value)
+    ] : [];
 }
