@@ -428,4 +428,57 @@
     .VPDocAsideOutline .VPDocOutlineItem.nested .outline-link {
         font-size: #{mg.ref("size-small")};
     }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Aside extras: Carbon ad and sponsors
+    //
+    // Flat hairline surfaces like `.ff-card`, set in the meta size. The ad is injected by Carbon, so
+    // only the native hooks (its colour variables and the classes the component styles) are used.
+    // ----------------------------------------------------------------------------------------- //
+
+    .VPCarbonAds {
+        --vp-carbon-ads-bg-color: #{mg.ref("color-surface")};
+        --vp-carbon-ads-text-color: #{mg.ref("color-ink-muted")};
+        --vp-carbon-ads-hover-text-color: #{mg.ref("color-accent")};
+        --vp-carbon-ads-poweredby-color: #{mg.ref("color-ink-faint")};
+        --vp-carbon-ads-hover-poweredby-color: #{mg.ref("color-ink")};
+    }
+
+    div.VPCarbonAds {
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+        font-size: #{mg.ref("size-small")};
+        font-weight: 400;
+    }
+
+    div.VPCarbonAds img {
+        border-radius: #{mg.ref("radius-sm")};
+    }
+
+    div.VPCarbonAds .carbon-poweredby {
+        font-size: #{mg.ref("size-label")};
+
+        @include mixins.label;
+    }
+
+    .VPDocAsideSponsors .vp-sponsor.aside {
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+    }
+
+    .VPDocAsideSponsors .vp-sponsor.aside .vp-sponsor-tier {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        letter-spacing: #{mg.ref("tracking-label")};
+
+        @include mixins.label;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        div.VPCarbonAds .carbon-text,
+        div.VPCarbonAds .carbon-poweredby,
+        .VPDocAsideSponsors .vp-sponsor-grid-item {
+            transition: none;
+        }
+    }
 }
