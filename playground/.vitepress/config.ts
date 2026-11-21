@@ -172,6 +172,10 @@ export default defineConfig<ThemeConfig>({
         return ffTransformPageData(pageData, ctx);
     },
     themeConfig: {
+        logo: {
+            light: '/logo.svg',
+            dark: '/logo-dark.svg'
+        },
         search: {
             provider: 'local' 
         },
