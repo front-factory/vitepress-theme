@@ -174,7 +174,7 @@
             box-shadow #{mg.ref("motion-duration-slow")} #{mg.ref("motion-ease")};
     }
 
-    .vp-doc a.ff-card:hover {
+    .vp-doc .ff-card-linked:hover {
         box-shadow: 0 0.75rem 1.75rem #{mg.ref("color-accent-glow")};
     }
 

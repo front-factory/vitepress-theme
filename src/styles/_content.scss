@@ -528,6 +528,7 @@
     }
 
     .vp-doc .ff-card {
+        position: relative;
         display: block;
         padding: 1.25rem;
         border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
@@ -535,11 +536,29 @@
         background: #{mg.ref("color-surface")};
     }
 
-    .vp-doc a.ff-card {
+    .vp-doc a.ff-card-anchor {
+        color: inherit;
         text-decoration: none;
     }
 
-    .vp-doc a.ff-card:hover {
+    // Stretched over the whole card, so it stays clickable everywhere.
+    .vp-doc a.ff-card-anchor::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
+
+    // The focus ring goes around the card the link covers, not around the title alone.
+    .vp-doc a.ff-card-anchor:focus-visible {
+        outline: none;
+    }
+
+    .vp-doc .ff-card:has(.ff-card-anchor:focus-visible) {
+        outline: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-accent")};
+        outline-offset: -2px;
+    }
+
+    .vp-doc .ff-card-linked:hover {
         border-color: #{mg.ref("color-accent")};
     }
 
