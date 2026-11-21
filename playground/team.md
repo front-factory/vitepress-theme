@@ -35,7 +35,7 @@ const members = [
 <VPTeamPage>
   <VPTeamPageTitle>
     <template #title>Team</template>
-    <template #lead>Native VitePress team components, unstyled by this theme.</template>
+    <template #lead>VitePress' native team components, restyled by this theme.</template>
   </VPTeamPageTitle>
   <VPTeamPageSection>
     <template #title>Maintainers</template>

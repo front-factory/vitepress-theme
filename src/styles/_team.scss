@@ -1,0 +1,141 @@
+// ============================================================================================= //
+//                                             TEAM                                              //
+// ============================================================================================= //
+
+@use "mixins";
+@use "theme" as mg;
+
+// Restyles the default theme's team page in place: the title speaks in the page-title voice, a
+// section title is a monospaced label cut out of a hairline, and a member is a flat hairline
+// surface like `.ff-card`, with no shadow. The selectors carry `.ff-theme` (and the size class where
+// the component sets one) so they outrank the component's own scoped styles.
+
+.ff-theme {
+    .VPTeamPageTitle {
+        text-align: left;
+    }
+
+    .VPTeamPageTitle .title {
+        font-family: #{mg.ref("font-display")};
+
+        @include mixins.page-title;
+    }
+
+    .VPTeamPageTitle .lead {
+        max-width: 37rem;
+        margin: 0;
+        font-size: #{mg.ref("size-body")};
+        font-weight: 400;
+        line-height: 1.65;
+        letter-spacing: normal;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .VPTeamPageSection .title {
+        max-width: #{mg.ref("layout-wide")};
+        text-align: left;
+        color: #{mg.ref("color-ink-faint")};
+    }
+
+    .VPTeamPageSection .title-line {
+        height: #{mg.ref("rule-width")};
+        background-color: #{mg.ref("color-rule")};
+    }
+
+    .VPTeamPageSection .title-text {
+        padding: 0 0.75rem 0 0;
+        background-color: #{mg.ref("color-paper")};
+
+        @include mixins.label;
+    }
+
+    .VPTeamPageSection .lead {
+        max-width: #{mg.ref("layout-wide")};
+        font-size: #{mg.ref("size-body")};
+        font-weight: 400;
+        line-height: 1.65;
+        text-align: left;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Members
+    // ----------------------------------------------------------------------------------------- //
+
+    // The grid spans the same width as the section title and rule, whatever the member count: the
+    // component caps and centres it per count, which left the cards off the title's edges.
+    .VPTeamMembers:is(.small, .medium)[class*="count-"] .container {
+        max-width: #{mg.ref("layout-wide")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) {
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+        background: #{mg.ref("color-surface")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .profile {
+        background: transparent;
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .avatar {
+        margin: 0;
+        border-radius: #{mg.ref("radius-md")};
+        box-shadow: none;
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .avatar-img {
+        border-radius: #{mg.ref("radius-md")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .data {
+        text-align: left;
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .name {
+        font-family: #{mg.ref("font-display")};
+        font-size: #{mg.ref("size-body")};
+        font-weight: 620;
+        letter-spacing: #{mg.ref("tracking-tight")};
+        color: #{mg.ref("color-ink")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .affiliation {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        font-weight: 500;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .desc {
+        max-width: none;
+        margin: 0;
+        font-size: #{mg.ref("size-ui-lg")};
+        line-height: 1.6;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    // The links sit under a hairline, flush with the card's own padding.
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .links {
+        justify-content: flex-start;
+        height: auto;
+        margin: 1.25rem -1rem -1rem;
+        padding: 0.5rem 0 0;
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .sp {
+        border-top: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .sp-link {
+        background-color: transparent;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .sp .sp-link.link:hover,
+    .VPTeamMembers .VPTeamMembersItem:is(.small, .medium) .sp .sp-link.link:focus {
+        background-color: transparent;
+        color: #{mg.ref("color-accent")};
+    }
+}
