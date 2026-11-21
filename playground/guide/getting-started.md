@@ -8,11 +8,11 @@ The theme installs like any other VitePress theme: one package, one config wrapp
 npm install @frontfactory/vitepress-theme
 ```
 
-Node 24 or later, `vitepress` 2 and `vue` 3.5 are required, and the last two stay in your own project as usual. The stylesheet is shipped compiled, so Sass is not needed.
+Node 24 or later, `vitepress` 2, `vue` 3.5 and `vite` 8 are required, and the last three stay in your own project as usual. The stylesheet is shipped compiled, so Sass is not needed.
 
 ## Wire the config
 
-`extends: baseConfig` is required: it swaps the components the theme replaces, keeps the package out of dependency pre-bundling, injects the inline script that keeps a dismissed banner from painting in the built site, and reads each page's source for the copy-as-Markdown button.
+`extends: baseConfig` is required: it swaps the components the theme replaces, keeps the package out of dependency pre-bundling, injects the inline script that keeps a dismissed banner from painting in the built site, reads each page's source for the [page actions](/guide/configuration#page-actions) menu (only "Copy link" is on by default), and wires the hooks behind [llms.txt](/guide/configuration#llms-txt), [Open Graph images](/guide/configuration#open-graph-images) and the [blog](/guide/configuration#blog) RSS feed, all off until you enable them.
 
 ```ts
 // .vitepress/config.ts
@@ -28,7 +28,7 @@ export default defineConfig({
 })
 ```
 
-The package ships its Vue and TypeScript sources as-is (`main`, `module` and `types` point at `src/index.ts`) and relies on Vite to compile them, which `extends: baseConfig` sets up. Tooling that type-checks outside Vite, such as `vue-tsc`, may need `skipLibCheck`. Importing `@frontfactory/vitepress-theme/config` from `.vitepress/config.ts`, as above, also makes `themeConfig.ff` known to TypeScript. For every option, see [Configuration](/guide/configuration).
+The package ships `src/index.ts` as source (`exports["."]`), compiled by Vite, which `extends: baseConfig` sets up. Type declarations ship in `types/`, generated at pack time. Importing `@frontfactory/vitepress-theme/config` from `.vitepress/config.ts`, as above, also makes `themeConfig.ff` known to TypeScript. For every option, see [Configuration](/guide/configuration).
 
 ## Use the theme
 

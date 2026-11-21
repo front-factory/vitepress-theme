@@ -8,7 +8,7 @@ Le thème s'installe comme n'importe quel thème VitePress : un paquet, une enve
 npm install @frontfactory/vitepress-theme
 ```
 
-Node 24 ou plus récent est requis, et `vitepress` et `vue` restent dans votre propre projet comme d'habitude.
+Node 24 ou plus récent, `vitepress` 2, `vue` 3.5 et `vite` 8 sont requis, et les trois derniers restent dans votre propre projet comme d'habitude. La feuille de style est livrée compilée, donc Sass n'est pas nécessaire.
 
 ## Brancher la configuration
 
