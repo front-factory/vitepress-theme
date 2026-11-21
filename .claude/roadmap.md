@@ -95,14 +95,13 @@ Référence entre deux sessions. Mettre à jour ce fichier à la fin de chaque p
 - Libellé `Version` conservé dans le hero FR, donc `transformPageData` l'atteint. Vérifié dans le HTML généré : aucune entrée anglaise de nav, sidebar ou footer sur `/fr/`. La bannière reste en anglais. Recherche locale non traduite.
 
 **18. CI** (0599915)
-- `playwright.config.ts` (Chromium, `vitepress preview` sur 4173, `reducedMotion`), `tests/a11y.spec.ts` (14 pages, tags wcag2a/aa, wcag21a/aa), `tests/visual.spec.ts` (4 pages, masque sur `.ff-doc-meta time`). Scripts `test:e2e` et `test:visual`. `tsconfig` inclut config et tests ; `process` déclaré à la main (pas de `@types/node`).
-- Job `e2e` hors `publish.needs`, déclenchable avec `workflow_dispatch` (`update-snapshots` régénère les baselines et les envoie en artefact). Les baselines Linux ne sont pas encore commitées : à faire via ce déclenchement.
-- Non vérifié : le workflow n'a jamais tourné sur GitHub ; `test:visual` n'a été lancé qu'une fois sous Windows (snapshots supprimés).
+- `playwright.config.ts` (Chromium, `vitepress preview` sur 4173, `reducedMotion`), `tests/a11y.spec.ts` (14 pages, tags wcag2a/aa, wcag21a/aa). Script `test:e2e` (seul `tests/a11y.spec.ts` existe ; les tests visuels ont été abandonnés). `tsconfig` inclut config et tests ; `process` déclaré à la main (pas de `@types/node`).
+- Job `e2e` hors `publish.needs`.
 - Violations axe corrigées (cb99507, e8a59e4) : lignes `.diff.remove` remises à `opacity: 1` (le 0.7 du thème par défaut cassait le contraste) ; nom accessible du sélecteur de version = `labels.versionSwitcher` + `current`. `test:e2e` passe localement (14/14), avec le `webServer` lancé par Playwright (l'`ERR_CONNECTION_REFUSED` d'avant ne s'est pas reproduit).
 
 ## Reste à faire
 
-Rien : toutes les phases sont faites. Reste à commiter les baselines Linux (déclenchement `update-snapshots`).
+Rien : toutes les phases sont faites.
 
 ## Conventions
 
