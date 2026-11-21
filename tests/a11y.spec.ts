@@ -87,6 +87,17 @@ test.describe('open states', () => {
         expect(await violations(page, '.VPNavScreen')).toEqual([]);
     });
 
+    test('404 page', async ({ page }) => {
+        await open(page, '/does-not-exist');
+        await expect(page.locator('.NotFound')).toBeVisible();
+
+        // The link's aria-label ("go to home") comes from VitePress' own NotFound markup and differs
+        // from its visible text (label-content-name-mismatch); the theme only styles it.
+        expect(await violations(page, undefined, [
+            'label-content-name-mismatch'
+        ])).toEqual([]);
+    });
+
     test('inactive tab panel', async ({ page }) => {
         await open(page, '/guide/components');
         await page.locator('.ff-tabs [role="tab"]').nth(1).click();

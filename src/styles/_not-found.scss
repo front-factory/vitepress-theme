@@ -1,0 +1,81 @@
+// ============================================================================================= //
+//                                           NOT FOUND                                           //
+// ============================================================================================= //
+
+@use "theme" as mg;
+
+// Styles the default theme's 404 in place: the error code is the monospaced machine text, the
+// title the page title voice, and the way home a hairline button that takes the accent on hover.
+// The selectors carry `.ff-theme` so they outrank the component's own scoped styles.
+
+.ff-theme {
+    .NotFound {
+        max-width: #{mg.ref("layout-content")};
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .NotFound .code {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-h1")};
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: #{mg.ref("tracking-title")};
+        color: #{mg.ref("color-accent")};
+    }
+
+    .NotFound .title {
+        padding-top: 1.25rem;
+        font-family: #{mg.ref("font-display")};
+        font-size: #{mg.ref("size-h1")};
+        font-weight: 620;
+        line-height: #{mg.ref("leading-tight")};
+        letter-spacing: #{mg.ref("tracking-title")};
+        text-transform: none;
+        color: #{mg.ref("color-ink")};
+    }
+
+    .NotFound .divider {
+        width: 100%;
+        height: #{mg.ref("rule-width")};
+        margin: 2rem 0 1.5rem;
+        background-color: #{mg.ref("color-rule")};
+    }
+
+    .NotFound .quote {
+        max-width: 32rem;
+        margin: 0;
+        font-size: #{mg.ref("size-body")};
+        font-weight: 400;
+        line-height: 1.65;
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .NotFound .action {
+        padding-top: 2rem;
+    }
+
+    .NotFound .link {
+        padding: 0 1.25rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule-strong")};
+        border-radius: #{mg.ref("radius-sm")};
+        font-size: #{mg.ref("size-ui")};
+        font-weight: 550;
+        line-height: 2.75rem;
+        color: #{mg.ref("color-ink")};
+        transition:
+            border-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .NotFound .link:hover {
+        border-color: #{mg.ref("color-accent")};
+        color: #{mg.ref("color-accent")};
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ff-theme .NotFound .link {
+        transition: none;
+    }
+}
