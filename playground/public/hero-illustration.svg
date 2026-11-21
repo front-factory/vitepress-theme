@@ -35,14 +35,6 @@
     <!-- Dotted grid, fading out toward the edges -->
     <rect width="440" height="440" fill="url(#dots)" mask="url(#dotmask)" />
 
-    <!-- Crop marks -->
-    <g stroke="#d3cec4" stroke-width="1.5">
-        <path d="M30 40h14M37 33v14" />
-        <path d="M396 40h14M403 33v14" />
-        <path d="M30 400h14M37 393v14" />
-        <path d="M396 400h14M403 393v14" />
-    </g>
-
     <!-- Accent glow behind the stack, plus a ring on the ground plane -->
     <circle cx="220" cy="215" r="150" fill="url(#glow)" filter="url(#soft)" />
     <ellipse cx="220" cy="318" rx="165" ry="95" stroke="#2745cf" stroke-opacity=".55" stroke-dasharray="2 5" />
