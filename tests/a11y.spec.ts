@@ -95,3 +95,41 @@ test.describe('open states', () => {
         expect(await violations(page, '.ff-tabs')).toEqual([]);
     });
 });
+
+// Behaviour of the card, page actions and tabs fixes, which axe alone does not assert.
+test.describe('component semantics', () => {
+    test('linked card: only the title is the link', async ({ page }) => {
+        await open(page, '/guide/components');
+
+        const link = page.locator('.ff-card-linked .ff-card-anchor').first();
+        const title = await page.locator('.ff-card-linked .ff-card-title').first().innerText();
+
+        await expect(link).toHaveAccessibleName(title.trim());
+    });
+
+    test('page actions menu: aria-controls and first item focused', async ({ page }) => {
+        await open(page, '/guide/components');
+
+        const toggle = page.locator('.ff-doc-meta-toggle');
+
+        await toggle.click();
+
+        const menu = page.locator('.ff-doc-meta-menu');
+
+        await expect(menu).toBeVisible();
+
+        const id = await menu.getAttribute('id');
+
+        expect(id).toBeTruthy();
+        await expect(toggle).toHaveAttribute('aria-controls', id!);
+        await expect(menu.locator('[role="menuitem"]').first()).toBeFocused();
+    });
+
+    test('tabs: ariaLabel names the tablist', async ({ page }) => {
+        await open(page, '/guide/components');
+
+        await expect(page.locator('.ff-tabs [role="tablist"]').first()).toHaveAccessibleName(
+            'Package manager'
+        );
+    });
+});
