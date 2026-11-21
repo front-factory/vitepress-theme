@@ -238,7 +238,7 @@
     .ff-doc-meta-main:focus-visible,
     .ff-doc-meta-toggle:focus-visible,
     .ff-doc-meta-menu > :focus-visible {
-        outline: 2px solid var(--vp-c-brand-1);
+        outline: #{mg.ref("rule-accent-width")} solid #{mg.ref("color-accent")};
         outline-offset: -2px;
     }
 
