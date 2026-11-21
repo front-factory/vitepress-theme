@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-    computed, h, nextTick, onMounted, onUnmounted, ref, watch
+    computed, h, nextTick, onMounted, onUnmounted, ref, useId, watch
 } from 'vue';
 import { useData } from 'vitepress';
 import { useLayout } from '../internal';
@@ -232,6 +232,7 @@ const root = ref<HTMLElement>();
 const trigger = ref<HTMLButtonElement>();
 const open = ref(false);
 const pageUrl = ref('');
+const menuId = useId();
 
 const shares = computed(() =>
     actions.value.share
@@ -249,6 +250,7 @@ function toggle() {
     if (open.value) {
         // Read on the client only, so the page renders the same on the server.
         pageUrl.value = pageAddress();
+        nextTick(() => root.value?.querySelector<HTMLElement>('[role="menuitem"]')?.focus());
     }
 }
 
@@ -376,6 +378,7 @@ const hidden = computed(
           :class="{ open }"
           aria-haspopup="menu"
           :aria-expanded="open"
+          :aria-controls="open ? menuId : undefined"
           :aria-label="main ? labels.pageActions : undefined"
           @click="toggle"
         >
@@ -397,6 +400,7 @@ const hidden = computed(
 
       <div
         v-if="open"
+        :id="menuId"
         class="ff-doc-meta-menu"
         role="menu"
       >
