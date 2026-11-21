@@ -3,6 +3,7 @@
 // ============================================================================================= //
 
 @use "breakpoints" as bp;
+@use "mixins";
 @use "theme" as mg;
 
 .ff-theme {
@@ -259,6 +260,49 @@
         color: #{mg.ref("color-ink")};
     }
 
+    // Dropdown menus (nav flyouts, the extra "..." menu, the language menu): the same flat hairline
+    // panel as the page actions menu. The prefix keeps it off the mobile nav screen, which reuses
+    // the menu links, and outranks the components' own scoped styles.
+
+    .VPFlyout .VPMenu {
+        padding: 0.375rem;
+        border: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: #{mg.ref("radius-md")};
+        background-color: var(--vp-c-bg-elv);
+        box-shadow: var(--vp-shadow-3);
+    }
+
+    .VPFlyout .VPMenu .VPMenuLink .link {
+        border-radius: #{mg.ref("radius-sm")};
+        font-size: #{mg.ref("size-ui")};
+        font-weight: 500;
+        color: #{mg.ref("color-ink-muted")};
+        transition:
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPFlyout .VPMenu .VPMenuLink .link:hover {
+        background-color: #{mg.ref("color-surface-alt")};
+        color: #{mg.ref("color-ink")};
+    }
+
+    .VPFlyout .VPMenu .VPMenuLink .link.active {
+        color: #{mg.ref("color-accent")};
+    }
+
+    .VPFlyout .VPMenu .VPMenuGroup .title,
+    .VPFlyout .VPMenu .VPNavTranslations .title {
+        @include mixins.label;
+    }
+
+    .VPFlyout .VPMenu .VPMenuGroup,
+    .VPFlyout .VPMenu .VPMenuLink,
+    .VPFlyout .VPMenu .group,
+    .VPFlyout .VPMenu .item {
+        border-top-color: #{mg.ref("color-rule")};
+    }
+
     // Search trigger
 
     .VPNavBarSearchButton {
@@ -360,4 +404,10 @@
 .VPLocalSearchBox .result.selected {
     border-color: #{mg.ref("color-accent")};
     background: #{mg.ref("color-accent-soft")};
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ff-theme .VPFlyout .VPMenu .VPMenuLink .link {
+        transition: none;
+    }
 }
