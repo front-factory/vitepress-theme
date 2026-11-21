@@ -303,6 +303,50 @@
         border-top-color: #{mg.ref("color-rule")};
     }
 
+    // Hamburger: ink bars that take the accent on hover, in the same two-pixel weight as the
+    // theme's accent rules.
+
+    .VPNavBarHamburger .top,
+    .VPNavBarHamburger .middle,
+    .VPNavBarHamburger .bottom {
+        height: #{mg.ref("rule-accent-width")};
+        background-color: #{mg.ref("color-ink")};
+        transition:
+            top #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            background-color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")},
+            transform #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPNavBarHamburger:hover .top,
+    .VPNavBarHamburger:hover .middle,
+    .VPNavBarHamburger:hover .bottom,
+    .VPNavBarHamburger.active:hover .top,
+    .VPNavBarHamburger.active:hover .middle,
+    .VPNavBarHamburger.active:hover .bottom {
+        background-color: #{mg.ref("color-accent")};
+    }
+
+    // Social links of the nav bar and the "..." menu, set like the other nav links. The footer
+    // draws its own.
+
+    .VPNavBar .VPSocialLink,
+    .VPFlyout .VPSocialLink {
+        color: #{mg.ref("color-ink-muted")};
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .VPNavBar .VPSocialLink:hover,
+    .VPFlyout .VPSocialLink:hover {
+        color: #{mg.ref("color-ink")};
+    }
+
+    // The overlay behind the mobile nav and sidebar: a wash of the page colour, so it reads in
+    // both schemes instead of a black sheet.
+
+    div.VPBackdrop {
+        background: color-mix(in srgb, #{mg.ref("color-paper")} 85%, transparent);
+    }
+
     // Search trigger
 
     .VPNavBarSearchButton {
@@ -407,7 +451,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .ff-theme .VPFlyout .VPMenu .VPMenuLink .link {
-        transition: none;
+    .ff-theme {
+        .VPFlyout .VPMenu .VPMenuLink .link,
+        .VPNavBarHamburger .top,
+        .VPNavBarHamburger .middle,
+        .VPNavBarHamburger .bottom,
+        .VPNavBar .VPSocialLink,
+        .VPFlyout .VPSocialLink,
+        div.VPBackdrop {
+            transition: none;
+        }
     }
 }
