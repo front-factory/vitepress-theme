@@ -307,10 +307,13 @@
         // is the limit; past 960px the column is half the hero, wide enough that this is the one
         // that bites, so the image can run as large as the site's own picture allows.
         max-width: 28rem;
+
+        // Keeps the picture off the edges of its area, whatever the screen size.
+        padding-block: 2rem;
     }
 
     .ff-hero-image img {
-        width: 100%;
+        width: 90%;
         height: auto;
     }
 
@@ -336,9 +339,13 @@
     }
 
     // Single column, the image or panel is the container's last cell and would end flush against
-    // the colophon rule: give it the same 3rem the container puts between its own cells.
+    // the colophon rule: give it the same 3rem the container puts between its own cells. The image
+    // already carries 2rem of its own padding below, so it only needs the remaining 1rem.
     @include bp.down("md") {
-        .ff-hero.has-image .ff-hero-meta,
+        .ff-hero.has-image .ff-hero-meta {
+            margin-top: 1rem;
+        }
+
         .ff-hero.has-panel .ff-hero-meta {
             margin-top: 3rem;
         }
