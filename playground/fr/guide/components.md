@@ -78,9 +78,9 @@ Sans `title`, c'est le type qui est affiché.
 ## Onglets
 
 Les groupes qui partagent une `syncKey` changent ensemble, et le choix est mémorisé. Le Markdown à l'intérieur d'un `<Tab>`
-demande une ligne vide avant et après.
+demande une ligne vide avant et après. Renseignez `ariaLabel` pour donner un nom accessible à la liste d'onglets.
 
-<Tabs syncKey="pm">
+<Tabs syncKey="pm" ariaLabel="Gestionnaire de paquets">
 <Tab label="npm">
 
 ```sh

@@ -8,6 +8,8 @@ import { useTabs } from '../composables/tabs';
 const props = defineProps<{
     /** Groups sharing a key switch together, and the choice is remembered across visits. */
     syncKey?: string
+    /** Accessible name of the tab list. */
+    ariaLabel?: string
 }>();
 
 const slots = useSlots();
@@ -60,6 +62,7 @@ const { active, select, onKeydown } = useTabs(
     <div
       class="ff-tabs-list"
       role="tablist"
+      :aria-label="ariaLabel"
       @keydown="onKeydown"
     >
       <button

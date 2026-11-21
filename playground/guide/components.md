@@ -78,9 +78,9 @@ Without a `title`, the type is printed instead.
 ## Tabs
 
 Groups sharing a `syncKey` switch together, and the choice is remembered. Markdown inside a `<Tab>`
-needs a blank line before and after it.
+needs a blank line before and after it. Set `ariaLabel` to give the tab list an accessible name.
 
-<Tabs syncKey="pm">
+<Tabs syncKey="pm" ariaLabel="Package manager">
 <Tab label="npm">
 
 ```sh
