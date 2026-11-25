@@ -517,6 +517,23 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // External link icon
+    // ----------------------------------------------------------------------------------------- //
+
+    // The arrow is a mask filled with the link's own colour, in menus and in prose alike. It sits
+    // a little back from the text and softer than it, so it marks the link without competing with
+    // the label. Screen only: the print sheet swaps the arrow for the printed address, which must
+    // stay at full strength.
+
+    @media screen {
+        .vp-external-link-icon::after,
+        .vp-doc a:is([href*="://"], [target="_blank"])::after {
+            margin-inline-start: 0.3em;
+            opacity: 0.65;
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Cards
     // ----------------------------------------------------------------------------------------- //
 
