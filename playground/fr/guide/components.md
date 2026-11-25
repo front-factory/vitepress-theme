@@ -1,6 +1,12 @@
 # Composants
 
-Ces composants sont enregistrés globalement : n'importe quelle page peut les utiliser sans import.
+Ces composants sont enregistrés globalement : n'importe quelle page peut les utiliser sans import. Ce sont aussi des exports nommés du paquet (`Api`, `Badge`, `Callout`, `Card`, `CardGrid`, `FileTree`, `Kbd`, `Steps`, `Tab`, `Tabs`, `Timeline`, `TimelineItem`), à utiliser dans vos propres composants :
+
+```ts
+import { Callout, CardGrid } from '@frontfactory/vitepress-theme'
+```
+
+`layout: blog` dans le frontmatter d'une page fonctionne parce que le thème enregistre un composant nommé `blog`. Voir [Blog](/guide/configuration#blog) (page en anglais).
 
 ## Cartes
 

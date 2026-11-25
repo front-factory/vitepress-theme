@@ -1,6 +1,12 @@
 # Components
 
-These components are registered globally, so any page can use them without an import.
+These components are registered globally, so any page can use them without an import. They are also named exports of the package (`Api`, `Badge`, `Callout`, `Card`, `CardGrid`, `FileTree`, `Kbd`, `Steps`, `Tab`, `Tabs`, `Timeline`, `TimelineItem`), for use in your own components:
+
+```ts
+import { Callout, CardGrid } from '@frontfactory/vitepress-theme'
+```
+
+`layout: blog` in a page's frontmatter works because the theme registers a component named `blog`. See [Blog](/guide/configuration#blog).
 
 ## Cards
 
