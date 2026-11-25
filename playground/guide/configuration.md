@@ -19,7 +19,7 @@ This page only covers the options added by the theme. Every native VitePress opt
 | `backToTop` | `true` | Floating back-to-top control. See [Back to top and progress](#back-to-top-and-progress). |
 | `progress` | `false` | Reading-progress bar. See [Back to top and progress](#back-to-top-and-progress). |
 | `versions` | — | Version menu beside the site name. See [Versions](#versions). |
-| `meta` | `{}` | Kicker above each page title. See [Kicker](#kicker). |
+| `meta` | `true` | Kicker above each page title; unset shows every item, `false` hides it, an object turns off single items. See [Kicker](#kicker). |
 | `feedback` | — | "Was this page helpful?" widget. See [Feedback](#feedback). |
 | `pageActions` | `{ copyLink: true }` | Page actions menu: "Copy link" only by default; `true` turns on every action, `false` hides the menu. See [Page actions](#page-actions). |
 | `copyMarkdown` | `false` | Deprecated: use `pageActions: { copyMarkdown: true }`. |
