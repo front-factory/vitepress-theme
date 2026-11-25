@@ -14,7 +14,7 @@ Status: open
 | S3 | low | src/styles/_nav.scss | Desktop navbar extras `.VPNavBarTranslations`, `.VPNavBarSocialLinks`, `.VPNavBarAppearance`, `.VPNavBarExtra` only spaced via wrappers; check and complete. | fixed | Language flyout title and "..." menu appearance label now use the menu label style. | |
 | S4 | low | src/styles/_code.scss | Focused code lines (`.has-focused-lines`, `.line.has-focus`, `// [!code focus]`) keep stock blur/dim. | fixed | Blur dropped, dim kept, accent rule on the focused line. | |
 | S5 | low | src/styles/_content.scss | `.vp-external-link-icon` keeps stock colour/spacing. | fixed | Softer arrow with em spacing, screen only so print keeps the URL. | |
-| S6 | low | src/styles/_content.scss | `[[toc]]` list `.table-of-contents` has no treatment. | open | |
+| S6 | low | src/styles/_content.scss | `[[toc]]` list `.table-of-contents` has no treatment. | fixed | Outline-style list: left rule, muted links, accent on hover. | |
 | S7 | low | src/styles/_team.scss | Large team card size. | wontfix | VPTeamMembers only supports small and medium (default medium); both styled. |
 | S8 | low | src/styles | Math (`.katex`, `mjx-container`) and emoji not styled; only matters with markdown.math. | open | |
 | S9 | low | src/styles | Stock `.VPHomeHero`/`.VPHomeFeatures`. | wontfix | VPHero and VPFeature are replaced by alias (config.js overrides). |

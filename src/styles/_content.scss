@@ -534,6 +534,52 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // Inline table of contents: [[toc]]
+    // ----------------------------------------------------------------------------------------- //
+
+    // A nav of nested lists with no styling of its own, so it falls back to prose bullets. It is
+    // set like the outline in the aside: a hairline on the left, muted links, accent on hover.
+
+    .vp-doc .table-of-contents {
+        margin: 1.5rem 0;
+        padding-left: 1rem;
+        border-left: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .vp-doc .table-of-contents ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .vp-doc .table-of-contents li {
+        margin: 0;
+    }
+
+    .vp-doc .table-of-contents ul ul {
+        padding-left: 0.75rem;
+    }
+
+    .vp-doc .table-of-contents a {
+        display: block;
+        padding: 0.25rem 0;
+        font-size: #{mg.ref("size-ui")};
+        font-weight: 450;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #{mg.ref("color-ink-muted")};
+        transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc .table-of-contents ul ul a {
+        font-size: #{mg.ref("size-small")};
+    }
+
+    .vp-doc .table-of-contents a:hover {
+        color: #{mg.ref("color-accent")};
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Cards
     // ----------------------------------------------------------------------------------------- //
 
