@@ -58,6 +58,25 @@
 }
 
 // --------------------------------------------------------------------------------------------- //
+// Skip link
+//
+// Visually hidden until a keyboard user focuses it; then a hairline accent pill, like the labels.
+// --------------------------------------------------------------------------------------------- //
+
+.ff-theme .VPSkipLink:focus {
+    padding: 0.625rem 1rem;
+    border: #{mg.ref("rule-width")} solid #{mg.ref("color-accent")};
+    border-radius: #{mg.ref("radius-sm")};
+    background: #{mg.ref("color-paper")};
+    box-shadow: none;
+    line-height: 1;
+
+    @include mixins.label;
+
+    color: #{mg.ref("color-accent")};
+}
+
+// --------------------------------------------------------------------------------------------- //
 // Buttons
 //
 // Square-ish, hairline, no lift on hover: the accent does the talking.
