@@ -10,6 +10,9 @@ export default defineConfig<ThemeConfig>({
     srcDir: '.',
     lastUpdated: true,
     cleanUrls: true,
+    markdown: {
+        math: true
+    },
     head: [
         [
             'link',

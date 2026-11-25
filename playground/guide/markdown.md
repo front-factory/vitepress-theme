@@ -134,6 +134,18 @@ yarn add @frontfactory/vitepress-theme
 
 Heading with a badge <Badge type="tip" text="new" /> and another <Badge type="warning" text="beta" />.
 
+## Math
+
+An inline formula, $a^2 + b^2 = c^2$, inside a sentence.
+
+$$
+\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}
+$$
+
+## Emoji
+
+Shortcodes render as emoji: :tada: :rocket: :warning:
+
 ## Table of contents
 
 [[toc]]
