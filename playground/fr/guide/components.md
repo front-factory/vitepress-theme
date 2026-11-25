@@ -27,6 +27,22 @@ Menu hamburger et menu plein écran, intacts.
 </Card>
 </CardGrid>
 
+Props de `Card` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `title` | `string` | requis | Titre de la carte ; c'est le lien quand `link` est renseigné. |
+| `icon` | `string` | — | SVG en ligne ou emoji affiché au-dessus du titre. |
+| `link` | `string` | — | Adresse vers laquelle pointe le titre ; sans elle, la carte est un simple bloc. |
+| `rel` | `string` | — | Attribut `rel` du lien. |
+| `target` | `string` | — | Attribut `target` du lien. |
+
+Props de `CardGrid` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `columns` | `number \| string` | `2` | Nombre de colonnes. |
+
 ## Entrées d'API
 
 <Api name="refs()" kind="function" signature="refs($tokens, $namespace: null) => Map" since="5.0">
@@ -48,6 +64,16 @@ Remplacée par `refs()`.
 
 </Api>
 
+Props de `Api` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `name` | `string` | requis | Symbole documenté, p. ex. `refs()`. |
+| `kind` | `string` | — | Libellé libre du genre, p. ex. `function`, `mixin`, `option`. |
+| `signature` | `string` | — | Signature d'une ligne affichée sous le titre. |
+| `since` | `string` | — | Version dans laquelle le symbole est apparu. |
+| `deprecated` | `boolean` | — | Marque le symbole comme obsolète. |
+
 ## Encadrés
 
 La même note qu'un conteneur `::: tip`, pour les endroits qu'un conteneur ne peut pas atteindre — à l'intérieur d'un autre
@@ -64,6 +90,13 @@ Les encadrés acceptent du Markdown, à condition qu'il soit séparé des balise
 Sans `title`, c'est le type qui est affiché.
 
 </Callout>
+
+Props de `Callout` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `type` | `string` | `'note'` | Parmi `tip`, `info`, `note`, `important`, `warning`, `danger`, `caution`. |
+| `title` | `string` | — | Libellé affiché au-dessus du texte ; par défaut, le type. |
 
 ## Étapes
 
@@ -114,6 +147,19 @@ pnpm docs:dev
 </Tab>
 </Tabs>
 
+Props de `Tabs` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `syncKey` | `string` | — | Les groupes qui partagent une clé changent ensemble, et le choix est mémorisé entre les visites. |
+| `ariaLabel` | `string` | — | Nom accessible de la liste d'onglets. |
+
+Props de `Tab` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `label` | `string` | requis | Texte de l'onglet ; c'est aussi la valeur partagée entre les groupes de même `syncKey`. |
+
 ## Chronologie
 
 Les titres des entrées sont des `<h3>` par défaut. Réglez `level` sur `<Timeline>` (de 2 à 6) pour suivre le plan de la page.
@@ -130,6 +176,19 @@ Quatre accents prêts à l'emploi derrière une seule option.
 
 </TimelineItem>
 </Timeline>
+
+Props de `Timeline` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `level` | `2 \| 3 \| 4 \| 5 \| 6` | `3` | Niveau de titre des entrées. |
+
+Props de `TimelineItem` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `date` | `string` | — | Date ou période, affichée en petit libellé à chasse fixe au-dessus du titre. |
+| `title` | `string` | — | Titre de l'entrée. |
 
 ## Arborescence
 
@@ -153,6 +212,13 @@ Une `/` finale ou des éléments imbriqués indiquent un dossier.
 ## Badges
 
 <Badge type="new" text="nouveau" /> <Badge type="beta" text="bêta" /> <Badge type="deprecated" text="obsolète" /> <Badge type="since" text="1.7.0" />
+
+Props de `Badge` :
+
+| Prop | Type | Défaut | Description |
+|------|------|--------|-------------|
+| `text` | `string` | — | Texte du badge ; pour `since`, la version. |
+| `type` | `string` | — | `tip`, `info`, `warning` et `danger` viennent de VitePress ; `new`, `beta`, `deprecated` et `since` du thème. |
 
 ## Touches
 

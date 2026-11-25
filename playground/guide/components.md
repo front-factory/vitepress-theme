@@ -27,6 +27,22 @@ Hamburger and full-screen menu, untouched.
 </Card>
 </CardGrid>
 
+`Card` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | required | Title of the card; it is the link when `link` is set. |
+| `icon` | `string` | — | Inline SVG or emoji shown above the title. |
+| `link` | `string` | — | Address the title links to; without it the card is a plain block. |
+| `rel` | `string` | — | `rel` attribute of the link. |
+| `target` | `string` | — | `target` attribute of the link. |
+
+`CardGrid` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `number \| string` | `2` | Number of columns. |
+
 ## API entries
 
 <Api name="refs()" kind="function" signature="refs($tokens, $namespace: null) => Map" since="5.0">
@@ -48,6 +64,16 @@ Replaced by `refs()`.
 
 </Api>
 
+`Api` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | required | Symbol being documented, e.g. `refs()`. |
+| `kind` | `string` | — | Free-form kind label, e.g. `function`, `mixin`, `option`. |
+| `signature` | `string` | — | One-line signature shown under the heading. |
+| `since` | `string` | — | Version the symbol appeared in. |
+| `deprecated` | `boolean` | — | Marks the symbol as deprecated. |
+
 ## Callouts
 
 The same note as a `::: tip` container, for places a container cannot reach — inside another
@@ -64,6 +90,13 @@ Callouts take Markdown, as long as it is separated from the tags by blank lines.
 Without a `title`, the type is printed instead.
 
 </Callout>
+
+`Callout` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `string` | `'note'` | One of `tip`, `info`, `note`, `important`, `warning`, `danger`, `caution`. |
+| `title` | `string` | — | Label printed above the text; defaults to the type. |
 
 ## Steps
 
@@ -114,6 +147,19 @@ pnpm docs:dev
 </Tab>
 </Tabs>
 
+`Tabs` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `syncKey` | `string` | — | Groups sharing a key switch together, and the choice is remembered across visits. |
+| `ariaLabel` | `string` | — | Accessible name of the tab list. |
+
+`Tab` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | required | Text of the tab; also the value shared between groups with the same `syncKey`. |
+
 ## Timeline
 
 Entry titles are `<h3>` by default. Set `level` on `<Timeline>` (2 to 6) to fit the surrounding outline.
@@ -130,6 +176,19 @@ Four ready-made accents behind a single option.
 
 </TimelineItem>
 </Timeline>
+
+`Timeline` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `level` | `2 \| 3 \| 4 \| 5 \| 6` | `3` | Heading level of the entry titles. |
+
+`TimelineItem` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `date` | `string` | — | Date or period, printed as a small monospaced label above the title. |
+| `title` | `string` | — | Heading of the entry. |
 
 ## File tree
 
@@ -153,6 +212,13 @@ A trailing `/` or nested items mark a folder.
 ## Badges
 
 <Badge type="new" text="new" /> <Badge type="beta" text="beta" /> <Badge type="deprecated" text="deprecated" /> <Badge type="since" text="1.7.0" />
+
+`Badge` props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | — | Text of the badge; for `since`, the version. |
+| `type` | `string` | — | `tip`, `info`, `warning` and `danger` come from VitePress; `new`, `beta`, `deprecated` and `since` from the theme. |
 
 ## Keys
 
