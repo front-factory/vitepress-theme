@@ -24,8 +24,13 @@ Or run it locally with `npm run dev:playground`.
 npm install @frontfactory/vitepress-theme
 ```
 
-Requires Node 24+, `vitepress` 2, `vue` 3.5 and `vite` 8 in the host project. Nothing else — the stylesheet is
+Requires Node 24+, `vitepress` `^2.0.0-alpha.20`, `vue` 3.5 and `vite` 8 in the host project. The stylesheet is
 shipped compiled, so Sass is not needed downstream.
+
+Some options need an optional peer dependency, installed only when you use them:
+
+- `feed`: the blog RSS feed (`blog.rss`).
+- `satori` and `@resvg/resvg-js`: Open Graph images (`og`).
 
 ## Use
 

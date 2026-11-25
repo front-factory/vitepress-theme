@@ -8,7 +8,12 @@ Le thème s'installe comme n'importe quel thème VitePress : un paquet, une enve
 npm install @frontfactory/vitepress-theme
 ```
 
-Node 24 ou plus récent, `vitepress` 2, `vue` 3.5 et `vite` 8 sont requis, et les trois derniers restent dans votre propre projet comme d'habitude. La feuille de style est livrée compilée, donc Sass n'est pas nécessaire.
+Node 24 ou plus récent, `vitepress` `^2.0.0-alpha.20`, `vue` 3.5 et `vite` 8 sont requis, et les trois derniers restent dans votre propre projet comme d'habitude. La feuille de style est livrée compilée, donc Sass n'est pas nécessaire.
+
+Certaines options demandent une dépendance optionnelle (peer), à installer seulement si vous les utilisez :
+
+- `feed` : le flux RSS du blog (`blog.rss`).
+- `satori` et `@resvg/resvg-js` : les images Open Graph (`og`).
 
 ## Brancher la configuration
 
