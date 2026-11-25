@@ -96,7 +96,7 @@ export default defineConfig<ThemeConfig>({
                 langMenuLabel: 'Changer de langue',
                 skipToContentLabel: 'Aller au contenu',
                 ff: {
-                    // Same shape as the root columns: arrays are merged index by index.
+                    // Arrays are replaced whole, not merged: repeat every column. An object `sidebar` merges per path.
                     footerColumns: [
                         {
                             title: 'Guide',

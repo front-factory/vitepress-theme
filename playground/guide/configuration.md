@@ -440,6 +440,26 @@ locales: {
 
 The banner's `text` and `linkText` are content rather than labels, so they stay under `ff.banner`. The back-to-top tooltip reuses the default theme's `returnToTopLabel` when set, otherwise `returnToTop`.
 
+### Per-locale options
+
+A locale's `themeConfig` is laid over the root one. Objects merge key by key, so a locale's `ff` inherits every root option it does not set: repeat only what differs, usually `ff.labels`, `banner.text` and the other content strings. Arrays do not merge: a locale that declares `nav`, `footerColumns` or a sidebar array replaces the root array whole, so it must repeat every entry. An object `sidebar` keyed by path merges per path, so a locale can override one section and keep the others.
+
+```ts
+fr: {
+    themeConfig: {
+        // Replaces the root `nav` entirely.
+        nav: [{ text: 'Guide', link: '/fr/guide/getting-started' }],
+        ff: {
+            // `progress`, `backToTop`... are inherited from the root `ff`.
+            footerColumns: [{ title: 'Guide', items: [{ text: 'Prise en main', link: '/fr/guide/getting-started' }] }],
+            labels: { backToTop: 'Haut' }
+        }
+    }
+}
+```
+
+The playground's `fr` locale in `.vitepress/config.ts` is the worked example.
+
 ## JavaScript API
 
 The package entry (`@frontfactory/vitepress-theme`) exports two composables, the default labels and the option types. The build helpers `ffTransformPageData`, `ffBuildEnd` and `ffTransformHead` come from `@frontfactory/vitepress-theme/config` and are covered in [Custom build hooks](#custom-build-hooks).
