@@ -292,7 +292,9 @@
     }
 
     .VPFlyout .VPMenu .VPMenuGroup .title,
-    .VPFlyout .VPMenu .VPNavTranslations .title {
+    .VPFlyout .VPMenu .VPNavTranslations .title,
+    .VPFlyout .VPMenu .menu-appearance .text,
+    .VPNavBarTranslations .VPMenu .title {
         @include mixins.label;
     }
 
