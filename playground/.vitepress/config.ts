@@ -67,7 +67,7 @@ export default defineConfig<ThemeConfig>({
                         link: '/fr/guide/components'
                     },
                     {
-                        text: 'Blog',
+                        text: 'Blog (EN)',
                         link: '/blog/'
                     },
                     {
@@ -106,7 +106,7 @@ export default defineConfig<ThemeConfig>({
                                     link: '/fr/guide/getting-started'
                                 },
                                 {
-                                    text: 'Configuration',
+                                    text: 'Configuration (EN)',
                                     link: '/guide/configuration'
                                 }
                             ]
