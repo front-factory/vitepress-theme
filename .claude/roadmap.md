@@ -91,7 +91,7 @@ Référence entre deux sessions. Mettre à jour ce fichier à la fin de chaque p
 
 **17. i18n** (4146710)
 - `locales: { root, fr }` dans le config du playground ; `ff` n'est pas dupliqué, seuls `ff.labels` et `ff.footerColumns` le sont dans `fr`. Pages miroirs : `fr/index`, `team`, `guide/getting-started`, `components`, `wide`.
-- Fusion des tableaux par index (proxy `stackView`) : `sidebar` racine passé en objet par chemin (`'/fr/'`, `'/'`) ; `nav` FR de même longueur que l'anglais (le lien Blog pointe vers `/blog/` anglais) ; `footerColumns` FR de même forme.
+- Fusion dans `stackView` : les tableaux d'une langue (`nav`, `footerColumns`) remplacent ceux de la racine en entier et doivent donc être répétés au complet ; les objets (`ff`, un `sidebar` par chemin) fusionnent clé par clé. `sidebar` racine passé en objet par chemin (`'/fr/'`, `'/'`) ; le lien Blog du `nav` FR pointe vers `/blog/` anglais, libellé « Blog (EN) ».
 - Libellé `Version` conservé dans le hero FR, donc `transformPageData` l'atteint. Vérifié dans le HTML généré : aucune entrée anglaise de nav, sidebar ou footer sur `/fr/`. La bannière reste en anglais. Recherche locale non traduite.
 
 **18. CI** (0599915)
