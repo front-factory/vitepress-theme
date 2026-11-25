@@ -184,7 +184,7 @@ export interface HeroCommandTab {
 }
 
 /**
- * The two additions this theme makes to the standard `layout: home` hero frontmatter. Both are
+ * The three additions this theme makes to the standard `layout: home` hero frontmatter. All are
  * optional; everything else on `hero` stays the default theme's.
  */
 export interface HeroExtras {
@@ -269,7 +269,7 @@ export interface ThemeOptions {
      * is an object (`true` alone is rejected at build time).
      */
     og?: boolean | OgConfig
-    /** Version menu in the navigation bar, after the other controls. */
+    /** Version menu in the navigation bar, beside the site title. */
     versions?: VersionsConfig
     /** Order of the search box and the nav menu links in the top bar. Defaults to `search-first`. */
     navOrder?: 'search-first' | 'menu-first'
