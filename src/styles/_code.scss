@@ -112,6 +112,28 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // Focused lines: [!code focus]
+    // ----------------------------------------------------------------------------------------- //
+
+    // The default theme blurs the other lines, which smears the code. Here they only dim, and the
+    // focused line carries an accent rule like the other annotated lines. Hovering the block
+    // restores everything, as in the default theme.
+
+    .vp-doc [class*="language-"] .has-focused-lines .line:not(.has-focus) {
+        filter: none;
+        opacity: 0.6;
+        transition: opacity #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
+    }
+
+    .vp-doc [class*="language-"] .has-focused-lines .line.has-focus {
+        box-shadow: inset #{mg.ref("rule-accent-width")} 0 0 0 #{mg.ref("color-accent")};
+    }
+
+    .vp-doc [class*="language-"]:hover .has-focused-lines .line:not(.has-focus) {
+        opacity: 1;
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Code groups: the tabs replace the header strip
     // ----------------------------------------------------------------------------------------- //
 
@@ -178,5 +200,11 @@
 
     .vp-doc .custom-block div[class*="language-"] > pre {
         border-top: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ff-theme .vp-doc [class*="language-"] .has-focused-lines .line:not(.has-focus) {
+        transition: none;
     }
 }
