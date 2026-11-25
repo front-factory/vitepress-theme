@@ -51,6 +51,7 @@
         "eslint-plugin-vue": "^10.12.0",
         "feed": "^6.0.0",
         "husky": "^9.1.7",
+        "markdown-it-mathjax3": "^4.3.2",
         "sass": "^1.107.1",
         "satori": "^0.63.2",
         "semantic-release": "^25.0.9",
