@@ -134,6 +134,10 @@ yarn add @frontfactory/vitepress-theme
 
 Heading with a badge <Badge type="tip" text="new" /> and another <Badge type="warning" text="beta" />.
 
+## Table of contents
+
+[[toc]]
+
 ## Links
 
 An [internal link](/guide/configuration), an [external one](https://vitepress.dev), and some `inline code`.
