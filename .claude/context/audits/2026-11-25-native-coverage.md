@@ -3,7 +3,7 @@
 Date: 2026-11-25
 Baseline commit: adef74d
 Scope: Default-theme UI parts not restyled by src/styles
-Status: open
+Status: closed
 
 ## Findings
 
@@ -16,5 +16,5 @@ Status: open
 | S5 | low | src/styles/_content.scss | `.vp-external-link-icon` keeps stock colour/spacing. | fixed | Softer arrow with em spacing, screen only so print keeps the URL. | |
 | S6 | low | src/styles/_content.scss | `[[toc]]` list `.table-of-contents` has no treatment. | fixed | Outline-style list: left rule, muted links, accent on hover. | |
 | S7 | low | src/styles/_team.scss | Large team card size. | wontfix | VPTeamMembers only supports small and medium (default medium); both styled. |
-| S8 | low | src/styles | Math (`.katex`, `mjx-container`) and emoji not styled; only matters with markdown.math. | open | |
+| S8 | low | src/styles | Math (`.katex`, `mjx-container`) and emoji not styled; only matters with markdown.math. | fixed | Display math clips its vertical overflow. Inline math and emoji need no rule: the SVG inherits the text colour and emoji render as plain Unicode text. | |
 | S9 | low | src/styles | Stock `.VPHomeHero`/`.VPHomeFeatures`. | wontfix | VPHero and VPFeature are replaced by alias (config.js overrides). |

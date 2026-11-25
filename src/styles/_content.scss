@@ -580,6 +580,19 @@
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // Math: markdown.math
+    // ----------------------------------------------------------------------------------------- //
+
+    // The SVG output already takes the text colour, and the default theme already scrolls a wide
+    // formula sideways. What it leaves is a vertical scrollbar on short display formulas, since
+    // the SVG overflows its box, so the block clips on that axis and keeps a little room inside.
+
+    .vp-doc mjx-container[display="true"] {
+        padding: 0.25rem 0;
+        overflow-y: hidden;
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Cards
     // ----------------------------------------------------------------------------------------- //
 
