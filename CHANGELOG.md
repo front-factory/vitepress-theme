@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.0](https://github.com/front-factory/vitepress-theme/compare/v1.11.0...v1.12.0) (2026-11-25)
+
+### Features
+
+* **sidebar:** add an option to hide the section numbers ([50df174](https://github.com/front-factory/vitepress-theme/commit/50df174730f30937f5025c2da51236e8358f5e89))
+* **styles:** style display math blocks ([145ebe4](https://github.com/front-factory/vitepress-theme/commit/145ebe43adc4f6d7a7a3333c7b8edfb2ee3757c4))
+* **styles:** style the external link icon ([e949f47](https://github.com/front-factory/vitepress-theme/commit/e949f478dcbf8f12fe5de5b47ab497176875a102))
+* **styles:** style the focused code lines ([17f021d](https://github.com/front-factory/vitepress-theme/commit/17f021d2a5935e2f1dd7e06c2ab676da98a0dff1))
+* **styles:** style the inline table of contents ([a8ef2f1](https://github.com/front-factory/vitepress-theme/commit/a8ef2f1e539c8e45f9d7b9fbd3446441529672d3))
+* **styles:** style the nav screen language, appearance and social links ([27909fa](https://github.com/front-factory/vitepress-theme/commit/27909fab0f52190edfa3bdd1fc14fcd289d1c26f))
+* **styles:** style the navbar language and appearance menu labels ([d1e4d23](https://github.com/front-factory/vitepress-theme/commit/d1e4d23f6dda258802af221cb4f023420daafbc4))
+* **styles:** style the skip link ([ea7f9b0](https://github.com/front-factory/vitepress-theme/commit/ea7f9b027b9a6019cee18ba0df0ec07b1601dbec))
+
 ## [1.11.0](https://github.com/front-factory/vitepress-theme/compare/v1.10.0...v1.11.0) (2026-11-21)
 
 ### Features
