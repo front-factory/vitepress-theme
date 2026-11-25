@@ -58,6 +58,9 @@ export default Theme
 `extends: baseConfig` is required: it swaps the components the theme replaces and wires the build
 hooks the theme relies on.
 
+The composables, default labels and types are documented under
+[JavaScript API](https://github.com/front-factory/vitepress-theme/blob/main/playground/guide/configuration.md#javascript-api).
+
 ## Documentation
 
 The playground is the reference. Each page below is the source of a page of the demo site:

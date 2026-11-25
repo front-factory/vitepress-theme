@@ -440,6 +440,61 @@ locales: {
 
 The banner's `text` and `linkText` are content rather than labels, so they stay under `ff.banner`. The back-to-top tooltip reuses the default theme's `returnToTopLabel` when set, otherwise `returnToTop`.
 
+## JavaScript API
+
+The package entry (`@frontfactory/vitepress-theme`) exports two composables, the default labels and the option types. The build helpers `ffTransformPageData`, `ffBuildEnd` and `ffTransformHead` come from `@frontfactory/vitepress-theme/config` and are covered in [Custom build hooks](#custom-build-hooks).
+
+### Composables
+
+- `useThemeOptions()` returns a computed `ThemeOptions`: the `themeConfig.ff` of the current locale, or `{}` when unset, so there is nothing to guard.
+- `useLabels()` returns a computed `Required<ThemeLabels>`: every label, with the overrides from `ff.labels` laid over the defaults.
+
+Both read VitePress's `useData()`, so they only work inside the theme's app: in a component, a layout slot or a theme extension, not in `.vitepress/config.ts`.
+
+```vue
+<script setup lang="ts">
+import { useLabels, useThemeOptions } from '@frontfactory/vitepress-theme'
+
+const labels = useLabels()
+const options = useThemeOptions()
+</script>
+
+<template>
+    <button v-if="options.backToTop !== false">{{ labels.backToTop }}</button>
+</template>
+```
+
+`defaultLabels` is the map of English fallbacks, the same one listed under [Translating](#translating).
+
+### Types
+
+| Type | Describes |
+|------|-----------|
+| `ThemeConfig` | The `themeConfig` of the site: the default theme's config plus `ff`. |
+| `ThemeOptions` | The `themeConfig.ff` object. |
+| `ThemeLabels` | The strings the theme adds, set with `ff.labels`. |
+| `BannerConfig` | `ff.banner`. |
+| `FooterColumn`, `FooterLink` | A column of `ff.footerColumns` and one link in it. |
+| `MetaConfig` | `ff.meta`. |
+| `VersionsConfig` | `ff.versions`. |
+| `FeedbackConfig` | `ff.feedback` when it is an object. |
+| `OgConfig`, `OgFont` | `ff.og` and one of its fonts. |
+| `BlogConfig`, `BlogAuthor`, `BlogRssConfig` | `ff.blog`, one author and the RSS settings. |
+| `HeroExtras`, `HeroCommandTab`, `HeroMetaItem` | The theme's additions to the `hero` frontmatter, one install tab and one meta entry. |
+
+`ThemeConfig` types the site config, so `ff` is checked:
+
+```ts
+import { defineConfig } from 'vitepress'
+import type { ThemeConfig } from '@frontfactory/vitepress-theme'
+
+export default defineConfig<ThemeConfig>({
+    themeConfig: {
+        ff: { progress: true }
+    }
+})
+```
+
 ## Printing
 
 No option needed. Printing a page drops the navigation, sidebar, outline, banner, back-to-top control, progress bar, feedback widget and previous/next links, forces the light palette — code included — even in dark mode, and prints the address after each external link.
