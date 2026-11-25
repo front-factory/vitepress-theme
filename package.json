@@ -55,7 +55,7 @@
         "sass": "^1.107.1",
         "satori": "^0.63.2",
         "semantic-release": "^25.0.9",
-        "stylelint": "^17.16.0",
+        "stylelint": "^18.1.0",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.72.1",
         "vite": "^8.3.8",
