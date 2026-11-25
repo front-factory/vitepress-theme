@@ -211,7 +211,9 @@ A trailing `/` or nested items mark a folder.
 
 ## Badges
 
-<Badge type="new" text="new" /> <Badge type="beta" text="beta" /> <Badge type="deprecated" text="deprecated" /> <Badge type="since" text="1.7.0" />
+<Badge type="new" text="new" /> <Badge type="beta" text="beta" /> <Badge type="deprecated" text="deprecated" /> <Badge type="since" text="1.7.0" /> <Badge type="tip" text="tip" />
+
+`type="since"` prints its text through the `apiSince` [label](/guide/configuration#translating) (default `since {0}`), so `text="1.7.0"` shows `since 1.7.0`. The native VitePress types `tip`, `info`, `warning` and `danger` still work.
 
 `Badge` props:
 

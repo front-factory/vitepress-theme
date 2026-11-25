@@ -211,7 +211,9 @@ Une `/` finale ou des éléments imbriqués indiquent un dossier.
 
 ## Badges
 
-<Badge type="new" text="nouveau" /> <Badge type="beta" text="bêta" /> <Badge type="deprecated" text="obsolète" /> <Badge type="since" text="1.7.0" />
+<Badge type="new" text="nouveau" /> <Badge type="beta" text="bêta" /> <Badge type="deprecated" text="obsolète" /> <Badge type="since" text="1.7.0" /> <Badge type="tip" text="astuce" />
+
+`type="since"` affiche son texte à travers le libellé `apiSince` (par défaut `since {0}`, `depuis {0}` ici), donc `text="1.7.0"` affiche `depuis 1.7.0`. Les types natifs de VitePress `tip`, `info`, `warning` et `danger` fonctionnent toujours.
 
 Props de `Badge` :
 
