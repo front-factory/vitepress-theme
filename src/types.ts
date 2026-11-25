@@ -278,6 +278,8 @@ export interface ThemeOptions {
      * to `false` to have it scroll away with the page instead.
      */
     navSticky?: boolean
+    /** Numbers the sidebar sections 01, 02, 03. Defaults to `true`; set to `false` to hide them. */
+    sidebarNumbers?: boolean
     /**
      * Ready-made accent, in both schemes, instead of the default indigo. Set on `<html>` by an
      * inline head script, so it paints from the first frame and reaches teleported overlays.

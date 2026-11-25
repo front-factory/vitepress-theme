@@ -14,6 +14,7 @@ This page only covers the options added by the theme. Every native VitePress opt
 | `banner` | — | Dismissible bar above the navigation. See [Banner](#banner). |
 | `navOrder` | `'search-first'` | Order of search and menu. See [Navigation](#navigation). |
 | `navSticky` | `true` | Pins the top bar. See [Navigation](#navigation). |
+| `sidebarNumbers` | `true` | Numbers the sidebar sections 01, 02, 03. See [Navigation](#navigation). |
 | `footerColumns` | `[]` | Link columns in the site footer. See [Footer](#footer). |
 | `footerSocial` | `true` | Social icons beside the footer columns. See [Footer](#footer). |
 | `backToTop` | `true` | Floating back-to-top control. See [Back to top and progress](#back-to-top-and-progress). |
@@ -96,7 +97,7 @@ Loading a display face over the network without `font-display: swap` blocks the 
 
 ### Navigation
 
-`navOrder` is `'search-first'` (the default theme's own order) or `'menu-first'`, which pins the menu against the title; it has no effect on the mobile bar, which always falls back to the hamburger. `navSticky: false` lets the bar, and the banner above it, scroll away with the page.
+`navOrder` is `'search-first'` (the default theme's own order) or `'menu-first'`, which pins the menu against the title; it has no effect on the mobile bar, which always falls back to the hamburger. `navSticky: false` lets the bar, and the banner above it, scroll away with the page. The sidebar sections are numbered 01, 02, 03 from the stylesheet; `sidebarNumbers: false` hides the numbers.
 
 ### Footer
 

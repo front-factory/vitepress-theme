@@ -33,6 +33,7 @@ const forwarded = () => Object.keys(slots).filter((name) => !owned.includes(name
     class="ff-theme"
     :data-nav-order="options.navOrder ?? 'search-first'"
     :data-nav-sticky="options.navSticky === false ? 'false' : 'true'"
+    :data-sidebar-numbers="options.sidebarNumbers === false ? 'off' : undefined"
     :data-layout="frontmatter.wide === true ? 'wide' : undefined"
   >
     <Layout>

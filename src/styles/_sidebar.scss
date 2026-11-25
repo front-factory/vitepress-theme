@@ -66,6 +66,16 @@
         color: #{mg.ref("color-accent")};
     }
 
+    // `ff.sidebarNumbers: false`: no number, so no gap to keep beside it.
+
+    &[data-sidebar-numbers="off"] .VPSidebar .group > .VPSidebarItem.level-0 > .item {
+        gap: 0;
+    }
+
+    &[data-sidebar-numbers="off"] .VPSidebar .group > .VPSidebarItem.level-0 > .item::before {
+        content: none;
+    }
+
     .VPSidebarItem.level-0 > .item > .text {
         padding: 0;
         font-family: #{mg.ref("font-mono")};
