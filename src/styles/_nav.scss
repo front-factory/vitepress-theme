@@ -330,13 +330,15 @@
     // draws its own.
 
     .VPNavBar .VPSocialLink,
-    .VPFlyout .VPSocialLink {
+    .VPFlyout .VPSocialLink,
+    .VPNavScreenSocialLinks .VPSocialLink {
         color: #{mg.ref("color-ink-muted")};
         transition: color #{mg.ref("motion-duration")} #{mg.ref("motion-ease")};
     }
 
     .VPNavBar .VPSocialLink:hover,
-    .VPFlyout .VPSocialLink:hover {
+    .VPFlyout .VPSocialLink:hover,
+    .VPNavScreenSocialLinks .VPSocialLink:hover {
         color: #{mg.ref("color-ink")};
     }
 
@@ -417,6 +419,34 @@
         border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
         font-weight: 500;
     }
+
+    // Language accordion and appearance row: ruled like the menu links, not a filled card.
+
+    .VPNavScreenTranslations {
+        padding-bottom: 0.5rem;
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+    }
+
+    .VPNavScreenTranslations .link {
+        color: #{mg.ref("color-ink-muted")};
+    }
+
+    .VPNavScreenTranslations .link:hover {
+        color: #{mg.ref("color-accent")};
+    }
+
+    .VPNavScreenAppearance {
+        border-bottom: #{mg.ref("rule-width")} solid #{mg.ref("color-rule")};
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .VPNavScreenAppearance .text {
+        font-family: #{mg.ref("font-mono")};
+        font-size: #{mg.ref("size-label")};
+        text-transform: uppercase;
+        letter-spacing: #{mg.ref("tracking-label")};
+    }
 }
 
 // The search modal is teleported to <body>, so it sits outside the themed root.
@@ -458,6 +488,7 @@
         .VPNavBarHamburger .bottom,
         .VPNavBar .VPSocialLink,
         .VPFlyout .VPSocialLink,
+        .VPNavScreenSocialLinks .VPSocialLink,
         div.VPBackdrop {
             transition: none;
         }
